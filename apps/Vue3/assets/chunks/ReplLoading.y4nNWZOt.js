@@ -1,0 +1,1 @@
+import{_ as o,o as i,c as n,a as e}from"./framework.B2oIMGqn.js";const d={},a={class:"repl-loading"};function r(c,s){return i(),n("div",a,s[0]||(s[0]=[e("div",{class:"lds-ring"},[e("div"),e("div"),e("div"),e("div")],-1),e("div",null,"Repl is loading...",-1)]))}const t=o(d,[["render",r]]);export{t as R};
