@@ -1,0 +1,177 @@
+<html><head></head><body>
+<p>The <strong><code>calc()</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Functions">function</a> lets you perform calculations when specifying CSS property values. It can be used with <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a>, <a href="/en-US/docs/Web/CSS/frequency"><code>&lt;frequency&gt;</code></a>, <a href="/en-US/docs/Web/CSS/angle"><code>&lt;angle&gt;</code></a>, <a href="/en-US/docs/Web/CSS/time"><code>&lt;time&gt;</code></a>, <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a>, <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a>, <a href="/en-US/docs/Web/CSS/integer"><code>&lt;integer&gt;</code></a>, and <a href="/en-US/docs/Web/CSS/color_value"><code>&lt;color-function&gt;</code></a> values.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/function-calc.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* calc(expression) */
+calc(100% - 80px)
+
+/* Expression with a CSS function */
+calc(100px * sin(pi / 2))
+
+/* Expression containing a variable */
+calc(var(--hue) + 180)
+
+/* Expression with color channels in relative colors */
+lch(from aquamarine l c calc(h + 180))
+</pre>
+<p>The <code>calc()</code> function takes a single expression as its parameter, and the expression's result is used as the value for a CSS property. In this expression, the <a href="/en-US/docs/Glossary/Operand">operands</a> can be combined using the <a href="/en-US/docs/Glossary/Operator">operators</a> listed below. When the expression contains multiple operands, <code>calc()</code> uses the standard <a href="/en-US/docs/Learn_web_development/Core/Scripting/Math#operator_precedence">operator precedence rules</a>:</p>
+<dl>
+  <dt id="sect1"><a href="#sect1"><code>+</code></a></dt>
+  <dd>
+    <p>Adds the specified operands.</p>
+  </dd>
+  <dt id="-"><a href="#-"><code>-</code></a></dt>
+  <dd>
+    <p>Subtracts the second operand from the first operand.</p>
+  </dd>
+  <dt id="sect2"><a href="#sect2"><code>*</code></a></dt>
+  <dd>
+    <p>Multiplies the specified operands.</p>
+  </dd>
+  <dt id="sect3"><a href="#sect3"><code>/</code></a></dt>
+  <dd>
+    <p>Divides the left-side operand (dividend) by the right-side operand (divisor).</p>
+  </dd>
+</dl>
+<p>All operands, except those of type <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a>, must be suffixed with an appropriate unit string, such as <code>px</code>, <code>em</code>, or <code>%</code>. You can use a different unit with each operand in your expression. You may also use parentheses to establish computation order when needed.</p>
+<h2 id="description">Description</h2>
+<p>There's a few points to keep in mind about <code>calc()</code>:</p>
+<ul>
+  <li>
+    <p>
+      Serializing the arguments inside <code>calc()</code> follows the IEEE-754 standard for floating point math, which means there's a few cases to be aware of regarding the <code>infinity</code> and <code>NaN</code> constants.
+      For more details on how constants are serialized, see the <a href="/en-US/docs/Web/CSS/calc-keyword"><code>calc-keyword</code></a> page.
+    </p>
+  </li>
+  <li>
+    <p>Math expressions involving percentages for widths and heights on table columns, table column groups, table rows, table row groups, and table cells in both auto and fixed layout tables <em>may</em> be treated as if <code>auto</code> is specified.</p>
+  </li>
+  <li>
+    <p>The <code>calc()</code> function cannot directly substitute the numeric value for percentage types; for instance <code>calc(100 / 4)%</code> is invalid, while <code>calc(100% / 4)</code> is valid.</p>
+  </li>
+  <li>
+    <p>When <code>calc()</code> is used where an <a href="/en-US/docs/Web/CSS/integer"><code>&lt;integer&gt;</code></a> is expected, the value will be rounded to the nearest integer. So, <code>calc(1.4)</code> will result in a value of <code>1</code>. If the fractional part of the value is exactly <code>0.5</code>, the value will be rounded up. For example, <code>calc(1.5)</code> will result in a value of <code>2</code>, while <code>calc(-1.5)</code> will round to <code>-1</code>.</p>
+  </li>
+  <li>
+    <p><code>calc()</code> cannot perform calculations on <a href="/en-US/docs/Glossary/Intrinsic_Size">intrinsic size values</a> such as <a href="/en-US/docs/Web/CSS/width" data-flaw-src="{{cssxref(&quot;auto&quot;)}}"><code>auto</code></a> and <a href="/en-US/docs/Web/CSS/fit-content"><code>fit-content</code></a>. Use the <a href="/en-US/docs/Web/CSS/calc-size"><code>calc-size()</code></a> function instead.</p>
+  </li>
+</ul>
+<h3 id="rules_and_best_practices_while_using_calc">Rules and best practices while using <code>calc()</code></h3>
+<ul>
+  <li>The <code>+</code> and <code>-</code> operators <strong>must be surrounded by <a href="/en-US/docs/Glossary/Whitespace">whitespace</a></strong>. For instance, <code>calc(50% -8px)</code> will be parsed as "a percentage followed by a negative length" — which is an invalid expression — while <code>calc(50% - 8px)</code> is "a percentage followed by a subtraction operator and a length". Likewise, <code>calc(8px + -50%)</code> is treated as "a length followed by an addition operator and a negative percentage".</li>
+  <li>The <code>*</code> and <code>/</code> operators do not require whitespace, but adding it for consistency is recommended.</li>
+  <li>It is permitted to nest <code>calc()</code> functions, in which case, the inner ones are treated as simple parentheses.</li>
+  <li>For lengths, you can't use <code>0</code> to mean <code>0px</code> (or another length unit); instead, you must use the version with the unit: <code>margin-top: calc(0px + 20px);</code> is valid, while <code>margin-top: calc(0 + 20px);</code> is invalid.</li>
+  <li>Current implementations require that for the <code>*</code> and <code>/</code> operators, one of the operands has to be unitless. For <code>/</code>, the right operand must be unitless. For example <code>font-size: calc(1.25rem / 1.25)</code> is valid but <code>font-size: calc(1.25rem / 125%)</code> is invalid.</li>
+</ul>
+<h3 id="support_for_computing_color_channels_in_relative_colors">Support for computing color channels in relative colors</h3>
+<p>The <code>calc()</code> function can be used to manipulate color channels directly within the context of <a href="/en-US/docs/Web/CSS/CSS_colors/Relative_colors">relative colors</a>. This allows for dynamic adjustments of color channels in color models such as <a href="/en-US/docs/Web/CSS/color_value/rgb"><code>rgb()</code></a>, <a href="/en-US/docs/Web/CSS/color_value/hsl"><code>hsl()</code></a>, and <a href="/en-US/docs/Web/CSS/color_value/lch"><code>lch()</code></a>.</p>
+<p>The relative color syntax defines a number of color-channel keywords, each of which represents the value of the color channel as a <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> (see <a href="/en-US/docs/Web/CSS/CSS_colors/Relative_colors#channel_values_resolve_to_number_values">Channel values resolve to <code>&lt;number&gt;</code> values</a> for more information). The <code>calc()</code> function can use these color-channel keywords to perform dynamic adjustments on the color channels, for example, <code>calc(r + 10)</code>.</p>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="<calc()>">&lt;calc()&gt; = </span><br>  <span class="token function">calc(</span> <span class="token property">&lt;calc-sum&gt;</span> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-sum>">&lt;calc-sum&gt; = </span><br>  <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '+' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '-' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<calc-product>">&lt;calc-product&gt; = </span><br>  <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '*' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '/' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<calc-value>">&lt;calc-value&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/dimension"><span class="token property">&lt;dimension&gt;</span></a>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;calc-keyword&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  ( <span class="token property">&lt;calc-sum&gt;</span> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-keyword>">&lt;calc-keyword&gt; = </span><br>  <span class="token keyword">e</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">pi</span>         <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">infinity</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">-infinity</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">NaN</span>        <br><br></pre>
+<h2 id="accessibility">Accessibility</h2>
+<p>When <code>calc()</code> is used for controlling text size, be sure that one of the values includes a <a href="/en-US/docs/Web/CSS/length#relative_length_units">relative length unit</a>, for example:</p>
+<pre class="brush: css">h1 {
+  font-size: calc(1.5rem + 3vw);
+}
+</pre>
+<p>This ensures that text size will scale if the page is zoomed.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#guideline_1.4_make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background">MDN Understanding WCAG, Guideline 1.4 explanations</a></li>
+  <li><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html">Understanding Success Criterion 1.4.4 | W3C Understanding WCAG 2.0</a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="positioning_an_object_on_screen_with_a_margin">Positioning an object on screen with a margin</h3>
+<p><code>calc()</code> makes it easy to position an object with a set margin. In this example, the CSS creates a banner that stretches across the window, with a 40-pixel gap between both sides of the banner and the edges of the window:</p>
+<pre class="brush: css">.banner {
+  position: absolute;
+  left: 40px;
+  width: calc(100% - 80px);
+  border: solid black 1px;
+  box-shadow: 1px 2px;
+  background-color: yellow;
+  padding: 6px;
+  text-align: center;
+  box-sizing: border-box;
+}
+</pre>
+<pre class="brush: html">&lt;div class="banner"&gt;This is a banner!&lt;/div&gt;
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Positioning an object on screen with a margin sample" id="frame_positioning_an_object_on_screen_with_a_margin" width="auto" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/calc" data-live-id="positioning_an_object_on_screen_with_a_margin" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="automatically_sizing_form_fields_to_fit_their_container">Automatically sizing form fields to fit their container</h3>
+<p>Another use case for <code>calc()</code> is to help ensure that form fields fit in the available space, without extruding past the edge of their container, while maintaining an appropriate margin.</p>
+<p>Let's look at some CSS:</p>
+<pre class="brush: css">input {
+  padding: 2px;
+  display: block;
+  width: calc(100% - 1em);
+}
+
+#form-box {
+  width: calc(100% / 6);
+  border: 1px solid black;
+  padding: 4px;
+}
+</pre>
+<p>Here, the form itself is established to use 1/6 of the available window width. Then, to ensure that input fields retain an appropriate size, we use <code>calc()</code> again to establish that they should be the width of their container minus 1em. Then, the following HTML makes use of this CSS:</p>
+<pre class="brush: html">&lt;form&gt;
+  &lt;div id="form-box"&gt;
+    &lt;label for="misc"&gt;Type something:&lt;/label&gt;
+    &lt;input type="text" id="misc" name="misc" /&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Automatically sizing form fields to fit their container sample" id="frame_automatically_sizing_form_fields_to_fit_their_container" width="700" height="80" src="about:blank" data-live-path="/en-US/docs/Web/CSS/calc" data-live-id="automatically_sizing_form_fields_to_fit_their_container" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="nesting_with_css_variables">Nesting with CSS variables</h3>
+<p>You can use <code>calc()</code> with <a href="/en-US/docs/Web/CSS/CSS_cascading_variables">CSS variables</a>. Consider the following code:</p>
+<pre class="brush: css">.foo {
+  --widthA: 100px;
+  --widthB: calc(var(--widthA) / 2);
+  --widthC: calc(var(--widthB) / 2);
+  width: var(--widthC);
+}
+</pre>
+<p>After all variables are expanded, <code>widthC</code>'s value will be <code>calc(calc(100px / 2) / 2)</code>. When it's assigned to <code>.foo</code>'s width property, all inner <code>calc()</code> functions (no matter how deeply nested) will be flattened to just parentheses. Therefore, the <code>width</code> property's value will eventually be <code>calc((100px / 2) / 2)</code>, which equals <code>25px</code>. In short, a <code>calc()</code> inside of a <code>calc()</code> is identical to using parentheses.</p>
+<h3 id="adjusting_color_channels_in_relative_colors">Adjusting color channels in relative colors</h3>
+<p>The <code>calc()</code> function can be used to adjust individual color channels in <a href="/en-US/docs/Web/CSS/CSS_colors/Relative_colors">relative colors</a> without the need for storing color channel values as variables.</p>
+<p>
+  In the example below, the first paragraph uses a <a href="/en-US/docs/Web/CSS/named-color"><code>&lt;named-color&gt;</code></a>.
+  In the paragraphs that follow, <code>calc()</code> is used with the <a href="/en-US/docs/Web/CSS/color_value/rgb"><code>rgb()</code></a> and <a href="/en-US/docs/Web/CSS/color_value/hsl"><code>hsl()</code></a> functions to adjust the values of each color channel relative to the original named color.
+</p>
+<pre class="brush: html">&lt;p class="original"&gt;Original text color in rebeccapurple&lt;/p&gt;
+&lt;p class="increase-hue"&gt;Hue increased by 80&lt;/p&gt;
+&lt;p class="increase-lightness"&gt;Lightness increased by 20&lt;/p&gt;
+&lt;p class="decrease-lightness"&gt;Lightness decreased by 10&lt;/p&gt;
+</pre>
+<pre class="brush: css hidden">p {
+  font-family: monospace;
+  font-size: 16px;
+}
+</pre>
+<pre class="brush: css">.original {
+  color: rebeccapurple;
+}
+
+.increase-hue {
+  color: lch(from rebeccapurple l c calc(h + 80));
+}
+
+.increase-lightness {
+  color: lch(from rebeccapurple calc(l + 20) c h);
+}
+
+.decrease-lightness {
+  color: lch(from rebeccapurple calc(l - 10) c h);
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Adjusting color channels in relative colors sample" id="frame_adjusting_color_channels_in_relative_colors" width="700" height="300" src="about:blank" data-live-path="/en-US/docs/Web/CSS/calc" data-live-id="adjusting_color_channels_in_relative_colors" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>For another example of using the <code>calc()</code> function to derive relative colors, see the <a href="/en-US/docs/Web/CSS/CSS_colors/Relative_colors#using_math_functions">Using math functions</a> section on the <em>Using relative colors</em> page.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.calc" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.calc" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/calc-keyword"><code>&lt;calc-keyword&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_Functions">CSS functions</a></li>
+  <li><a href="https://css-tricks.com/a-complete-guide-to-calc-in-css/">A Complete Guide to calc() in CSS</a> (CSS-Tricks)</li>
+</ul>
+</body></html>

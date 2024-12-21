@@ -1,0 +1,113 @@
+<html><head></head><body>
+<p>The <strong><code>text-wrap</code></strong> CSS shorthand property controls how text inside an element is wrapped. The different values provide:</p>
+<ul>
+  <li>Typographic improvements, for example more balanced line lengths across broken headings</li>
+  <li>A way to turn text wrapping off completely.</li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <a href="/en-US/docs/Web/CSS/white-space-collapse"><code>white-space-collapse</code></a> and <code>text-wrap</code> properties can be declared together using the <a href="/en-US/docs/Web/CSS/white-space"><code>white-space</code></a> shorthand property.</p>
+</div><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/text-wrap.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="constituent_properties">Constituent properties</h2>
+<p>This property is a shorthand for the following CSS properties:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/text-wrap-mode"><code>text-wrap-mode</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/text-wrap-style"><code>text-wrap-style</code></a></li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+text-wrap: wrap;
+text-wrap: nowrap;
+text-wrap: balance;
+text-wrap: pretty;
+text-wrap: stable;
+
+/* Global values */
+text-wrap: inherit;
+text-wrap: initial;
+text-wrap: revert;
+text-wrap: revert-layer;
+text-wrap: unset;
+</pre>
+<p>The <code>text-wrap</code> property is specified as a single keyword chosen from the list of values below.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="wrap"><a href="#wrap"><code>wrap</code></a></dt>
+  <dd>
+    <p>Text is wrapped across lines at appropriate characters (for example spaces, in languages like English that use space separators) to minimize overflow. This is the default value.</p>
+  </dd>
+  <dt id="nowrap"><a href="#nowrap"><code>nowrap</code></a></dt>
+  <dd>
+    <p>Text does not wrap across lines. It will overflow its containing element rather than breaking onto a new line.</p>
+  </dd>
+  <dt id="balance"><a href="#balance"><code>balance</code></a></dt>
+  <dd>
+    <p>Text is wrapped in a way that best balances the number of characters on each line, enhancing layout quality and legibility. Because counting characters and balancing them across multiple lines is computationally expensive, this value is only supported for blocks of text spanning a limited number of lines (six or less for Chromium and ten or less for Firefox).</p>
+  </dd>
+  <dt id="pretty"><a href="#pretty"><code>pretty</code></a></dt>
+  <dd>
+    <p>Results in the same behavior as <code>wrap</code>, except that the user agent will use a slower algorithm that favors better layout over speed. This is intended for body copy where good typography is favored over performance (for example, when the number of <a href="/en-US/docs/Web/CSS/orphans">orphans</a> should be kept to a minimum).</p>
+  </dd>
+  <dt id="stable"><a href="#stable"><code>stable</code></a></dt>
+  <dd>
+    <p>Results in the same behavior as <code>wrap</code>, except that when the user is editing the content, the lines that come before the lines they are editing remain static rather than the whole block of text re-wrapping.</p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>There are 2 ways that text can flow across lines within a block of content, such as a paragraph (<a href="/en-US/docs/Web/HTML/Element/p"><code>&lt;p&gt;</code></a>) or headings (<a href="/en-US/docs/Web/HTML/Element/Heading_Elements">&lt;h1&gt;–&lt;h6&gt;</a>). These are <em>forced line breaks</em>, that are controlled by the user, and <em>soft line breaks</em>, that are controlled by the browser. The <code>text-wrap</code> property can be used to prompt the browser how to control the <em>soft line breaks</em>.</p>
+<p>The value you choose, for <code>text-wrap</code>, depends on how many lines of text you anticipate styling, whether the text is <code>contenteditable</code>, and whether you need to prioritize appearance or performance.</p>
+<p>When the styled content will be limited to a short number of lines, such as headings, captions, and blockquotes, <code>text-wrap: balance</code> can be added to balance the number of characters on each line, enhancing layout quality and legibility. As browsers limit the number of lines impacted by this property, this value's impact on performance is negligible.</p>
+<p>For longer sections of text, <code>text-wrap: pretty</code> can be used. Note that <code>pretty</code> has a negative effect on performance, so it should be only used for longer blocks of text when the layout is more important than speed.</p>
+<p>The <code>stable</code> value improves user experience when used on content that is <a href="/en-US/docs/Web/HTML/Global_attributes/contenteditable"><code>contenteditable</code></a>. This value ensures that, as the user is editing text, the previous lines in the area being edited remain stable.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>wrap</code></td></tr><tr><th scope="row">Applies to</th><td>text and block containers</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row">Percentages</th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/text-wrap-mode"><code>text-wrap-mode</code></a>: no</li><li><a href="/en-US/docs/Web/CSS/text-wrap-style"><code>text-wrap-style</code></a>: no</li></ul></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/text-wrap-mode"><code>text-wrap-mode</code></a>: as specified</li><li><a href="/en-US/docs/Web/CSS/text-wrap-style"><code>text-wrap-style</code></a>: as specified</li></ul></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/text-wrap-mode"><code>text-wrap-mode</code></a>: discrete</li><li><a href="/en-US/docs/Web/CSS/text-wrap-style"><code>text-wrap-style</code></a>: discrete</li></ul></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="text-wrap">text-wrap = </span><br>  <a href="/en-US/docs/Web/CSS/text-wrap-mode"><span class="token property">&lt;'text-wrap-mode'&gt;</span></a>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a><br>  <a href="/en-US/docs/Web/CSS/text-wrap-style"><span class="token property">&lt;'text-wrap-style'&gt;</span></a>  <br><br><span class="token property" id="<text-wrap-mode>">&lt;text-wrap-mode&gt; = </span><br>  <span class="token keyword">wrap</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">nowrap</span>  <br><br><span class="token property" id="<text-wrap-style>">&lt;text-wrap-style&gt; = </span><br>  <span class="token keyword">auto</span>           <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">balance</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">stable</span>         <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">pretty</span>         <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">avoid-orphans</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_text_wrap_value_comparison">Basic text wrap value comparison</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;h2 class="wrap" contenteditable="true"&gt;
+  The default behavior; the text in the heading wraps "normally"
+&lt;/h2&gt;
+
+&lt;h2 class="nowrap" contenteditable="true"&gt;
+  In this case the text in the heading doesn't wrap, and overflows the container
+&lt;/h2&gt;
+
+&lt;h2 class="balance" contenteditable="true"&gt;
+  In this case the text in the heading is nicely balanced across lines
+&lt;/h2&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">.wrap {
+  text-wrap: wrap;
+}
+
+.nowrap {
+  text-wrap: nowrap;
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: 2rem;
+  font-family: sans-serif;
+}
+</pre>
+<h4 id="result">Result</h4>
+<p>The text in the example is editable. Change the text, adding long words, to view how the different line and word lengths impact wrapping.</p><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="100%" height="350" src="about:blank" data-live-path="/en-US/docs/Web/CSS/text-wrap" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.text-wrap" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.text-wrap" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/white-space"><code>white-space</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/white-space-collapse"><code>white-space-collapse</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_text">CSS text module</a></li>
+  <li><a href="https://developer.chrome.com/docs/css-ui/css-text-wrap-balance">CSS <code>text-wrap: balance</code></a> on developer.chrome.com</li>
+  <li><a href="https://developer.chrome.com/blog/css-text-wrap-pretty/">CSS <code>text-wrap: pretty</code></a> on developer.chrome.com</li>
+</ul>
+</body></html>

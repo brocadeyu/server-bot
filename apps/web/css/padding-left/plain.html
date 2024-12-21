@@ -1,0 +1,62 @@
+<html><head></head><body>
+<p>The <strong><code>padding-left</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets the width of the <a href="/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model#padding_area">padding area</a> to the left of an element.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/padding-left.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p>An element's padding area is the space between its content and its border.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <a href="/en-US/docs/Web/CSS/padding"><code>padding</code></a> property can be used to set paddings on all four sides of an element with a single declaration.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;length&gt; values */
+padding-left: 0.5em;
+padding-left: 0;
+padding-left: 2cm;
+
+/* &lt;percentage&gt; value */
+padding-left: 10%;
+
+/* Global values */
+padding-left: inherit;
+padding-left: initial;
+padding-left: revert;
+padding-left: revert-layer;
+padding-left: unset;
+</pre>
+<p>The <code>padding-left</code> property is specified as a single value chosen from the list below. Unlike margins, negative values are not allowed for padding.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="length"><a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a></dt>
+  <dd>
+    <p>The size of the padding as a fixed value. Must be nonnegative.</p>
+  </dd>
+  <dt id="percentage"><a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a></dt>
+  <dd>
+    <p>The size of the padding as a percentage, relative to the inline size (<em>width</em> in a horizontal language, defined by <a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a>) of the <a href="/en-US/docs/Web/CSS/Containing_block">containing block</a>. Must be nonnegative.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>0</code></td></tr><tr><th scope="row">Applies to</th><td>all elements, except <code>table-row-group</code>, <code>table-header-group</code>, <code>table-footer-group</code>, <code>table-row</code>, <code>table-column-group</code> and <code>table-column</code>. It also applies to <a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a> and <a href="/en-US/docs/Web/CSS/::first-line"><code>::first-line</code></a>.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row">Percentages</th><td>refer to the width of the containing block</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>the percentage as specified or the absolute length</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="padding-left">padding-left = </span><br>  <span class="token property">&lt;length-percentage [0,∞]&gt;</span>  <br><br><span class="token property" id="<length-percentage>">&lt;length-percentage&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_left_padding_using_pixels_and_percentages">Setting left padding using pixels and percentages</h3>
+<pre class="brush: css">.content {
+  padding-left: 5%;
+}
+.side-box {
+  padding-left: 10px;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.padding-left" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.padding-left" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/padding-top"><code>padding-top</code></a>, <a href="/en-US/docs/Web/CSS/padding-right"><code>padding-right</code></a>, and <a href="/en-US/docs/Web/CSS/padding-bottom"><code>padding-bottom</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/padding"><code>padding</code></a> shorthand</li>
+  <li><a href="/en-US/docs/Web/CSS/padding-block-start"><code>padding-block-start</code></a>, <a href="/en-US/docs/Web/CSS/padding-block-end"><code>padding-block-end</code></a>, <a href="/en-US/docs/Web/CSS/padding-inline-start"><code>padding-inline-start</code></a>, and <a href="/en-US/docs/Web/CSS/padding-inline-end"><code>padding-inline-end</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/padding-block"><code>padding-block</code></a> and <a href="/en-US/docs/Web/CSS/padding-inline"><code>padding-inline</code></a> shorthands</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model">Introduction to the CSS basic box model</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_box_model">CSS box model</a> module</li>
+</ul>
+</body></html>

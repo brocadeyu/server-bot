@@ -1,0 +1,76 @@
+<html><head></head><body>
+<p>The <strong>CSS counter styles</strong> module lets you define your own counter styles to manage the appearance of <a href="/en-US/docs/Web/CSS/::marker">markers</a> in lists and counters in <a href="/en-US/docs/Web/CSS/CSS_generated_content">generated content</a>. It also enables you to extend native browser list styles with your own customizations.</p>
+<p>While we think of counters as numbers, they are actually strings with components that can be incremented. The counter styles module defines the <code>@counter-style</code> rule with ten descriptors, which enable developers to precisely define how counters are converted into strings. This module enables defining which characters to use for the counter bullets, the prefix to put before the counter and postfix that comes after, along with how to handle negative values. The descriptors can also set a range to limit the values a counter style can handle, while also providing fallback styles for when the counter value falls outside the defined range or otherwise can't render the counter value. The module also enables defining how the counter is read out loud by speech synthesizers.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<p>No properties are defined in this module</p>
+<h3 id="functions">Functions</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/symbols"><code>symbols()</code></a></li>
+</ul>
+<h3 id="data_types">Data types</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@counter-style#counter-style-name"><code>&lt;counter-style-name&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@counter-style/symbols#values"><code>&lt;symbol&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/symbols#syntax"><code>&lt;symbols-type&gt;</code></a></li>
+</ul>
+<h3 id="at-rules_and_descriptors">At-rules and descriptors</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/system"><code>system</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/symbols"><code>symbols</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/additive-symbols"><code>additive-symbols</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/negative"><code>negative</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/prefix"><code>prefix</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/suffix"><code>suffix</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/range"><code>range</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/pad"><code>pad</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/speak-as"><code>speak-as</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@counter-style/fallback"><code>fallback</code></a></li>
+    </ul>
+  </li>
+</ul>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSSCounterStyleRule"><code>CSSCounterStyleRule</code></a> interface</li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="using_css_counters"><a href="/en-US/docs/Web/CSS/CSS_counter_styles/Using_CSS_counters">Using CSS counters</a></dt>
+  <dd>
+    <p>Describes how to use counters to number any HTML element or to perform complex counting.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<p><a href="/en-US/docs/Web/CSS/CSS_lists">CSS lists and counters</a> module:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/counter-increment"><code>counter-increment</code></a> property</li>
+  <li><a href="/en-US/docs/Web/CSS/counter-reset"><code>counter-reset</code></a> property</li>
+  <li><a href="/en-US/docs/Web/CSS/counter-set"><code>counter-set</code></a> property</li>
+  <li><a href="/en-US/docs/Web/CSS/list-style-type"><code>list-style-type</code></a> property</li>
+  <li><a href="/en-US/docs/Web/CSS/list-style"><code>list-style</code></a> shorthand property</li>
+  <li><a href="/en-US/docs/Web/CSS/counter"><code>counter()</code></a> function</li>
+  <li><a href="/en-US/docs/Web/CSS/counters"><code>counters()</code></a> function</li>
+</ul>
+<p><a href="/en-US/docs/Web/CSS/CSS_pseudo-elements">CSS pseudo-elements</a> module:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::after"><code>::after</code></a> pseudo-element</li>
+  <li><a href="/en-US/docs/Web/CSS/::before"><code>::before</code></a> pseudo-element</li>
+  <li><a href="/en-US/docs/Web/CSS/::marker"><code>::marker</code></a> pseudo-element</li>
+</ul>
+<p><a href="/en-US/docs/Web/CSS/CSS_generated_content">CSS generated content</a> module:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/content"><code>content</code></a> property</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-counter-styles/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_lists">CSS lists and counters</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_pseudo-elements">CSS pseudo-elements</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_generated_content">CSS generated content</a> module</li>
+  <li><a href="https://w3c.github.io/predefined-counter-styles/#builtins">Ready-made counter styles</a> via W3C (2023)</li>
+</ul>
+</body></html>

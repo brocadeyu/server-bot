@@ -1,0 +1,29 @@
+<html><head></head><body>
+<p>The <strong><code>EXT_frag_depth</code></strong> extension is part of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> and enables to set a depth value of a fragment from within the fragment shader.</p>
+<p>WebGL extensions are available using the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="/en-US/docs/Web/API/WebGL_API/Using_Extensions">Using Extensions</a> in the <a href="/en-US/docs/Web/API/WebGL_API/Tutorial">WebGL tutorial</a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This extension is only available to <a href="/en-US/docs/Web/API/WebGLRenderingContext" title="WebGL1">WebGL1</a> contexts. In <a href="/en-US/docs/Web/API/WebGL2RenderingContext" title="WebGL2">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default. It requires GLSL <code>#version 300 es</code>.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<p>Enable the extension:</p>
+<pre class="brush: js">gl.getExtension("EXT_frag_depth");
+</pre>
+<p>Now the output variable <code>gl_FragDepthEXT</code> is available to set a depth value of a fragment from within the fragment shader:</p>
+<pre class="brush: html">&lt;script type="x-shader/x-fragment"&gt;
+  void main() {
+    gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+    gl_FragDepthEXT = 0.5;
+  }
+&lt;/script&gt;
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.EXT_frag_depth" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.EXT_frag_depth" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a></li>
+</ul>
+</body></html>

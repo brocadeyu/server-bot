@@ -1,0 +1,89 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>GPURenderPipeline</code></strong> interface of the <a href="/en-US/docs/Web/API/WebGPU_API" title="WebGPU API">WebGPU API</a> represents a pipeline that controls the vertex and fragment shader stages and can be used in a <a href="/en-US/docs/Web/API/GPURenderPassEncoder"><code>GPURenderPassEncoder</code></a> or <a href="/en-US/docs/Web/API/GPURenderBundleEncoder"><code>GPURenderBundleEncoder</code></a>.</p>
+<p>A <code>GPURenderPipeline</code> object instance can be created using the <a href="/en-US/docs/Web/API/GPUDevice/createRenderPipeline"><code>GPUDevice.createRenderPipeline()</code></a> or <a href="/en-US/docs/Web/API/GPUDevice/createRenderPipelineAsync"><code>GPUDevice.createRenderPipelineAsync()</code></a> methods.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="label"><a href="/en-US/docs/Web/API/GPURenderPipeline/label" title="label"><code>label</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string providing a label that can be used to identify the object, for example in <a href="/en-US/docs/Web/API/GPUError"><code>GPUError</code></a> messages or console warnings.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="getbindgrouplayout"><a href="/en-US/docs/Web/API/GPURenderPipeline/getBindGroupLayout" title="getBindGroupLayout()"><code>getBindGroupLayout()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the pipeline's <a href="/en-US/docs/Web/API/GPUBindGroupLayout"><code>GPUBindGroupLayout</code></a> object with the given index (i.e. included in the originating <a href="/en-US/docs/Web/API/GPUDevice/createRenderPipeline"><code>GPUDevice.createRenderPipeline()</code></a> or <a href="/en-US/docs/Web/API/GPUDevice/createRenderPipelineAsync"><code>GPUDevice.createRenderPipelineAsync()</code></a> call's pipeline layout).</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <a href="https://webgpu.github.io/webgpu-samples/">WebGPU samples</a> feature many more examples.</p>
+</div>
+<h3 id="basic_example">Basic example</h3>
+<p>Our <a href="https://mdn.github.io/dom-examples/webgpu-render-demo/">basic render demo</a> provides an example of the construction of a valid render pipeline descriptor object, which is then used to create a <code>GPURenderPipeline</code> via a <code>createRenderPipeline()</code> call.</p>
+<pre class="brush: js">// ...
+
+const vertexBuffers = [
+  {
+    attributes: [
+      {
+        shaderLocation: 0, // position
+        offset: 0,
+        format: "float32x4",
+      },
+      {
+        shaderLocation: 1, // color
+        offset: 16,
+        format: "float32x4",
+      },
+    ],
+    arrayStride: 32,
+    stepMode: "vertex",
+  },
+];
+
+const pipelineDescriptor = {
+  vertex: {
+    module: shaderModule,
+    entryPoint: "vertex_main",
+    buffers: vertexBuffers,
+  },
+  fragment: {
+    module: shaderModule,
+    entryPoint: "fragment_main",
+    targets: [
+      {
+        format: navigator.gpu.getPreferredCanvasFormat(),
+      },
+    ],
+  },
+  primitive: {
+    topology: "triangle-list",
+  },
+  layout: "auto",
+};
+
+const renderPipeline = device.createRenderPipeline(pipelineDescriptor);
+
+// ...
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GPURenderPipeline" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GPURenderPipeline" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The <a href="/en-US/docs/Web/API/WebGPU_API">WebGPU API</a></li>
+</ul>
+</body></html>

@@ -1,0 +1,69 @@
+<html><head></head><body><div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div>
+<p>The <strong><code>::-webkit-meter-suboptimum-value</code></strong> <a href="/en-US/docs/Glossary/Pseudo-element">pseudo-element</a> styles the <a href="/en-US/docs/Web/HTML/Element/meter"><code>&lt;meter&gt;</code></a> element when the value attribute falls outside of the low-high range and is not equivalent to the optimum value.</p>
+<p>Yellow is the default color.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">::-webkit-meter-suboptimum-value {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<p>This example will only work in browsers based on WebKit or Blink.</p>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">Normal:
+&lt;meter min="0" max="10" low="3" high="7" optimum="6" value="2"&gt;
+  Score 2/10
+&lt;/meter&gt;
+&lt;br /&gt;
+Styled:
+&lt;meter id="styled" min="0" max="10" low="3" high="7" optimum="6" value="2"&gt;
+  Score 2/10
+&lt;/meter&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">body {
+  font-family: monospace;
+}
+
+.safari meter {
+  /* Reset the default appearance for Safari only */
+  /* .safari class is added via JavaScript */
+  -webkit-appearance: none;
+}
+
+#styled::-webkit-meter-suboptimum-value {
+  background: linear-gradient(to bottom, #ff7, #990 45%, #990 55%, #ff7);
+  height: 100%;
+  box-sizing: border-box;
+}
+</pre>
+<h3 id="javascript">JavaScript</h3>
+<pre class="brush: js">// Safari requires &lt;meter&gt; elements to have an `appearance` of `none` for custom styling
+// using `::-webkit-meter-*` selectors, but `appearance: none` breaks rendering on Chrome.
+// Therefore, we must check if the browser is Safari-based.
+
+const is_safari =
+  navigator.userAgent.includes("AppleWebKit/") &amp;&amp;
+  !navigator.userAgent.includes("Chrome/");
+
+if (is_safari) {
+  document.body.classList.add("safari");
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="100%" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/::-webkit-meter-suboptimum-value" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.-webkit-meter-suboptimum-value" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<p>The pseudo-elements used by WebKit/Blink to style other parts of a <a href="/en-US/docs/Web/HTML/Element/meter"><code>&lt;meter&gt;</code></a> element are as follows:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::-webkit-meter-inner-element"><code>::-webkit-meter-inner-element</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::-webkit-meter-bar"><code>::-webkit-meter-bar</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::-webkit-meter-even-less-good-value"><code>::-webkit-meter-even-less-good-value</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::-webkit-meter-optimum-value"><code>::-webkit-meter-optimum-value</code></a></li>
+</ul>
+</body></html>

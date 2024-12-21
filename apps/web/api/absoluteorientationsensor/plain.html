@@ -1,0 +1,87 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>AbsoluteOrientationSensor</code></strong> interface of the <a href="/en-US/docs/Web/API/Sensor_APIs">Sensor APIs</a> describes the device's physical orientation in relation to the Earth's reference coordinate system.</p>
+<p>To use this sensor, the user must grant permission to the <code>'accelerometer'</code>, <code>'gyroscope'</code>, and <code>'magnetometer'</code> device sensors through the <a href="/en-US/docs/Web/API/Permissions_API">Permissions API</a>.</p>
+<p>This feature may be blocked by a <a href="/en-US/docs/Web/HTTP/Permissions_Policy">Permissions Policy</a> set on your server.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Sensor">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Sensor
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/OrientationSensor">
+    <rect x="223" y="0" width="136" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="291" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      OrientationSensor
+    </text>
+  </a>
+  <line x1="359" y1="14" x2="389" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="359,14 369,9 369,19 359,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AbsoluteOrientationSensor" aria-current="page">
+    <rect x="389" y="0" width="200" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="489" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AbsoluteOrientationSensor
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="absoluteorientationsensor"><a href="/en-US/docs/Web/API/AbsoluteOrientationSensor/AbsoluteOrientationSensor" title="AbsoluteOrientationSensor()"><code>AbsoluteOrientationSensor()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>AbsoluteOrientationSensor</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>No specific properties; inherits properties from its ancestors <a href="/en-US/docs/Web/API/OrientationSensor"><code>OrientationSensor</code></a> and <a href="/en-US/docs/Web/API/Sensor"><code>Sensor</code></a>.</em></p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>No specific methods; inherits methods from its ancestors <a href="/en-US/docs/Web/API/OrientationSensor"><code>OrientationSensor</code></a> and <a href="/en-US/docs/Web/API/Sensor"><code>Sensor</code></a>.</em></p>
+<h2 id="events">Events</h2>
+<p><em>No specific events; inherits methods from its ancestor, <a href="/en-US/docs/Web/API/Sensor"><code>Sensor</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic Example</h3>
+<p>The following example, which is loosely based on <a href="https://intel.github.io/generic-sensor-demos/orientation-phone/">Intel's Orientation Phone demo</a>, instantiates an <code>AbsoluteOrientationSensor</code> with a frequency of 60 times a second. On each reading it uses <a href="/en-US/docs/Web/API/OrientationSensor/quaternion"><code>OrientationSensor.quaternion</code></a> to rotate a visual model of a phone.</p>
+<pre class="brush: js">const options = { frequency: 60, referenceFrame: "device" };
+const sensor = new AbsoluteOrientationSensor(options);
+
+sensor.addEventListener("reading", () =&gt; {
+  // model is a Three.js object instantiated elsewhere.
+  model.quaternion.fromArray(sensor.quaternion).inverse();
+});
+sensor.addEventListener("error", (event) =&gt; {
+  if (event.error.name === "NotReadableError") {
+    console.log("Sensor is not available.");
+  }
+});
+sensor.start();
+</pre>
+<h3 id="permissions_example">Permissions Example</h3>
+<p>Using orientation sensors requires requesting permissions for multiple device sensors. Because the <a href="/en-US/docs/Web/API/Permissions"><code>Permissions</code></a> interface uses promises, a good way to request permissions is to use <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"><code>Promise.all</code></a>.</p>
+<pre class="brush: js">const sensor = new AbsoluteOrientationSensor();
+Promise.all([
+  navigator.permissions.query({ name: "accelerometer" }),
+  navigator.permissions.query({ name: "magnetometer" }),
+  navigator.permissions.query({ name: "gyroscope" }),
+]).then((results) =&gt; {
+  if (results.every((result) =&gt; result.state === "granted")) {
+    sensor.start();
+    // …
+  } else {
+    console.log("No permissions to use AbsoluteOrientationSensor.");
+  }
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.AbsoluteOrientationSensor" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.AbsoluteOrientationSensor" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

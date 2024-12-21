@@ -1,0 +1,145 @@
+<html><head></head><body>
+<p>
+  HTTP provides a general framework for access control and authentication.
+  This page is an introduction to the HTTP framework for authentication, and shows how to restrict access to your server using the HTTP "Basic" scheme.
+</p>
+<h2 id="the_general_http_authentication_framework">The general HTTP authentication framework</h2>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7235">RFC 7235</a> defines the HTTP authentication framework, which can be used by a server to <a href="/en-US/docs/Glossary/Challenge">challenge</a> a client request, and by a client to provide authentication information.</p>
+<p>The challenge and response flow works like this:</p>
+<ol>
+  <li>The server responds to a client with a <a href="/en-US/docs/Web/HTTP/Status/401"><code>401</code></a> (Unauthorized) response status and provides information on how to authorize with a <a href="/en-US/docs/Web/HTTP/Headers/WWW-Authenticate"><code>WWW-Authenticate</code></a> response header containing at least one challenge.</li>
+  <li>A client that wants to authenticate itself with the server can then do so by including an <a href="/en-US/docs/Web/HTTP/Headers/Authorization"><code>Authorization</code></a> request header with the credentials.</li>
+  <li>Usually a client will present a password prompt to the user and will then issue the request including the correct <code>Authorization</code> header.</li>
+</ol>
+<p>
+  <img src="https://mdn.github.io/shared-assets/images/diagrams/http/authentication/basic-auth.svg" alt="A sequence diagram illustrating HTTP messages between a client and a server lifeline.">
+</p>
+<p>
+  The general message flow above is the same for most (if not all) <a href="#authentication_schemes">authentication schemes</a>.
+  The actual information in the headers and the way it is encoded does change!
+</p>
+<div class="notecard warning">
+  <p>
+    <strong>Warning:</strong> The "Basic" authentication scheme used in the diagram above sends the credentials encoded but not encrypted.
+    This would be completely insecure unless the exchange was over a secure connection (HTTPS/TLS).
+  </p>
+</div>
+<h3 id="proxy_authentication">Proxy authentication</h3>
+<p>
+  The same challenge and response mechanism can be used for <em>proxy authentication</em>.
+  As both resource authentication and proxy authentication can coexist, a different set of headers and status codes is needed. In the case of proxies, the challenging status code is <a href="/en-US/docs/Web/HTTP/Status/407"><code>407</code></a> (Proxy Authentication Required), the <a href="/en-US/docs/Web/HTTP/Headers/Proxy-Authenticate"><code>Proxy-Authenticate</code></a> response header contains at least one challenge applicable to the proxy, and the <a href="/en-US/docs/Web/HTTP/Headers/Proxy-Authorization"><code>Proxy-Authorization</code></a> request header is used for providing the credentials to the proxy server.
+</p>
+<h3 id="access_forbidden">Access forbidden</h3>
+<p>If a (proxy) server receives <em>invalid</em> credentials, it should respond with a <a href="/en-US/docs/Web/HTTP/Status/401"><code>401</code></a> <code>Unauthorized</code> or with a <a href="/en-US/docs/Web/HTTP/Status/407"><code>407</code></a> <code>Proxy Authentication Required</code>, and the user may send a new request or replace the <a href="/en-US/docs/Web/HTTP/Headers/Authorization"><code>Authorization</code></a> header field.</p>
+<p>If a (proxy) server receives valid credentials that are <em>inadequate</em> to access a given resource, the server should respond with the <a href="/en-US/docs/Web/HTTP/Status/403"><code>403</code></a> <code>Forbidden</code> status code. Unlike <a href="/en-US/docs/Web/HTTP/Status/401"><code>401</code></a> <code>Unauthorized</code> or <a href="/en-US/docs/Web/HTTP/Status/407"><code>407</code></a> <code>Proxy Authentication Required</code>, authentication is impossible for this user and browsers will not propose a new attempt.</p>
+<p>In all cases, the server may prefer returning a <a href="/en-US/docs/Web/HTTP/Status/404"><code>404</code></a> <code>Not Found</code> status code, to hide the existence of the page to a user without adequate privileges or not correctly authenticated.</p>
+<h3 id="authentication_of_cross-origin_images">Authentication of cross-origin images</h3>
+<p>
+  A potential security hole (that has since been fixed in browsers) was authentication of cross-site images.
+  From <a href="/en-US/docs/Mozilla/Firefox/Releases/59">Firefox 59</a> onwards, image resources loaded from different origins to the current document are no longer able to trigger HTTP authentication dialogs (<a href="https://bugzil.la/1423146">Firefox bug 1423146</a>), preventing user credentials being stolen if attackers were able to embed an arbitrary image into a third-party page.
+</p>
+<h3 id="character_encoding_of_http_authentication">Character encoding of HTTP authentication</h3>
+<p>Browsers use <code>utf-8</code> encoding for usernames and passwords.</p>
+<p>Firefox once used <code>ISO-8859-1</code>, but changed to <code>utf-8</code> for parity with other browsers and to avoid potential problems as described in <a href="https://bugzil.la/1419658">Firefox bug 1419658</a>.</p>
+<h3 id="www-authenticate_and_proxy-authenticate_headers">WWW-Authenticate and Proxy-Authenticate headers</h3>
+<p>The <a href="/en-US/docs/Web/HTTP/Headers/WWW-Authenticate"><code>WWW-Authenticate</code></a> and <a href="/en-US/docs/Web/HTTP/Headers/Proxy-Authenticate"><code>Proxy-Authenticate</code></a> response headers define the authentication method that should be used to gain access to a resource. They must specify which authentication scheme is used, so that the client that wishes to authorize knows how to provide the credentials.</p>
+<p>The syntax for these headers is the following:</p>
+<pre class="brush: http">WWW-Authenticate: &lt;type&gt; realm=&lt;realm&gt;
+Proxy-Authenticate: &lt;type&gt; realm=&lt;realm&gt;
+</pre>
+<p>Here, <code>&lt;type&gt;</code> is the authentication scheme ("Basic" is the most common scheme and <a href="#basic_authentication_scheme">introduced below</a>). The <em>realm</em> is used to describe the protected area or to indicate the scope of protection. This could be a message like "Access to the staging site" or similar, so that the user knows to which space they are trying to get access to.</p>
+<h3 id="authorization_and_proxy-authorization_headers">Authorization and Proxy-Authorization headers</h3>
+<p>The <a href="/en-US/docs/Web/HTTP/Headers/Authorization"><code>Authorization</code></a> and <a href="/en-US/docs/Web/HTTP/Headers/Proxy-Authorization"><code>Proxy-Authorization</code></a> request headers contain the credentials to authenticate a user agent with a (proxy) server. Here, the <code>&lt;type&gt;</code> is needed again followed by the credentials, which can be encoded or encrypted depending on which authentication scheme is used.</p>
+<pre class="brush: http">Authorization: &lt;type&gt; &lt;credentials&gt;
+Proxy-Authorization: &lt;type&gt; &lt;credentials&gt;
+</pre>
+<h2 id="authentication_schemes">Authentication schemes</h2>
+<p>The general HTTP authentication framework is the base for a number of authentication schemes.</p>
+<p>IANA maintains a <a href="https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml">list of authentication schemes</a>, but there are other schemes offered by host services, such as Amazon AWS.</p>
+<p>Some common authentication schemes include:</p>
+<dl>
+  <dt id="basic"><a href="#basic"><strong>Basic</strong></a></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc7617">RFC 7617</a>, base64-encoded credentials. More information below.</p>
+  </dd>
+  <dt id="bearer"><a href="#bearer"><strong>Bearer</strong></a></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc6750">RFC 6750</a>, bearer tokens to access OAuth 2.0-protected resources</p>
+  </dd>
+  <dt id="digest"><a href="#digest"><strong>Digest</strong></a></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc7616">RFC 7616</a>. Firefox 93 and later support the SHA-256 algorithm. Previous versions only support MD5 hashing (not recommended).</p>
+  </dd>
+  <dt id="hoba"><a href="#hoba"><strong>HOBA</strong></a></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc7486">RFC 7486</a>, Section 3, <strong>H</strong>TTP <strong>O</strong>rigin-<strong>B</strong>ound <strong>A</strong>uthentication, digital-signature-based</p>
+  </dd>
+  <dt id="mutual"><a href="#mutual"><strong>Mutual</strong></a></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc8120">RFC 8120</a></p>
+  </dd>
+  <dt id="negotiate"><a href="#negotiate"><strong>Negotiate</strong></a> / <strong>NTLM</strong></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc4559">RFC4599</a></p>
+  </dd>
+  <dt id="vapid"><a href="#vapid"><strong>VAPID</strong></a></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc8292">RFC 8292</a></p>
+  </dd>
+  <dt id="scram"><a href="#scram"><strong>SCRAM</strong></a></dt>
+  <dd>
+    <p>See <a href="https://datatracker.ietf.org/doc/html/rfc7804">RFC 7804</a></p>
+  </dd>
+  <dt id="aws4-hmac-sha256"><a href="#aws4-hmac-sha256"><strong>AWS4-HMAC-SHA256</strong></a></dt>
+  <dd>
+    <p>See <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html">AWS docs</a>. This scheme is used for AWS3 server authentication.</p>
+  </dd>
+</dl>
+<p>Schemes can differ in security strength and in their availability in client or server software.</p>
+<p>
+  The "Basic" authentication scheme offers very poor security, but is widely supported and easy to set up.
+  It is introduced in more detail below.
+</p>
+<h2 id="basic_authentication_scheme">Basic authentication scheme</h2>
+<p>The "Basic" HTTP authentication scheme is defined in <a href="https://datatracker.ietf.org/doc/html/rfc7617">RFC 7617</a>, which transmits credentials as user ID/password pairs, encoded using base64.</p>
+<h3 id="security_of_basic_authentication">Security of basic authentication</h3>
+<p>As the user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme <strong>is not secure</strong>. HTTPS/TLS should be used with basic authentication. Without these additional security enhancements, basic authentication should not be used to protect sensitive or valuable information.</p>
+<h3 id="restricting_access_with_apache_and_basic_authentication">Restricting access with Apache and basic authentication</h3>
+<p>To password-protect a directory on an Apache server, you will need a <code>.htaccess</code> and a <code>.htpasswd</code> file.</p>
+<p>The <code>.htaccess</code> file typically looks like this:</p>
+<pre class="brush: apacheconf">AuthType Basic
+AuthName "Access to the staging site"
+AuthUserFile /path/to/.htpasswd
+Require valid-user
+</pre>
+<p>The <code>.htaccess</code> file references a <code>.htpasswd</code> file in which each line consists of a username and a password separated by a colon (<code>:</code>). You cannot see the actual passwords as they are <a href="https://httpd.apache.org/docs/2.4/misc/password_encryptions.html">hashed</a> (using MD5-based hashing, in this case). Note that you can name your <code>.htpasswd</code> file differently if you like, but keep in mind this file shouldn't be accessible to anyone. (Apache is usually configured to prevent access to <code>.ht*</code> files).</p>
+<pre class="brush: apacheconf">aladdin:$apr1$ZjTqBB3f$IF9gdYAGlMrs2fuINjHsz.
+user2:$apr1$O04r.y2H$/vEkesPhVInBByJUkXitA/
+</pre>
+<h3 id="restricting_access_with_nginx_and_basic_authentication">Restricting access with Nginx and basic authentication</h3>
+<p>
+  For Nginx, you will need to specify a location that you are going to protect and the <code>auth_basic</code> directive that provides the name to the password-protected area.
+  The <code>auth_basic_user_file</code> directive then points to a <code>.htpasswd</code> file containing the encrypted user credentials, just like in the Apache example above.
+</p>
+<pre class="brush: apacheconf">location /status {
+    auth_basic           "Access to the staging site";
+    auth_basic_user_file /etc/apache2/.htpasswd;
+}
+</pre>
+<h3 id="access_using_credentials_in_the_url">Access using credentials in the URL</h3>
+<p>Many clients also let you avoid the login prompt by using an encoded URL containing the username and the password like this:</p>
+<pre class="brush: plain example-bad">https://username:password@www.example.com/
+</pre>
+<p>
+  <strong>The use of these URLs is deprecated</strong>.
+  In Chrome, the <code>username:password@</code> part in URLs is <a href="https://codereview.chromium.org/2651943002">removed from subresource URLs</a> for security reasons. In Firefox, it is checked if the site actually requires authentication and if not, Firefox will warn the user with a prompt "You are about to log in to the site <code>www.example.com</code> with the username <code>username</code>, but the website does not require authentication. This may be an attempt to trick you." In case the site does require authentication, Firefox will still ask for user confirmation "You are about to log in to the site <code>www.example.com</code> with the username <code>username</code>." before sending the credentials to the site. Note that Firefox sends the request without credentials in both cases before showing the prompt in order to determine whether the site requires authentication.
+</p>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/HTTP/Headers/WWW-Authenticate"><code>WWW-Authenticate</code></a></li>
+  <li><a href="/en-US/docs/Web/HTTP/Headers/Authorization"><code>Authorization</code></a></li>
+  <li><a href="/en-US/docs/Web/HTTP/Headers/Proxy-Authorization"><code>Proxy-Authorization</code></a></li>
+  <li><a href="/en-US/docs/Web/HTTP/Headers/Proxy-Authenticate"><code>Proxy-Authenticate</code></a></li>
+  <li><a href="/en-US/docs/Web/HTTP/Status/401"><code>401</code></a>, <a href="/en-US/docs/Web/HTTP/Status/403"><code>403</code></a>, <a href="/en-US/docs/Web/HTTP/Status/407"><code>407</code></a></li>
+</ul>
+</body></html>

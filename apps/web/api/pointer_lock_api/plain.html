@@ -1,0 +1,190 @@
+<html><head></head><body>
+<p>The <strong>Pointer Lock API</strong> (formerly called <em>Mouse Lock API</em>) provides input methods based on the movement of the mouse over time (i.e., deltas), not just the absolute position of the mouse cursor in the viewport. It gives you access to raw mouse movement, locks the target of mouse events to a single element, eliminates limits on how far mouse movement can go in a single direction, and removes the cursor from view. It is ideal for first-person 3D games, for example.</p>
+<p>More than that, the API is useful for any applications that require significant mouse input to control movements, rotate objects, and change entries, for example allowing users to control the viewing angle by moving the mouse around without any button clicking. The buttons are then freed up for other actions. Other examples include apps for viewing maps or satellite imagery.</p>
+<p>Pointer lock lets you access mouse events even when the cursor goes past the boundary of the browser or screen. For example, your users can continue to rotate or manipulate a 3D model by moving the mouse without end. Without Pointer lock, the rotation or manipulation stops the moment the pointer reaches the edge of the browser or screen. Game players can now click buttons and swipe the mouse cursor back and forth without worrying about leaving the game play area and accidentally clicking another application that would take mouse focus away from the game.</p>
+<h2 id="basic_concepts">Basic concepts</h2>
+<p>Pointer lock is related to <a href="/en-US/docs/Web/API/Pointer_events#pointer_capture">pointer capture</a>. Pointer capture provides continued delivery of events to a target element while a mouse is being dragged, but it stops when the mouse button is released. Pointer lock is different from pointer capture in the following ways:</p>
+<ul>
+  <li>It is persistent: Pointer lock does not release the mouse until an explicit API call is made or the user uses a specific release gesture.</li>
+  <li>It is not limited by browser or screen boundaries.</li>
+  <li>It continues to send events regardless of mouse button state.</li>
+  <li>It hides the cursor.</li>
+</ul>
+<h2 id="methodproperties_overview">Method/properties overview</h2>
+<p>This section provides a brief description of each property and method related to the pointer lock specification.</p>
+<h3 id="requestpointerlock">requestPointerLock()</h3>
+<p>The Pointer lock API, similar to the <a href="/en-US/docs/Web/API/Fullscreen_API">Fullscreen API</a>, extends DOM elements by adding a new method, <a href="/en-US/docs/Web/API/Element/requestPointerLock" title="requestPointerLock()"><code>requestPointerLock()</code></a>. The following example requests pointer lock on a <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element:</p>
+<pre class="brush: js">canvas.addEventListener("click", async () =&gt; {
+  await canvas.requestPointerLock();
+});
+</pre>
+<div class="notecard note">
+  <p><strong>Note:</strong> If a user has exited pointer lock via the <a href="https://w3c.github.io/pointerlock/#dfn-default-unlock-gesture">default unlock gesture</a>, or pointer lock has not previously been entered for this document, an event generated as a result of an <a href="https://w3c.github.io/pointerlock/#dfn-engagement-gesture">engagement gesture</a> must be received by the document before <a href="https://w3c.github.io/pointerlock/#dom-element-requestpointerlock"><code>requestPointerLock</code></a> will succeed. (from <a href="https://w3c.github.io/pointerlock/#extensions-to-the-element-interface">https://w3c.github.io/pointerlock/#extensions-to-the-element-interface</a>)</p>
+</div>
+<p>Operating systems enable mouse acceleration by default, which is useful when you sometimes want slow precise movement (think about you might use a graphics package), but also want to move great distances with a faster mouse movement (think about scrolling, and selecting several files). For some first-person perspective games however, raw mouse input data is preferred for controlling camera rotation — where the same distance movement, fast or slow, results in the same rotation. This results in a better gaming experience and higher accuracy, according to professional gamers.</p>
+<p>To disable OS-level mouse acceleration and access raw mouse input, you can set the <code>unadjustedMovement</code> to <code>true</code>:</p>
+<pre class="brush: js">canvas.addEventListener("click", async () =&gt; {
+  await canvas.requestPointerLock({
+    unadjustedMovement: true,
+  });
+});
+</pre>
+<h2 id="handling_promise_and_non-promise_versions_of_requestpointerlock">Handling promise and non-promise versions of requestPointerLock()</h2>
+<p>The above code snippet will still work in browsers that do not support the promise-based version of <code>requestPointerLock()</code> or the <code>unadjustedMovement</code> option — the <a href="/en-US/docs/Web/JavaScript/Reference/Operators/await"><code>await</code></a> operator is permitted in front of a function that does not return a promise, and the options object will just be ignored in non-supporting browsers.</p>
+<p>However, this could be confusing, and has other potential side-effects (for example, trying to use <code>requestPointerLock().then()</code> would throw an error in non-supporting browsers), so you may want to handle this explicitly using code along the following lines:</p>
+<pre class="brush: js">function requestPointerLockWithUnadjustedMovement() {
+  const promise = myTargetElement.requestPointerLock({
+    unadjustedMovement: true,
+  });
+
+  if (!promise) {
+    console.log("disabling mouse acceleration is not supported");
+    return;
+  }
+
+  return promise
+    .then(() =&gt; console.log("pointer is locked"))
+    .catch((error) =&gt; {
+      if (error.name === "NotSupportedError") {
+        // Some platforms may not support unadjusted movement.
+        // You can request again a regular pointer lock.
+        return myTargetElement.requestPointerLock();
+      }
+    });
+}
+</pre>
+<h3 id="pointerlockelement_and_exitpointerlock">pointerLockElement and exitPointerLock()</h3>
+<p>The Pointer lock API also extends the <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> interface, adding a new property and a new method:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Document/pointerLockElement" title="pointerLockElement"><code>pointerLockElement</code></a> is used for accessing the currently locked element (if any).</li>
+  <li><a href="/en-US/docs/Web/API/Document/exitPointerLock" title="exitPointerLock()"><code>exitPointerLock()</code></a> is used to exit the pointer lock.</li>
+</ul>
+<p>The <a href="/en-US/docs/Web/API/Document/pointerLockElement" title="pointerLockElement"><code>pointerLockElement</code></a> property is useful for determining if any element is currently pointer locked (e.g., for doing a boolean check) and also for obtaining a reference to the locked element, if any.</p>
+<p>Here is an example of using <code>pointerLockElement</code>:</p>
+<pre class="brush: js">if (document.pointerLockElement === canvas) {
+  console.log("The pointer lock status is now locked");
+} else {
+  console.log("The pointer lock status is now unlocked");
+}
+</pre>
+<p>The <a href="/en-US/docs/Web/API/Document/exitPointerLock"><code>Document.exitPointerLock()</code></a> method is used to exit pointer lock, and like <a href="/en-US/docs/Web/API/Element/requestPointerLock" title="requestPointerLock"><code>requestPointerLock</code></a>, works asynchronously using the <a href="/en-US/docs/Web/API/Document/pointerlockchange_event" title="pointerlockchange"><code>pointerlockchange</code></a> and <a href="/en-US/docs/Web/API/Document/pointerlockerror_event" title="pointerlockerror"><code>pointerlockerror</code></a> events, which you'll see more about below.</p>
+<pre class="brush: js">document.exitPointerLock();
+</pre>
+<h2 id="pointerlockchange_event">pointerlockchange event</h2>
+<p>When the Pointer lock state changes—for example, when calling <a href="/en-US/docs/Web/API/Element/requestPointerLock" title="requestPointerLock()"><code>requestPointerLock()</code></a> or <a href="/en-US/docs/Web/API/Document/exitPointerLock" title="exitPointerLock()"><code>exitPointerLock()</code></a>, the user pressing the ESC key, etc.—the <a href="/en-US/docs/Web/API/Document/pointerlockchange_event" title="pointerlockchange"><code>pointerlockchange</code></a> event is dispatched to the <code>document</code>. This is a simple event containing no extra data.</p>
+<pre class="brush: js">document.addEventListener("pointerlockchange", lockChangeAlert, false);
+
+function lockChangeAlert() {
+  if (document.pointerLockElement === canvas) {
+    console.log("The pointer lock status is now locked");
+    // Do something useful in response
+  } else {
+    console.log("The pointer lock status is now unlocked");
+    // Do something useful in response
+  }
+}
+</pre>
+<h2 id="pointerlockerror_event">pointerlockerror event</h2>
+<p>When there is an error caused by calling <a href="/en-US/docs/Web/API/Element/requestPointerLock" title="requestPointerLock()"><code>requestPointerLock()</code></a> or <a href="/en-US/docs/Web/API/Document/exitPointerLock" title="exitPointerLock()"><code>exitPointerLock()</code></a>, the <a href="/en-US/docs/Web/API/Document/pointerlockerror_event" title="pointerlockerror"><code>pointerlockerror</code></a> event is dispatched to the <code>document</code>. This is a simple event containing no extra data.</p>
+<pre class="brush: js">document.addEventListener("pointerlockerror", lockError, false);
+
+function lockError(e) {
+  alert("Pointer lock failed");
+}
+</pre>
+<h2 id="extensions_to_mouse_events">Extensions to mouse events</h2>
+<p>The Pointer lock API extends the normal <a href="/en-US/docs/Web/API/MouseEvent"><code>MouseEvent</code></a> interface with movement attributes. Two new attributes to mouse events—<a href="/en-US/docs/Web/API/MouseEvent/movementX" title="movementX"><code>movementX</code></a> and <a href="/en-US/docs/Web/API/MouseEvent/movementY" title="movementY"><code>movementY</code></a>—provide the change in mouse positions. The values of the parameters are the same as the difference between the values of <a href="/en-US/docs/Web/API/MouseEvent"><code>MouseEvent</code></a> properties, <a href="/en-US/docs/Web/API/MouseEvent/screenX" title="screenX"><code>screenX</code></a> and <a href="/en-US/docs/Web/API/MouseEvent/screenY" title="screenY"><code>screenY</code></a>, which are stored in two subsequent <a href="/en-US/docs/Web/API/Element/mousemove_event" title="mousemove"><code>mousemove</code></a> events, <code>eNow</code> and <code>ePrevious</code>. In other words, the Pointer lock parameter <code>movementX = eNow.screenX - ePrevious.screenX</code>.</p>
+<h3 id="locked_state">Locked state</h3>
+<p>When Pointer lock is enabled, the standard <a href="/en-US/docs/Web/API/MouseEvent"><code>MouseEvent</code></a> properties <a href="/en-US/docs/Web/API/MouseEvent/clientX" title="clientX"><code>clientX</code></a>, <a href="/en-US/docs/Web/API/MouseEvent/clientY" title="clientY"><code>clientY</code></a>, <a href="/en-US/docs/Web/API/MouseEvent/screenX" title="screenX"><code>screenX</code></a>, and <a href="/en-US/docs/Web/API/MouseEvent/screenY" title="screenY"><code>screenY</code></a> are held constant, as if the mouse is not moving. The <a href="/en-US/docs/Web/API/MouseEvent/movementX" title="movementX"><code>movementX</code></a> and <a href="/en-US/docs/Web/API/MouseEvent/movementY" title="movementY"><code>movementY</code></a> properties continue to provide the mouse's change in position. There is no limit to <a href="/en-US/docs/Web/API/MouseEvent/movementX" title="movementX"><code>movementX</code></a> and <a href="/en-US/docs/Web/API/MouseEvent/movementY" title="movementY"><code>movementY</code></a> values if the mouse is continuously moving in a single direction. The concept of the mouse cursor does not exist and the cursor cannot move off the window or be clamped by a screen edge.</p>
+<h3 id="unlocked_state">Unlocked state</h3>
+<p>The parameters <a href="/en-US/docs/Web/API/MouseEvent/movementX" title="movementX"><code>movementX</code></a> and <a href="/en-US/docs/Web/API/MouseEvent/movementY" title="movementY"><code>movementY</code></a> are valid regardless of the mouse lock state, and are available even when unlocked for convenience.</p>
+<p>When the mouse is unlocked, the system cursor can exit and re-enter the browser window. If that happens, <a href="/en-US/docs/Web/API/MouseEvent/movementX" title="movementX"><code>movementX</code></a> and <a href="/en-US/docs/Web/API/MouseEvent/movementY" title="movementY"><code>movementY</code></a> could be set to zero.</p>
+<h2 id="simple_example_walkthrough">Simple example walkthrough</h2>
+<p>We've written a <a href="https://mdn.github.io/dom-examples/pointer-lock/">pointer lock demo</a> (<a href="https://github.com/mdn/dom-examples/tree/main/pointer-lock">see source code</a>) to show you how to use it to set up a simple control system. This demo uses JavaScript to draw a ball on top of an <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element. When you click the canvas, pointer lock is then used to remove the mouse pointer and allow you to move the ball directly using the mouse. Let's see how this works.</p>
+<p>We set initial x and y positions on the canvas:</p>
+<pre class="brush: js">let x = 50;
+let y = 50;
+</pre>
+<p>Next we set up an event listener to run the <code>requestPointerLock()</code> method on the canvas when it is clicked, which initiates pointer lock. The <code>document.pointerLockElement</code> check is to see if there is already an active pointer lock — we don't want to keep calling <code>requestPointerLock()</code> on the canvas every time we click inside it if we already have pointer lock.</p>
+<pre class="brush: js">canvas.addEventListener("click", async () =&gt; {
+  if (!document.pointerLockElement) {
+    await canvas.requestPointerLock({
+      unadjustedMovement: true,
+    });
+  }
+});
+</pre>
+<div class="notecard note">
+  <p><strong>Note:</strong> The above snippet works in browsers that don't support the promise version of <code>requestPointerLock()</code>. See <a href="#handling_promise_and_non-promise_versions_of_requestpointerlock">Handling promise and non-promise versions of requestPointerLock()</a> for an explanation.</p>
+</div>
+<p>Now for the dedicated pointer lock event listener: <code>pointerlockchange</code>. When this occurs, we run a function called <code>lockChangeAlert()</code> to handle the change.</p>
+<pre class="brush: js">document.addEventListener("pointerlockchange", lockChangeAlert, false);
+</pre>
+<p>This function checks the <code>pointerLockElement</code> property to see if it is our canvas. If so, it attached an event listener to handle the mouse movements with the <code>updatePosition()</code> function. If not, it removes the event listener again.</p>
+<pre class="brush: js">function lockChangeAlert() {
+  if (document.pointerLockElement === canvas) {
+    console.log("The pointer lock status is now locked");
+    document.addEventListener("mousemove", updatePosition, false);
+  } else {
+    console.log("The pointer lock status is now unlocked");
+    document.removeEventListener("mousemove", updatePosition, false);
+  }
+}
+</pre>
+<p>The <code>updatePosition()</code> function updates the position of the ball on the canvas (<code>x</code> and <code>y</code>), and also includes <code>if ()</code> statements to check whether the ball has gone off the edges of the canvas. If so, it makes the ball wrap around to the opposite edge. It also includes a check whether a <a href="/en-US/docs/Web/API/Window/requestAnimationFrame"><code>requestAnimationFrame()</code></a> call has previously been made, and if so, calls it again as required, and calls the <code>canvasDraw()</code> function that updates the canvas scene. A tracker is also set up to write out the X and Y values to the screen, for reference.</p>
+<pre class="brush: js">const tracker = document.getElementById("tracker");
+
+let animation;
+function updatePosition(e) {
+  x += e.movementX;
+  y += e.movementY;
+  if (x &gt; canvas.width + RADIUS) {
+    x = -RADIUS;
+  }
+  if (y &gt; canvas.height + RADIUS) {
+    y = -RADIUS;
+  }
+  if (x &lt; -RADIUS) {
+    x = canvas.width + RADIUS;
+  }
+  if (y &lt; -RADIUS) {
+    y = canvas.height + RADIUS;
+  }
+  tracker.textContent = `X position: ${x}, Y position: ${y}`;
+
+  if (!animation) {
+    animation = requestAnimationFrame(() =&gt; {
+      animation = null;
+      canvasDraw();
+    });
+  }
+}
+</pre>
+<p>The <code>canvasDraw()</code> function draws the ball in the current <code>x</code> and <code>y</code> positions:</p>
+<pre class="brush: js">function canvasDraw() {
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#f00";
+  ctx.beginPath();
+  ctx.arc(x, y, RADIUS, 0, degToRad(360), true);
+  ctx.fill();
+}
+</pre>
+<h2 id="iframe_limitations">IFrame limitations</h2>
+<p>Pointer lock can only lock one <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> at a time. If you lock one <code>&lt;iframe&gt;</code>, you can't lock another one and transfer the target to it; pointer lock will error out. To avoid this limitation, first unlock the locked <code>&lt;iframe&gt;</code>, and then lock the other.</p>
+<p>While <code>&lt;iframe&gt;</code> work by default, "sandboxed" <code>&lt;iframe&gt;</code>s block Pointer lock. To avoid this limitation, use <code>&lt;iframe sandbox="allow-pointer-lock"&gt;</code>.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Document.exitPointerLock,api.Element.requestPointerLock" data-spec-urls="https://w3c.github.io/pointerlock/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Document.exitPointerLock" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.Element.requestPointerLock" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/MouseEvent"><code>MouseEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Element/requestPointerLock"><code>Element.requestPointerLock()</code></a></li>
+</ul>
+</body></html>

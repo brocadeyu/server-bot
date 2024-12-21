@@ -1,0 +1,33 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>Ink</code></strong> interface of the <a href="/en-US/docs/Web/API/Ink_API">Ink API</a> provides access to <a href="/en-US/docs/Web/API/DelegatedInkTrailPresenter"><code>DelegatedInkTrailPresenter</code></a> objects for the application to use to render ink strokes.</p>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="requestpresenter"><a href="/en-US/docs/Web/API/Ink/requestPresenter" title="requestPresenter()"><code>requestPresenter()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that fulfills with a <a href="/en-US/docs/Web/API/DelegatedInkTrailPresenter"><code>DelegatedInkTrailPresenter</code></a> object to handle rendering strokes.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<pre class="brush: js">async function inkInit() {
+  const ink = navigator.ink;
+  let presenter = await ink.requestPresenter({ presentationArea: canvas });
+
+  //...
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Ink" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Ink" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://blogs.windows.com/msedgedev/2021/08/18/enhancing-inking-on-the-web/">Enhancing Inking on the Web</a></li>
+</ul>
+</body></html>

@@ -1,0 +1,93 @@
+<html><head></head><body>
+<p>The <strong><code>flex-shrink</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets the flex shrink factor of a flex item. If the size of all flex items is larger than the flex container, the <a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis#the_flex-shrink_property">flex items can shrink</a> to fit according to their <code>flex-shrink</code> value. Each flex line's <a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis#positive_and_negative_free_space">negative free space</a> is distributed between the line's flex items that have a <code>flex-shrink</code> value greater than <code>0</code>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> It is recommended to use the <a href="/en-US/docs/Web/CSS/flex"><code>flex</code></a> shorthand instead of separate <code>flex-shrink</code>, <a href="/en-US/docs/Web/CSS/flex-grow"><code>flex-grow</code></a> and <a href="/en-US/docs/Web/CSS/flex-basis"><code>flex-basis</code></a> declarations. We have separated them here as this document covers one of the <code>flex</code> shorthand components: the <code>flex-shrink</code> property.</p>
+</div><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/flex-shrink.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;number&gt; values */
+flex-shrink: 2;
+flex-shrink: 0.6;
+
+/* Global values */
+flex-shrink: inherit;
+flex-shrink: initial;
+flex-shrink: revert;
+flex-shrink: revert-layer;
+flex-shrink: unset;
+</pre>
+<h2 id="description">Description</h2>
+<p>The <code>flex-shrink</code> property specifies the flex shrink factor, which determines how much the flex item will shrink relative to the rest of the flex items in the flex container when negative free space is distributed.</p>
+<p>This property deals with situations where the browser calculates the flex-basis values of the flex items, and finds that they are too large to fit into the flex container. As long as flex-shrink has a positive value the items will shrink in order that they do not overflow the container.</p>
+<p>The <code>flex-grow</code> property deals with distributing available positive free space proportional to each item's flex grow factor, with the value of the <code>flex-grow</code> property as the only consideration. The <code>flex-shrink</code> property manages removing negative free space to make boxes fit into their container without overflowing. Removing space is a bit more complicated than adding space. The flex shrink factor is multiplied by the flex base size; this distributes negative space in proportion to how much the item can shrink. This prevents smaller items from shrinking to <code>0px</code> before a larger item is noticeably reduced.</p>
+<p>Generally, <code>flex-shrink</code> is used alongside the <a href="/en-US/docs/Web/CSS/flex-grow"><code>flex-grow</code></a> and <a href="/en-US/docs/Web/CSS/flex-basis"><code>flex-basis</code></a> properties. Within the <code>flex</code> shorthand, the shrink factor is always the second <code>&lt;number&gt;</code>. If the shorthand only includes one number value, that value is assumed to be the <code>flex-grow</code> value.</p>
+<h2 id="values">Values</h2>
+<p>The <code>flex-shrink</code> property is specified as a single <code>&lt;number&gt;</code>.</p>
+<dl>
+  <dt id="number"><a href="#number"><code>&lt;number&gt;</code></a></dt>
+  <dd>
+    <p>See <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a>. Negative values are invalid. Defaults to 1.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>1</code></td></tr><tr><th scope="row">Applies to</th><td>flex items, including in-flow pseudo-elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a <a href="/en-US/docs/Web/CSS/number#interpolation" title="Values of the <number> CSS data type are interpolated as real, floating-point, numbers.">number</a></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="flex-shrink">flex-shrink = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number [0,∞]&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_flex_item_shrink_factor">Setting flex item shrink factor</h3>
+<p>This example demonstrates how negative free space is distributed based on the item's shrink factor. It includes five flex items with a <code>flex-shrink</code> value greater than 0, which have a combined width greater than their parent flex container's width.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div id="content"&gt;
+  &lt;div class="box" style="background-color:red;"&gt;A&lt;/div&gt;
+  &lt;div class="box" style="background-color:lightblue;"&gt;B&lt;/div&gt;
+  &lt;div class="box" style="background-color:yellow;"&gt;C&lt;/div&gt;
+  &lt;div class="box4" style="background-color:lightsalmon;"&gt;D&lt;/div&gt;
+  &lt;div class="box5" style="background-color:lightgreen;"&gt;E&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<p>We give each flex item a <a href="/en-US/docs/Web/CSS/width"><code>width</code></a> of <code>200px</code>. As the <a href="/en-US/docs/Web/CSS/flex-basis"><code>flex-basis</code></a> property defaults to <code>auto</code>, each item's flex-basis is <code>200px</code>. This gives the flex items a total width of <code>1000px</code>, twice the size of the container. We set all flex items to be shrinkable, with <code>flex-shrink</code> values greater than <code>0</code>. The last two items have greater <code>flex-shrink</code> values set so they will shrink more.</p>
+<pre class="brush: css">#content {
+  display: flex;
+  width: 500px;
+}
+
+#content div {
+  width: 200px;
+}
+
+.box {
+  flex-shrink: 1;
+}
+
+.box4 {
+  flex-shrink: 1.5;
+}
+
+.box5 {
+  flex-shrink: 2;
+}
+</pre>
+<pre class="brush: css hidden">#content {
+  margin: 5px;
+}
+div {
+  font-family: monospace;
+  outline: 1px solid;
+  line-height: 4em;
+  text-align: center;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Setting flex item shrink factor sample" id="frame_setting_flex_item_shrink_factor" width="500" height="100" src="about:blank" data-live-path="/en-US/docs/Web/CSS/flex-shrink" data-live-id="setting_flex_item_shrink_factor" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The flex items don't overflow their container because they are able to shrink: the <code>500px</code> of negative free space is distributed among the five items based on their <code>flex-shrink</code> values. The first three items have <code>flex-shrink: 1</code> set. D has <code>flex-shrink: 1.5</code> and E has <code>flex-shrink: 2</code> set. The final width of D and E is less than the others, with E smaller than D.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.flex-shrink" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.flex-shrink" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">Basic concepts of flexbox</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis">Controlling ratios of flex items along the main axis</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout">CSS flexible box layout</a> module</li>
+</ul>
+</body></html>

@@ -1,0 +1,102 @@
+<html><head></head><body>
+<p>The <strong>CSS compositing and blending</strong> module defines how an element's background layers can be blended together, how an element can be blended with its container, and whether the element must create a new <a href="/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context">stacking context</a>.</p>
+<p>The properties in this CSS module can be used to define the blending mode that should be used, if any, to blend an element's background images and colors into a single background image. This module provides 16 blending modes. You can also define how an element's borders, background, and content, including text, emojis, and images, should be blended with the background of its container.</p>
+<h3 id="compositing_and_blending_in_action">Compositing and blending in action</h3>
+<p>In this example, each box has a border, two striped background images, and a solid color background. The common background for all the boxes contains a pattern of circles. The three boxes in the second row are set to blend with the background of the container.</p>
+<pre class="brush: html hidden live-sample___compositing">&lt;section&gt;
+  &lt;div&gt;&lt;span&gt;Normal, with no blending&lt;/span&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span&gt;Multiplies colors&lt;/span&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span&gt;Multiplies based on background color&lt;/span&gt;&lt;/div&gt;
+  &lt;div&gt;Normal, with no blending&lt;/div&gt;
+  &lt;div&gt;Multiplies colors&lt;/div&gt;
+  &lt;div&gt;Multiplies based on background color&lt;/div&gt;
+&lt;/section&gt;
+</pre>
+<pre class="brush: css hidden live-sample___compositing">/* Creates a div with two offset striped background images and a background color. */
+div {
+  width: 200px;
+  height: 200px;
+  background-image: repeating-linear-gradient(
+      45deg,
+      red 0 15px,
+      pink 15px 30px
+    ),
+    repeating-linear-gradient(-45deg, blue 0 15px, lightblue 15px 30px);
+  background-size: 150px 150px;
+  background-repeat: no-repeat;
+  background-position:
+    top left,
+    bottom right;
+  background-color: palegoldenrod;
+  text-align: center;
+  padding-top: 150px;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  border: 5px solid black;
+}
+div:nth-of-type(3n + 1) {
+  background-blend-mode: normal;
+}
+div:nth-of-type(3n + 2) {
+  background-blend-mode: multiply;
+}
+div:nth-of-type(3n + 3) {
+  background-blend-mode: overlay;
+}
+div:nth-of-type(n + 4) {
+  mix-blend-mode: difference;
+}
+/* Put a pink background with transparent round holes that covers the 
+  entire element, and lay the examples in two rows with three columns each */
+section {
+  padding: 0.75em;
+  background: radial-gradient(
+    circle,
+    transparent 0 20px,
+    rgb(255 200 200) 20px
+  );
+  background-size: 60px 60px;
+  background-position: center;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+}
+/* Make some of the text more legible */
+span {
+  background-color: #ffffff99;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="compositing sample" id="frame_compositing" height="450px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/CSS_compositing_and_blending" data-live-id="compositing" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>
+  Notice how the background, border, and the content are all impacted as a result of the blending.
+  Click "Play" in the example above to see or edit the code for the animation in the MDN Playground.
+</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/background-blend-mode"><code>background-blend-mode</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/isolation"><code>isolation</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/mix-blend-mode"><code>mix-blend-mode</code></a></li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/blend-mode"><code>&lt;blend-mode&gt;</code></a> data type</li>
+  <li><a href="/en-US/docs/Web/CSS/backdrop-filter"><code>backdrop-filter</code></a> CSS property</li>
+  <li><a href="/en-US/docs/Web/CSS/filter"><code>filter</code></a> CSS property</li>
+  <li><a href="/en-US/docs/Web/CSS/mask-composite"><code>mask-composite</code></a> CSS property</li>
+  <li><a href="/en-US/docs/Web/CSS/background-color"><code>background-color</code></a> CSS property</li>
+  <li><a href="/en-US/docs/Web/CSS/background-image"><code>background-image</code></a> CSS property</li>
+  <li><a href="/en-US/docs/Glossary/Stacking_context">stacking context</a> glossary term</li>
+  <li><a href="/en-US/docs/Web/SVG/Element/feBlend"><code>&lt;feBlend&gt;</code></a> SVG filter primitive</li>
+  <li><a href="/en-US/docs/Web/SVG/Element/feComposite"><code>&lt;feComposite&gt;</code></a> SVG filter primitive</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.fxtf.org/compositing/,https://www.w3.org/TR/compositing-1/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Properties in the <a href="/en-US/docs/Web/CSS/CSS_filter_effects">CSS filter effects</a> module enable applying filters effects, such as blurring and changing color intensity, to images, backgrounds, and borders.</li>
+  <li><a href="https://www.sarasoueidan.com/blog/compositing-and-blending-in-css/">Compositing And Blending In CSS</a> (2015)</li>
+  <li><a href="https://webdesign.tutsplus.com/editing-images-in-css-blend-modes--cms-26058t">Editing Images in CSS: Blend Modes</a> (2022)</li>
+  <li><a href="https://web.dev/learn/css/blend-modes">web.dev: blend modes</a> (2021)</li>
+</ul>
+</body></html>

@@ -1,0 +1,38 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>AudioSinkInfo</code></strong> interface of the <a href="/en-US/docs/Web/API/Web_Audio_API" title="Web Audio API">Web Audio API</a> represents information describing an <a href="/en-US/docs/Web/API/AudioContext"><code>AudioContext</code></a>'s sink ID, retrieved via <a href="/en-US/docs/Web/API/AudioContext/sinkId"><code>AudioContext.sinkId</code></a>.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="type"><a href="/en-US/docs/Web/API/AudioSinkInfo/type" title="type"><code>type</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the type of the audio output device.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>If a new <a href="/en-US/docs/Web/API/AudioContext"><code>AudioContext</code></a> is created with a <code>sinkId</code> value of <code>{ type: 'none' }</code>, calling <a href="/en-US/docs/Web/API/AudioContext/sinkId"><code>AudioContext.sinkId</code></a> later in the code will return a <code>AudioSinkInfo</code> object containing <code>type: 'none'</code>. This is currently the only value available.</p>
+<pre class="brush: js">audioCtx = new window.AudioContext({
+  sinkId: { type: "none" },
+});
+
+// ...
+
+audioCtx.sinkId;
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.AudioSinkInfo" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.AudioSinkInfo" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://set-sink-id.glitch.me/">SetSinkId test example</a></li>
+  <li><a href="/en-US/docs/Web/API/AudioContext/setSinkId"><code>AudioContext.setSinkId()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/AudioContext/sinkId"><code>AudioContext.sinkId</code></a></li>
+  <li><a href="/en-US/docs/Web/API/AudioContext/sinkchange_event" title="sinkchange"><code>sinkchange</code></a></li>
+</ul>
+</body></html>

@@ -1,0 +1,41 @@
+<html><head></head><body>
+<p>The <strong><code>OES_texture_float</code></strong> extension is part of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> and exposes floating-point pixel types for textures.</p>
+<p>WebGL extensions are available using the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="/en-US/docs/Web/API/WebGL_API/Using_Extensions">Using Extensions</a> in the <a href="/en-US/docs/Web/API/WebGL_API/Tutorial">WebGL tutorial</a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This extension is only available to <a href="/en-US/docs/Web/API/WebGLRenderingContext" title="WebGL1">WebGL1</a> contexts. In <a href="/en-US/docs/Web/API/WebGL2RenderingContext" title="WebGL2">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default.</p>
+</div>
+<h2 id="extended_methods">Extended methods</h2>
+<p>This extension extends <a href="/en-US/docs/Web/API/WebGLRenderingContext/texImage2D"><code>WebGLRenderingContext.texImage2D()</code></a> and <a href="/en-US/docs/Web/API/WebGLRenderingContext/texSubImage2D"><code>WebGLRenderingContext.texSubImage2D()</code></a>:</p>
+<ul>
+  <li>The <code>type</code> parameter now accepts <code>gl.FLOAT</code>.</li>
+  <li>The <code>pixels</code> parameter now accepts a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li>
+</ul>
+<h2 id="limitation_linear_filtering">Limitation: Linear filtering</h2>
+<p>Linear filtering on floating-point textures is not allowed with this extension. If you set the magnification or minification filter in the <a href="/en-US/docs/Web/API/WebGLRenderingContext/texParameter"><code>WebGLRenderingContext.texParameter()</code></a> method to one of <code>gl.LINEAR</code>, <code>gl.LINEAR_MIPMAP_NEAREST</code>, <code>gl.NEAREST_MIPMAP_LINEAR</code>, or <code>gl.LINEAR_MIPMAP_LINEAR</code>, and use floating-point textures, the texture will be marked as incomplete.</p>
+<p>To use linear filtering on floating-point textures, enable the <a href="/en-US/docs/Web/API/OES_texture_float_linear"><code>OES_texture_float_linear</code></a> extension in addition to this extension.</p>
+<h2 id="floating-point_color_buffers">Floating-point color buffers</h2>
+<p>This extension implicitly enables the <a href="/en-US/docs/Web/API/WEBGL_color_buffer_float"><code>WEBGL_color_buffer_float</code></a> extension (if supported), which allows rendering to 32-bit floating-point color buffers.</p>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const ext = gl.getExtension("OES_texture_float");
+
+const texture = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, texture);
+
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.FLOAT, image);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.OES_texture_float" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.OES_texture_float" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/texImage2D"><code>WebGLRenderingContext.texImage2D()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/texSubImage2D"><code>WebGLRenderingContext.texSubImage2D()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/OES_texture_float_linear"><code>OES_texture_float_linear</code></a></li>
+  <li><a href="/en-US/docs/Web/API/OES_texture_half_float"><code>OES_texture_half_float</code></a></li>
+  <li><a href="/en-US/docs/Web/API/OES_texture_half_float_linear"><code>OES_texture_half_float_linear</code></a></li>
+</ul>
+</body></html>

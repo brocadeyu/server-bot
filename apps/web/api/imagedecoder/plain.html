@@ -1,0 +1,112 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/DedicatedWorkerGlobalScope">Dedicated Web Workers</a>.</p>
+</div>
+<p>The <strong><code>ImageDecoder</code></strong> interface of the <a href="/en-US/docs/Web/API/WebCodecs_API">WebCodecs API</a> provides a way to unpack and decode encoded image data.</p>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="imagedecoder"><a href="/en-US/docs/Web/API/ImageDecoder/ImageDecoder" title="ImageDecoder()"><code>ImageDecoder()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>ImageDecoder</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="imagedecoder.complete"><a href="/en-US/docs/Web/API/ImageDecoder/complete"><code>ImageDecoder.complete</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a boolean value indicating whether encoded data is completely buffered.</p>
+  </dd>
+  <dt id="imagedecoder.completed"><a href="/en-US/docs/Web/API/ImageDecoder/completed"><code>ImageDecoder.completed</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves once <code>complete</code> is true.</p>
+  </dd>
+  <dt id="imagedecoder.tracks"><a href="/en-US/docs/Web/API/ImageDecoder/tracks"><code>ImageDecoder.tracks</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/ImageTrackList"><code>ImageTrackList</code></a> object listing the available tracks and providing a method for selecting a track to decode.</p>
+  </dd>
+  <dt id="imagedecoder.type"><a href="/en-US/docs/Web/API/ImageDecoder/type"><code>ImageDecoder.type</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string reflecting the <a href="/en-US/docs/Web/HTTP/MIME_types">MIME type</a> configured during construction.</p>
+  </dd>
+</dl>
+<h2 id="static_methods">Static methods</h2>
+<dl>
+  <dt id="imagedecoder.istypesupported"><a href="/en-US/docs/Web/API/ImageDecoder/isTypeSupported_static" title="ImageDecoder.isTypeSupported()"><code>ImageDecoder.isTypeSupported()</code></a></dt>
+  <dd>
+    <p>Indicates if the provided <a href="/en-US/docs/Web/HTTP/MIME_types">MIME type</a> is supported for unpacking and decoding.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="imagedecoder.close"><a href="/en-US/docs/Web/API/ImageDecoder/close"><code>ImageDecoder.close()</code></a></dt>
+  <dd>
+    <p>Ends all pending work and releases system resources.</p>
+  </dd>
+  <dt id="imagedecoder.decode"><a href="/en-US/docs/Web/API/ImageDecoder/decode"><code>ImageDecoder.decode()</code></a></dt>
+  <dd>
+    <p>Enqueues a control message to decode the frame of an image.</p>
+  </dd>
+  <dt id="imagedecoder.reset"><a href="/en-US/docs/Web/API/ImageDecoder/reset"><code>ImageDecoder.reset()</code></a></dt>
+  <dd>
+    <p>Aborts all pending <code>decode()</code> operations.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>Given a <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element:</p>
+<pre class="brush: html">&lt;canvas&gt;&lt;/canvas&gt;
+</pre>
+<p>the following code decodes and renders an animated image to that canvas:</p>
+<pre class="brush: js">let imageDecoder = null;
+let imageIndex = 0;
+
+function renderImage(result) {
+  const canvas = document.querySelector("canvas");
+  const canvasContext = canvas.getContext("2d");
+
+  canvasContext.drawImage(result.image, 0, 0);
+
+  const track = imageDecoder.tracks.selectedTrack;
+
+  // We check complete here since `frameCount` won't be stable until all
+  // data has been received. This may cause us to receive a RangeError
+  // during the decode() call below which needs to be handled.
+  if (imageDecoder.complete) {
+    if (track.frameCount === 1) return;
+
+    if (imageIndex + 1 &gt;= track.frameCount) imageIndex = 0;
+  }
+
+  // Decode the next frame ahead of display so it's ready in time.
+  imageDecoder
+    .decode({ frameIndex: ++imageIndex })
+    .then((nextResult) =&gt;
+      setTimeout(() =&gt; {
+        renderImage(nextResult);
+      }, result.image.duration / 1000.0),
+    )
+    .catch((e) =&gt; {
+      // We can end up requesting an imageIndex past the end since
+      // we're using a ReadableStream from fetch(), when this happens
+      // just wrap around.
+      if (e instanceof RangeError) {
+        imageIndex = 0;
+        imageDecoder.decode({ frameIndex: imageIndex }).then(renderImage);
+      } else {
+        throw e;
+      }
+    });
+}
+
+function decodeImage(imageByteStream) {
+  imageDecoder = new ImageDecoder({ data: imageByteStream, type: "image/gif" });
+  imageDecoder.decode({ frameIndex: imageIndex }).then(renderImage);
+}
+
+fetch("fancy.gif").then((response) =&gt; decodeImage(response.body));
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ImageDecoder" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ImageDecoder" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

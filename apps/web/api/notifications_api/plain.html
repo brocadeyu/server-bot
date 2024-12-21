@@ -1,0 +1,71 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div> <div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The Notifications API allows web pages to control the display of system notifications to the end user. These are outside the top-level browsing context viewport, so therefore can be displayed even when the user has switched tabs or moved to a different app. The API is designed to be compatible with existing notification systems, across different platforms.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>
+  On supported platforms, showing a system notification generally involves two things. First, the user needs to grant the current origin permission to display system notifications, which is generally done when the app or site initializes, using the <a href="/en-US/docs/Web/API/Notification/requestPermission_static" title="Notification.requestPermission()"><code>Notification.requestPermission()</code></a> method.
+  This method should only be called when handling a user gesture, such as when handling a mouse click. For example:
+</p>
+<pre class="brush: js">btn.addEventListener("click", () =&gt; {
+  let promise = Notification.requestPermission();
+  // wait for permission
+});
+</pre>
+<p>This will spawn a request dialog, along the following lines:</p>
+<p>
+  <img src="/en-US/docs/Web/API/Notifications_API/screen_shot_2019-12-11_at_9.59.14_am.png" alt="A dialog box asking the user to allow notifications from that origin. There are options to never allow or allow notifications." width="643" height="183">
+</p>
+<p>From here the user can choose to allow notifications from this origin, or block them. Once a choice has been made, the setting will generally persist for the current session.</p>
+<p>Next, a new notification is created using the <a href="/en-US/docs/Web/API/Notification/Notification" title="Notification()"><code>Notification()</code></a> constructor. This must be passed a title argument, and can optionally be passed an options object to specify options, such as text direction, body text, icon to display, notification sound to play, and more.</p>
+<p>In addition, the Notifications API spec specifies a number of additions to the <a href="/en-US/docs/Web/API/Service_Worker_API">ServiceWorker API</a>, to allow service workers to fire notifications.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> To find out more about using notifications in your own app, read <a href="/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API">Using the Notifications API</a>.</p>
+</div>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="notification"><a href="/en-US/docs/Web/API/Notification"><code>Notification</code></a></dt>
+  <dd>
+    <p>Defines a notification object.</p>
+  </dd>
+  <dt id="notificationevent"><a href="/en-US/docs/Web/API/NotificationEvent"><code>NotificationEvent</code></a></dt>
+  <dd>
+    <p>Represents a notification event dispatched on the <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope"><code>ServiceWorkerGlobalScope</code></a> of a <a href="/en-US/docs/Web/API/ServiceWorker"><code>ServiceWorker</code></a>.</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<dl>
+  <dt id="notificationclick"><a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/notificationclick_event" title="notificationclick"><code>notificationclick</code></a> event</dt>
+  <dd>
+    <p>Occurs when a user clicks on a displayed notification.</p>
+  </dd>
+  <dt id="notificationclose"><a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/notificationclose_event" title="notificationclose"><code>notificationclose</code></a> event</dt>
+  <dd>
+    <p>Occurs when a user closes a displayed notification.</p>
+  </dd>
+  <dt id="serviceworkerregistration.getnotifications"><a href="/en-US/docs/Web/API/ServiceWorkerRegistration/getNotifications"><code>ServiceWorkerRegistration.getNotifications()</code></a></dt>
+  <dd>
+    <p>Returns a list of the notifications in the order that they were created from the current origin via the current service worker registration.</p>
+  </dd>
+  <dt id="serviceworkerregistration.shownotification"><a href="/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification"><code>ServiceWorkerRegistration.showNotification()</code></a></dt>
+  <dd>
+    <p>Displays the notification with the requested title.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Notification,api.ServiceWorkerRegistration.showNotification,api.ServiceWorkerRegistration.getNotifications" data-spec-urls="https://notifications.spec.whatwg.org/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Notification" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.ServiceWorkerRegistration.showNotification" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.ServiceWorkerRegistration.getNotifications" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API">Using the Notifications API</a></li>
+</ul>
+</body></html>

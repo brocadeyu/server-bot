@@ -1,0 +1,58 @@
+<html><head></head><body>
+<p>The <strong><code>:host</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> selects the shadow host of the <a href="/en-US/docs/Web/API/Web_components/Using_shadow_DOM">shadow DOM</a> containing the CSS it is used inside — in other words, this allows you to select a custom element from inside its shadow DOM.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This has no effect when used outside a shadow DOM.</p>
+</div><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-host.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<pre class="brush: css">/* Selects a shadow root host */
+:host {
+  font-weight: bold;
+}
+</pre>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:host {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="styling_the_shadow_host">Styling the shadow host</h3>
+<p>The following snippets are taken from our <a href="https://github.com/mdn/web-components-examples/tree/main/host-selectors">host-selectors example</a> (<a href="https://mdn.github.io/web-components-examples/host-selectors/">see it live also</a>).</p>
+<p>In this example we have a basic custom element — <code>&lt;context-span&gt;</code> — that you can wrap around text:</p>
+<pre class="brush: html">&lt;h1&gt;
+  Host selectors &lt;a href="#"&gt;&lt;context-span&gt;example&lt;/context-span&gt;&lt;/a&gt;
+&lt;/h1&gt;
+</pre>
+<p>Inside the element's constructor, we create <code>style</code> and <code>span</code> elements, fill the <code>span</code> with the content of the custom element, and fill the <code>style</code> element with some CSS rules:</p>
+<pre class="brush: js">const style = document.createElement("style");
+const span = document.createElement("span");
+span.textContent = this.textContent;
+
+const shadowRoot = this.attachShadow({ mode: "open" });
+shadowRoot.appendChild(style);
+shadowRoot.appendChild(span);
+
+style.textContent =
+  "span:hover { text-decoration: underline; }" +
+  ":host-context(h1) { font-style: italic; }" +
+  ':host-context(h1):after { content: " - no links in headers!" }' +
+  ":host-context(article, aside) { color: gray; }" +
+  ":host(.footer) { color : red; }" +
+  ":host { background: rgb(0 0 0 / 10%); padding: 2px 5px; }";
+</pre>
+<p>The <code>:host { background: rgb(0 0 0 / 10%); padding: 2px 5px; }</code> rule styles all instances of the <code>&lt;context-span&gt;</code> element (the shadow host in this instance) in the document.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.host" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.host" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_components">Web components</a></li>
+  <li><a href="/en-US/docs/Web/CSS/:host_function"><code>:host()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:host-context"><code>:host-context()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::slotted"><code>::slotted</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:state"><code>:state()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_scoping">CSS scoping</a> module</li>
+</ul>
+</body></html>

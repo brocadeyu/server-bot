@@ -1,0 +1,81 @@
+<html><head></head><body>
+<p>The <code>AudioListener</code> interface represents the position and orientation of the unique person listening to the audio scene, and is used in <a href="/en-US/docs/Web/API/Web_Audio_API/Web_audio_spatialization_basics">audio spatialization</a>. All <a href="/en-US/docs/Web/API/PannerNode"><code>PannerNode</code></a>s spatialize in relation to the <code>AudioListener</code> stored in the <a href="/en-US/docs/Web/API/BaseAudioContext/listener"><code>BaseAudioContext.listener</code></a> attribute.</p>
+<p>It is important to note that there is only one listener per context and that it isn't an <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a>.</p>
+<p>
+  <img src="/en-US/docs/Web/API/AudioListener/webaudiolistenerreduced.png" alt="We see the position, up and front vectors of an AudioListener, with the up and front vectors at 90° from the other." width="634" height="250">
+</p>
+<h2 id="instance_properties">Instance properties</h2>
+<div class="notecard note">
+  <p><strong>Note:</strong> The position, forward, and up value are set and retrieved using different syntaxes. Retrieval is done by accessing, for example, <code>AudioListener.positionX</code>, while setting the same property is done with <code>AudioListener.positionX.value</code>. This is why these values are not marked read only, which is how they appear in the specification's IDL.</p>
+</div>
+<dl>
+  <dt id="audiolistener.positionx"><a href="/en-US/docs/Web/API/AudioListener/positionX"><code>AudioListener.positionX</code></a></dt>
+  <dd>
+    <p>Represents the horizontal position of the listener in a right-hand cartesian coordinate system. The default is 0.</p>
+  </dd>
+  <dt id="audiolistener.positiony"><a href="/en-US/docs/Web/API/AudioListener/positionY"><code>AudioListener.positionY</code></a></dt>
+  <dd>
+    <p>Represents the vertical position of the listener in a right-hand cartesian coordinate system. The default is 0.</p>
+  </dd>
+  <dt id="audiolistener.positionz"><a href="/en-US/docs/Web/API/AudioListener/positionZ"><code>AudioListener.positionZ</code></a></dt>
+  <dd>
+    <p>Represents the longitudinal (back and forth) position of the listener in a right-hand cartesian coordinate system. The default is 0.</p>
+  </dd>
+  <dt id="audiolistener.forwardx"><a href="/en-US/docs/Web/API/AudioListener/forwardX"><code>AudioListener.forwardX</code></a></dt>
+  <dd>
+    <p>Represents the horizontal position of the listener's forward direction in the same cartesian coordinate system as the position (<code>positionX</code>, <code>positionY</code>, and <code>positionZ</code>) values. The forward and up values are linearly independent of each other. The default is 0.</p>
+  </dd>
+  <dt id="audiolistener.forwardy"><a href="/en-US/docs/Web/API/AudioListener/forwardY"><code>AudioListener.forwardY</code></a></dt>
+  <dd>
+    <p>Represents the vertical position of the listener's forward direction in the same cartesian coordinate system as the position (<code>positionX</code>, <code>positionY</code>, and <code>positionZ</code>) values. The forward and up values are linearly independent of each other. The default is 0.</p>
+  </dd>
+  <dt id="audiolistener.forwardz"><a href="/en-US/docs/Web/API/AudioListener/forwardZ"><code>AudioListener.forwardZ</code></a></dt>
+  <dd>
+    <p>Represents the longitudinal (back and forth) position of the listener's forward direction in the same cartesian coordinate system as the position (<code>positionX</code>, <code>positionY</code>, and <code>positionZ</code>) values. The forward and up values are linearly independent of each other. The default is -1.</p>
+  </dd>
+  <dt id="audiolistener.upx"><a href="/en-US/docs/Web/API/AudioListener/upX"><code>AudioListener.upX</code></a></dt>
+  <dd>
+    <p>Represents the horizontal position of the top of the listener's head in the same cartesian coordinate system as the position (<code>positionX</code>, <code>positionY</code>, and <code>positionZ</code>) values. The forward and up values are linearly independent of each other. The default is 0.</p>
+  </dd>
+  <dt id="audiolistener.upy"><a href="/en-US/docs/Web/API/AudioListener/upY"><code>AudioListener.upY</code></a></dt>
+  <dd>
+    <p>Represents the vertical position of the top of the listener's head in the same cartesian coordinate system as the position (<code>positionX</code>, <code>positionY</code>, and <code>positionZ</code>) values. The forward and up values are linearly independent of each other. The default is 1.</p>
+  </dd>
+  <dt id="audiolistener.upz"><a href="/en-US/docs/Web/API/AudioListener/upZ"><code>AudioListener.upZ</code></a></dt>
+  <dd>
+    <p>Represents the longitudinal (back and forth) position of the top of the listener's head in the same cartesian coordinate system as the position (<code>positionX</code>, <code>positionY</code>, and <code>positionZ</code>) values. The forward and up values are linearly independent of each other. The default is 0.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="audiolistener.setorientation"><a href="/en-US/docs/Web/API/AudioListener/setOrientation"><code>AudioListener.setOrientation()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Sets the orientation of the listener.</p>
+  </dd>
+  <dt id="audiolistener.setposition"><a href="/en-US/docs/Web/API/AudioListener/setPosition"><code>AudioListener.setPosition()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Sets the position of the listener.</p>
+  </dd>
+</dl>
+<div class="notecard note">
+  <p><strong>Note:</strong> Although these methods are deprecated they are currently the only way to set the orientation and position in Firefox (see <a href="https://bugzil.la/1283029">Firefox bug 1283029</a>).</p>
+</div>
+<h2 id="deprecated_features">Deprecated features</h2>
+<p>The <code>setOrientation()</code> and <code>setPosition()</code> methods have been replaced by setting their property value equivalents. For example <code>setPosition(x, y, z)</code> can be achieved by setting <code>positionX.value</code>, <code>positionY.value</code>, and <code>positionZ.value</code> respectively.</p>
+<h2 id="example">Example</h2>
+<p>See <a href="/en-US/docs/Web/API/BaseAudioContext/createPanner#examples"><code>BaseAudioContext.createPanner()</code></a> for example code.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.AudioListener" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.AudioListener" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API">Using the Web Audio API</a></li>
+</ul>
+</body></html>

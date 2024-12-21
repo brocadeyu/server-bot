@@ -1,0 +1,142 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is only available in <a href="/en-US/docs/Web/API/Service_Worker_API">Service Workers</a>.</p>
+</div>
+<p>The <strong><code>PaymentRequestEvent</code></strong> interface of the <a href="/en-US/docs/Web/API/Payment_Handler_API">Payment Handler API</a> is the object passed to a payment handler when a <a href="/en-US/docs/Web/API/PaymentRequest"><code>PaymentRequest</code></a> is made.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/ExtendableEvent">
+    <rect x="105" y="0" width="120" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="165" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      ExtendableEvent
+    </text>
+  </a>
+  <line x1="225" y1="14" x2="255" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="225,14 235,9 235,19 225,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PaymentRequestEvent" aria-current="page">
+    <rect x="255" y="0" width="152" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="331" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PaymentRequestEvent
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="paymentrequestevent"><a href="/en-US/docs/Web/API/PaymentRequestEvent/PaymentRequestEvent" title="PaymentRequestEvent()"><code>PaymentRequestEvent()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Creates a new <code>PaymentRequestEvent</code> object instance.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="instrumentkey"><a href="/en-US/docs/Web/API/PaymentRequestEvent/instrumentKey" title="instrumentKey"><code>instrumentKey</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns an object reflecting the payment instrument selected by the user or an empty string if the user has not registered or chosen a payment instrument.</p>
+  </dd>
+  <dt id="methoddata"><a href="/en-US/docs/Web/API/PaymentRequestEvent/methodData" title="methodData"><code>methodData</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns an array of objects containing payment method identifiers for the payment methods that the website accepts and any associated payment method specific data.</p>
+  </dd>
+  <dt id="modifiers"><a href="/en-US/docs/Web/API/PaymentRequestEvent/modifiers" title="modifiers"><code>modifiers</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns an array of objects containing changes to payment details.</p>
+  </dd>
+  <dt id="paymentrequestid"><a href="/en-US/docs/Web/API/PaymentRequestEvent/paymentRequestId" title="paymentRequestId"><code>paymentRequestId</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the ID of the <a href="/en-US/docs/Web/API/PaymentRequest"><code>PaymentRequest</code></a> object.</p>
+  </dd>
+  <dt id="paymentrequestorigin"><a href="/en-US/docs/Web/API/PaymentRequestEvent/paymentRequestOrigin" title="paymentRequestOrigin"><code>paymentRequestOrigin</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the origin where the <a href="/en-US/docs/Web/API/PaymentRequest"><code>PaymentRequest</code></a> object was initialized.</p>
+  </dd>
+  <dt id="toporigin"><a href="/en-US/docs/Web/API/PaymentRequestEvent/topOrigin" title="topOrigin"><code>topOrigin</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the top-level origin where the <a href="/en-US/docs/Web/API/PaymentRequest"><code>PaymentRequest</code></a> object was initialized.</p>
+  </dd>
+  <dt id="total"><a href="/en-US/docs/Web/API/PaymentRequestEvent/total" title="total"><code>total</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the total amount being requested for payment.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="changepaymentmethod"><a href="/en-US/docs/Web/API/PaymentRequestEvent/changePaymentMethod" title="changePaymentMethod()"><code>changePaymentMethod()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Gets an updated total, given payment method details.</p>
+  </dd>
+  <dt id="openwindow"><a href="/en-US/docs/Web/API/PaymentRequestEvent/openWindow" title="openWindow()"><code>openWindow()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Opens the specified URL in a new window, if and only if the given URL is on the same origin as the calling page. It returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a reference to a <a href="/en-US/docs/Web/API/WindowClient"><code>WindowClient</code></a>.</p>
+  </dd>
+  <dt id="respondwith"><a href="/en-US/docs/Web/API/PaymentRequestEvent/respondWith" title="respondWith()"><code>respondWith()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Prevents the default event handling and allows you to provide a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> for a <a href="/en-US/docs/Web/API/PaymentResponse"><code>PaymentResponse</code></a> object yourself.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>When the <a href="/en-US/docs/Web/API/PaymentRequest/show"><code>PaymentRequest.show()</code></a> method is invoked, a <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/paymentrequest_event" title="paymentrequest"><code>paymentrequest</code></a> event is fired on the service worker of the payment app. This event is listened for inside the payment app's service worker to begin the next stage of the payment process.</p>
+<pre class="brush: js">let payment_request_event;
+let resolver;
+let client;
+
+// `self` is the global object in service worker
+self.addEventListener("paymentrequest", async (e) =&gt; {
+  if (payment_request_event) {
+    // If there's an ongoing payment transaction, reject it.
+    resolver.reject();
+  }
+  // Preserve the event for future use
+  payment_request_event = e;
+
+  // ...
+});
+</pre>
+<p>When a <code>paymentrequest</code> event is received, the payment app can open a payment handler window by calling <a href="/en-US/docs/Web/API/PaymentRequestEvent/openWindow"><code>PaymentRequestEvent.openWindow()</code></a>. The payment handler window will present the customers with a payment app interface where they can authenticate, choose shipping address and options, and authorize the payment.</p>
+<p>When the payment has been handled, <a href="/en-US/docs/Web/API/PaymentRequestEvent/respondWith"><code>PaymentRequestEvent.respondWith()</code></a> is used to pass the payment result back to the merchant website.</p>
+<p>See <a href="https://web.dev/articles/orchestrating-payment-transactions#receive-payment-request-event">Receive a payment request event from the merchant</a> for more details of this stage.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PaymentRequestEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PaymentRequestEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://web.dev/articles/web-based-payment-apps-overview">Web-based payment apps overview</a></li>
+  <li><a href="https://web.dev/articles/setting-up-a-payment-method">Setting up a payment method</a></li>
+  <li><a href="https://web.dev/articles/life-of-a-payment-transaction">Life of a payment transaction</a></li>
+  <li><a href="/en-US/docs/Web/API/Payment_Request_API/Using_the_Payment_Request_API">Using the Payment Request API</a></li>
+  <li><a href="/en-US/docs/Web/API/Payment_Request_API/Concepts">Payment processing concepts</a></li>
+</ul>
+</body></html>

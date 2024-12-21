@@ -1,0 +1,65 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>image-resolution</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property specifies the intrinsic resolution of all raster images used in or on the element. It affects content images such as replaced elements and generated content, and decorative images such as <code>background-image</code> images.</p>
+<p>The image resolution is defined as the number of image pixels per unit length, e.g., pixels per inch. By default, CSS assumes a resolution of one image pixel per CSS px unit; however, the <code>image-resolution</code> property allows a different resolution to be specified.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">image-resolution: from-image;
+image-resolution: 300dpi;
+image-resolution: from-image 300dpi;
+image-resolution: 300dpi snap;
+
+/* Global values */
+image-resolution: inherit;
+image-resolution: initial;
+image-resolution: revert;
+image-resolution: revert-layer;
+image-resolution: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="resolution"><a href="/en-US/docs/Web/CSS/resolution"><code>&lt;resolution&gt;</code></a></dt>
+  <dd>
+    <p>Specifies the intrinsic resolution explicitly.</p>
+  </dd>
+  <dt id="from-image"><a href="#from-image"><code>from-image</code></a></dt>
+  <dd>
+    <p>Uses the intrinsic resolution as specified by the image format. If the image does not specify its own resolution, the explicitly specified resolution is used (if given), else it defaults to <code>1dppx</code> (1 image pixel per CSS px unit).</p>
+  </dd>
+  <dt id="snap"><a href="#snap"><code>snap</code></a></dt>
+  <dd>
+    <p>If the <code>snap</code> keyword is provided, the computed resolution is the specified resolution rounded to the nearest value that would map one image pixel to an integer number of device pixels. If the resolution is taken from the image, then the used intrinsic resolution is the image's native resolution similarly adjusted.</p>
+  </dd>
+</dl>
+<div class="notecard note">
+  <p><strong>Note:</strong> As vector formats such as SVG do not have an intrinsic resolution, this property has no effect on vector images.</p>
+</div>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>1dppx</code></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified, except with &lt;resolution&gt; possibly altered by computed for 'snap' value</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="image-resolution">image-resolution = </span><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">from-image</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <a href="/en-US/docs/Web/CSS/resolution"><span class="token property">&lt;resolution&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_ampersand" title="Double ampersand: all of the entities must be present, in any order">&amp;&amp;</a><br>  <span class="token keyword">snap</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a>                           <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_a_high_dpi_for_print">Setting a high dpi for print</h3>
+<p>When printing the document, use a higher resolution.</p>
+<pre class="brush: css">@media print {
+  .my-image {
+    image-resolution: 300dpi;
+  }
+}
+</pre>
+<h3 id="use_image_resolution_with_fallback">Use image resolution with fallback</h3>
+<p>Uses the resolution from the image. If the image does not have a resolution, use 300dpi rather than the default 1dppx.</p>
+<pre class="brush: css">.my-image {
+  image-resolution: from-image 300dpi;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-images-4/#the-image-resolution">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<p>No browser currently supports this property.</p>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Other image-related CSS properties: <a href="/en-US/docs/Web/CSS/object-fit"><code>object-fit</code></a>, <a href="/en-US/docs/Web/CSS/object-position"><code>object-position</code></a>, <a href="/en-US/docs/Web/CSS/image-orientation"><code>image-orientation</code></a>, <a href="/en-US/docs/Web/CSS/image-rendering"><code>image-rendering</code></a>.</li>
+  <li><a href="https://crbug.com/1086473">Chromium bug: 1086473</a>.</li>
+</ul>
+</body></html>

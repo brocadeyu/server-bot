@@ -1,0 +1,101 @@
+<html><head></head><body>
+<p>
+  The <strong><code>HighlightRegistry</code></strong> interface of the <a href="/en-US/docs/Web/API/CSS_Custom_Highlight_API">CSS Custom Highlight API</a> is used to register <a href="/en-US/docs/Web/API/Highlight"><code>Highlight</code></a> objects to be styled using the API.
+  It is accessed via <a href="/en-US/docs/Web/API/CSS/highlights_static" title="CSS.highlights"><code>CSS.highlights</code></a>.
+</p>
+<p>A <code>HighlightRegistry</code> instance is a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map#map-like_browser_apis"><code>Map</code>-like object</a>, in which each key is the name string for a custom highlight, and the corresponding value is the associated <a href="/en-US/docs/Web/API/Highlight"><code>Highlight</code></a> object.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>The <code>HighlightRegistry</code> interface doesn't inherit any properties.</em></p>
+<dl>
+  <dt id="highlightregistry.size"><a href="/en-US/docs/Web/API/HighlightRegistry/size"><code>HighlightRegistry.size</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the number of <code>Highlight</code> objects currently registered.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>The <code>HighlightRegistry</code> interface doesn't inherit any methods</em>.</p>
+<dl>
+  <dt id="highlightregistry.clear"><a href="/en-US/docs/Web/API/HighlightRegistry/clear"><code>HighlightRegistry.clear()</code></a></dt>
+  <dd>
+    <p>Remove all <code>Highlight</code> objects from the registry.</p>
+  </dd>
+  <dt id="highlightregistry.delete"><a href="/en-US/docs/Web/API/HighlightRegistry/delete"><code>HighlightRegistry.delete()</code></a></dt>
+  <dd>
+    <p>Remove the named <code>Highlight</code> object from the registry.</p>
+  </dd>
+  <dt id="highlightregistry.entries"><a href="/en-US/docs/Web/API/HighlightRegistry/entries"><code>HighlightRegistry.entries()</code></a></dt>
+  <dd>
+    <p>Returns a new iterator object that contains each <code>Highlight</code> object in the registry, in insertion order.</p>
+  </dd>
+  <dt id="highlightregistry.foreach"><a href="/en-US/docs/Web/API/HighlightRegistry/forEach"><code>HighlightRegistry.forEach()</code></a></dt>
+  <dd>
+    <p>Calls the given callback once for each <code>Highlight</code> object in the registry, in insertion order.</p>
+  </dd>
+  <dt id="highlightregistry.get"><a href="/en-US/docs/Web/API/HighlightRegistry/get"><code>HighlightRegistry.get()</code></a></dt>
+  <dd>
+    <p>Gets the named <code>Highlight</code> object from the registry.</p>
+  </dd>
+  <dt id="highlightregistry.has"><a href="/en-US/docs/Web/API/HighlightRegistry/has"><code>HighlightRegistry.has()</code></a></dt>
+  <dd>
+    <p>Returns a boolean asserting whether a <code>Highlight</code> object is present the registry or not.</p>
+  </dd>
+  <dt id="highlightregistry.keys"><a href="/en-US/docs/Web/API/HighlightRegistry/keys"><code>HighlightRegistry.keys()</code></a></dt>
+  <dd>
+    <p>An alias for <a href="/en-US/docs/Web/API/HighlightRegistry/values"><code>HighlightRegistry.values()</code></a>.</p>
+  </dd>
+  <dt id="highlightregistry.set"><a href="/en-US/docs/Web/API/HighlightRegistry/set"><code>HighlightRegistry.set()</code></a></dt>
+  <dd>
+    <p>Adds the given <code>Highlight</code> object to the registry with the given name, or updates the named <code>Highlight</code> object, if it already exists in the registry.</p>
+  </dd>
+  <dt id="highlightregistry.values"><a href="/en-US/docs/Web/API/HighlightRegistry/values"><code>HighlightRegistry.values()</code></a></dt>
+  <dd>
+    <p>Returns a new iterator object that yields the <code>Highlight</code> objects in the registry, in insertion order.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="registering_a_highlight">Registering a highlight</h3>
+<p>The following example demonstrates how to create ranges, instantiate a new <code>Highlight</code> object for them, and register the highlight using the <code>HighlightRegistry</code>, to style it on the page:</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p id="foo"&gt;CSS Custom Highlight API&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">::highlight(my-custom-highlight) {
+  background-color: peachpuff;
+}
+</pre>
+<h4 id="javascript">JavaScript</h4>
+<pre class="brush: js">const text = document.getElementById("foo").firstChild;
+
+if (!CSS.highlights) {
+  text.textContent =
+    "The CSS Custom Highlight API is not supported in this browser!";
+}
+
+// Create a couple of ranges.
+const range1 = new Range();
+range1.setStart(text, 0);
+range1.setEnd(text, 3);
+
+const range2 = new Range();
+range2.setStart(text, 21);
+range2.setEnd(text, 24);
+
+// Create a custom highlight for these ranges.
+const highlight = new Highlight(range1, range2);
+
+// Register the ranges in the HighlightRegistry.
+CSS.highlights.set("my-custom-highlight", highlight);
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Registering a highlight sample" id="frame_registering_a_highlight" src="about:blank" data-live-path="/en-US/docs/Web/API/HighlightRegistry" data-live-id="registering_a_highlight" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HighlightRegistry" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HighlightRegistry" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSS_Custom_Highlight_API" title="The CSS Custom Highlight API">The CSS Custom Highlight API</a></li>
+  <li><a href="https://css-tricks.com/css-custom-highlight-api-early-look/">CSS Custom Highlight API: The Future of Highlighting Text Ranges on the Web</a></li>
+</ul>
+</body></html>

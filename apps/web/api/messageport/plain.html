@@ -1,0 +1,85 @@
+<html><head></head><body> <div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>MessagePort</code></strong> interface of the <a href="/en-US/docs/Web/API/Channel_Messaging_API">Channel Messaging API</a> represents one of the two ports of a <a href="/en-US/docs/Web/API/MessageChannel"><code>MessageChannel</code></a>, allowing messages to be sent from one port and listening out for them arriving at the other.</p>
+<p><code>MessagePort</code> is a <a href="/en-US/docs/Web/API/Web_Workers_API/Transferable_objects">transferable object</a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/MessagePort" aria-current="page">
+    <rect x="118" y="0" width="88" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="162" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      MessagePort
+    </text>
+  </a></svg>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a></em>.</p>
+<dl>
+  <dt id="postmessage"><a href="/en-US/docs/Web/API/MessagePort/postMessage" title="postMessage()"><code>postMessage()</code></a></dt>
+  <dd>
+    <p>Sends a message from the port, and optionally, transfers ownership of objects to other browsing contexts.</p>
+  </dd>
+  <dt id="start"><a href="/en-US/docs/Web/API/MessagePort/start" title="start()"><code>start()</code></a></dt>
+  <dd>
+    <p>Starts the sending of messages queued on the port (only needed when using <a href="/en-US/docs/Web/API/EventTarget/addEventListener"><code>EventTarget.addEventListener</code></a>; it is implied when using <a href="/en-US/docs/Web/API/MessagePort/message_event" title="onmessage"><code>onmessage</code></a>).</p>
+  </dd>
+  <dt id="close"><a href="/en-US/docs/Web/API/MessagePort/close" title="close()"><code>close()</code></a></dt>
+  <dd>
+    <p>Disconnects the port, so it is no longer active.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<p><em>Inherits events from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a></em>.</p>
+<dl>
+  <dt id="message"><a href="/en-US/docs/Web/API/MessagePort/message_event" title="message"><code>message</code></a></dt>
+  <dd>
+    <p>Fired when a <code>MessagePort</code> object receives a message.</p>
+  </dd>
+  <dt id="messageerror"><a href="/en-US/docs/Web/API/MessagePort/messageerror_event" title="messageerror"><code>messageerror</code></a></dt>
+  <dd>
+    <p>Fired when a <code>MessagePort</code> object receives a message that can't be deserialized.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<p>In the following example, you can see a new channel being created using the <a href="/en-US/docs/Web/API/MessageChannel/MessageChannel" title="MessageChannel()"><code>MessageChannel()</code></a> constructor.</p>
+<p>When the IFrame has loaded, we register an <a href="/en-US/docs/Web/API/MessagePort/message_event" title="onmessage"><code>onmessage</code></a> handler for <a href="/en-US/docs/Web/API/MessageChannel/port1"><code>MessageChannel.port1</code></a> and transfer <a href="/en-US/docs/Web/API/MessageChannel/port2"><code>MessageChannel.port2</code></a> to the IFrame using the <a href="/en-US/docs/Web/API/Window/postMessage"><code>window.postMessage</code></a> method along with a message.</p>
+<p>When a message is received back from the IFrame, the <code>onMessage</code> function outputs the message to a paragraph.</p>
+<pre class="brush: js">const channel = new MessageChannel();
+const output = document.querySelector(".output");
+const iframe = document.querySelector("iframe");
+
+// Wait for the iframe to load
+iframe.addEventListener("load", onLoad);
+
+function onLoad() {
+  // Listen for messages on port1
+  channel.port1.onmessage = onMessage;
+
+  // Transfer port2 to the iframe
+  iframe.contentWindow.postMessage("Hello from the main page!", "*", [
+    channel.port2,
+  ]);
+}
+
+// Handle messages received on port1
+function onMessage(e) {
+  output.innerHTML = e.data;
+}
+</pre>
+<p>For a full working example, see our <a href="https://github.com/mdn/dom-examples/tree/main/channel-messaging-basic">channel messaging basic demo</a> on GitHub (<a href="https://mdn.github.io/dom-examples/channel-messaging-basic/">run it live too</a>).</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MessagePort" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MessagePort" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Channel_Messaging_API/Using_channel_messaging">Using channel messaging</a></li>
+</ul>
+</body></html>

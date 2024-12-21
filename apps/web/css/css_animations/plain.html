@@ -1,0 +1,278 @@
+<html><head></head><body>
+<p>The <strong>CSS animations</strong> module lets you animate the values of CSS properties, such as background-position and transform, over time by using keyframes. Each keyframe describes how the animated element should render at a given time during the animation sequence. You can use the properties in the animations module to control the duration, number of repetitions, delayed start, and other aspects of an animation.</p>
+<h3 id="animations_in_action">Animations in action</h3>
+<p>To view the animation in the box below, click the checkbox 'Play the animation' or hover the cursor over the box. When the animating is active, the cloud at the top changes shape, snowflakes fall, and the snow level at the bottom rises. To pause the animation, uncheck the checkbox or move your cursor away from the box.</p>
+<pre class="brush: html hidden live-sample___animation">&lt;!-- See aria-label: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label --&gt;
+&lt;input
+  type="checkbox"
+  id="animate"
+  aria-label="Toggle the play state of the animation" /&gt;
+&lt;label for="animate"&gt;the animation&lt;/label&gt;
+&lt;div class="root"&gt;
+  &lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i
+  &gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i
+  &gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i
+  &gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i
+  &gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;
+  &lt;div class="cloud"&gt;&lt;/div&gt;
+  &lt;div class="ground"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<pre class="brush: css hidden live-sample___animation">i {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  animation: falling 3s linear 0s infinite backwards;
+  /* Snowflakes are made with CSS linear gradients (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients) */
+  background-image: linear-gradient(
+      180deg,
+      transparent 40%,
+      white 40% 60%,
+      transparent 60%
+    ),
+    linear-gradient(90deg, transparent 40%, white 40% 60%, transparent 60%),
+    linear-gradient(45deg, transparent 43%, white 43% 57%, transparent 57%),
+    linear-gradient(135deg, transparent 43%, white 43% 57%, transparent 57%);
+}
+i:nth-of-type(4n) {
+  /* Using tree structural pseudo-classes to create randomness - https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type */
+  height: 30px;
+  width: 30px;
+  transform-origin: right -30px;
+}
+i:nth-of-type(4n + 1) {
+  height: 24px;
+  width: 24px;
+  transform-origin: left 30px;
+}
+i:nth-of-type(4n + 2) {
+  height: 10px;
+  width: 10px;
+  transform-origin: -30px 0;
+}
+i:nth-of-type(4n + 3) {
+  height: 40px;
+  width: 40px;
+  transform-origin: -50px 0;
+}
+i:nth-of-type(4n) {
+  animation-duration: 5.3s;
+  animation-iteration-count: 12;
+  transform-origin: -10px -20px;
+}
+i:nth-of-type(4n + 1) {
+  animation-duration: 3.1s;
+  animation-iteration-count: 20;
+  transform-origin: 10px -20px;
+}
+i:nth-of-type(4n + 2) {
+  animation-duration: 1.7s;
+  animation-iteration-count: 35;
+  transform-origin: right -20px;
+}
+i:nth-of-type(3n) {
+  animation-delay: 2.3s;
+}
+i:nth-of-type(3n + 1) {
+  animation-delay: 1.5s;
+}
+i:nth-of-type(3n + 2) {
+  animation-delay: 3.4s;
+}
+i:nth-of-type(5n) {
+  animation-timing-function: ease-in-out;
+}
+i:nth-of-type(5n + 1) {
+  animation-timing-function: ease-out;
+}
+i:nth-of-type(5n + 2) {
+  animation-timing-function: ease;
+}
+i:nth-of-type(5n + 3) {
+  animation-timing-function: ease-in;
+}
+i:nth-of-type(5n + 4) {
+  animation-timing-function: linear;
+}
+i:nth-of-type(11n) {
+  animation-timing-function: cubic-bezier(0.2, 0.3, 0.8, 0.9);
+}
+i:nth-of-type(7n) {
+  opacity: 0.5;
+}
+i:nth-of-type(7n + 2) {
+  opacity: 0.3;
+}
+i:nth-of-type(7n + 4) {
+  opacity: 0.7;
+}
+i:nth-of-type(7n + 6) {
+  opacity: 0.6;
+  animation-timing-function: ease-in;
+  transform-origin: left 10px;
+}
+i:nth-of-type(7n + 1) {
+  opacity: 0.8;
+}
+
+.root {
+  height: 580px;
+  background-color: skyblue;
+  border: 1px solid darkgrey;
+  position: relative;
+  overflow: hidden;
+}
+.ground,
+.cloud {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-repeat: no-repeat;
+}
+.cloud {
+  width: 100%;
+  height: 150px;
+  background: #ffffff;
+  border-radius: 0 0 90px 33% / 0 0 45px 50px;
+  box-shadow:
+    5px 15px 15px white,
+    -5px 15px 15px white,
+    0 20px 20px rgb(125 125 125 / 0.5);
+  animation:
+    clouds ease 5s alternate infinite 0.2s,
+    wind ease-out 4s alternate infinite;
+}
+.ground {
+  bottom: 0;
+  background-image: linear-gradient(to top, #fff 97%, 99%, #bbb 100%);
+  background-position: center 580px;
+  animation: snowfall linear 300s forwards;
+  border: 1px solid grey;
+  /* Put the ground into a 3D rendering context (because the snow flakes are in a 3d rendering context) */
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes snowfall {
+  from {
+    background-position: center 580px;
+  }
+  to {
+    background-position: center 280px;
+  }
+}
+
+@keyframes clouds {
+  from {
+    border-radius: 0 0 90px 33% / 0 0 45px 50px;
+  }
+  to {
+    border-radius: 0 0 40px 50% / 0 0 55px 80px;
+  }
+}
+
+@keyframes wind {
+  from {
+    height: 150px;
+  }
+  to {
+    height: 100px;
+  }
+}
+
+@keyframes falling {
+  from {
+    transform: translate(0, -50px) rotate(0deg) scale(0.9, 0.9);
+  }
+  to {
+    transform: translate(30px, 600px) rotate(360deg) scale(1.1, 1.1);
+  }
+}
+
+/* By default, the animations are paused. */
+i,
+div[class] {
+  animation-play-state: paused;
+}
+/* When the div is hovered, the animation plays. Also,
+when the input is checked, the animation coming after the checked checkbox plays */
+div:hover *,
+input:checked ~ div * {
+  animation-play-state: running;
+}
+
+/* Change the content of the label that comes right after the input. Included aria-label on the label to improve accessibility. */
+input + label::before {
+  content: "Play ";
+}
+input:checked + label::before {
+  content: "Pause ";
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="animation sample" id="frame_animation" height="610px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/CSS_animations" data-live-id="animation" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>This sample animation uses <a href="/en-US/docs/Web/CSS/animation-iteration-count"><code>animation-iteration-count</code></a> to make the flakes fall repeatedly, <a href="/en-US/docs/Web/CSS/animation-direction"><code>animation-direction</code></a> to make the cloud move back and forth, <a href="/en-US/docs/Web/CSS/animation-fill-mode"><code>animation-fill-mode</code></a> to raise the snow level in response to the cloud movement, and <a href="/en-US/docs/Web/CSS/animation-play-state"><code>animation-play-state</code></a> to pause the animation.</p>
+<p>Click "Play" in the example above to see or edit the code for the animation in the MDN Playground.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/animation"><code>animation</code></a> shorthand</li>
+  <li><a href="/en-US/docs/Web/CSS/animation-composition"><code>animation-composition</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-delay"><code>animation-delay</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-direction"><code>animation-direction</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-duration"><code>animation-duration</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-fill-mode"><code>animation-fill-mode</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-iteration-count"><code>animation-iteration-count</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-name"><code>animation-name</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-play-state"><code>animation-play-state</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-timing-function"><code>animation-timing-function</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/animation-timeline"><code>animation-timeline</code></a></li>
+</ul>
+<h3 id="at-rules">At-rules</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@keyframes"><code>@keyframes</code></a></li>
+</ul>
+<h3 id="events">Events</h3>
+<p>All animations, even those with 0 seconds duration, throw animation events.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Element/animationstart_event" title="animationstart"><code>animationstart</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Element/animationend_event" title="animationend"><code>animationend</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Element/animationcancel_event" title="animationcancel"><code>animationcancel</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Element/animationiteration_event" title="animationiteration"><code>animationiteration</code></a></li>
+</ul>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_Animations_API">Web Animations API</a></li>
+  <li><a href="/en-US/docs/Web/API/AnimationEvent"><code>AnimationEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSKeyframeRule"><code>CSSKeyframeRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSKeyframesRule"><code>CSSKeyframesRule</code></a></li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="using_css_animations"><a href="/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations">Using CSS animations</a></dt>
+  <dd>
+    <p>Step-by-step tutorial on how to create animations using CSS. This article describes the animation-related CSS properties and at-rule and how they interact with each other.</p>
+  </dd>
+  <dt id="using_the_web_animations_api"><a href="/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API">Using the Web Animations API</a></dt>
+  <dd>
+    <p>Common animation requirements that can be solved with a few lines of JavaScript.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/will-change"><code>will-change</code></a> CSS property</li>
+  <li><a href="/en-US/docs/Web/CSS/easing-function"><code>&lt;easing-function&gt;</code></a> data type</li>
+  <li><a href="/en-US/docs/Web/CSS/@media/prefers-reduced-motion"><code>prefers-reduced-motion</code></a> media query</li>
+  <li><a href="/en-US/docs/Glossary/Bezier_curve">Bezier curve</a> glossary term</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-animations-2/,https://drafts.csswg.org/css-animations/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_scroll-driven_animations">CSS scroll-driven animations</a></li>
+  <li>Properties in the <a href="/en-US/docs/Web/CSS/CSS_transitions">transitions</a> CSS module to trigger animations based on user actions</li>
+  <li>The <a href="/en-US/docs/Web/CSS/interpolate-size"><code>interpolate-size</code></a> property and <a href="/en-US/docs/Web/CSS/calc-size"><code>calc-size()</code></a> function for enabling animations to and from <a href="/en-US/docs/Glossary/Intrinsic_Size">intrinsic size values</a>.</li>
+  <li>The <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> HTML element along with <a href="/en-US/docs/Web/API/Canvas_API">canvas API</a> and <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> to draw graphics and animations</li>
+  <li>The <a href="/en-US/docs/Web/API/SVGAnimationElement"><code>SVGAnimationElement</code></a> interface for all the animation-related element interfaces, including <a href="/en-US/docs/Web/API/SVGAnimateElement"><code>SVGAnimateElement</code></a>, <a href="/en-US/docs/Web/API/SVGSetElement"><code>SVGSetElement</code></a>, <a href="/en-US/docs/Web/API/SVGAnimateColorElement"><code>SVGAnimateColorElement</code></a>, <a href="/en-US/docs/Web/API/SVGAnimateMotionElement"><code>SVGAnimateMotionElement</code></a>, and <a href="/en-US/docs/Web/API/SVGAnimateTransformElement"><code>SVGAnimateTransformElement</code></a></li>
+</ul>
+</body></html>

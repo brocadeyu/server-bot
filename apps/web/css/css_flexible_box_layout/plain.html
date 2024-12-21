@@ -1,0 +1,125 @@
+<html><head></head><body>
+<p>The <strong>CSS flexible box layout</strong> module defines a CSS box model optimized for user interface design, and the layout of items in one dimension. In the flex layout model, the children of a flex container can be laid out in any direction, and can "flex" their sizes, either growing to fill unused space or shrinking to avoid overflowing the parent. Both horizontal and vertical alignment of the children can be easily manipulated.</p>
+<h2 id="flexible_box_layout_in_action">Flexible box layout in action</h2>
+<p>In the following example, a container has been set to <code>display: flex</code>, which means that the three child items become flex items. The value of <code>justify-content</code> has been set to <code>space-between</code> in order to space the items out evenly on the main axis. An equal amount of space is placed between each item with the left and right items being flush with the edges of the flex container. You can also see that the items are stretching on the cross axis, due to the default value of <code>align-items</code> being <code>stretch</code>. The items stretch to the height of the flex container, making them each appear as tall as the tallest item.</p>
+<pre class="brush: html live-sample___simple-example">&lt;div class="box"&gt;
+  &lt;div&gt;One&lt;/div&gt;
+  &lt;div&gt;Two&lt;/div&gt;
+  &lt;div&gt;Three &lt;br /&gt;has &lt;br /&gt;extra &lt;br /&gt;text&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<pre class="brush: css live-sample___simple-example">body {
+  font-family: sans-serif;
+}
+
+.box {
+  border: 2px dotted rgb(96 139 168);
+  display: flex;
+  justify-content: space-between;
+}
+
+.box &gt; * {
+  border: 2px solid rgb(96 139 168);
+  border-radius: 5px;
+  background-color: rgb(96 139 168 / 0.2);
+  padding: 1em;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="simple-example sample" id="frame_simple-example" src="about:blank" data-live-path="/en-US/docs/Web/CSS/CSS_flexible_box_layout" data-live-id="simple-example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/align-content"><code>align-content</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/align-items"><code>align-items</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/align-self"><code>align-self</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex"><code>flex</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-basis"><code>flex-basis</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-direction"><code>flex-direction</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-flow"><code>flex-flow</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-grow"><code>flex-grow</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-shrink"><code>flex-shrink</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-wrap"><code>flex-wrap</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/justify-content"><code>justify-content</code></a></li>
+</ul>
+<h3 id="glossary_terms">Glossary terms</h3>
+<ul>
+  <li><a href="/en-US/docs/Glossary/Flexbox">Flexbox</a></li>
+  <li><a href="/en-US/docs/Glossary/Flex_Container">Flex container</a></li>
+  <li><a href="/en-US/docs/Glossary/Flex_Item">Flex item</a></li>
+  <li><a href="/en-US/docs/Glossary/Main_Axis">Main axis</a></li>
+  <li><a href="/en-US/docs/Glossary/Cross_Axis">Cross axis</a></li>
+  <li><a href="/en-US/docs/Glossary/Flex">Flex</a></li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="basic_concepts_of_flexbox"><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">Basic concepts of flexbox</a></dt>
+  <dd>
+    <p>An overview of the features of Flexbox.</p>
+  </dd>
+  <dt id="relationship_of_flexbox_to_other_layout_methods"><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Relationship_of_flexbox_to_other_layout_methods">Relationship of flexbox to other layout methods</a></dt>
+  <dd>
+    <p>How Flexbox relates to other layout methods and other CSS specifications.</p>
+  </dd>
+  <dt id="aligning_items_in_a_flex_container"><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container">Aligning items in a flex container</a></dt>
+  <dd>
+    <p>How the box alignment properties work with Flexbox.</p>
+  </dd>
+  <dt id="ordering_flex_items"><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Ordering_flex_items">Ordering flex items</a></dt>
+  <dd>
+    <p>Explaining the different ways to change the order and direction of items, and covering the potential issues in doing so.</p>
+  </dd>
+  <dt id="controlling_ratios_of_flex_items_along_the_main_axis"><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis">Controlling ratios of flex items along the main axis</a></dt>
+  <dd>
+    <p>Explaining the flex-grow, flex-shrink and flex-basis properties.</p>
+  </dd>
+  <dt id="mastering_wrapping_of_flex_items"><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Mastering_wrapping_of_flex_items">Mastering wrapping of flex items</a></dt>
+  <dd>
+    <p>How to create flex containers with multiple lines and control the display of the items in those lines.</p>
+  </dd>
+  <dt id="typical_use_cases_of_flexbox"><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Typical_use_cases_of_flexbox">Typical use cases of flexbox</a></dt>
+  <dd>
+    <p>Common design patterns that are typical Flexbox use cases.</p>
+  </dd>
+  <dt id="css_layout_flexbox"><a href="/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox">CSS layout: flexbox</a></dt>
+  <dd>
+    <p>Learn how to use flexbox layout to create web layouts.</p>
+  </dd>
+  <dt id="box_alignment_in_flexbox"><a href="/en-US/docs/Web/CSS/CSS_box_alignment/Box_alignment_in_flexbox">Box alignment in flexbox</a></dt>
+  <dd>
+    <p>Details features of <a href="/en-US/docs/Web/CSS/CSS_box_alignment">CSS box alignment</a> which are specific to flexbox.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<p><a href="/en-US/docs/Web/CSS/CSS_display">CSS display module</a></p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/display"><code>display</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/order"><code>order</code></a></li>
+</ul>
+<p><a href="/en-US/docs/Web/CSS/CSS_box_alignment">CSS box alignment</a> module</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/align-content"><code>align-content</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/align-items"><code>align-items</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/align-self"><code>align-self</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/column-gap"><code>column-gap</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/gap"><code>gap</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/justify-items"><code>justify-items</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/place-content"><code>place-content</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/place-items"><code>place-items</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/row-gap"><code>row-gap</code></a></li>
+</ul>
+<p><a href="/en-US/docs/Web/CSS/CSS_box_sizing">CSS box sizing</a> module</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/aspect-ratio"><code>aspect-ratio</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/max-content"><code>max-content</code></a> value</li>
+  <li><a href="/en-US/docs/Web/CSS/min-content"><code>min-content</code></a> value</li>
+  <li><a href="/en-US/docs/Web/CSS/fit-content"><code>fit-content</code></a> value</li>
+  <li><a href="/en-US/docs/Glossary/Intrinsic_Size">intrinsic size</a> glossary term</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-flexbox/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_writing_modes">CSS writing modes</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/display/multi-keyword_syntax_of_display">Using the multi-keyword syntax with CSS display</a></li>
+</ul>
+</body></html>

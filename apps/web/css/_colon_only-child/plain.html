@@ -1,0 +1,80 @@
+<html><head></head><body>
+<p>The <strong><code>:only-child</code></strong> CSS <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents an element without any siblings. This is the same as <code>:first-child:last-child</code> or <code>:nth-child(1):nth-last-child(1)</code>, but with a lower specificity.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-only-child.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:only-child {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div&gt;
+  &lt;div&gt;I am an only child.&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;div&gt;I am the 1st sibling.&lt;/div&gt;
+  &lt;div&gt;I am the 2nd sibling.&lt;/div&gt;
+  &lt;div&gt;
+    I am the 3rd sibling,
+    &lt;div&gt;but this is an only child.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">div:only-child {
+  color: red;
+}
+
+div {
+  display: inline-block;
+  margin: 6px;
+  outline: 1px solid;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Basic example sample" id="frame_basic_example" width="100%" height="180" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:only-child" data-live-id="basic_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="a_list_example">A list example</h3>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;ol&gt;
+  &lt;li&gt;
+    First
+    &lt;ul&gt;
+      &lt;li&gt;This list has just one element.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    Second
+    &lt;ul&gt;
+      &lt;li&gt;This list has three elements.&lt;/li&gt;
+      &lt;li&gt;This list has three elements.&lt;/li&gt;
+      &lt;li&gt;This list has three elements.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">li li {
+  list-style-type: disc;
+}
+
+li:only-child {
+  color: red;
+  list-style-type: square;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="A list example sample" id="frame_a_list_example" width="100%" height="210" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:only-child" data-live-id="a_list_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.only-child" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.only-child" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:only-of-type"><code>:only-of-type</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:first-child"><code>:first-child</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:last-child"><code>:last-child</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:nth-child"><code>:nth-child</code></a></li>
+</ul>
+</body></html>

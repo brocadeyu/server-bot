@@ -1,0 +1,64 @@
+<html><head></head><body>
+<p>The <strong><code>CSSKeywordValue</code></strong> interface of the <a href="/en-US/docs/Web/API/CSS_Object_Model#css_typed_object_model">CSS Typed Object Model API</a> creates an object to represent CSS keywords and other identifiers.</p>
+<p>The interface instance name is a <a href="/en-US/docs/Glossary/Stringifier">stringifier</a> meaning that when used anywhere a string is expected it will return the value of <code>CSSKeyword.value</code>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSStyleValue">
+    <rect x="0" y="0" width="104" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="52" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSStyleValue
+    </text>
+  </a>
+  <line x1="104" y1="14" x2="134" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="104,14 114,9 114,19 104,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSKeywordValue" aria-current="page">
+    <rect x="134" y="0" width="120" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="194" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSKeywordValue
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="csskeywordvalue"><a href="/en-US/docs/Web/API/CSSKeywordValue/CSSKeywordValue" title="CSSKeywordValue()"><code>CSSKeywordValue()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>CSSKeywordValue</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="csskeywordvalue.value"><a href="/en-US/docs/Web/API/CSSKeywordValue/value"><code>CSSKeywordValue.value</code></a></dt>
+  <dd>
+    <p>Returns or sets the value of the <code>CSSKeywordValue</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from <a href="/en-US/docs/Web/API/CSSStyleValue"><code>CSSStyleValue</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<p>The following example resets the CSS <a href="/en-US/docs/Web/CSS/display"><code>display</code></a> property to its defaults, setting the inline <a href="/en-US/docs/Web/HTML/Global_attributes/style"><code>style</code></a> attribute to <code>style="display: initial"</code> if viewed in the <a href="https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/select_an_element/index.html">developer tools inspector</a>.</p>
+<pre class="brush: css hidden">#myElement {
+  display: flex;
+}
+</pre>
+<pre class="brush: html hidden">&lt;div id="myElement"&gt;
+  Check the developer tools to see the log in the console and to inspect the
+  style attribute on this div.
+&lt;/div&gt;
+</pre>
+<pre class="brush: js">let myElement = document.getElementById("myElement").attributeStyleMap;
+myElement.set("display", new CSSKeywordValue("initial"));
+
+console.log(myElement.get("display").value); // 'initial'
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="120" height="120" src="about:blank" data-live-path="/en-US/docs/Web/API/CSSKeywordValue" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSSKeywordValue" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSSKeywordValue" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSSImageValue"><code>CSSImageValue</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSNumericValue"><code>CSSNumericValue</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSPositionValue"><code>CSSPositionValue</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSTransformValue"><code>CSSTransformValue</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSUnparsedValue"><code>CSSUnparsedValue</code></a></li>
+</ul>
+</body></html>

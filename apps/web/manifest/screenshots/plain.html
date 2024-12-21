@@ -1,0 +1,231 @@
+<html><head></head><body>
+<p>
+  The <code>screenshots</code> manifest member lets you specify one or more images that showcase your web application.
+  These images help users preview your web app's interface and features in app stores.
+</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <code>screenshots</code> member is optional, and app stores may not display these images when presenting your app.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Single screenshot */
+"screenshots": [
+  {
+    "src": "desktop.webp",
+    "sizes": "1280x720",
+    "type": "image/webp"
+  }
+]
+
+/* Two screenshots */
+"screenshots": [
+  {
+    "src": "screenshots/home.webp",
+    "sizes": "1280x720",
+    "type": "image/webp",
+    "form_factor": "wide",
+    "label": "Home screen showing main navigation and featured content"
+  },
+  {
+    "src": "screenshots/dashboard.webp",
+    "sizes": "1280x720",
+    "type": "image/webp",
+    "platform": "ios",
+    "label": "Dashboard view displaying key metrics"
+  }
+]
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="screenshots"><a href="#screenshots"><code>screenshots</code></a></dt>
+  <dd>
+    <p>
+      An array of objects.
+      Each object represents a screenshot of the web app in a common usage scenario.
+    </p>
+    <p>Each screenshot object can have one or more properties. Of these, only <code>src</code> is required. The possible properties include:</p>
+    <dl>
+      <dt id="src"><a href="#src"><code>src</code></a></dt>
+      <dd>
+        <p>
+          A string that specifies the path to the image file.
+          It has the same format as the <code>icons</code> member's <a href="/en-US/docs/Web/Manifest/icons#src"><code>src</code></a> property.
+        </p>
+      </dd>
+      <dt id="sizes"><a href="#sizes"><code>sizes</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string that specifies one or more sizes of the image.
+          It has the same format as the <code>icons</code> member's <a href="/en-US/docs/Web/Manifest/icons#sizes"><code>sizes</code></a> property.
+        </p>
+      </dd>
+      <dt id="type"><a href="#type"><code>type</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string that specifies the <a href="/en-US/docs/Glossary/MIME_type">MIME type</a> of the image.
+          It has the same format as the <code>icons</code> member's <a href="/en-US/docs/Web/Manifest/icons#type"><code>type</code></a> property.
+        </p>
+      </dd>
+      <dt id="label"><a href="#label"><code>label</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string that represents the accessible name of the screenshot object.
+          Keep it descriptive because it can serve as alternative text for the rendered screenshot.
+          For accessibility, it is recommended to specify this property for every screenshot.
+        </p>
+      </dd>
+      <dt id="form_factor"><a href="#form_factor"><code>form_factor</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string that represents the screen shape of a broad class of devices to which the screenshot applies.
+          Specify this property only when the screenshot applies to a specific screen layout.
+          If <code>form_factor</code> is not specified, the screenshot is considered suitable for all screen types.
+        </p>
+        <p>Valid values include:</p>
+        <dl>
+          <dt id="narrow"><a href="#narrow"><code>narrow</code></a></dt>
+          <dd>
+            <p>Indicates that the screenshot is applicable only to narrow screens, such as mobile devices.</p>
+          </dd>
+          <dt id="wide"><a href="#wide"><code>wide</code></a></dt>
+          <dd>
+            <p>Indicates that the screenshot is applicable only to wide screens, such as desktop computers.</p>
+          </dd>
+        </dl>
+      </dd>
+      <dt id="platform"><a href="#platform"><code>platform</code></a></dt>
+      <dd>
+        <p>
+          A string that represents the platform to which the screenshot applies.
+          Specify this property only when the screenshot applies to a specific device or distribution platform.
+          If <code>platform</code> is not specified, the screenshot is considered suitable for all platforms.
+        </p>
+        <p>Valid values include:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Value</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Operating systems</td>
+              <td><code>android</code></td>
+              <td>Google Android</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>chromeos</code></td>
+              <td>Google ChromeOS</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>ios</code></td>
+              <td>Apple iOS</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>ipados</code></td>
+              <td>Apple iPadOS</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>kaios</code></td>
+              <td>KaiOS</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>macos</code></td>
+              <td>Apple macOS</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>windows</code></td>
+              <td>Microsoft Windows</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>xbox</code></td>
+              <td>Microsoft Xbox</td>
+            </tr>
+            <tr>
+              <td>Distribution platforms</td>
+              <td><code>chrome_web_store</code></td>
+              <td>Google Chrome Web Store</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>itunes</code></td>
+              <td>iTunes App Store</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>microsoft-inbox</code></td>
+              <td>Pre-installed with Microsoft Windows</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>microsoft-store</code></td>
+              <td>Microsoft Store</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>play</code></td>
+              <td>Google Play Store</td>
+            </tr>
+          </tbody>
+        </table>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>
+  The <code>screenshots</code> member is supplementary metadata that does not affect the app's runtime behavior or how browsers present the app.
+  Screenshots are used in app stores and other distribution platforms to showcase your app's features to potential users.
+</p>
+<p>Distribution platforms may choose how many screenshots to display.</p>
+<p>
+  The images below from the Apple App Store show how screenshots appear in an iPhone app listing.
+  In the gallery view (image on the left), users can scroll through multiple images horizontally.
+  They can tap any image to view it in full screen (image on the right).
+</p>
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+  <img src="/en-US/docs/Web/Manifest/screenshots/todoist-iphone-gallery.png" alt="Todoist app in the Apple App Store showing a horizontal gallery of app images that users can scroll through" width="350">
+  <img src="/en-US/docs/Web/Manifest/screenshots/todoist-iphone-fullscreen.png" alt="A full-screen view of an image from the horizontal gallery of Todoist app" width="350">
+</div>
+<p>The same full-screen image on iPad shows why different screenshots are needed for narrow (iPhone) and wide (iPad) device form factors:</p>
+<div style="display: flex; justify-content: center;">
+  <img src="/en-US/docs/Web/Manifest/screenshots/todoist-ipad-fullscreen.png" alt="Todoist app listing on iPad showing multiple screenshots in a wider gallery view" width="1672" height="1168">
+</div>
+<h2 id="examples">Examples</h2>
+<h3 id="adding_previews_for_a_meal_planning_web_app">Adding previews for a meal planning web app</h3>
+<p>This example shows how to add screenshots for a meal planning app for different devices. The screenshots show the same feature of the app in desktop and mobile views:</p>
+<pre class="brush: json">{
+  "name": "Meal Planner",
+  "screenshots": [
+    {
+      "src": "screenshots/desktop-home.webp",
+      "sizes": "1920x1080",
+      "form_factor": "wide",
+      "label": "Desktop view showing weekly meal calendar"
+    },
+    {
+      "src": "screenshots/mobile-home.webp",
+      "sizes": "750x1334",
+      "form_factor": "narrow",
+      "label": "Mobile view showing weekly meal calendar"
+    }
+  ]
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://w3c.github.io/manifest-app-info/#screenshots-member">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<p>
+  The <code>screenshots</code> manifest member is used by app stores when publishing and listing web apps, so browser compatibility is not applicable.
+  While browsers may parse this member, it's optional and doesn't affect the app's functionality or presentation.
+</p>
+</body></html>

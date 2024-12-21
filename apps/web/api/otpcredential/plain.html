@@ -1,0 +1,56 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>OTPCredential</code></strong> interface of the <a href="/en-US/docs/Web/API/WebOTP_API">WebOTP API</a> is returned when a WebOTP <a href="/en-US/docs/Web/API/CredentialsContainer/get" title="navigator.credentials.get()"><code>navigator.credentials.get()</code></a> call (i.e. invoked with an <code>otp</code> option) fulfills. It includes a <code>code</code> property that contains the retrieved one-time password (OTP).</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Credential">
+    <rect x="0" y="0" width="80" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="40" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Credential
+    </text>
+  </a>
+  <line x1="80" y1="14" x2="110" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="80,14 90,9 90,19 80,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/OTPCredential" aria-current="page">
+    <rect x="110" y="0" width="104" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="162" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      OTPCredential
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface also inherits properties from <a href="/en-US/docs/Web/API/Credential"><code>Credential</code></a>.</em></p>
+<dl>
+  <dt id="otpcredential.code"><a href="/en-US/docs/Web/API/OTPCredential/code"><code>OTPCredential.code</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>The one-time password (OTP).</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p>None.</p>
+<h2 id="examples">Examples</h2>
+<p>The below code triggers the browser's permission flow when an SMS message arrives. If permission is granted, then the promise resolves with an <code>OTPCredential</code> object. The contained <code>code</code> value is then set as the value of an <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> form element, which is then submitted.</p>
+<pre class="brush: js">navigator.credentials
+  .get({
+    otp: { transport: ["sms"] },
+    signal: ac.signal,
+  })
+  .then((otp) =&gt; {
+    input.value = otp.code;
+    if (form) form.submit();
+  })
+  .catch((err) =&gt; {
+    console.error(err);
+  });
+</pre>
+<div class="notecard note">
+  <p><strong>Note:</strong> For a full explanation of the code, see the <a href="/en-US/docs/Web/API/WebOTP_API">WebOTP API</a> landing page. You can also <a href="https://web-otp.glitch.me/">see this code as part of a full working demo</a>.</p>
+</div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.OTPCredential" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.OTPCredential" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

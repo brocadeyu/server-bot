@@ -1,0 +1,487 @@
+<html><head></head><body>
+<p>In programming, <em>inheritance</em> refers to passing down characteristics from a parent to a child so that a new piece of code can reuse and build upon the features of an existing one. JavaScript implements inheritance by using <a href="/en-US/docs/Web/JavaScript/Data_structures#objects">objects</a>. Each object has an internal link to another object called its <em>prototype</em>. That prototype object has a prototype of its own, and so on until an object is reached with <code>null</code> as its prototype. By definition, <code>null</code> has no prototype and acts as the final link in this <strong>prototype chain</strong>. It is possible to mutate any member of the prototype chain or even swap out the prototype at runtime, so concepts like <a href="https://en.wikipedia.org/wiki/Static_dispatch">static dispatching</a> do not exist in JavaScript.</p>
+<p>JavaScript is a bit confusing for developers experienced in class-based languages (like Java or C++), as it is <a href="/en-US/docs/Web/JavaScript/Data_structures#dynamic_and_weak_typing">dynamic</a> and does not have static types. While this confusion is often considered to be one of JavaScript's weaknesses, the prototypal inheritance model itself is, in fact, more powerful than the classic model. It is, for example, fairly trivial to build a classic model on top of a prototypal model — which is how <a href="/en-US/docs/Web/JavaScript/Reference/Classes">classes</a> are implemented.</p>
+<p>Although classes are now widely adopted and have become a new paradigm in JavaScript, classes do not bring a new inheritance pattern. While classes abstract most of the prototypal mechanism away, understanding how prototypes work under the hood is still useful.</p>
+<h2 id="inheritance_with_the_prototype_chain">Inheritance with the prototype chain</h2>
+<h3 id="inheriting_properties">Inheriting properties</h3>
+<p>JavaScript objects are dynamic "bags" of properties (referred to as <strong>own properties</strong>). JavaScript objects have a link to a prototype object. When trying to access a property of an object, the property will not only be sought on the object but on the prototype of the object, the prototype of the prototype, and so on until either a property with a matching name is found or the end of the prototype chain is reached.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> Following the ECMAScript standard, the notation <code>someObject.[[Prototype]]</code> is used to designate the prototype of <code>someObject</code>. The <code>[[Prototype]]</code> internal slot can be accessed and modified with the <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf"><code>Object.getPrototypeOf()</code></a> and <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf"><code>Object.setPrototypeOf()</code></a> functions respectively. This is equivalent to the JavaScript accessor <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto"><code>__proto__</code></a> which is non-standard but de-facto implemented by many JavaScript engines. To prevent confusion while keeping it succinct, in our notation we will avoid using <code>obj.__proto__</code> but use <code>obj.[[Prototype]]</code> instead. This corresponds to <code>Object.getPrototypeOf(obj)</code>.</p>
+  <p>It should not be confused with the <code>func.prototype</code> property of functions, which instead specifies the <code>[[Prototype]]</code> to be assigned to all <em>instances</em> of objects created by the given function when used as a constructor. We will discuss the <code>prototype</code> property of constructor functions in <a href="#constructors">a later section</a>.</p>
+</div>
+<p>There are several ways to specify the <code>[[Prototype]]</code> of an object, which are listed in <a href="#different_ways_of_creating_and_mutating_prototype_chains">a later section</a>. For now, we will use the <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#prototype_setter"><code>__proto__</code> syntax</a> for illustration. It's worth noting that the <code>{ __proto__: ... }</code> syntax is different from the <code>obj.__proto__</code> accessor: the former is standard and not deprecated.</p>
+<p>In an object literal like <code>{ a: 1, b: 2, __proto__: c }</code>, the value <code>c</code> (which has to be either <code>null</code> or another object) will become the <code>[[Prototype]]</code> of the object represented by the literal, while the other keys like <code>a</code> and <code>b</code> will become the <em>own properties</em> of the object. This syntax reads very naturally, since <code>[[Prototype]]</code> is just an "internal property" of the object.</p>
+<p>Here is what happens when trying to access a property:</p>
+<pre class="brush: js">const o = {
+  a: 1,
+  b: 2,
+  // __proto__ sets the [[Prototype]]. It's specified here
+  // as another object literal.
+  __proto__: {
+    b: 3,
+    c: 4,
+  },
+};
+
+// o.[[Prototype]] has properties b and c.
+// o.[[Prototype]].[[Prototype]] is Object.prototype (we will explain
+// what that means later).
+// Finally, o.[[Prototype]].[[Prototype]].[[Prototype]] is null.
+// This is the end of the prototype chain, as null,
+// by definition, has no [[Prototype]].
+// Thus, the full prototype chain looks like:
+// { a: 1, b: 2 } ---&gt; { b: 3, c: 4 } ---&gt; Object.prototype ---&gt; null
+
+console.log(o.a); // 1
+// Is there an 'a' own property on o? Yes, and its value is 1.
+
+console.log(o.b); // 2
+// Is there a 'b' own property on o? Yes, and its value is 2.
+// The prototype also has a 'b' property, but it's not visited.
+// This is called Property Shadowing
+
+console.log(o.c); // 4
+// Is there a 'c' own property on o? No, check its prototype.
+// Is there a 'c' own property on o.[[Prototype]]? Yes, its value is 4.
+
+console.log(o.d); // undefined
+// Is there a 'd' own property on o? No, check its prototype.
+// Is there a 'd' own property on o.[[Prototype]]? No, check its prototype.
+// o.[[Prototype]].[[Prototype]] is Object.prototype and
+// there is no 'd' property by default, check its prototype.
+// o.[[Prototype]].[[Prototype]].[[Prototype]] is null, stop searching,
+// no property found, return undefined.
+</pre>
+<p>Setting a property to an object creates an own property. The only exception to the getting and setting behavior rules is when it's intercepted by a <a href="/en-US/docs/Web/JavaScript/Guide/Working_with_objects#defining_getters_and_setters">getter or setter</a>.</p>
+<p>Similarly, you can create longer prototype chains, and a property will be sought on all of them.</p>
+<pre class="brush: js">const o = {
+  a: 1,
+  b: 2,
+  // __proto__ sets the [[Prototype]]. It's specified here
+  // as another object literal.
+  __proto__: {
+    b: 3,
+    c: 4,
+    __proto__: {
+      d: 5,
+    },
+  },
+};
+
+// { a: 1, b: 2 } ---&gt; { b: 3, c: 4 } ---&gt; { d: 5 } ---&gt; Object.prototype ---&gt; null
+
+console.log(o.d); // 5
+</pre>
+<h3 id="inheriting_methods">Inheriting "methods"</h3>
+<p>JavaScript does not have "<a href="/en-US/docs/Glossary/Method">methods</a>" in the form that class-based languages define them. In JavaScript, any function can be added to an object in the form of a property. An inherited function acts just as any other property, including property shadowing as shown above (in this case, a form of <em>method overriding</em>).</p>
+<p>When an inherited function is executed, the value of <a href="/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code></a> points to the inheriting object, not to the prototype object where the function is an own property.</p>
+<pre class="brush: js">const parent = {
+  value: 2,
+  method() {
+    return this.value + 1;
+  },
+};
+
+console.log(parent.method()); // 3
+// When calling parent.method in this case, 'this' refers to parent
+
+// child is an object that inherits from parent
+const child = {
+  __proto__: parent,
+};
+console.log(child.method()); // 3
+// When child.method is called, 'this' refers to child.
+// So when child inherits the method of parent,
+// The property 'value' is sought on child. However, since child
+// doesn't have an own property called 'value', the property is
+// found on the [[Prototype]], which is parent.value.
+
+child.value = 4; // assign the value 4 to the property 'value' on child.
+// This shadows the 'value' property on parent.
+// The child object now looks like:
+// { value: 4, __proto__: { value: 2, method: [Function] } }
+console.log(child.method()); // 5
+// Since child now has the 'value' property, 'this.value' means
+// child.value instead
+</pre>
+<h2 id="constructors">Constructors</h2>
+<p>The power of prototypes is that we can reuse a set of properties if they should be present on every instance — especially for methods. Suppose we are to create a series of boxes, where each box is an object that contains a value which can be accessed through a <code>getValue</code> function. A naive implementation would be:</p>
+<pre class="brush: js">const boxes = [
+  { value: 1, getValue() { return this.value; } },
+  { value: 2, getValue() { return this.value; } },
+  { value: 3, getValue() { return this.value; } },
+];
+</pre>
+<p>This is subpar, because each instance has its own function property that does the same thing, which is redundant and unnecessary. Instead, we can move <code>getValue</code> to the <code>[[Prototype]]</code> of all boxes:</p>
+<pre class="brush: js">const boxPrototype = {
+  getValue() {
+    return this.value;
+  },
+};
+
+const boxes = [
+  { value: 1, __proto__: boxPrototype },
+  { value: 2, __proto__: boxPrototype },
+  { value: 3, __proto__: boxPrototype },
+];
+</pre>
+<p>This way, all boxes' <code>getValue</code> method will refer to the same function, lowering memory usage. However, manually binding the <code>__proto__</code> for every object creation is still very inconvenient. This is when we would use a <em>constructor</em> function, which automatically sets the <code>[[Prototype]]</code> for every object manufactured. Constructors are functions called with <a href="/en-US/docs/Web/JavaScript/Reference/Operators/new"><code>new</code></a>.</p>
+<pre class="brush: js">// A constructor function
+function Box(value) {
+  this.value = value;
+}
+
+// Properties all boxes created from the Box() constructor
+// will have
+Box.prototype.getValue = function () {
+  return this.value;
+};
+
+const boxes = [new Box(1), new Box(2), new Box(3)];
+</pre>
+<p>We say that <code>new Box(1)</code> is an <em>instance</em> created from the <code>Box</code> constructor function. <code>Box.prototype</code> is not much different from the <code>boxPrototype</code> object we created previously — it's just a plain object. Every instance created from a constructor function will automatically have the constructor's <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype"><code>prototype</code></a> property as its <code>[[Prototype]]</code> — that is, <code>Object.getPrototypeOf(new Box()) === Box.prototype</code>. <code>Constructor.prototype</code> by default has one own property: <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor"><code>constructor</code></a>, which references the constructor function itself — that is, <code>Box.prototype.constructor === Box</code>. This allows one to access the original constructor from any instance.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> If a non-primitive is returned from the constructor function, that value will become the result of the <code>new</code> expression. In this case the <code>[[Prototype]]</code> may not be correctly bound — but this should not happen much in practice.</p>
+</div>
+<p>The above constructor function can be rewritten in <a href="/en-US/docs/Web/JavaScript/Reference/Classes">classes</a> as:</p>
+<pre class="brush: js">class Box {
+  constructor(value) {
+    this.value = value;
+  }
+
+  // Methods are created on Box.prototype
+  getValue() {
+    return this.value;
+  }
+}
+</pre>
+<p>Classes are syntax sugar over constructor functions, which means you can still manipulate <code>Box.prototype</code> to change the behavior of all instances. However, because classes are designed to be an abstraction over the underlying prototype mechanism, we will use the more-lightweight constructor function syntax for this tutorial to fully demonstrate how prototypes work.</p>
+<p>Because <code>Box.prototype</code> references the same object as the <code>[[Prototype]]</code> of all instances, we can change the behavior of all instances by mutating <code>Box.prototype</code>.</p>
+<pre class="brush: js">function Box(value) {
+  this.value = value;
+}
+Box.prototype.getValue = function () {
+  return this.value;
+};
+const box = new Box(1);
+
+// Mutate Box.prototype after an instance has already been created
+Box.prototype.getValue = function () {
+  return this.value + 1;
+};
+box.getValue(); // 2
+</pre>
+<p>A corollary is, <em>re-assigning</em> <code>Constructor.prototype</code> (<code>Constructor.prototype = ...</code>) is a bad idea for two reasons:</p>
+<ul>
+  <li>The <code>[[Prototype]]</code> of instances created before the reassignment is now referencing a different object from the <code>[[Prototype]]</code> of instances created after the reassignment — mutating one's <code>[[Prototype]]</code> no longer mutates the other.</li>
+  <li>Unless you manually re-set the <code>constructor</code> property, the constructor function can no longer be traced from <code>instance.constructor</code>, which may break user expectation. Some built-in operations will read the <code>constructor</code> property as well, and if it is not set, they may not work as expected.</li>
+</ul>
+<p><code>Constructor.prototype</code> is only useful when constructing instances. It has nothing to do with <code>Constructor.[[Prototype]]</code>, which is the constructor function's <em>own</em> prototype, which is <code>Function.prototype</code> — that is, <code>Object.getPrototypeOf(Constructor) === Function.prototype</code>.</p>
+<h3 id="implicit_constructors_of_literals">Implicit constructors of literals</h3>
+<p>Some literal syntaxes in JavaScript create instances that implicitly set the <code>[[Prototype]]</code>. For example:</p>
+<pre class="brush: js">// Object literals (without the `__proto__` key) automatically
+// have `Object.prototype` as their `[[Prototype]]`
+const object = { a: 1 };
+Object.getPrototypeOf(object) === Object.prototype; // true
+
+// Array literals automatically have `Array.prototype` as their `[[Prototype]]`
+const array = [1, 2, 3];
+Object.getPrototypeOf(array) === Array.prototype; // true
+
+// RegExp literals automatically have `RegExp.prototype` as their `[[Prototype]]`
+const regexp = /abc/;
+Object.getPrototypeOf(regexp) === RegExp.prototype; // true
+</pre>
+<p>We can "de-sugar" them into their constructor form.</p>
+<pre class="brush: js">const array = new Array(1, 2, 3);
+const regexp = new RegExp("abc");
+</pre>
+<p>For example, "array methods" like <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>map()</code></a> are simply methods defined on <code>Array.prototype</code>, which is why they are automatically available on all array instances.</p>
+<div class="notecard warning">
+  <p><strong>Warning:</strong> There is one misfeature that used to be prevalent — extending <code>Object.prototype</code> or one of the other built-in prototypes. An example of this misfeature is, defining <code>Array.prototype.myMethod = function () {...}</code> and then using <code>myMethod</code> on all array instances.</p>
+  <p>This misfeature is called <em>monkey patching</em>. Doing monkey patching risks forward compatibility, because if the language adds this method in the future but with a different signature, your code will break. It has led to incidents like the <a href="https://developer.chrome.com/blog/smooshgate/">SmooshGate</a>, and can be a great nuisance for the language to advance since JavaScript tries to "not break the web".</p>
+  <p>The <strong>only</strong> good reason for extending a built-in prototype is to backport the features of newer JavaScript engines, like <code>Array.prototype.forEach</code>.</p>
+</div>
+<p>It may be interesting to note that due to historical reasons, some built-in constructors' <code>prototype</code> property are instances themselves. For example, <code>Number.prototype</code> is a number 0, <code>Array.prototype</code> is an empty array, and <code>RegExp.prototype</code> is <code>/(?:)/</code>.</p>
+<pre class="brush: js">Number.prototype + 1; // 1
+Array.prototype.map((x) =&gt; x + 1); // []
+String.prototype + "a"; // "a"
+RegExp.prototype.source; // "(?:)"
+Function.prototype(); // Function.prototype is a no-op function by itself
+</pre>
+<p>However, this is not the case for user-defined constructors, nor for modern constructors like <code>Map</code>.</p>
+<pre class="brush: js">Map.prototype.get(1);
+// Uncaught TypeError: get method called on incompatible Map.prototype
+</pre>
+<h3 id="building_longer_inheritance_chains">Building longer inheritance chains</h3>
+<p>The <code>Constructor.prototype</code> property will become the <code>[[Prototype]]</code> of the constructor's instances, as-is — including <code>Constructor.prototype</code>'s own <code>[[Prototype]]</code>. By default, <code>Constructor.prototype</code> is a <em>plain object</em> — that is, <code>Object.getPrototypeOf(Constructor.prototype) === Object.prototype</code>. The only exception is <code>Object.prototype</code> itself, whose <code>[[Prototype]]</code> is <code>null</code> — that is, <code>Object.getPrototypeOf(Object.prototype) === null</code>. Therefore, a typical constructor will build the following prototype chain:</p>
+<pre class="brush: js">function Constructor() {}
+
+const obj = new Constructor();
+// obj ---&gt; Constructor.prototype ---&gt; Object.prototype ---&gt; null
+</pre>
+<p>To build longer prototype chains, we can set the <code>[[Prototype]]</code> of <code>Constructor.prototype</code> via the <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf"><code>Object.setPrototypeOf()</code></a> function.</p>
+<pre class="brush: js">function Base() {}
+function Derived() {}
+// Set the `[[Prototype]]` of `Derived.prototype`
+// to `Base.prototype`
+Object.setPrototypeOf(Derived.prototype, Base.prototype);
+
+const obj = new Derived();
+// obj ---&gt; Derived.prototype ---&gt; Base.prototype ---&gt; Object.prototype ---&gt; null
+</pre>
+<p>In class terms, this is equivalent to using the <a href="/en-US/docs/Web/JavaScript/Reference/Classes/extends"><code>extends</code></a> syntax.</p>
+<pre class="brush: js">class Base {}
+class Derived extends Base {}
+
+const obj = new Derived();
+// obj ---&gt; Derived.prototype ---&gt; Base.prototype ---&gt; Object.prototype ---&gt; null
+</pre>
+<p>You may also see some legacy code using <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><code>Object.create()</code></a> to build the inheritance chain. However, because this reassigns the <code>prototype</code> property and removes the <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor"><code>constructor</code></a> property, it can be more error-prone, while performance gains may not be apparent if the constructors haven't created any instances yet.</p>
+<pre class="brush: js example-bad">function Base() {}
+function Derived() {}
+// Re-assigns `Derived.prototype` to a new object
+// with `Base.prototype` as its `[[Prototype]]`
+// DON'T DO THIS — use Object.setPrototypeOf to mutate it instead
+Derived.prototype = Object.create(Base.prototype);
+</pre>
+<h2 id="inspecting_prototypes_a_deeper_dive">Inspecting prototypes: a deeper dive</h2>
+<p>Let's look at what happens behind the scenes in a bit more detail.</p>
+<p>In JavaScript, as mentioned above, functions are able to have properties. All functions have a special property named <code>prototype</code>. Please note that the code below is free-standing (it is safe to assume there is no other JavaScript on the webpage other than the below code). For the best learning experience, it is highly recommended that you open a console, navigate to the "console" tab, copy-and-paste in the below JavaScript code, and run it by pressing the Enter/Return key. (The console is included in most web browser's Developer Tools. More information is available for <a href="https://firefox-source-docs.mozilla.org/devtools-user/index.html">Firefox Developer Tools</a>, <a href="https://developer.chrome.com/docs/devtools/">Chrome DevTools</a>, and <a href="https://learn.microsoft.com/en-us/archive/microsoft-edge/legacy/developer/">Edge DevTools</a>.)</p>
+<pre class="brush: js">function doSomething() {}
+console.log(doSomething.prototype);
+// It does not matter how you declare the function; a
+// function in JavaScript will always have a default
+// prototype property — with one exception: an arrow
+// function doesn't have a default prototype property:
+const doSomethingFromArrowFunction = () =&gt; {};
+console.log(doSomethingFromArrowFunction.prototype);
+</pre>
+<p>As seen above, <code>doSomething()</code> has a default <code>prototype</code> property, as demonstrated by the console. After running this code, the console should have displayed an object that looks similar to this.</p>
+<pre class="brush: plain">{
+  constructor: ƒ doSomething(),
+  [[Prototype]]: {
+    constructor: ƒ Object(),
+    hasOwnProperty: ƒ hasOwnProperty(),
+    isPrototypeOf: ƒ isPrototypeOf(),
+    propertyIsEnumerable: ƒ propertyIsEnumerable(),
+    toLocaleString: ƒ toLocaleString(),
+    toString: ƒ toString(),
+    valueOf: ƒ valueOf()
+  }
+}
+</pre>
+<div class="notecard note">
+  <p><strong>Note:</strong> The Chrome console uses <code>[[Prototype]]</code> to denote the object's prototype, following the spec's terms; Firefox uses <code>&lt;prototype&gt;</code>. For consistency we will use <code>[[Prototype]]</code>.</p>
+</div>
+<p>We can add properties to the prototype of <code>doSomething()</code>, as shown below.</p>
+<pre class="brush: js">function doSomething() {}
+doSomething.prototype.foo = "bar";
+console.log(doSomething.prototype);
+</pre>
+<p>This results in:</p>
+<pre class="brush: plain">{
+  foo: "bar",
+  constructor: ƒ doSomething(),
+  [[Prototype]]: {
+    constructor: ƒ Object(),
+    hasOwnProperty: ƒ hasOwnProperty(),
+    isPrototypeOf: ƒ isPrototypeOf(),
+    propertyIsEnumerable: ƒ propertyIsEnumerable(),
+    toLocaleString: ƒ toLocaleString(),
+    toString: ƒ toString(),
+    valueOf: ƒ valueOf()
+  }
+}
+</pre>
+<p>We can now use the <code>new</code> operator to create an instance of <code>doSomething()</code> based on this prototype. To use the new operator, call the function normally except prefix it with <code>new</code>. Calling a function with the <code>new</code> operator returns an object that is an instance of the function. Properties can then be added onto this object.</p>
+<p>Try the following code:</p>
+<pre class="brush: js">function doSomething() {}
+doSomething.prototype.foo = "bar"; // add a property onto the prototype
+const doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value"; // add a property onto the object
+console.log(doSomeInstancing);
+</pre>
+<p>This results in an output similar to the following:</p>
+<pre class="brush: plain">{
+  prop: "some value",
+  [[Prototype]]: {
+    foo: "bar",
+    constructor: ƒ doSomething(),
+    [[Prototype]]: {
+      constructor: ƒ Object(),
+      hasOwnProperty: ƒ hasOwnProperty(),
+      isPrototypeOf: ƒ isPrototypeOf(),
+      propertyIsEnumerable: ƒ propertyIsEnumerable(),
+      toLocaleString: ƒ toLocaleString(),
+      toString: ƒ toString(),
+      valueOf: ƒ valueOf()
+    }
+  }
+}
+</pre>
+<p>As seen above, the <code>[[Prototype]]</code> of <code>doSomeInstancing</code> is <code>doSomething.prototype</code>. But, what does this do? When you access a property of <code>doSomeInstancing</code>, the runtime first looks to see if <code>doSomeInstancing</code> has that property.</p>
+<p>If <code>doSomeInstancing</code> does not have the property, then the runtime looks for the property in <code>doSomeInstancing.[[Prototype]]</code> (a.k.a. <code>doSomething.prototype</code>). If <code>doSomeInstancing.[[Prototype]]</code> has the property being looked for, then that property on <code>doSomeInstancing.[[Prototype]]</code> is used.</p>
+<p>Otherwise, if <code>doSomeInstancing.[[Prototype]]</code> does not have the property, then <code>doSomeInstancing.[[Prototype]].[[Prototype]]</code> is checked for the property. By default, the <code>[[Prototype]]</code> of any function's <code>prototype</code> property is <code>Object.prototype</code>. So, <code>doSomeInstancing.[[Prototype]].[[Prototype]]</code> (a.k.a. <code>doSomething.prototype.[[Prototype]]</code> (a.k.a. <code>Object.prototype</code>)) is then looked through for the property being searched for.</p>
+<p>If the property is not found in <code>doSomeInstancing.[[Prototype]].[[Prototype]]</code>, then <code>doSomeInstancing.[[Prototype]].[[Prototype]].[[Prototype]]</code> is looked through. However, there is a problem: <code>doSomeInstancing.[[Prototype]].[[Prototype]].[[Prototype]]</code> does not exist, because <code>Object.prototype.[[Prototype]]</code> is <code>null</code>. Then, and only then, after the entire prototype chain of <code>[[Prototype]]</code>'s is looked through, the runtime asserts that the property does not exist and conclude that the value at the property is <code>undefined</code>.</p>
+<p>Let's try entering some more code into the console:</p>
+<pre class="brush: js">function doSomething() {}
+doSomething.prototype.foo = "bar";
+const doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value";
+console.log("doSomeInstancing.prop:     ", doSomeInstancing.prop);
+console.log("doSomeInstancing.foo:      ", doSomeInstancing.foo);
+console.log("doSomething.prop:          ", doSomething.prop);
+console.log("doSomething.foo:           ", doSomething.foo);
+console.log("doSomething.prototype.prop:", doSomething.prototype.prop);
+console.log("doSomething.prototype.foo: ", doSomething.prototype.foo);
+</pre>
+<p>This results in the following:</p>
+<pre class="brush: plain">doSomeInstancing.prop:      some value
+doSomeInstancing.foo:       bar
+doSomething.prop:           undefined
+doSomething.foo:            undefined
+doSomething.prototype.prop: undefined
+doSomething.prototype.foo:  bar
+</pre>
+<h2 id="different_ways_of_creating_and_mutating_prototype_chains">Different ways of creating and mutating prototype chains</h2>
+<p>We have encountered many ways to create objects and change their prototype chains. We will systematically summarize the different ways, comparing each approach's pros and cons.</p>
+<h3 id="objects_created_with_syntax_constructs">Objects created with syntax constructs</h3>
+<pre class="brush: js">const o = { a: 1 };
+// The newly created object o has Object.prototype as its [[Prototype]]
+// Object.prototype has null as its [[Prototype]].
+// o ---&gt; Object.prototype ---&gt; null
+
+const b = ["yo", "sup", "?"];
+// Arrays inherit from Array.prototype
+// (which has methods indexOf, forEach, etc.)
+// The prototype chain looks like:
+// b ---&gt; Array.prototype ---&gt; Object.prototype ---&gt; null
+
+function f() {
+  return 2;
+}
+// Functions inherit from Function.prototype
+// (which has methods call, bind, etc.)
+// f ---&gt; Function.prototype ---&gt; Object.prototype ---&gt; null
+
+const p = { b: 2, __proto__: o };
+// It is possible to point the newly created object's [[Prototype]] to
+// another object via the __proto__ literal property. (Not to be confused
+// with Object.prototype.__proto__ accessors)
+// p ---&gt; o ---&gt; Object.prototype ---&gt; null
+</pre>
+<p>When using the <code>__proto__</code> key in <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer">object initializers</a>, pointing the <code>__proto__</code> key to something that is not an object only fails silently without throwing an exception. Contrary to the <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto"><code>Object.prototype.__proto__</code></a> setter, <code>__proto__</code> in object literal initializers is standardized and optimized, and can even be more performant than <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><code>Object.create</code></a>. Declaring extra own properties on the object at creation is more ergonomic than <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><code>Object.create</code></a>.</p>
+<h3 id="with_constructor_functions">With constructor functions</h3>
+<pre class="brush: js">function Graph() {
+  this.vertices = [];
+  this.edges = [];
+}
+
+Graph.prototype.addVertex = function (v) {
+  this.vertices.push(v);
+};
+
+const g = new Graph();
+// g is an object with own properties 'vertices' and 'edges'.
+// g.[[Prototype]] is the value of Graph.prototype when new Graph() is executed.
+</pre>
+<p>Constructor functions have been available since very early JavaScript. Therefore, it is very fast, very standard, and very JIT-optimizable. However, it's also hard to "do properly" because methods added this way are enumerable by default, which is inconsistent with the class syntax or how built-in methods behave. Doing longer inheritance chains is also error-prone, as previously demonstrated.</p>
+<h3 id="with_object.create">With Object.create()</h3>
+<p>Calling <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><code>Object.create()</code></a> creates a new object. The <code>[[Prototype]]</code> of this object is the first argument of the function:</p>
+<pre class="brush: js">const a = { a: 1 };
+// a ---&gt; Object.prototype ---&gt; null
+
+const b = Object.create(a);
+// b ---&gt; a ---&gt; Object.prototype ---&gt; null
+console.log(b.a); // 1 (inherited)
+
+const c = Object.create(b);
+// c ---&gt; b ---&gt; a ---&gt; Object.prototype ---&gt; null
+
+const d = Object.create(null);
+// d ---&gt; null (d is an object that has null directly as its prototype)
+console.log(d.hasOwnProperty);
+// undefined, because d doesn't inherit from Object.prototype
+</pre>
+<p>Similar to the <code>__proto__</code> key in object initializers, <code>Object.create()</code> allows directly setting the prototype of an object at creation time, which permits the runtime to further optimize the object. It also allows the creation of objects with <code>null</code> prototype, using <code>Object.create(null)</code>. The second parameter of <code>Object.create()</code> allows you to precisely specify the attributes of each property in the new object, which can be a double-edged sword:</p>
+<ul>
+  <li>It allows you to create non-enumerable properties, etc., during object creation, which is not possible with object literals.</li>
+  <li>It is much more verbose and error-prone than object literals.</li>
+  <li>It may be slower than object literals, especially when creating many properties.</li>
+</ul>
+<h3 id="with_classes">With classes</h3>
+<pre class="brush: js">class Rectangle {
+  constructor(height, width) {
+    this.name = "Rectangle";
+    this.height = height;
+    this.width = width;
+  }
+}
+
+class FilledRectangle extends Rectangle {
+  constructor(height, width, color) {
+    super(height, width);
+    this.name = "Filled rectangle";
+    this.color = color;
+  }
+}
+
+const filledRectangle = new FilledRectangle(5, 10, "blue");
+// filledRectangle ---&gt; FilledRectangle.prototype ---&gt; Rectangle.prototype ---&gt; Object.prototype ---&gt; null
+</pre>
+<p>Classes offer the highest readability and maintainability when defining complex inheritance structures. <a href="/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties">Private properties</a> are a feature with no trivial replacement in prototypal inheritance. However, classes are less optimized than traditional constructor functions and are not supported in older environments.</p>
+<h3 id="with_object.setprototypeof">With Object.setPrototypeOf()</h3>
+<p>While all methods above will set the prototype chain at object creation time, <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf"><code>Object.setPrototypeOf()</code></a> allows mutating the <code>[[Prototype]]</code> internal property of an existing object. It can even force a prototype on a prototype-less object created with <code>Object.create(null)</code> or remove the prototype of an object by setting it to <code>null</code>.</p>
+<pre class="brush: js">const obj = { a: 1 };
+const anotherObj = { b: 2 };
+Object.setPrototypeOf(obj, anotherObj);
+// obj ---&gt; anotherObj ---&gt; Object.prototype ---&gt; null
+</pre>
+<p>However, you should set the prototype during creation if possible, because setting the prototype dynamically disrupts all optimizations that engines have made to the prototype chain. It might cause some engines to recompile your code for de-optimization, to make it work according to the specs.</p>
+<h3 id="with_the___proto___accessor">With the __proto__ accessor</h3>
+<p>All objects inherit the <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto"><code>Object.prototype.__proto__</code></a> setter, which can be used to set the <code>[[Prototype]]</code> of an existing object (if the <code>__proto__</code> key is not overridden on the object).</p>
+<div class="notecard warning">
+  <p><strong>Warning:</strong> <code>Object.prototype.__proto__</code> accessors are <strong>non-standard</strong> and deprecated. You should almost always use <code>Object.setPrototypeOf</code> instead.</p>
+</div>
+<pre class="brush: js">const obj = {};
+// DON'T USE THIS: for example only.
+obj.__proto__ = { barProp: "bar val" };
+obj.__proto__.__proto__ = { fooProp: "foo val" };
+console.log(obj.fooProp);
+console.log(obj.barProp);
+</pre>
+<p>Compared to <code>Object.setPrototypeOf</code>, setting <code>__proto__</code> to something that is not an object fails silently without throwing an exception. It also has slightly better browser support. However, it is non-standard and deprecated. You should almost always use <code>Object.setPrototypeOf</code> instead.</p>
+<h2 id="performance">Performance</h2>
+<p>The lookup time for properties that are high up on the prototype chain can have a negative impact on the performance, and this may be significant in the code where performance is critical. Additionally, trying to access nonexistent properties will always traverse the full prototype chain.</p>
+<p>Also, when iterating over the properties of an object, <strong>every</strong> enumerable property that is on the prototype chain will be enumerated. To check whether an object has a property defined on <em>itself</em> and not somewhere on its prototype chain, it is necessary to use the <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty</code></a> or <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn"><code>Object.hasOwn</code></a> methods. All objects, except those with <code>null</code> as <code>[[Prototype]]</code>, inherit <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty</code></a> from <code>Object.prototype</code> — unless it has been overridden further down the prototype chain. To give you a concrete example, let's take the above graph example code to illustrate it:</p>
+<pre class="brush: js">function Graph() {
+  this.vertices = [];
+  this.edges = [];
+}
+
+Graph.prototype.addVertex = function (v) {
+  this.vertices.push(v);
+};
+
+const g = new Graph();
+// g ---&gt; Graph.prototype ---&gt; Object.prototype ---&gt; null
+
+g.hasOwnProperty("vertices"); // true
+Object.hasOwn(g, "vertices"); // true
+
+g.hasOwnProperty("nope"); // false
+Object.hasOwn(g, "nope"); // false
+
+g.hasOwnProperty("addVertex"); // false
+Object.hasOwn(g, "addVertex"); // false
+
+Object.getPrototypeOf(g).hasOwnProperty("addVertex"); // true
+</pre>
+<p>Note: It is <strong>not</strong> enough to check whether a property is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>. The property might very well exist, but its value just happens to be set to <code>undefined</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>JavaScript may be a bit confusing for developers coming from Java or C++, as it's all dynamic, all runtime, and it has no static types at all. Everything is either an object (instance) or a function (constructor), and even functions themselves are instances of the <code>Function</code> constructor. Even the "classes" as syntax constructs are just constructor functions at runtime.</p>
+<p>All constructor functions in JavaScript have a special property called <code>prototype</code>, which works with the <code>new</code> operator. The reference to the prototype object is copied to the internal <code>[[Prototype]]</code> property of the new instance. For example, when you do <code>const a1 = new A()</code>, JavaScript (after creating the object in memory and before running function <code>A()</code> with <code>this</code> defined to it) sets <code>a1.[[Prototype]] = A.prototype</code>. When you then access properties of the instance, JavaScript first checks whether they exist on that object directly, and if not, it looks in <code>[[Prototype]]</code>. <code>[[Prototype]]</code> is looked at <em>recursively</em>, i.e. <code>a1.doSomething</code>, <code>Object.getPrototypeOf(a1).doSomething</code>, <code>Object.getPrototypeOf(Object.getPrototypeOf(a1)).doSomething</code> etc., until it's found or <code>Object.getPrototypeOf</code> returns <code>null</code>. This means that all properties defined on <code>prototype</code> are effectively shared by all instances, and you can even later change parts of <code>prototype</code> and have the changes appear in all existing instances.</p>
+<p>If, in the example above, you do <code>const a1 = new A(); const a2 = new A();</code>, then <code>a1.doSomething</code> would actually refer to <code>Object.getPrototypeOf(a1).doSomething</code> — which is the same as the <code>A.prototype.doSomething</code> you defined, i.e. <code>Object.getPrototypeOf(a1).doSomething === Object.getPrototypeOf(a2).doSomething === A.prototype.doSomething</code>.</p>
+<p>It is essential to understand the prototypal inheritance model before writing complex code that makes use of it. Also, be aware of the length of the prototype chains in your code and break them up if necessary to avoid possible performance problems. Further, the native prototypes should <strong>never</strong> be extended unless it is for the sake of compatibility with newer JavaScript features.</p>
+</body></html>

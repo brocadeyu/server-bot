@@ -1,0 +1,66 @@
+<html><head></head><body>
+<p>The <strong><code>log()</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Functions">function</a> is an exponential function that returns the logarithm of a number.</p>
+<p><a href="https://en.wikipedia.org/wiki/Logarithm">Logarithm</a> is the inverse of exponentiation. It is the number that a fixed base has to be raised to in order to yield the number passed as the first parameter.</p>
+<p>In CSS, when a single parameter is passed, the natural logarithm <code>e</code>, or approximately <code>2.7182818</code>, is used, though the base can be set to any value with an optional second parameter.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* A &lt;number&gt; value */
+width: calc(100px * log(7.389)); /* 200px */
+width: calc(100px * log(8, 2)); /* 300px */
+width: calc(100px * log(625, 5)); /* 400px */
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p>The <code>log(value [, base]?)</code> function accepts two comma-separated values as its parameters.</p>
+<dl>
+  <dt id="value"><a href="#value"><code>value</code></a></dt>
+  <dd>
+    <p>A calculation which resolves to a <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> greater than or equal to 0. Representing the value to be taken the log of.</p>
+  </dd>
+  <dt id="base"><a href="#base"><code>base</code></a></dt>
+  <dd>
+    <p>Optional. A calculation which resolves to a <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> greater than or equal to 0. Representing the base of the logarithm. If not defined, the default logarithmic base <code>e</code> is used.</p>
+  </dd>
+</dl>
+<h3 id="return_value">Return value</h3>
+<p>The logarithm of <code>value</code>, when <code>base</code> is defined.</p>
+<p>The natural logarithm (base <code>e</code>) of <code>value</code>, when <code>base</code> is not defined.</p>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="<log()>">&lt;log()&gt; = </span><br>  <span class="token function">log(</span> <span class="token property">&lt;calc-sum&gt;</span> , <span class="token property">&lt;calc-sum&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-sum>">&lt;calc-sum&gt; = </span><br>  <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '+' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '-' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<calc-product>">&lt;calc-product&gt; = </span><br>  <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '*' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '/' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<calc-value>">&lt;calc-value&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/dimension"><span class="token property">&lt;dimension&gt;</span></a>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;calc-keyword&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  ( <span class="token property">&lt;calc-sum&gt;</span> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-keyword>">&lt;calc-keyword&gt; = </span><br>  <span class="token keyword">e</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">pi</span>         <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">infinity</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">-infinity</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">NaN</span>        <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_the_log_function_on_a_logarithmic_scale">Using the <code>log()</code> function on a logarithmic scale</h3>
+<p>This example illustrates how the <code>log()</code> function can be used to visualize data values by using a <a href="https://en.wikipedia.org/wiki/Logarithmic_scale">logarithmic scale</a>. The width of each bar in this example is relative to its data value on a logarithmic scale with base 10. On each element, its value is assigned to a <a href="/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS custom property</a> named <code>--value</code>, which is then used by the <code>.bar</code> class to calculate its width.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div class="bar" style="--value: 50"&gt;50&lt;/div&gt;
+&lt;div class="bar" style="--value: 100"&gt;100&lt;/div&gt;
+&lt;div class="bar" style="--value: 500"&gt;500&lt;/div&gt;
+&lt;div class="bar" style="--value: 10000"&gt;10,000&lt;/div&gt;
+&lt;div class="bar" style="--value: 2000000"&gt;2,000,000&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">.bar {
+  width: calc(log(var(--value), 10) * 2em);
+}
+</pre>
+<pre class="brush: css hidden">.bar {
+  height: 2em;
+  background-color: tomato;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.25em 0;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Using the log() function on a logarithmic scale sample" id="frame_using_the_log_function_on_a_logarithmic_scale" width="100%" height="200px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/log" data-live-id="using_the_log_function_on_a_logarithmic_scale" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.log" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.log" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/pow"><code>pow()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/sqrt"><code>sqrt()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/hypot"><code>hypot()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/exp"><code>exp()</code></a></li>
+</ul>
+</body></html>

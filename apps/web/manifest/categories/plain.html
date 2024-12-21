@@ -1,0 +1,70 @@
+<html><head></head><body>
+<p>
+  The <code>categories</code> manifest member lets you specify one or more classifications for your web application.
+  These categories help users discover your app in app stores.
+</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <code>categories</code> member is optional, and app stores may use different values when presenting your app.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Single category */
+"categories": ["productivity"]
+
+/* Multiple categories */
+"categories": ["productivity", "utilities", "social"]
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="categories"><a href="#categories"><code>categories</code></a></dt>
+  <dd>
+    <p>
+      An array of comma-separated strings, where each string represents a category name.
+      The strings should be in lowercase.
+      W3C maintains a <a href="https://github.com/w3c/manifest/wiki/Categories">list of standardized categories</a>, which includes common values such as <code>business</code>, <code>education</code>, <code>entertainment</code>, <code>finance</code>, <code>games</code>, and <code>productivity</code>.
+    </p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>
+  The <code>categories</code> member is supplementary metadata that does not affect the app's runtime behavior or how browsers present the app.
+  Its values are used only in app stores and other distribution platforms and are not visible to users in the browser or installed app.
+</p>
+<p>If your app serves multiple purposes, specifying multiple relevant categories can help users discover your app across different sections of the app store.</p>
+<p>If <code>categories</code> is not specified or the specified values are not used, app stores will categorize your web app based on their own classification system.</p>
+<p>
+  The images below from the Apple App Store show how categories appear in different parts of an app store.
+  The app overview shows the category in the "CHART" field (highlighted) along with the app's ranking in that category, and the Information section displays "Category" as a dedicated field (highlighted).
+</p>
+<ul>
+  <li>
+    <p>The BBC app is categorized as "News":</p>
+    <div style="display: flex; justify-content: center;">
+      <img src="/en-US/docs/Web/Manifest/categories/bbc.jpeg" alt="BBC app overview in Apple App Store. CHART field is circled in red to show News category." width="296" height="640">
+      <img src="/en-US/docs/Web/Manifest/categories/bbc-info.jpeg" alt="BBC app Information section with the Category field circled in red showing News." width="296" height="640">
+    </div>
+  </li>
+  <li>
+    <p>The Weather Channel app is categorized as "Weather":</p>
+    <div style="display: flex; justify-content: center;">
+      <img src="/en-US/docs/Web/Manifest/categories/weather.jpeg" alt="Weather app overview in Apple App Store. CHART field is circled in red to show Weather category" width="296" height="640">
+      <img src="/en-US/docs/Web/Manifest/categories/weather-info.jpeg" alt="Weather app Information section with the Category field circled in red showing Weather" width="296" height="640">
+    </div>
+  </li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="categorizing_a_meal_planning_web_app">Categorizing a meal planning web app</h3>
+<p>This example shows how to categorize a web app for planning meals based on available ingredients:</p>
+<pre class="brush: json">{
+  "name": "Meal Planner",
+  "categories": ["food", "health", "lifestyle"]
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://w3c.github.io/manifest-app-info/#categories-member">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<p>
+  The <code>categories</code> manifest member is used by app stores when publishing and listing web apps, so browser compatibility is not applicable.
+  While browsers may parse this member, it's optional and doesn't affect the app's functionality or presentation.
+</p>
+</body></html>

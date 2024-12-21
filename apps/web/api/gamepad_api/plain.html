@@ -1,0 +1,64 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong>Gamepad API</strong> is a way for developers to access and respond to signals from gamepads and other game controllers in a simple, consistent way. It contains three interfaces, two events and one specialist function, to respond to gamepads being connected and disconnected, and to access other information about the gamepads themselves, and what buttons and other controls are currently being pressed.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="gamepad"><a href="/en-US/docs/Web/API/Gamepad"><code>Gamepad</code></a></dt>
+  <dd>
+    <p>Represents a gamepad/controller connected to the computer.</p>
+  </dd>
+  <dt id="gamepadbutton"><a href="/en-US/docs/Web/API/GamepadButton"><code>GamepadButton</code></a></dt>
+  <dd>
+    <p>Represents a button on one of the connected controllers.</p>
+  </dd>
+  <dt id="gamepadevent"><a href="/en-US/docs/Web/API/GamepadEvent"><code>GamepadEvent</code></a></dt>
+  <dd>
+    <p>The event object representing events fired that are related to gamepads.</p>
+  </dd>
+</dl>
+<h3 id="experimental_gamepad_extensions">Experimental Gamepad extensions</h3>
+<dl>
+  <dt id="gamepadhapticactuator"><a href="/en-US/docs/Web/API/GamepadHapticActuator"><code>GamepadHapticActuator</code></a></dt>
+  <dd>
+    <p>Represents hardware in the controller designed to provide haptic feedback to the user (if available), most commonly vibration hardware.</p>
+  </dd>
+  <dt id="gamepadpose"><a href="/en-US/docs/Web/API/GamepadPose"><code>GamepadPose</code></a></dt>
+  <dd>
+    <p>Represents the pose of a controller (e.g. position and orientation in 3D space) in the case of a <a href="/en-US/docs/Web/API/WebVR_API">WebVR</a> controller. This is <em>not</em> used by the newer <a href="/en-US/docs/Web/API/WebXR_Device_API">WebXR</a> standard.</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<h4 id="navigator">Navigator</h4>
+<dl>
+  <dt id="navigator.getgamepads"><a href="/en-US/docs/Web/API/Navigator/getGamepads"><code>Navigator.getGamepads()</code></a></dt>
+  <dd>
+    <p>An extension to the <a href="/en-US/docs/Web/API/Navigator"><code>Navigator</code></a> object that returns an array of <a href="/en-US/docs/Web/API/Gamepad"><code>Gamepad</code></a> objects, one for each connected gamepad.</p>
+  </dd>
+</dl>
+<h4 id="window_events">Window events</h4>
+<dl>
+  <dt id="gamepadconnected"><a href="/en-US/docs/Web/API/Window/gamepadconnected_event" title="gamepadconnected"><code>gamepadconnected</code></a></dt>
+  <dd>
+    <p>An event that will fire when a gamepad is connected.</p>
+  </dd>
+  <dt id="gamepaddisconnected"><a href="/en-US/docs/Web/API/Window/gamepaddisconnected_event" title="gamepaddisconnected"><code>gamepaddisconnected</code></a></dt>
+  <dd>
+    <p>An event that will fire when a gamepad is disconnected.</p>
+  </dd>
+</dl>
+<h2 id="tutorials_and_guides">Tutorials and guides</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API">Using the Gamepad API</a></li>
+  <li><a href="/en-US/docs/Games/Techniques/Controls_Gamepad_API">Implementing controls using the Gamepad API</a></li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Gamepad" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Gamepad" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://hacks.mozilla.org/2013/12/the-gamepad-api/">The Gamepad API</a> by Ted Mielczarek and Robert Nyman</li>
+  <li><a href="https://luser.github.io/gamepadtest/">Simple API demo page</a> (<a href="https://github.com/luser/gamepadtest">source</a>)</li>
+</ul>
+</body></html>

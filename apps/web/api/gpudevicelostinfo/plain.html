@@ -1,0 +1,58 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>GPUDeviceLostInfo</code></strong> interface of the <a href="/en-US/docs/Web/API/WebGPU_API" title="WebGPU API">WebGPU API</a> represents the object returned when the <a href="/en-US/docs/Web/API/GPUDevice/lost"><code>GPUDevice.lost</code></a> <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> resolves. This provides information as to why a device has been lost.</p>
+<p>See the <a href="/en-US/docs/Web/API/GPUDevice/lost"><code>GPUDevice.lost</code></a> page for more information about "lost" state.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="message"><a href="/en-US/docs/Web/API/GPUDeviceLostInfo/message" title="message"><code>message</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string providing a human-readable message that explains why the device was lost.</p>
+  </dd>
+  <dt id="reason"><a href="/en-US/docs/Web/API/GPUDeviceLostInfo/reason" title="reason"><code>reason</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An enumerated value that defines the reason the device was lost in a machine-readable way.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">async function init() {
+  if (!navigator.gpu) {
+    throw Error("WebGPU not supported.");
+  }
+  const adapter = await navigator.gpu.requestAdapter();
+  if (!adapter) {
+    throw Error("Couldn't request WebGPU adapter.");
+  }
+
+  // Create a GPUDevice
+  let device = await adapter.requestDevice(descriptor);
+
+  // Use lost to handle lost devices
+  device.lost.then((info) =&gt; {
+    console.error(`WebGPU device was lost: ${info.message}`);
+    device = null;
+    if (info.reason !== "destroyed") {
+      init();
+    }
+  });
+  // ...
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GPUDeviceLostInfo" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GPUDeviceLostInfo" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The <a href="/en-US/docs/Web/API/WebGPU_API">WebGPU API</a></li>
+</ul>
+</body></html>

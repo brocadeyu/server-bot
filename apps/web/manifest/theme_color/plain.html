@@ -1,0 +1,109 @@
+<html><head></head><body>
+<p>
+  The <code>theme_color</code> member is used to specify the default color for your web application's user interface.
+  This color may be applied to various browser UI elements, such as the toolbar, address bar, and status bar.
+  It can be particularly noticeable in contexts like the task switcher or when the app is added to the home screen.
+</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Valid named color */
+"theme_color": "rebeccapurple"
+
+/* Using hexadecimal value */
+"theme_color": "#42b5f4"
+
+/* Using RGB value */
+"theme_color": "rgb(66 133 244)"
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="theme_color"><a href="#theme_color"><code>theme_color</code></a></dt>
+  <dd>
+    <p>A string that specifies a valid <a href="/en-US/docs/Web/CSS/color_value">color value</a>.</p>
+    <div class="notecard note">
+      <p>
+        <strong>Note:</strong> Browsers may ignore the alpha component of the color based on the context.
+        In most environments, <code>theme_color</code> cannot be transparent.
+        It's recommended to use fully opaque colors (alpha value of 1 or 100%) to ensure consistent behavior across different platforms and browsers.
+      </p>
+    </div>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>
+  While optional, specifying a <code>theme_color</code> allows you to extend your app's visual identity beyond its content areas.
+  This color application can provide a more native app-like experience for your web app, especially when it's loaded in <a href="/en-US/docs/Web/Manifest/display#standalone">standalone</a> mode.
+  Choose a <code>theme_color</code> that aligns with your app's brand guidelines, as this can enhance user recognition and recall, particularly when your app is viewed alongside other applications or system interfaces.
+</p>
+<p>
+  In browsers that support <code>theme_color</code>, the value specified in the manifest file serves as the default theme color for your web app across all pages where the manifest is applied.
+  You can override this default in the following ways:
+</p>
+<ul>
+  <li>
+    <p>Using the <a href="/en-US/docs/Web/HTML/Element/meta/name/theme-color"><code>theme-color</code></a> value of the <code>name</code> attribute in the HTML <code>&lt;meta&gt;</code> element: You can specify a theme color for a web page that's different from the manifest <code>theme_color</code> specified for your app. This enables you to set different theme colors for individual pages within your app.</p>
+    <pre class="brush: html">&lt;meta name="theme-color" content="#9370DB" /&gt;
+</pre>
+  </li>
+  <li>
+    <p>Combining the <code>&lt;meta name="theme-color"&gt;</code> element with media queries: You can specify the theme color to be used based on user's color scheme preference.</p>
+    <pre class="brush: html">&lt;meta
+  name="theme-color"
+  content="#F4E6D8"
+  media="(prefers-color-scheme: light)" /&gt;
+&lt;meta
+  name="theme-color"
+  content="#5D4037"
+  media="(prefers-color-scheme: dark)" /&gt;
+</pre>
+  </li>
+</ul>
+<p>These override methods provide you the flexibility to adapt your app's appearance for specific pages or user preferences, improving the overall user experience.</p>
+<p>
+  Browsers may also adjust the applied theme color based on user preferences.
+  If a user has set a preference for light or dark mode, browsers may override the manifest <code>theme_color</code> value to support any <a href="/en-US/docs/Web/CSS/@media/prefers-color-scheme"><code>prefers-color-scheme</code></a> media query defined in your app's CSS.
+</p>
+<pre class="brush: css">body {
+  background: #f8f9fa;
+  color: #212529;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #212529;
+    color: #f8f9fa;
+  }
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_a_named_color">Using a named color</h3>
+<pre class="brush: json">{
+  "theme_color": "red"
+}
+</pre>
+<h3 id="using_an_rgb_value">Using an RGB value</h3>
+<pre class="brush: json">{
+  "theme_color": "rgb(66, 133, 244)"
+}
+</pre>
+<h3 id="using_a_hexadecimal_value">Using a hexadecimal value</h3>
+<pre class="brush: json">{
+  "name": "My First App",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff4500"
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.theme_color" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.theme_color" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Manifest/display"><code>display</code></a> manifest member</li>
+  <li><a href="/en-US/docs/Web/Manifest/background_color"><code>background_color</code></a> manifest member</li>
+  <li><a href="/en-US/docs/Web/Manifest/scope"><code>scope</code></a> manifest member</li>
+  <li><a href="/en-US/docs/Web/Progressive_web_apps/How_to/Customize_your_app_colors">Customize your app's theme and background colors</a> when building PWAs</li>
+</ul>
+</body></html>

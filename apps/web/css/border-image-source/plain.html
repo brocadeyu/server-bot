@@ -1,0 +1,54 @@
+<html><head></head><body>
+<p>The <strong><code>border-image-source</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets the source image used to create an element's <a href="/en-US/docs/Web/CSS/border-image">border image</a>.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/border-image-source.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p>The <a href="/en-US/docs/Web/CSS/border-image-slice"><code>border-image-slice</code></a> property is used to divide the source image into regions, which are then dynamically applied to the final border image.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword value */
+border-image-source: none;
+
+/* &lt;image&gt; values */
+border-image-source: url(image.jpg);
+border-image-source: linear-gradient(to top, red, yellow);
+
+/* Global values */
+border-image-source: inherit;
+border-image-source: initial;
+border-image-source: revert;
+border-image-source: revert-layer;
+border-image-source: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>No border image is used. The appearance defined by <a href="/en-US/docs/Web/CSS/border-style"><code>border-style</code></a> is displayed instead.</p>
+  </dd>
+  <dt id="image"><a href="/en-US/docs/Web/CSS/image"><code>&lt;image&gt;</code></a></dt>
+  <dd>
+    <p>Image reference to use for the border.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>none</code></td></tr><tr><th scope="row">Applies to</th><td>all elements, except internal table elements when <a href="/en-US/docs/Web/CSS/border-collapse"><code>border-collapse</code></a> is <code>collapse</code>. It also applies to <a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a>.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td><code>none</code> or the image with its URI made absolute</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="border-image-source">border-image-source = </span><br>  <span class="token keyword">none</span>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;image&gt;</span>  <br><br><span class="token property" id="<image>">&lt;image&gt; = </span><br>  <span class="token property">&lt;url&gt;</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/gradient"><span class="token property">&lt;gradient&gt;</span></a>  <br><br><span class="token property" id="<url>">&lt;url&gt; = </span><br>  <span class="token property">&lt;url()&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;src()&gt;</span>  <br><br><span class="token property" id="<url()>">&lt;url()&gt; = </span><br>  <span class="token function">url(</span> <a href="/en-US/docs/Web/CSS/string"><span class="token property">&lt;string&gt;</span></a> <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/url-modifier"><span class="token property">&lt;url-modifier&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a> <span class="token function">)</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/url-token"><span class="token property">&lt;url-token&gt;</span></a>                      <br><br><span class="token property" id="<src()>">&lt;src()&gt; = </span><br>  <span class="token function">src(</span> <a href="/en-US/docs/Web/CSS/string"><span class="token property">&lt;string&gt;</span></a> <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/url-modifier"><span class="token property">&lt;url-modifier&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a> <span class="token function">)</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<pre class="brush: css">.box {
+  border-image-source: url("image.png");
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.border-image-source" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.border-image-source" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/border"><code>border</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/outline"><code>outline</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/box-shadow"><code>box-shadow</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/background-image"><code>background-image</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/url_value"><code>&lt;url&gt;</code></a> type</li>
+  <li><a href="/en-US/blog/border-images-interop-2023/">Border images in CSS: A key focus area for Interop 2023</a> on MDN blog (2023)</li>
+</ul>
+</body></html>

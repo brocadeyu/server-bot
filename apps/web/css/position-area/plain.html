@@ -1,0 +1,370 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>position-area</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property enables an anchor-positioned element to be positioned relative to the edges of its associated anchor element by placing the positioned element on one or more tiles of an implicit 3x3 grid, where the anchoring element is the center cell.</p>
+<p><code>position-area</code> provides a convenient alternative to tethering and positioning an element relative to its anchor via <a href="/en-US/docs/Glossary/Inset_properties">inset properties</a> and the <a href="/en-US/docs/Web/CSS/anchor"><code>anchor()</code></a> function. The grid-based concept solves the common use-case of positioning the edges of the positioned element's containing block relative to the edges of its default anchor element.</p>
+<p>If an element does not have a default anchor element, or is not an absolutely-positioned element, this property has no effect.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This property was originally named and supported in Chromium browsers as <code>inset-area</code>, with the same property values. Both property names will be supported for a short while, for backwards compatibility purposes.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Default value */
+position-area: none;
+
+/* Two &lt;position-area&gt; keywords defining a single specific tile */
+position-area: top left;
+position-area: start end;
+position-area: block-start center;
+position-area: inline-start block-end;
+position-area: x-start y-end;
+position-area: center y-self-end;
+
+/* Two &lt;position-area&gt; keywords spanning two tiles */
+position-area: top span-left;
+position-area: center span-start;
+position-area: inline-start span-block-end;
+position-area: y-start span-x-end;
+
+/* Two &lt;position-area&gt; keywords spanning three tiles */
+position-area: top span-all;
+position-area: block-end span-all;
+position-area: x-self-start span-all;
+
+/* One &lt;position-area&gt; keyword with an implicit second &lt;position-area&gt; keyword  */
+position-area: top; /* equiv: top span-all */
+position-area: inline-start; /* equiv: inline-start span-all */
+position-area: center; /* equiv: center center */
+position-area: span-all; /* equiv: center center */
+position-area: end; /* equiv: end end */
+
+/* Global values */
+position-area: inherit;
+position-area: initial;
+position-area: revert;
+position-area: revert-layer;
+position-area: unset;
+</pre>
+<h3 id="values">Values</h3>
+<p>The property value is two <code>&lt;position-area&gt;</code> keyterms, or the keyword <code>none</code>. If only one <code>&lt;position-area&gt;</code> keyterm is provided, the second keyterm is implied.</p>
+<dl>
+  <dt id="position-area"><a href="/en-US/docs/Web/CSS/position-area_value"><code>&lt;position-area&gt;</code></a></dt>
+  <dd>
+    <p>Specifies the area of the position area grid on which to place selected positioned elements.</p>
+  </dd>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>No position area is set.</p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The <code>position-area</code> property provides an alternative to the <code>anchor()</code> function for positioning elements relative to anchors. <code>position-area</code> works on the concept of a 3x3 grid of tiles, called the <strong>position-area grid</strong>, with the anchor element being the center tile:</p>
+<p>
+  <img src="/en-US/docs/Web/CSS/position-area/position-area.png" alt="The position-area grid, as described below" width="1322" height="1202">
+</p>
+<p>The grid tiles are broken up into rows and columns:</p>
+<ul>
+  <li>The three rows are represented by the <a href="/en-US/docs/Web/CSS/position-area_value#physical_grid_keywords">physical values</a> <code>top</code>, <code>center</code>, and <code>bottom</code>. They also have <a href="/en-US/docs/Web/CSS/position-area_value#logical_grid_keywords">logical equivalents</a> such as <code>block-start</code>, <code>center</code>, and <code>block-end</code>, and <a href="/en-US/docs/Web/CSS/position-area_value#coordinate_grid_keywords">coordinate equivalents</a> — <code>y-start</code>, <code>center</code>, and <code>y-end</code>.</li>
+  <li>The three columns are represented by the physical values <code>left</code>, <code>center</code>, and <code>right</code>. They also have logical equivalents such as <code>inline-start</code>, <code>center</code>, and <code>inline-end</code>, and coordinate equivalents — <code>x-start</code>, <code>center</code>, and <code>x-end</code>.</li>
+</ul>
+<p>The dimensions of the center tile are defined by the <a href="/en-US/docs/Web/CSS/Containing_block">containing block</a> of the anchor element, while the dimensions of the grid's outer edge are defined by the positioned element's containing block.</p>
+<p>The <a href="/en-US/docs/Web/CSS/position-area_value"><code>&lt;position-area&gt;</code></a> value is composed of one or two keywords, which define the region of the grid the positioned element should be placed inside. To be exact, the containing block of the positioned element is set to the grid area.</p>
+<p>For example:</p>
+<ul>
+  <li>You can specify a row value and a column value to place the positioned element in a single, specific grid square — for example, <code>top left</code> (logical equivalent <code>start start</code>) or <code>bottom center</code> (logical equivalent <code>end center</code>) will place the positioned element in the top-right or bottom-center square.</li>
+  <li>You can specify a row or column value plus a <code>span-*</code> value to span two or three cells. The first value specifies the row or column to place the positioned element in, placing it initially in the center, and the other one specifies the other tiles of that row or column to span. For example:
+    <ul>
+      <li><code>top span-left</code> causes the positioned element to be placed in the center of the top row, and span across the center and left tiles of that row.</li>
+      <li><code>block-end span-inline-end</code> causes the positioned element to be placed in the center of the block end row, and span across the center and inline end tiles of that row.</li>
+      <li><code>bottom span-all</code> and <code>y-end span-all</code> cause the positioned element to be placed in the center of the bottom row, and span across three cells, in this case the left, center, and right tiles of the bottom row.</li>
+    </ul>
+  </li>
+</ul>
+<p>For detailed information on anchor features, usage, and the <code>position-area</code> property, see the <a href="/en-US/docs/Web/CSS/CSS_anchor_positioning">CSS anchor positioning</a> module landing page and the <a href="/en-US/docs/Web/CSS/CSS_anchor_positioning/Using">Using CSS anchor positioning</a> guide, specifically the section on <a href="/en-US/docs/Web/CSS/CSS_anchor_positioning/Using#setting_a_position-area">setting a <code>position-area</code></a>.</p>
+<h3 id="adjusted_default_behavior">Adjusted default behavior</h3>
+<p>When a <a href="/en-US/docs/Web/CSS/position-area_value"><code>&lt;position-area&gt;</code></a> value is set on a positioned element, some of its properties will have their default behavior adjusted to provide a good default alignment.</p>
+<h4 id="self-alignment_property_normal_value">Self-alignment property <code>normal</code> value</h4>
+<p>The <code>normal</code> value of the self-alignment properties, including <a href="/en-US/docs/Web/CSS/align-items"><code>align-items</code></a>, <a href="/en-US/docs/Web/CSS/align-self"><code>align-self</code></a>, <a href="/en-US/docs/Web/CSS/justify-items"><code>justify-items</code></a>, and <a href="/en-US/docs/Web/CSS/justify-self"><code>justify-self</code></a>, behaves as either <code>start</code>, <code>end</code>, or <a href="/en-US/docs/Web/CSS/CSS_anchor_positioning/Using#centering_on_the_anchor_using_anchor-center"><code>anchor-center</code></a>. Which value a self-alignment property defaults to depends on the positioning of the element:</p>
+<ul>
+  <li>If the <code>position-area</code> value specifies the center region in an axis, the default alignment in that axis is <code>anchor-center</code>.</li>
+  <li>Otherwise, the behavior is the opposite of the region specified by the <code>position-area</code> property. For example, if the <code>position-area</code> value specifies the start region of its axis, the default alignment in that axis is <code>end</code>.</li>
+</ul>
+<p>For example, if the <code>writing-mode</code> is set to <code>horizontal-tb</code>, <code>position-area: top span-x-start</code> causes the positioned element to be placed in the center of the top row, and span across the center and start tiles of that row. In this case, the self-alignment properties will default to <code>align-self: end</code> and <code>justify-self: anchor-center</code>.</p>
+<h4 id="inset_properties_and_values">inset properties and values</h4>
+<p>When an anchor-positioned element is positioned using the <code>position-area</code> property, any <a href="/en-US/docs/Glossary/Inset_properties">inset properties</a> set, such as <a href="/en-US/docs/Web/CSS/top"><code>top</code></a> or <a href="/en-US/docs/Web/CSS/inset-inline-end"><code>inset-inline-end</code></a>, specify offsets from the position-area. Some other property values, like <a href="/en-US/docs/Web/CSS/max-block-size"><code>max-block-size: 100%</code></a>, will also be relative to the position-area. Any inset properties set or defaulting to <code>auto</code> will behave as if their value was set to <code>0</code>.</p>
+<h3 id="an_aside_on_positioned_element_width">An aside on positioned element width</h3>
+<p>If the positioned element does not have a specific size set on it, its size will default to its <a href="/en-US/docs/Glossary/Intrinsic_Size">intrinsic size</a>, but it will also be affected by the size of the position-area grid.</p>
+<p>If the positioned element is placed in a single top-center, bottom-center, or center-center cell, its block size will be the same as the anchor's containing block size, growing up, down, or in both directions respectively. The positioned element will align with the specified grid square but adopt the same width as the anchor element. However, it won't allow its content to overflow — its minimum <code>width</code> will be its <code>min-content</code> (as defined by the width of its longest word).</p>
+<p>If the positioned element is placed in any other single grid square (say with <code>position-area: top left</code>) or is set to span two or more grid squares (for example using <code>position-area: bottom span-all</code>), it will align with the specified grid area but behave as if it has a <a href="/en-US/docs/Web/CSS/width"><code>width</code></a> of <code>max-content</code> set on it. It is being sized according to its containing block size, which is the size imposed on it when it was set to <code>position: fixed</code>. It will stretch as wide as the text content, although it may also be constrained by the edge of the <code>&lt;body&gt;</code>.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>none</code></td></tr><tr><th scope="row">Applies to</th><td>Positioned elements with a <a href="https://drafts.csswg.org/css-anchor-position-1/#default-anchor-element">default anchor element</a></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="position-area">position-area = </span><br>  <span class="token keyword">none</span>             <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;position-area&gt;</span>  <br><br><span class="token property" id="<position-area>">&lt;position-area&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">left</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">right</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-left</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-right</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">x-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">x-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-x-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-x-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">x-self-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">x-self-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-x-self-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-x-self-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">top</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">bottom</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-top</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-bottom</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">y-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">y-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-y-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-y-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">y-self-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">y-self-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-y-self-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-y-self-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">block-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">block-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-block-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-block-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">inline-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">inline-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-inline-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-inline-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">self-block-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">self-block-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-self-block-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-self-block-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">self-inline-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">self-inline-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-self-inline-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-self-inline-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{1,2}</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">self-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">center</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">self-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-self-start</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-self-end</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">span-all</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{1,2}</a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<p>In this example, a positioned element is tethered and positioned relative to its associated anchor using the <code>position-area</code> property.</p>
+<h4 id="html">HTML</h4>
+<p>The HTML includes a <a href="/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> and a <a href="/en-US/docs/Web/HTML/Element/p"><code>&lt;p&gt;</code></a>. The <code>&lt;p&gt;</code> will be positioned relative to the <code>&lt;div&gt;</code> with CSS. We also include a style block that will be made visible. All elements are set to be directly editable via the <a href="/en-US/docs/Web/HTML/Global_attributes/contenteditable"><code>contenteditable</code></a> attribute.</p>
+<pre class="brush: html">&lt;div class="anchor" contenteditable="true"&gt;⚓︎&lt;/div&gt;
+
+&lt;p class="positionedElement" contenteditable="true"&gt;This can be edited.&lt;/p&gt;
+
+&lt;style contenteditable="true"&gt;.positionedElement {
+    position-area: CHANGEME;
+  }
+&lt;/style&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<p>We convert the <code>&lt;div&gt;</code> to an anchor element with the <a href="/en-US/docs/Web/CSS/anchor-name"><code>anchor-name</code></a> property. We then associate the absolutely-positioned <code>&lt;p&gt;</code> with it by setting its <a href="/en-US/docs/Web/CSS/position-anchor"><code>position-anchor</code></a> value to the same anchor name.</p>
+<p>We set the initial <code>position-area</code> value to <code>top center</code>. This value is set on a <code>p</code> selector, so the value has less <a href="/en-US/docs/Web/CSS/Specificity">specificity</a> than any value added to the <code>&lt;style&gt;</code> block's <code>.positionedElement</code> <a href="/en-US/docs/Web/CSS/Class_selectors">class selector</a>. As a result, you can override the initial <code>position-area</code> value by setting an <code>position-area</code> value inside the style block.</p>
+<pre class="brush: css">.anchor {
+  anchor-name: --infobox;
+  background: palegoldenrod;
+  font-size: 3em;
+  width: fit-content;
+  border: 1px solid goldenrod;
+  margin: 100px auto;
+}
+
+p {
+  position: absolute;
+  position-anchor: --infobox;
+  position-area: top center;
+  margin: 0;
+  background-color: darkkhaki;
+  border: 1px solid darkolivegreen;
+}
+
+style {
+  display: block;
+  white-space: pre;
+  font-family: monospace;
+  background-color: #ededed;
+  -webkit-user-modify: read-write-plaintext-only;
+  line-height: 1.5;
+  padding: 10px;
+}
+</pre>
+<h4 id="results">Results</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Basic example sample" id="frame_basic_example" width="100%" height="360" src="about:blank" data-live-path="/en-US/docs/Web/CSS/position-area" data-live-id="basic_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>Try changing the amount of text in the anchor-positioned element to see how it grows. Also, try changing the invalid "CHANGEME" value of the <code>position-area</code> property to a valid value.</p>
+<h3 id="position-area_value_comparison"><code>position-area</code> value comparison</h3>
+<p>This demo creates an anchor and tethers a positioned element to it. It also provides a drop-down menu allowing you to choose various <code>position-area</code> values to apply to the positioned element, to see their effect. One of the options causes a text field to appear that enables you to enter a custom value. Finally, a checkbox is provided to turn <code>writing-mode: vertical-lr</code> on and off, allowing you to observe how <code>position-area</code> value effects differ across different writing modes.</p>
+<h4 id="html_2">HTML</h4>
+<p>In the HTML, we specify two <a href="/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> elements, one with a class of <code>anchor</code> and one with a class of <code>infobox</code>. These are intended to be the anchor element and the positioned element we will associate with it, respectively. We've included the <code>contenteditable</code> attribute on both, making them directly editable.</p>
+<p>We've also included two forms that contain the <a href="/en-US/docs/Web/HTML/Element/select"><code>&lt;select&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/input/text"><code>&lt;input type="text"&gt;</code></a> elements for setting different <code>position-area</code> values, and the <a href="/en-US/docs/Web/HTML/Element/input/checkbox"><code>&lt;input type="checkbox"&gt;</code></a> element for toggling the vertical <a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a> on and off. The code for these, along with the JavaScript, has been hidden for the sake of brevity.</p>
+<pre class="brush: html">&lt;div class="anchor" contenteditable&gt;⚓︎&lt;/div&gt;
+
+&lt;div class="infobox"&gt;
+  &lt;p contenteditable&gt;You can edit this text.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<pre class="brush: html hidden">&lt;form id="position-area-form"&gt;
+  &lt;div&gt;
+    &lt;label for="position-area-select"&gt;Choose a position-area:&lt;/label&gt;
+    &lt;select id="position-area-select" name="position-area-select"&gt;
+      &lt;optgroup label="Enter custom value"&gt;
+        &lt;option&gt;Custom&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Physical, single tile"&gt;
+        &lt;option selected&gt;top left&lt;/option&gt;
+        &lt;option&gt;bottom right&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Physical, span two"&gt;
+        &lt;option&gt;bottom span-right&lt;/option&gt;
+        &lt;option&gt;left span-top&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Physical, span all"&gt;
+        &lt;option&gt;top&lt;/option&gt;
+        &lt;option&gt;left&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Logical, single tile"&gt;
+        &lt;option&gt;start center&lt;/option&gt;
+        &lt;option&gt;inline-start block-end&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Logical, span two"&gt;
+        &lt;option&gt;start span-end&lt;/option&gt;
+        &lt;option&gt;center span-start&lt;/option&gt;
+        &lt;option&gt;inline-start span-block-end&lt;/option&gt;
+        &lt;option&gt;span-block-start center&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Logical, span all"&gt;
+        &lt;option&gt;start span-all&lt;/option&gt;
+        &lt;option&gt;block-end&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Coordinates, single tile"&gt;
+        &lt;option&gt;x-start center&lt;/option&gt;
+        &lt;option&gt;x-end y-end&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Coordinates, span two"&gt;
+        &lt;option&gt;center span-y-start&lt;/option&gt;
+        &lt;option&gt;y-start span-x-end&lt;/option&gt;
+      &lt;/optgroup&gt;
+      &lt;optgroup label="Coordinates, span all"&gt;
+        &lt;option&gt;x-start span-all&lt;/option&gt;
+        &lt;option&gt;y-end&lt;/option&gt;
+      &lt;/optgroup&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div id="position-area-custom-container"&gt;
+    &lt;label for="position-area-custom"&gt;Enter a custom position-area:&lt;/label
+    &gt;&lt;br /&gt;
+    &lt;input type="text" id="position-area-custom" name="position-area-custom" /&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;form id="writing-mode-form"&gt;
+  &lt;label for="writing-mode-checkbox"&gt;writing-mode: vertical-lr&lt;/label&gt;&lt;br /&gt;
+  &lt;input
+    type="checkbox"
+    id="writing-mode-checkbox"
+    name="writing-mode-checkbox" /&gt;
+&lt;/form&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<p>In the CSS, we first declare the <code>anchor</code> <code>&lt;div&gt;</code> as an anchor element by setting an anchor name on it via the <a href="/en-US/docs/Web/CSS/anchor-name"><code>anchor-name</code></a> property.</p>
+<p>The positioned element is associated with the anchor element by setting its anchor name as the value of the positioned element's <a href="/en-US/docs/Web/CSS/position-anchor"><code>position-anchor</code></a> property. We also give it an initial position with <code>position-area: top left</code>; this will be overridden when new values are selected from the <code>&lt;select&gt;</code> menu. Finally, we set its <a href="/en-US/docs/Web/CSS/opacity"><code>opacity</code></a> to <code>0.8</code>, so that when the positioned element is given a <code>position-area</code> value that places it over the top of the anchor, you can still see the elements' position relative to one another.</p>
+<pre class="brush: css hidden">.anchor {
+  font-size: 1.8rem;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  background-color: hsl(240 100% 75%);
+  min-width: 50px;
+  min-height: 50px;
+  line-height: 50px;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 3px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  background: white;
+  border: 1px solid black;
+  padding: 5px;
+  position: fixed;
+}
+
+#position-area-form {
+  top: 0;
+  right: 2px;
+}
+
+#position-area-form div:last-child {
+  margin-top: 10px;
+}
+
+#position-area-form div :last-child {
+  margin-top: 5px;
+}
+
+#writing-mode-form {
+  bottom: 0;
+  left: 2px;
+  writing-mode: horizontal-tb;
+}
+
+#position-area-custom-container {
+  display: none;
+}
+
+.infobox {
+  color: darkblue;
+  background-color: azure;
+  border: 1px solid #ddd;
+  padding: 5px 2px;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+</pre>
+<pre class="brush: css">.anchor {
+  anchor-name: --myAnchor;
+}
+
+.infobox {
+  position-anchor: --myAnchor;
+  position: fixed;
+  opacity: 0.8;
+  position-area: top left;
+}
+</pre>
+<pre class="brush: js hidden">const anchorContainer = document.querySelector("body");
+const infobox = document.querySelector(".infobox");
+
+const positionAreaForm = document.querySelector("#position-area-form");
+const selectElem = document.querySelector("select");
+const inputElemContainer = document.querySelector(
+  "#position-area-custom-container",
+);
+const inputElem = document.querySelector("#position-area-custom");
+const checkboxElem = document.querySelector("#writing-mode-checkbox");
+
+// Stop form from submitting when enter is pressed on it
+positionAreaForm.addEventListener("submit", (e) =&gt; {
+  e.preventDefault();
+});
+
+// Update positioned element position-area to value selected in drop-down
+selectElem.addEventListener("change", () =&gt; {
+  const area = selectElem.value;
+
+  if (area === "Custom") {
+    // Show the custom value input field
+    inputElemContainer.style.display = "block";
+  } else {
+    // Hide the custom value input field
+    inputElemContainer.style.display = "none";
+    // Set the position-area to the value chosen in the select box
+    infobox.style.positionArea = area;
+  }
+});
+
+// Update positioned element position-area to entered custom value
+inputElem.addEventListener("change", () =&gt; {
+  const customArea = inputElem.value;
+
+  // Set the position-area to the value in the input box
+  infobox.style.positionArea = customArea;
+});
+
+// Change writing-mode to match checkbox setting
+checkboxElem.addEventListener("change", () =&gt; {
+  if (checkboxElem.checked) {
+    anchorContainer.style.writingMode = "vertical-lr";
+  } else {
+    anchorContainer.style.writingMode = "horizontal-tb";
+  }
+});
+</pre>
+<h4 id="result">Result</h4>
+<p>The result is as follows:</p><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="`position-area` value comparison sample" id="frame_position-area_value_comparison" width="100%" height="360" src="about:blank" data-live-path="/en-US/docs/Web/CSS/position-area" data-live-id="position-area_value_comparison" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>Try selecting new <code>position-area</code> values from the <code>&lt;select&gt;</code> menu to see the effect they have on the position of the infobox. Select the "Custom" value and try entering some custom <code>position-area</code> values into the text input to see their effect. Add text to the anchor and the anchor positioned elements to see how the anchor positioned element grows based on the <code>position-area</code> value. Finally, check the checkbox and then experiment with different <code>position-area</code> values to see which ones give the same result across different writing modes, and which ones give different results.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.position-area" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.position-area" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/anchor-name"><code>anchor-name</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/position-anchor"><code>position-anchor</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/position-try-fallbacks"><code>position-try-fallbacks</code></a></li>
+  <li>The <a href="/en-US/docs/Web/CSS/anchor"><code>anchor()</code></a> function</li>
+  <li>The <a href="/en-US/docs/Web/CSS/position-area_value"><code>&lt;position-area&gt;</code></a> value</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_anchor_positioning/Using">Using CSS anchor positioning</a> guide</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_anchor_positioning/Try_options_hiding">Handling overflow: try fallbacks and conditional hiding</a> guide</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_anchor_positioning">CSS anchor positioning</a> module</li>
+</ul>
+</body></html>

@@ -1,0 +1,38 @@
+<html><head></head><body>
+<p>The <strong><code>initial</code></strong> CSS keyword applies the <a href="/en-US/docs/Web/CSS/initial_value">initial (or default) value</a> of a property to an element. It can be applied to any CSS property, including the CSS shorthand property <a href="/en-US/docs/Web/CSS/all"><code>all</code></a>. With <code>all</code> set to <code>initial</code>, all CSS properties can be restored to their respective initial values in one go instead of restoring each one separately.</p>
+<p>On <a href="/en-US/docs/Web/CSS/Inheritance#inherited_properties">inherited properties</a>, the initial value may be unexpected. You should consider using the <a href="/en-US/docs/Web/CSS/inherit"><code>inherit</code></a>, <a href="/en-US/docs/Web/CSS/unset"><code>unset</code></a>, <a href="/en-US/docs/Web/CSS/revert"><code>revert</code></a>, or <a href="/en-US/docs/Web/CSS/revert-layer"><code>revert-layer</code></a> keywords instead.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_initial_to_reset_color_for_an_element">Using initial to reset color for an element</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p&gt;
+  &lt;span&gt;This text is red.&lt;/span&gt;
+  &lt;em&gt;This text is in the initial color (typically black).&lt;/em&gt;
+  &lt;span&gt;This is red again.&lt;/span&gt;
+&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">p {
+  color: red;
+}
+
+em {
+  color: initial;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Using initial to reset color for an element sample" id="frame_using_initial_to_reset_color_for_an_element" src="about:blank" data-live-path="/en-US/docs/Web/CSS/initial" data-live-id="using_initial_to_reset_color_for_an_element" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>With the <code>initial</code> keyword in this example, <code>color</code> value on the <code>em</code> element is restored to the initial value of <a href="/en-US/docs/Web/CSS/color#formal_definition"><code>color</code></a>, as defined in the specification.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.global_keywords.initial" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.global_keywords.initial" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Use the <a href="/en-US/docs/Web/CSS/inherit"><code>inherit</code></a> keyword to make an element's property the same as its parent.</li>
+  <li>Use the <a href="/en-US/docs/Web/CSS/revert"><code>revert</code></a> keyword to reset a property to the value established by the user-agent stylesheet (or by user styles, if any exist).</li>
+  <li>Use the <a href="/en-US/docs/Web/CSS/revert-layer"><code>revert-layer</code></a> keyword to reset a property to the value established in a previous cascade layer.</li>
+  <li>Use the <a href="/en-US/docs/Web/CSS/unset"><code>unset</code></a> keyword to set a property to its inherited value if it inherits or to its initial value if not.</li>
+  <li>The <a href="/en-US/docs/Web/CSS/all"><code>all</code></a> property lets you reset all properties to their initial, inherited, reverted, or unset state at once.</li>
+</ul>
+</body></html>

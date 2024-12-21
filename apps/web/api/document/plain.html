@@ -1,0 +1,806 @@
+<html><head></head><body>
+<p>The <strong><code>Document</code></strong> interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the <a href="/en-US/docs/Web/API/Document_Object_Model/Using_the_Document_Object_Model#what_is_a_dom_tree">DOM tree</a>.</p>
+<p>The DOM tree includes elements such as <a href="/en-US/docs/Web/HTML/Element/body"><code>&lt;body&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/table"><code>&lt;table&gt;</code></a>, among <a href="/en-US/docs/Web/HTML/Element">many others</a>. It provides functionality globally to the document, like how to obtain the page's URL and create new elements in the document.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Document" aria-current="page">
+    <rect x="223" y="0" width="75" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Document
+    </text>
+  </a></svg>
+<p>The <code>Document</code> interface describes the common properties and methods for any kind of document. Depending on the document's type (e.g. <a href="/en-US/docs/Web/HTML">HTML</a>, <a href="/en-US/docs/Web/XML">XML</a>, SVG, …), a larger API is available: HTML documents, served with the <code>"text/html"</code> content type, also implement the <a href="/en-US/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a> interface, whereas XML and SVG documents implement the <a href="/en-US/docs/Web/API/XMLDocument"><code>XMLDocument</code></a> interface.</p>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="document"><a href="/en-US/docs/Web/API/Document/Document" title="Document()"><code>Document()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>Document</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface also inherits from the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> and <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a> interfaces.</em></p>
+<dl>
+  <dt id="document.activeelement"><a href="/en-US/docs/Web/API/Document/activeElement"><code>Document.activeElement</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/Element"><code>Element</code></a> that currently has focus.</p>
+  </dd>
+  <dt id="document.adoptedstylesheets"><a href="/en-US/docs/Web/API/Document/adoptedStyleSheets"><code>Document.adoptedStyleSheets</code></a></dt>
+  <dd>
+    <p>
+      Add an array of constructed stylesheets to be used by the document.
+      These stylesheets may also be shared with shadow DOM subtrees of the same document.
+    </p>
+  </dd>
+  <dt id="document.body"><a href="/en-US/docs/Web/API/Document/body"><code>Document.body</code></a></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/HTML/Element/body"><code>&lt;body&gt;</code></a> or <a href="/en-US/docs/Web/HTML/Element/frameset"><code>&lt;frameset&gt;</code></a> node of the current document.</p>
+  </dd>
+  <dt id="document.characterset"><a href="/en-US/docs/Web/API/Document/characterSet"><code>Document.characterSet</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the character set being used by the document.</p>
+  </dd>
+  <dt id="document.childelementcount"><a href="/en-US/docs/Web/API/Document/childElementCount"><code>Document.childElementCount</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the number of child elements of the current document.</p>
+  </dd>
+  <dt id="document.children"><a href="/en-US/docs/Web/API/Document/children"><code>Document.children</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the child elements of the current document.</p>
+  </dd>
+  <dt id="document.compatmode"><a href="/en-US/docs/Web/API/Document/compatMode"><code>Document.compatMode</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Indicates whether the document is rendered in <em>quirks</em> or <em>strict</em> mode.</p>
+  </dd>
+  <dt id="document.contenttype"><a href="/en-US/docs/Web/API/Document/contentType"><code>Document.contentType</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the Content-Type from the MIME Header of the current document.</p>
+  </dd>
+  <dt id="document.currentscript"><a href="/en-US/docs/Web/API/Document/currentScript"><code>Document.currentScript</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> element whose script is currently being processed and <a href="https://github.com/whatwg/html/issues/997">isn't a JavaScript module</a>.</p>
+  </dd>
+  <dt id="document.doctype"><a href="/en-US/docs/Web/API/Document/doctype"><code>Document.doctype</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the Document Type Definition (DTD) of the current document.</p>
+  </dd>
+  <dt id="document.documentelement"><a href="/en-US/docs/Web/API/Document/documentElement"><code>Document.documentElement</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/Element"><code>Element</code></a> that is a direct child of the document. For HTML documents, this is normally the <a href="/en-US/docs/Web/API/HTMLHtmlElement"><code>HTMLHtmlElement</code></a> object representing the document's <a href="/en-US/docs/Web/HTML/Element/html"><code>&lt;html&gt;</code></a> element.</p>
+  </dd>
+  <dt id="document.documenturi"><a href="/en-US/docs/Web/API/Document/documentURI"><code>Document.documentURI</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the document location as a string.</p>
+  </dd>
+  <dt id="document.embeds"><a href="/en-US/docs/Web/API/Document/embeds"><code>Document.embeds</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a> of the embedded <a href="/en-US/docs/Web/HTML/Element/embed"><code>&lt;embed&gt;</code></a> elements in the document.</p>
+  </dd>
+  <dt id="document.featurepolicy"><a href="/en-US/docs/Web/API/Document/featurePolicy"><code>Document.featurePolicy</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/FeaturePolicy"><code>FeaturePolicy</code></a> interface with the feature policies applied to the document.</p>
+  </dd>
+  <dt id="document.firstelementchild"><a href="/en-US/docs/Web/API/Document/firstElementChild"><code>Document.firstElementChild</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the first child element of the current document.</p>
+  </dd>
+  <dt id="document.fonts"><a href="/en-US/docs/Web/API/Document/fonts"><code>Document.fonts</code></a></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/FontFaceSet"><code>FontFaceSet</code></a> interface of the current document.</p>
+  </dd>
+  <dt id="document.forms"><a href="/en-US/docs/Web/API/Document/forms"><code>Document.forms</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a> of the <a href="/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a> elements in the document.</p>
+  </dd>
+  <dt id="document.fragmentdirective"><a href="/en-US/docs/Web/API/Document/fragmentDirective"><code>Document.fragmentDirective</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/FragmentDirective"><code>FragmentDirective</code></a> for the current document.</p>
+  </dd>
+  <dt id="document.fullscreenelement"><a href="/en-US/docs/Web/API/Document/fullscreenElement"><code>Document.fullscreenElement</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The element that's currently in full screen mode for this document.</p>
+  </dd>
+  <dt id="document.head"><a href="/en-US/docs/Web/API/Document/head"><code>Document.head</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/HTML/Element/head"><code>&lt;head&gt;</code></a> element of the current document.</p>
+  </dd>
+  <dt id="document.hidden"><a href="/en-US/docs/Web/API/Document/hidden"><code>Document.hidden</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a Boolean value indicating if the page is considered hidden or not.</p>
+  </dd>
+  <dt id="document.images"><a href="/en-US/docs/Web/API/Document/images"><code>Document.images</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a> of the images in the document.</p>
+  </dd>
+  <dt id="document.implementation"><a href="/en-US/docs/Web/API/Document/implementation"><code>Document.implementation</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the DOM implementation associated with the current document.</p>
+  </dd>
+  <dt id="document.lastelementchild"><a href="/en-US/docs/Web/API/Document/lastElementChild"><code>Document.lastElementChild</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the last child element of the current document.</p>
+  </dd>
+  <dt id="document.links"><a href="/en-US/docs/Web/API/Document/links"><code>Document.links</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a> of the hyperlinks in the document.</p>
+  </dd>
+  <dt id="document.pictureinpictureelement"><a href="/en-US/docs/Web/API/Document/pictureInPictureElement"><code>Document.pictureInPictureElement</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/Element"><code>Element</code></a> currently being presented in picture-in-picture mode in this document.</p>
+  </dd>
+  <dt id="document.pictureinpictureenabled"><a href="/en-US/docs/Web/API/Document/pictureInPictureEnabled"><code>Document.pictureInPictureEnabled</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns true if the picture-in-picture feature is enabled.</p>
+  </dd>
+  <dt id="document.plugins"><a href="/en-US/docs/Web/API/Document/plugins"><code>Document.plugins</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a> of the available plugins.</p>
+  </dd>
+  <dt id="document.pointerlockelement"><a href="/en-US/docs/Web/API/Document/pointerLockElement"><code>Document.pointerLockElement</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the element set as the target for mouse events while the pointer is locked. <code>null</code> if lock is pending, pointer is unlocked, or if the target is in another document.</p>
+  </dd>
+  <dt id="document.prerendering"><a href="/en-US/docs/Web/API/Document/prerendering"><code>Document.prerendering</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a boolean that indicates whether the document is currently in the process of prerendering, as initiated via the <a href="/en-US/docs/Web/API/Speculation_Rules_API">Speculation Rules API</a>.</p>
+  </dd>
+  <dt id="document.scripts"><a href="/en-US/docs/Web/API/Document/scripts"><code>Document.scripts</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a> of the <a href="/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> elements in the document.</p>
+  </dd>
+  <dt id="document.scrollingelement"><a href="/en-US/docs/Web/API/Document/scrollingElement"><code>Document.scrollingElement</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a reference to the <a href="/en-US/docs/Web/API/Element"><code>Element</code></a> that scrolls the document.</p>
+  </dd>
+  <dt id="document.stylesheets"><a href="/en-US/docs/Web/API/Document/styleSheets"><code>Document.styleSheets</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/StyleSheetList"><code>StyleSheetList</code></a> of <a href="/en-US/docs/Web/API/CSSStyleSheet"><code>CSSStyleSheet</code></a> objects for stylesheets explicitly linked into, or embedded in a document.</p>
+  </dd>
+  <dt id="document.timeline"><a href="/en-US/docs/Web/API/Document/timeline"><code>Document.timeline</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns timeline as a special instance of <a href="/en-US/docs/Web/API/DocumentTimeline"><code>DocumentTimeline</code></a> that is automatically created on page load.</p>
+  </dd>
+  <dt id="document.visibilitystate"><a href="/en-US/docs/Web/API/Document/visibilityState"><code>Document.visibilityState</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <code>string</code> denoting the visibility state of the document. Possible values are <code>visible</code>, <code>hidden</code>, <code>prerender</code>, and <code>unloaded</code>.</p>
+  </dd>
+</dl>
+<h3 id="extensions_for_htmldocument">Extensions for HTMLDocument</h3>
+<p><em>The <code>Document</code> interface for HTML documents inherits from the <a href="/en-US/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a> interface or is extended for such documents.</em></p>
+<dl>
+  <dt id="document.cookie"><a href="/en-US/docs/Web/API/Document/cookie"><code>Document.cookie</code></a></dt>
+  <dd>
+    <p>Returns a semicolon-separated list of the cookies for that document or sets a single cookie.</p>
+  </dd>
+  <dt id="document.defaultview"><a href="/en-US/docs/Web/API/Document/defaultView"><code>Document.defaultView</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a reference to the window object.</p>
+  </dd>
+  <dt id="document.designmode"><a href="/en-US/docs/Web/API/Document/designMode"><code>Document.designMode</code></a></dt>
+  <dd>
+    <p>Gets/sets the ability to edit the whole document.</p>
+  </dd>
+  <dt id="document.dir"><a href="/en-US/docs/Web/API/Document/dir"><code>Document.dir</code></a></dt>
+  <dd>
+    <p>Gets/sets directionality (rtl/ltr) of the document.</p>
+  </dd>
+  <dt id="document.fullscreenenabled"><a href="/en-US/docs/Web/API/Document/fullscreenEnabled"><code>Document.fullscreenEnabled</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Indicates whether fullscreen mode is available.</p>
+  </dd>
+  <dt id="document.lastmodified"><a href="/en-US/docs/Web/API/Document/lastModified"><code>Document.lastModified</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the date on which the document was last modified.</p>
+  </dd>
+  <dt id="document.location"><a href="/en-US/docs/Web/API/Document/location"><code>Document.location</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the URI of the current document.</p>
+  </dd>
+  <dt id="document.readystate"><a href="/en-US/docs/Web/API/Document/readyState"><code>Document.readyState</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns loading status of the document.</p>
+  </dd>
+  <dt id="document.referrer"><a href="/en-US/docs/Web/API/Document/referrer"><code>Document.referrer</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the URI of the page that linked to this page.</p>
+  </dd>
+  <dt id="document.title"><a href="/en-US/docs/Web/API/Document/title"><code>Document.title</code></a></dt>
+  <dd>
+    <p>Sets or gets the title of the current document.</p>
+  </dd>
+  <dt id="document.url"><a href="/en-US/docs/Web/API/Document/URL"><code>Document.URL</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the document location as a string.</p>
+  </dd>
+</dl>
+<h3 id="deprecated_properties">Deprecated properties</h3>
+<dl>
+  <dt id="document.alinkcolor"><a href="/en-US/docs/Web/API/Document/alinkColor"><code>Document.alinkColor</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns or sets the color of active links in the document body.</p>
+  </dd>
+  <dt id="document.all"><a href="/en-US/docs/Web/API/Document/all"><code>Document.all</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Provides access to all elements in the document — it returns an <a href="/en-US/docs/Web/API/HTMLAllCollection"><code>HTMLAllCollection</code></a> rooted at the document node. This is a legacy, non-standard property and should not be used.</p>
+  </dd>
+  <dt id="document.anchors"><a href="/en-US/docs/Web/API/Document/anchors"><code>Document.anchors</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a list of all of the anchors in the document.</p>
+  </dd>
+  <dt id="document.applets"><a href="/en-US/docs/Web/API/Document/applets"><code>Document.applets</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an empty <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a>. Legacy property that used to return the list of applets within a document.</p>
+  </dd>
+  <dt id="document.bgcolor"><a href="/en-US/docs/Web/API/Document/bgColor"><code>Document.bgColor</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Gets/sets the background color of the current document.</p>
+  </dd>
+  <dt id="document.charset"><a href="/en-US/docs/Web/API/Document/characterSet" title="Document.charset"><code>Document.charset</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Alias of <a href="/en-US/docs/Web/API/Document/characterSet"><code>Document.characterSet</code></a>. Use this property instead.</p>
+  </dd>
+  <dt id="document.domain"><a href="/en-US/docs/Web/API/Document/domain"><code>Document.domain</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Gets/sets the domain of the current document.</p>
+  </dd>
+  <dt id="document.fgcolor"><a href="/en-US/docs/Web/API/Document/fgColor"><code>Document.fgColor</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Gets/sets the foreground color, or text color, of the current document.</p>
+  </dd>
+  <dt id="document.fullscreen"><a href="/en-US/docs/Web/API/Document/fullscreen"><code>Document.fullscreen</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns <code>true</code> when the document is in <a href="/en-US/docs/Web/API/Fullscreen_API">fullscreen mode</a>.</p>
+  </dd>
+  <dt id="document.inputencoding"><a href="/en-US/docs/Web/API/Document/characterSet" title="Document.inputEncoding"><code>Document.inputEncoding</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Alias of <a href="/en-US/docs/Web/API/Document/characterSet"><code>Document.characterSet</code></a>. Use this property instead.</p>
+  </dd>
+  <dt id="document.laststylesheetset"><a href="/en-US/docs/Web/API/Document/lastStyleSheetSet"><code>Document.lastStyleSheetSet</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the name of the style sheet set that was last enabled. Has the value <code>null</code> until the style sheet is changed by setting the value of <a href="/en-US/docs/Web/API/Document/selectedStyleSheetSet" title="selectedStyleSheetSet"><code>selectedStyleSheetSet</code></a>.</p>
+  </dd>
+  <dt id="document.linkcolor"><a href="/en-US/docs/Web/API/Document/linkColor"><code>Document.linkColor</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Gets/sets the color of hyperlinks in the document.</p>
+  </dd>
+  <dt id="document.preferredstylesheetset"><a href="/en-US/docs/Web/API/Document/preferredStyleSheetSet"><code>Document.preferredStyleSheetSet</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the preferred style sheet set as specified by the page author.</p>
+  </dd>
+  <dt id="document.rootelement"><a href="/en-US/docs/Web/API/Document/rootElement"><code>Document.rootElement</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Like <a href="/en-US/docs/Web/API/Document/documentElement"><code>Document.documentElement</code></a>, but only for <a href="/en-US/docs/Web/SVG/Element/svg"><code>&lt;svg&gt;</code></a> root elements. Use this property instead.</p>
+  </dd>
+  <dt id="document.selectedstylesheetset"><a href="/en-US/docs/Web/API/Document/selectedStyleSheetSet"><code>Document.selectedStyleSheetSet</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns which style sheet set is currently in use.</p>
+  </dd>
+  <dt id="document.stylesheetsets"><a href="/en-US/docs/Web/API/Document/styleSheetSets"><code>Document.styleSheetSets</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a list of the style sheet sets available on the document.</p>
+  </dd>
+  <dt id="document.vlinkcolor"><a href="/en-US/docs/Web/API/Document/vlinkColor"><code>Document.vlinkColor</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Gets/sets the color of visited hyperlinks.</p>
+  </dd>
+  <dt id="document.xmlencoding"><a href="/en-US/docs/Web/API/Document/xmlEncoding"><code>Document.xmlEncoding</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the encoding as determined by the XML declaration.</p>
+  </dd>
+  <dt id="document.xmlstandalone"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;Document.xmlStandalone&quot;)}}"><code>Document.xmlStandalone</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns <code>true</code> if the XML declaration specifies the document to be standalone (<em>e.g.,</em> An external part of the DTD affects the document's content), else <code>false</code>.</p>
+  </dd>
+  <dt id="document.xmlversion"><a href="/en-US/docs/Web/API/Document/xmlVersion"><code>Document.xmlVersion</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the version number as specified in the XML declaration or <code>"1.0"</code> if the declaration is absent.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface also inherits from the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> and <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a> interfaces.</em></p>
+<dl>
+  <dt id="document.adoptnode"><a href="/en-US/docs/Web/API/Document/adoptNode"><code>Document.adoptNode()</code></a></dt>
+  <dd>
+    <p>Adopt node from an external document.</p>
+  </dd>
+  <dt id="document.append"><a href="/en-US/docs/Web/API/Document/append"><code>Document.append()</code></a></dt>
+  <dd>
+    <p>Inserts a set of <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> objects or strings after the last child of the document.</p>
+  </dd>
+  <dt id="document.browsingtopics"><a href="/en-US/docs/Web/API/Document/browsingTopics"><code>Document.browsingTopics()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a promise that fulfills with an array of objects representing the top topics for the user, one from each of the last three epochs. By default, the method also causes the browser to record the current page visit as observed by the caller, so the page's hostname can later be used in topics calculation. See the <a href="/en-US/docs/Web/API/Topics_API">Topics API</a> for more details.</p>
+  </dd>
+  <dt id="document.captureevents"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;Document.captureEvents()&quot;)}}"><code>Document.captureEvents()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>See <a href="/en-US/docs/Web/API/Window/captureEvents"><code>Window.captureEvents</code></a>.</p>
+  </dd>
+  <dt id="document.caretpositionfrompoint"><a href="/en-US/docs/Web/API/Document/caretPositionFromPoint"><code>Document.caretPositionFromPoint()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/CaretPosition"><code>CaretPosition</code></a> object containing the DOM node containing the caret, and caret's character offset within that node.</p>
+  </dd>
+  <dt id="document.caretrangefrompoint"><a href="/en-US/docs/Web/API/Document/caretRangeFromPoint"><code>Document.caretRangeFromPoint()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Gets a <a href="/en-US/docs/Web/API/Range"><code>Range</code></a> object for the document fragment under the specified coordinates.</p>
+  </dd>
+  <dt id="document.createattribute"><a href="/en-US/docs/Web/API/Document/createAttribute"><code>Document.createAttribute()</code></a></dt>
+  <dd>
+    <p>Creates a new <a href="/en-US/docs/Web/API/Attr"><code>Attr</code></a> object and returns it.</p>
+  </dd>
+  <dt id="document.createattributens"><a href="/en-US/docs/Web/API/Document/createAttributeNS"><code>Document.createAttributeNS()</code></a></dt>
+  <dd>
+    <p>Creates a new attribute node in a given namespace and returns it.</p>
+  </dd>
+  <dt id="document.createcdatasection"><a href="/en-US/docs/Web/API/Document/createCDATASection"><code>Document.createCDATASection()</code></a></dt>
+  <dd>
+    <p>Creates a new CDATA node and returns it.</p>
+  </dd>
+  <dt id="document.createcomment"><a href="/en-US/docs/Web/API/Document/createComment"><code>Document.createComment()</code></a></dt>
+  <dd>
+    <p>Creates a new comment node and returns it.</p>
+  </dd>
+  <dt id="document.createdocumentfragment"><a href="/en-US/docs/Web/API/Document/createDocumentFragment"><code>Document.createDocumentFragment()</code></a></dt>
+  <dd>
+    <p>Creates a new document fragment.</p>
+  </dd>
+  <dt id="document.createelement"><a href="/en-US/docs/Web/API/Document/createElement"><code>Document.createElement()</code></a></dt>
+  <dd>
+    <p>Creates a new element with the given tag name.</p>
+  </dd>
+  <dt id="document.createelementns"><a href="/en-US/docs/Web/API/Document/createElementNS"><code>Document.createElementNS()</code></a></dt>
+  <dd>
+    <p>Creates a new element with the given tag name and namespace URI.</p>
+  </dd>
+  <dt id="document.createevent"><a href="/en-US/docs/Web/API/Document/createEvent"><code>Document.createEvent()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Creates an event object.</p>
+  </dd>
+  <dt id="document.createnodeiterator"><a href="/en-US/docs/Web/API/Document/createNodeIterator"><code>Document.createNodeIterator()</code></a></dt>
+  <dd>
+    <p>Creates a <a href="/en-US/docs/Web/API/NodeIterator"><code>NodeIterator</code></a> object.</p>
+  </dd>
+  <dt id="document.createprocessinginstruction"><a href="/en-US/docs/Web/API/Document/createProcessingInstruction"><code>Document.createProcessingInstruction()</code></a></dt>
+  <dd>
+    <p>Creates a new <a href="/en-US/docs/Web/API/ProcessingInstruction"><code>ProcessingInstruction</code></a> object.</p>
+  </dd>
+  <dt id="document.createrange"><a href="/en-US/docs/Web/API/Document/createRange"><code>Document.createRange()</code></a></dt>
+  <dd>
+    <p>Creates a <a href="/en-US/docs/Web/API/Range"><code>Range</code></a> object.</p>
+  </dd>
+  <dt id="document.createtextnode"><a href="/en-US/docs/Web/API/Document/createTextNode"><code>Document.createTextNode()</code></a></dt>
+  <dd>
+    <p>Creates a text node.</p>
+  </dd>
+  <dt id="document.createtouch"><a href="/en-US/docs/Web/API/Document/createTouch"><code>Document.createTouch()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Creates a <a href="/en-US/docs/Web/API/Touch"><code>Touch</code></a> object.</p>
+  </dd>
+  <dt id="document.createtouchlist"><a href="/en-US/docs/Web/API/Document/createTouchList"><code>Document.createTouchList()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Creates a <a href="/en-US/docs/Web/API/TouchList"><code>TouchList</code></a> object.</p>
+  </dd>
+  <dt id="document.createtreewalker"><a href="/en-US/docs/Web/API/Document/createTreeWalker"><code>Document.createTreeWalker()</code></a></dt>
+  <dd>
+    <p>Creates a <a href="/en-US/docs/Web/API/TreeWalker"><code>TreeWalker</code></a> object.</p>
+  </dd>
+  <dt id="document.elementfrompoint"><a href="/en-US/docs/Web/API/Document/elementFromPoint"><code>Document.elementFromPoint()</code></a></dt>
+  <dd>
+    <p>Returns the topmost element at the specified coordinates.</p>
+  </dd>
+  <dt id="document.elementsfrompoint"><a href="/en-US/docs/Web/API/Document/elementsFromPoint"><code>Document.elementsFromPoint()</code></a></dt>
+  <dd>
+    <p>Returns an array of all elements at the specified coordinates.</p>
+  </dd>
+  <dt id="document.enablestylesheetsforset"><a href="/en-US/docs/Web/API/Document/enableStyleSheetsForSet"><code>Document.enableStyleSheetsForSet()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Enables the style sheets for the specified style sheet set.</p>
+  </dd>
+  <dt id="document.exitfullscreen"><a href="/en-US/docs/Web/API/Document/exitFullscreen"><code>Document.exitFullscreen()</code></a></dt>
+  <dd>
+    <p>Stops document's fullscreen element from being displayed fullscreen.</p>
+  </dd>
+  <dt id="document.exitpictureinpicture"><a href="/en-US/docs/Web/API/Document/exitPictureInPicture"><code>Document.exitPictureInPicture()</code></a></dt>
+  <dd>
+    <p>Remove the video from the floating picture-in-picture window back to its original container.</p>
+  </dd>
+  <dt id="document.exitpointerlock"><a href="/en-US/docs/Web/API/Document/exitPointerLock"><code>Document.exitPointerLock()</code></a></dt>
+  <dd>
+    <p>Release the pointer lock.</p>
+  </dd>
+  <dt id="document.getanimations"><a href="/en-US/docs/Web/API/Document/getAnimations"><code>Document.getAnimations()</code></a></dt>
+  <dd>
+    <p>Returns an array of all <a href="/en-US/docs/Web/API/Animation"><code>Animation</code></a> objects currently in effect, whose target elements are descendants of the <code>document</code>.</p>
+  </dd>
+  <dt id="document.getboxquads"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;Document.getBoxQuads()&quot;)}}"><code>Document.getBoxQuads()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a list of <a href="/en-US/docs/Web/API/DOMQuad"><code>DOMQuad</code></a> objects representing the CSS fragments of the node.</p>
+  </dd>
+  <dt id="document.getelementbyid"><a href="/en-US/docs/Web/API/Document/getElementById" title="Document.getElementById()"><code>Document.getElementById()</code></a></dt>
+  <dd>
+    <p>Returns an object reference to the identified element.</p>
+  </dd>
+  <dt id="document.getelementsbyclassname"><a href="/en-US/docs/Web/API/Document/getElementsByClassName"><code>Document.getElementsByClassName()</code></a></dt>
+  <dd>
+    <p>Returns a list of elements with the given class name.</p>
+  </dd>
+  <dt id="document.getelementsbytagname"><a href="/en-US/docs/Web/API/Document/getElementsByTagName"><code>Document.getElementsByTagName()</code></a></dt>
+  <dd>
+    <p>Returns a list of elements with the given tag name.</p>
+  </dd>
+  <dt id="document.getelementsbytagnamens"><a href="/en-US/docs/Web/API/Document/getElementsByTagNameNS"><code>Document.getElementsByTagNameNS()</code></a></dt>
+  <dd>
+    <p>Returns a list of elements with the given tag name and namespace.</p>
+  </dd>
+  <dt id="document.getselection"><a href="/en-US/docs/Web/API/Document/getSelection"><code>Document.getSelection()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/Selection"><code>Selection</code></a> object representing the range of text selected by the user, or the current position of the caret.</p>
+  </dd>
+  <dt id="document.hasstorageaccess"><a href="/en-US/docs/Web/API/Document/hasStorageAccess"><code>Document.hasStorageAccess()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a boolean value indicating whether the document has access to unpartitioned cookies.</p>
+  </dd>
+  <dt id="document.hasunpartitionedcookieaccess"><a href="/en-US/docs/Web/API/Document/hasUnpartitionedCookieAccess"><code>Document.hasUnpartitionedCookieAccess()</code></a></dt>
+  <dd>
+    <p>New name for <a href="/en-US/docs/Web/API/Document/hasStorageAccess"><code>Document.hasStorageAccess()</code></a>.</p>
+  </dd>
+  <dt id="document.importnode"><a href="/en-US/docs/Web/API/Document/importNode"><code>Document.importNode()</code></a></dt>
+  <dd>
+    <p>Returns a clone of a node from an external document.</p>
+  </dd>
+  <dt id="document.mozsetimageelement"><a href="/en-US/docs/Web/API/Document/mozSetImageElement"><code>Document.mozSetImageElement()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Allows you to change the element being used as the background image for a specified element ID.</p>
+  </dd>
+  <dt id="document.prepend"><a href="/en-US/docs/Web/API/Document/prepend"><code>Document.prepend()</code></a></dt>
+  <dd>
+    <p>Inserts a set of <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> objects or strings before the first child of the document.</p>
+  </dd>
+  <dt id="document.queryselector"><a href="/en-US/docs/Web/API/Document/querySelector"><code>Document.querySelector()</code></a></dt>
+  <dd>
+    <p>Returns the first Element node within the document, in document order, that matches the specified selectors.</p>
+  </dd>
+  <dt id="document.queryselectorall"><a href="/en-US/docs/Web/API/Document/querySelectorAll"><code>Document.querySelectorAll()</code></a></dt>
+  <dd>
+    <p>Returns a list of all the Element nodes within the document that match the specified selectors.</p>
+  </dd>
+  <dt id="document.releasecapture"><a href="/en-US/docs/Web/API/Document/releaseCapture"><code>Document.releaseCapture()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Releases the current mouse capture if it's on an element in this document.</p>
+  </dd>
+  <dt id="document.releaseevents"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;Document.releaseEvents()&quot;)}}"><code>Document.releaseEvents()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>See <a href="/en-US/docs/Web/API/Window/releaseEvents"><code>Window.releaseEvents()</code></a>.</p>
+  </dd>
+  <dt id="document.replacechildren"><a href="/en-US/docs/Web/API/Document/replaceChildren"><code>Document.replaceChildren()</code></a></dt>
+  <dd>
+    <p>Replaces the existing children of a document with a specified new set of children.</p>
+  </dd>
+  <dt id="document.requeststorageaccess"><a href="/en-US/docs/Web/API/Document/requestStorageAccess"><code>Document.requestStorageAccess()</code></a></dt>
+  <dd>
+    <p>Allows a document loaded in a third-party context (i.e. embedded in an <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>) to request access to unpartitioned cookies, in cases where user agents by default block access to unpartitioned cookies by sites loaded in a third-party context to improve privacy.</p>
+  </dd>
+  <dt id="document.requeststorageaccessfor"><a href="/en-US/docs/Web/API/Document/requestStorageAccessFor"><code>Document.requestStorageAccessFor()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Allows top-level sites to request third-party cookie access on behalf of embedded content originating from another site in the same <a href="/en-US/docs/Web/API/Storage_Access_API/Related_website_sets">related website set</a>.</p>
+  </dd>
+  <dt id="document.startviewtransition"><a href="/en-US/docs/Web/API/Document/startViewTransition"><code>Document.startViewTransition()</code></a></dt>
+  <dd>
+    <p>Starts a new <a href="/en-US/docs/Web/API/View_Transitions_API" title="view transition">view transition</a> and returns a <a href="/en-US/docs/Web/API/ViewTransition"><code>ViewTransition</code></a> object to represent it.</p>
+  </dd>
+</dl>
+<p>The <code>Document</code> interface is extended with the <a href="/en-US/docs/Web/API/XPathEvaluator"><code>XPathEvaluator</code></a> interface:</p>
+<dl>
+  <dt id="document.createexpression"><a href="/en-US/docs/Web/API/Document/createExpression"><code>Document.createExpression()</code></a></dt>
+  <dd>
+    <p>Compiles an <a href="/en-US/docs/Web/API/XPathExpression"><code>XPathExpression</code></a> which can then be used for (repeated) evaluations.</p>
+  </dd>
+  <dt id="document.creatensresolver"><a href="/en-US/docs/Web/API/Document/createNSResolver"><code>Document.createNSResolver()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the input node as-is.</p>
+  </dd>
+  <dt id="document.evaluate"><a href="/en-US/docs/Web/API/Document/evaluate"><code>Document.evaluate()</code></a></dt>
+  <dd>
+    <p>Evaluates an XPath expression.</p>
+  </dd>
+</dl>
+<h3 id="extension_for_html_documents">Extension for HTML documents</h3>
+<p>The <code>Document</code> interface for HTML documents inherit from the <a href="/en-US/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a> interface or is extended for such documents:</p>
+<dl>
+  <dt id="document.clear"><a href="/en-US/docs/Web/API/Document/clear"><code>Document.clear()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>This method does nothing.</p>
+  </dd>
+  <dt id="document.close"><a href="/en-US/docs/Web/API/Document/close"><code>Document.close()</code></a></dt>
+  <dd>
+    <p>Closes a document stream for writing.</p>
+  </dd>
+  <dt id="document.execcommand"><a href="/en-US/docs/Web/API/Document/execCommand"><code>Document.execCommand()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>On an editable document, executes a formatting command.</p>
+  </dd>
+  <dt id="document.getelementsbyname"><a href="/en-US/docs/Web/API/Document/getElementsByName"><code>Document.getElementsByName()</code></a></dt>
+  <dd>
+    <p>Returns a list of elements with the given name.</p>
+  </dd>
+  <dt id="document.hasfocus"><a href="/en-US/docs/Web/API/Document/hasFocus"><code>Document.hasFocus()</code></a></dt>
+  <dd>
+    <p>Returns <code>true</code> if the focus is currently located anywhere inside the specified document.</p>
+  </dd>
+  <dt id="document.open"><a href="/en-US/docs/Web/API/Document/open"><code>Document.open()</code></a></dt>
+  <dd>
+    <p>Opens a document stream for writing.</p>
+  </dd>
+  <dt id="document.querycommandenabled"><a href="/en-US/docs/Web/API/Document/queryCommandEnabled"><code>Document.queryCommandEnabled()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns true if the formatting command can be executed on the current range.</p>
+  </dd>
+  <dt id="document.querycommandindeterm"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;Document.queryCommandIndeterm()&quot;)}}"><code>Document.queryCommandIndeterm()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns true if the formatting command is in an indeterminate state on the current range.</p>
+  </dd>
+  <dt id="document.querycommandstate"><a href="/en-US/docs/Web/API/Document/queryCommandState"><code>Document.queryCommandState()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns true if the formatting command has been executed on the current range.</p>
+  </dd>
+  <dt id="document.querycommandsupported"><a href="/en-US/docs/Web/API/Document/queryCommandSupported"><code>Document.queryCommandSupported()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns true if the formatting command is supported on the current range.</p>
+  </dd>
+  <dt id="document.querycommandvalue"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;Document.queryCommandValue()&quot;)}}"><code>Document.queryCommandValue()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the current value of the current range for a formatting command.</p>
+  </dd>
+  <dt id="document.write"><a href="/en-US/docs/Web/API/Document/write"><code>Document.write()</code></a></dt>
+  <dd>
+    <p>Writes text in a document.</p>
+  </dd>
+  <dt id="document.writeln"><a href="/en-US/docs/Web/API/Document/writeln"><code>Document.writeln()</code></a></dt>
+  <dd>
+    <p>Writes a line of text in a document.</p>
+  </dd>
+</dl>
+<h2 id="static_methods">Static methods</h2>
+<p><em>This interface also inherits from the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> and <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a> interfaces.</em></p>
+<dl>
+  <dt id="document.parsehtmlunsafe"><a href="/en-US/docs/Web/API/Document/parseHTMLUnsafe_static" title="Document.parseHTMLUnsafe()"><code>Document.parseHTMLUnsafe()</code></a></dt>
+  <dd>
+    <p>
+      Creates a new <code>Document</code> object from a string of HTML without performing sanitization.
+      The string may contain declarative shadow roots.
+    </p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <code>addEventListener()</code> or by assigning an event listener to the <code>oneventname</code> property of this interface. In addition to the events listed below, many events can bubble from <a href="/en-US/docs/Web/API/Node" title="nodes">nodes</a> contained in the document tree.</p>
+<dl>
+  <dt id="afterscriptexecute"><a href="/en-US/docs/Web/API/Document/afterscriptexecute_event" title="afterscriptexecute"><code>afterscriptexecute</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when a static <a href="/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> element finishes executing its script</p>
+  </dd>
+  <dt id="beforescriptexecute"><a href="/en-US/docs/Web/API/Document/beforescriptexecute_event" title="beforescriptexecute"><code>beforescriptexecute</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when a static <a href="/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> is about to start executing.</p>
+  </dd>
+  <dt id="prerenderingchange"><a href="/en-US/docs/Web/API/Document/prerenderingchange_event" title="prerenderingchange"><code>prerenderingchange</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired on a prerendered document when it is activated (i.e. the user views the page).</p>
+  </dd>
+  <dt id="securitypolicyviolation"><a href="/en-US/docs/Web/API/Document/securitypolicyviolation_event" title="securitypolicyviolation"><code>securitypolicyviolation</code></a></dt>
+  <dd>
+    <p>Fired when a content security policy is violated.</p>
+  </dd>
+  <dt id="visibilitychange"><a href="/en-US/docs/Web/API/Document/visibilitychange_event" title="visibilitychange"><code>visibilitychange</code></a></dt>
+  <dd>
+    <p>Fired when the content of a tab has become visible or has been hidden.</p>
+  </dd>
+</dl>
+<h3 id="clipboard_events">Clipboard events</h3>
+<dl>
+  <dt id="copy"><a href="/en-US/docs/Web/API/Document/copy_event" title="copy"><code>copy</code></a></dt>
+  <dd>
+    <p>Fired when the user initiates a copy action through the browser's user interface.</p>
+  </dd>
+  <dt id="cut"><a href="/en-US/docs/Web/API/Document/cut_event" title="cut"><code>cut</code></a></dt>
+  <dd>
+    <p>Fired when the user initiates a cut action through the browser's user interface.</p>
+  </dd>
+  <dt id="paste"><a href="/en-US/docs/Web/API/Document/paste_event" title="paste"><code>paste</code></a></dt>
+  <dd>
+    <p>Fired when the user initiates a paste action through the browser's user interface.</p>
+  </dd>
+</dl>
+<h3 id="fullscreen_events">Fullscreen events</h3>
+<dl>
+  <dt id="fullscreenchange"><a href="/en-US/docs/Web/API/Document/fullscreenchange_event" title="fullscreenchange"><code>fullscreenchange</code></a></dt>
+  <dd>
+    <p>Fired when the <code>Document</code> transitions into or out of <a href="/en-US/docs/Web/API/Fullscreen_API/Guide">fullscreen</a> mode.</p>
+  </dd>
+  <dt id="fullscreenerror"><a href="/en-US/docs/Web/API/Document/fullscreenerror_event" title="fullscreenerror"><code>fullscreenerror</code></a></dt>
+  <dd>
+    <p>Fired if an error occurs while attempting to switch into or out of <a href="/en-US/docs/Web/API/Fullscreen_API/Guide">fullscreen</a> mode.</p>
+  </dd>
+</dl>
+<h3 id="load_unload_events">Load &amp; unload events</h3>
+<dl>
+  <dt id="domcontentloaded"><a href="/en-US/docs/Web/API/Document/DOMContentLoaded_event" title="DOMContentLoaded"><code>DOMContentLoaded</code></a></dt>
+  <dd>
+    <p>Fired when the document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.</p>
+  </dd>
+  <dt id="readystatechange"><a href="/en-US/docs/Web/API/Document/readystatechange_event" title="readystatechange"><code>readystatechange</code></a></dt>
+  <dd>
+    <p>Fired when the <a href="/en-US/docs/Web/API/Document/readyState" title="readyState"><code>readyState</code></a> attribute of a document has changed.</p>
+  </dd>
+</dl>
+<h3 id="pointer_lock_events">Pointer lock events</h3>
+<dl>
+  <dt id="pointerlockchange"><a href="/en-US/docs/Web/API/Document/pointerlockchange_event" title="pointerlockchange"><code>pointerlockchange</code></a></dt>
+  <dd>
+    <p>Fired when the pointer is locked/unlocked.</p>
+  </dd>
+  <dt id="pointerlockerror"><a href="/en-US/docs/Web/API/Document/pointerlockerror_event" title="pointerlockerror"><code>pointerlockerror</code></a></dt>
+  <dd>
+    <p>Fired when locking the pointer failed.</p>
+  </dd>
+</dl>
+<h3 id="scroll_events">Scroll events</h3>
+<dl>
+  <dt id="scroll"><a href="/en-US/docs/Web/API/Document/scroll_event" title="scroll"><code>scroll</code></a></dt>
+  <dd>
+    <p>Fired when the document view or an element has been scrolled.</p>
+  </dd>
+  <dt id="scrollend"><a href="/en-US/docs/Web/API/Document/scrollend_event" title="scrollend"><code>scrollend</code></a></dt>
+  <dd>
+    <p>Fired when the document view or an element has completed scrolling.</p>
+  </dd>
+  <dt id="scrollsnapchange"><a href="/en-US/docs/Web/API/Document/scrollsnapchange_event" title="scrollsnapchange"><code>scrollsnapchange</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired on the scroll container at the end of a scrolling operation when a new scroll snap target has been selected.</p>
+  </dd>
+  <dt id="scrollsnapchanging"><a href="/en-US/docs/Web/API/Document/scrollsnapchanging_event" title="scrollsnapchanging"><code>scrollsnapchanging</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired on the scroll container when the browser determines a new scroll snap target is pending, i.e. it will be selected when the current scroll gesture ends.</p>
+  </dd>
+</dl>
+<h3 id="selection_events">Selection events</h3>
+<dl>
+  <dt id="selectionchange"><a href="/en-US/docs/Web/API/Document/selectionchange_event" title="selectionchange"><code>selectionchange</code></a></dt>
+  <dd>
+    <p>Fired when the current text selection on a document is changed.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Document" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Document" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

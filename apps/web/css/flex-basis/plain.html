@@ -1,0 +1,207 @@
+<html><head></head><body>
+<p>The <strong><code>flex-basis</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets the initial main size of a <a href="/en-US/docs/Glossary/Flex_Item">flex item</a>. It sets the size of the content box unless otherwise set with <a href="/en-US/docs/Web/CSS/box-sizing"><code>box-sizing</code></a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> It is recommended to use the <a href="/en-US/docs/Web/CSS/flex"><code>flex</code></a> shorthand instead of separate <code>flex-grow</code>, <code>flex-shrink</code>, and <code>flex-basis</code> declarations. We have separated them here as this document is about one of the shorthand components: the <code>flex-basis</code> property.</p>
+</div><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/flex-basis.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p>In this example, the <a href="/en-US/docs/Web/CSS/flex-grow"><code>flex-grow</code></a> and <a href="/en-US/docs/Web/CSS/flex-shrink"><code>flex-shrink</code></a> properties are both set to <code>1</code> on all three items, indicating that the flex item can grow and shrink from the initial <code>flex-basis</code>.</p>
+<p>The demo changes the <code>flex-basis</code> value set on the first flex item, causing it to grow or shrink to fill the available space. The other flex items will also change size; they will be at least <code>min-content</code>-sized. For example, when the <code>flex-basis</code> of the first item is set to <code>200px</code>, it will start at <code>200px</code> but then shrink to fit the space available.</p>
+<p>If <code>flex-basis</code> is set to a value other than <code>auto</code> and there is a <code>width</code> (or <code>height</code> in case of <code>flex-direction: column</code>) set for that same flex item, the <code>flex-basis</code> value takes precedence.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Specify &lt;'width'&gt; */
+flex-basis: 10em;
+flex-basis: 3px;
+flex-basis: 50%;
+flex-basis: auto;
+
+/* Intrinsic sizing keywords */
+flex-basis: max-content;
+flex-basis: min-content;
+flex-basis: fit-content;
+
+/* Automatically size based on the flex item's content */
+flex-basis: content;
+
+/* Global values */
+flex-basis: inherit;
+flex-basis: initial;
+flex-basis: revert;
+flex-basis: revert-layer;
+flex-basis: unset;
+</pre>
+<p>The <code>flex-basis</code> property is specified as either the keyword <code>content</code> or a <code>&lt;'width'&gt;</code>.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="width"><a href="#width"><code>&lt;'width'&gt;</code></a></dt>
+  <dd>
+    <p>Any of the following units:</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> sets an absolute value.</li>
+      <li><a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> sets a percentage of the width or height of the containing block's content area. Percentage values of <code>flex-basis</code> are resolved against the flex container. If the flex container's size is indefinite, the used value for <code>flex-basis</code> is <code>content</code>.</li>
+      <li><code>auto</code> uses the value of the <a href="/en-US/docs/Web/CSS/width"><code>width</code></a> in horizontal writing mode, and the value of the <a href="/en-US/docs/Web/CSS/height"><code>height</code></a> in vertical writing mode; when the corresponding value is also <code>auto</code>, the <code>content</code> value is used instead.</li>
+      <li><a href="/en-US/docs/Web/CSS/max-content"><code>max-content</code></a> sets the intrinsic preferred width.</li>
+      <li><a href="/en-US/docs/Web/CSS/min-content"><code>min-content</code></a> sets the intrinsic minimum width.</li>
+      <li><a href="/en-US/docs/Web/CSS/fit-content"><code>fit-content</code></a> sets the maximum possible size of a containing block's content area, bounded by the <code>min-content</code> and <code>max-content</code> values, and calculated based on the content of the current element.</li>
+    </ul>
+  </dd>
+  <dt id="content"><a href="#content"><code>content</code></a></dt>
+  <dd>
+    <p>Indicates automatic sizing, based on the flex item's content.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>flex items, including in-flow pseudo-elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row">Percentages</th><td>refer to the flex container's inner main size</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified, but with relative lengths converted into absolute lengths</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a>, <a href="/en-US/docs/Web/CSS/percentage#interpolation" title="Values of the <percentage> CSS data type are interpolated as real, floating-point numbers.">percentage</a> or calc();</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="flex-basis">flex-basis = </span><br>  <span class="token keyword">content</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/width"><span class="token property">&lt;'width'&gt;</span></a>  <br><br><span class="token property" id="<width>">&lt;width&gt; = </span><br>  <span class="token keyword">auto</span>                                      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;length-percentage [0,∞]&gt;</span>                 <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">min-content</span>                               <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">max-content</span>                               <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token function">fit-content(</span> <span class="token property">&lt;length-percentage [0,∞]&gt;</span> <span class="token function">)</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;calc-size()&gt;</span>                             <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;anchor-size()&gt;</span>                           <br><br><span class="token property" id="<length-percentage>">&lt;length-percentage&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br><span class="token property" id="<calc-size()>">&lt;calc-size()&gt; = </span><br>  <span class="token function">calc-size(</span> <span class="token property">&lt;calc-size-basis&gt;</span> , <span class="token property">&lt;calc-sum&gt;</span> <span class="token function">)</span>  <br><br><span class="token property" id="<anchor-size()>">&lt;anchor-size()&gt; = </span><br>  <span class="token function">anchor-size(</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token property">&lt;anchor-name&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <span class="token property">&lt;anchor-size&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> , <span class="token property">&lt;length-percentage&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-size-basis>">&lt;calc-size-basis&gt; = </span><br>  <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/intrinsic-size-keyword"><span class="token property">&lt;intrinsic-size-keyword&gt;</span></a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;calc-size()&gt;</span>             <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">any</span>                       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;calc-sum&gt;</span>                <br><br><span class="token property" id="<calc-sum>">&lt;calc-sum&gt; = </span><br>  <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '+' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '-' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<anchor-name>">&lt;anchor-name&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/dashed-ident"><span class="token property">&lt;dashed-ident&gt;</span></a>  <br><br><span class="token property" id="<anchor-size>">&lt;anchor-size&gt; = </span><br>  <span class="token keyword">width</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">height</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">block</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">inline</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">self-block</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">self-inline</span>  <br><br><span class="token property" id="<calc-product>">&lt;calc-product&gt; = </span><br>  <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '*' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '/' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<calc-value>">&lt;calc-value&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/dimension"><span class="token property">&lt;dimension&gt;</span></a>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;calc-keyword&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  ( <span class="token property">&lt;calc-sum&gt;</span> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-keyword>">&lt;calc-keyword&gt; = </span><br>  <span class="token keyword">e</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">pi</span>         <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">infinity</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">-infinity</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">NaN</span>        <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_flex_item_initial_sizes">Setting flex item initial sizes</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;ul class="container"&gt;
+  &lt;li class="flex flex1"&gt;1: flex-basis test&lt;/li&gt;
+  &lt;li class="flex flex2"&gt;2: flex-basis test&lt;/li&gt;
+  &lt;li class="flex flex3"&gt;3: flex-basis test&lt;/li&gt;
+  &lt;li class="flex flex4"&gt;4: flex-basis test&lt;/li&gt;
+  &lt;li class="flex flex5"&gt;5: flex-basis test&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="container"&gt;
+  &lt;li class="flex flex6"&gt;6: flex-basis test&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">.container {
+  font-family: arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex {
+  background: #6ab6d8;
+  padding: 10px;
+  margin-bottom: 50px;
+  border: 3px solid #2e86bb;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+}
+
+.flex::after {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 100%;
+  margin-top: 10px;
+  width: 100%;
+  color: #333;
+  font-size: 12px;
+}
+
+.flex1 {
+  flex-basis: auto;
+}
+
+.flex1::after {
+  content: "auto";
+}
+
+.flex2 {
+  flex-basis: max-content;
+}
+
+.flex2::after {
+  content: "max-content";
+}
+
+.flex3 {
+  flex-basis: min-content;
+}
+
+.flex3::after {
+  content: "min-content";
+}
+
+.flex4 {
+  flex-basis: fit-content;
+}
+
+.flex4::after {
+  content: "fit-content";
+}
+
+.flex5 {
+  flex-basis: content;
+}
+
+.flex5::after {
+  content: "content";
+}
+</pre>
+<h4 id="results">Results</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Setting flex item initial sizes sample" id="frame_setting_flex_item_initial_sizes" height="360" src="about:blank" data-live-path="/en-US/docs/Web/CSS/flex-basis" data-live-id="setting_flex_item_initial_sizes" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="flex_basis_0_vs_0">Flex basis <code>0</code> vs <code>0%</code></h3>
+<p>This example demonstrates the difference between a <code>flex-basis</code> of <code>0</code> versus a <code>flex-basis</code> of <code>0%</code> when <code>flex-direction</code> is set to <code>column</code> and the flex containers and flex items don't have a set height; while <code>0</code> is an absolute length, percentage flex-basis values resolve to <a href="#content"><code>content</code></a> values.</p>
+<h4 id="html_2">HTML</h4>
+<p>We include two same-structure flex containers. These which will be styled similarly, except for their <code>flex-basis</code> values. The containers each have two children: a heading <code>&lt;div&gt;</code> and a <code>&lt;section&gt;</code>. The <code>&lt;section&gt;</code> element has a content <code>&lt;div&gt;</code> child, which will not be set as a flex item but will be given a height.</p>
+<pre class="brush: html">&lt;div class="container basis-0"&gt;
+  &lt;div&gt;heading&lt;/div&gt;
+  &lt;section&gt;
+    flex-basis: 0;
+    &lt;div class="content"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+&lt;div class="container basis-0-percent"&gt;
+  &lt;div&gt;heading&lt;/div&gt;
+  &lt;section&gt;
+    flex-basis: 0%;
+    &lt;div class="content"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<p>We style the containers as inline flex containers that will appear side by side to better enable comparing them. We set the <code>flex-direction</code> to the column. The first container's flex items have a <code>flex-basis</code> value of <code>0</code> and the second container's flex item have a <code>flex-basis</code> value of <code>0%</code>. Neither the flex containers nor their flex items have a height explicitly set, but the heights of <code>section</code> elements can not exceed <code>200px</code> and their children have height <code>300px</code>.</p>
+<pre class="brush: css">.container {
+  width: 40vw;
+  padding: 1rem;
+  border: 1px dashed blue;
+
+  display: inline-flex;
+  flex-direction: column;
+}
+
+section {
+  border: 1px solid red;
+
+  overflow: auto;
+  min-height: 200px;
+}
+
+.content {
+  background: wheat;
+  height: 300px;
+}
+
+.container.basis-0 &gt; * {
+  flex-basis: 0;
+}
+.container.basis-0-percent &gt; * {
+  flex-basis: 0%;
+}
+</pre>
+<h4 id="results_2">Results</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="flex basis 0 vs 0 sample" id="frame_flex_basis_0_vs_0" width="100%" height="400" src="about:blank" data-live-path="/en-US/docs/Web/CSS/flex-basis" data-live-id="flex_basis_0_vs_0" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>In the first container, with <code>flex-basis: 0</code>, the <code>&lt;section&gt;</code> element has an initial main size of zero, and it grows to the <code>200px</code> height limit. In the second container, with <code>flex-basis: 0%</code>, the <code>&lt;section&gt;</code> element has an initial main size of <code>300px</code> because, as the flex container doesn't have a set height, the percentage flex-basis values resolve to the <a href="#content"><code>content</code></a> value.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.flex-basis" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.flex-basis" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/flex"><code>flex</code></a> shorthand</li>
+  <li><a href="/en-US/docs/Web/CSS/inline-size"><code>inline-size</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">Basic concepts of flexbox</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Controlling_ratios_of_flex_items_along_the_main_axis">Controlling ratios of flex items along the main axis</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout">CSS flexible box layout</a> module</li>
+</ul>
+</body></html>

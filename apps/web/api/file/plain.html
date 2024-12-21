@@ -1,0 +1,73 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>File</code></strong> interface provides information about files and allows JavaScript in a web page to access their content.</p>
+<p><code>File</code> objects are generally retrieved from a <a href="/en-US/docs/Web/API/FileList"><code>FileList</code></a> object returned as a result of a user selecting files using the <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element, or from a drag and drop operation's <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> object.</p>
+<p>A <code>File</code> object is a specific kind of <a href="/en-US/docs/Web/API/Blob"><code>Blob</code></a>, and can be used in any context that a Blob can. In particular, the following APIs accept both <code>Blob</code>s and <code>File</code> objects:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/FileReader"><code>FileReader</code></a></li>
+  <li><a href="/en-US/docs/Web/API/URL/createObjectURL_static" title="URL.createObjectURL()"><code>URL.createObjectURL()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Window/createImageBitmap"><code>Window.createImageBitmap()</code></a> and <a href="/en-US/docs/Web/API/WorkerGlobalScope/createImageBitmap"><code>WorkerGlobalScope.createImageBitmap()</code></a></li>
+  <li>the <a href="/en-US/docs/Web/API/RequestInit#body"><code>body</code></a> option to <a href="/en-US/docs/Web/API/Window/fetch" title="fetch()"><code>fetch()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a></li>
+</ul>
+<p>See <a href="/en-US/docs/Web/API/File_API/Using_files_from_web_applications">Using files from web applications</a> for more information and examples.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Blob">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Blob
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/File" aria-current="page">
+    <rect x="105" y="0" width="75" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="142.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      File
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="file"><a href="/en-US/docs/Web/API/File/File" title="File()"><code>File()</code></a></dt>
+  <dd>
+    <p>Returns a newly constructed <code>File</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>The <code>File</code> interface also inherits properties from the <a href="/en-US/docs/Web/API/Blob"><code>Blob</code></a> interface.</em></p>
+<dl>
+  <dt id="file.lastmodified"><a href="/en-US/docs/Web/API/File/lastModified"><code>File.lastModified</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the last modified time of the file, in millisecond since the UNIX epoch (January 1st, 1970 at Midnight).</p>
+  </dd>
+  <dt id="file.lastmodifieddate"><a href="/en-US/docs/Web/API/File/lastModifiedDate"><code>File.lastModifiedDate</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the last modified <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> of the file referenced by the <code>File</code> object.</p>
+  </dd>
+  <dt id="file.name"><a href="/en-US/docs/Web/API/File/name"><code>File.name</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the name of the file referenced by the <code>File</code> object.</p>
+  </dd>
+  <dt id="file.webkitrelativepath"><a href="/en-US/docs/Web/API/File/webkitRelativePath"><code>File.webkitRelativePath</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the path the URL of the <code>File</code> is relative to.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>The <code>File</code> interface also inherits methods from the <a href="/en-US/docs/Web/API/Blob"><code>Blob</code></a> interface.</em></p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.File" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.File" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/File_API/Using_files_from_web_applications">Using files from web applications</a></li>
+  <li><a href="/en-US/docs/Web/API/FileReader"><code>FileReader</code></a></li>
+</ul>
+</body></html>

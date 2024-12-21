@@ -1,0 +1,160 @@
+<html><head></head><body>
+<p>
+  The <code>scope</code> manifest member is used to specify the top-level URL path that contains your web application's pages and subdirectories.
+  When users install and use your web app, pages <em>within scope</em> provide an app-like interface.
+  When users navigate to pages outside the app's scope, they still experience the app-like interface, but browsers display UI elements like the URL bar to indicate the change in context.
+</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Absolute URL */
+"scope": "https://example.com/myapp/"
+
+/* Relative URL */
+"scope": "/myapp/"
+
+/* Scope limited to a specific directory */
+"scope": "/myapp/dashboard/"
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="scope"><a href="#scope"><code>scope</code></a></dt>
+  <dd>
+    <p>
+      A string that represents a URL.
+      The URL can be absolute or relative.
+      If the value is relative, it is resolved against the manifest file's URL.
+    </p>
+    <p>If <code>scope</code> is not specified in the manifest or the value is invalid (i.e., not a string, not a valid URL, or <code>start_url</code> is not within the specified <code>scope</code>), the effective scope will be set to the <code>start_url</code> value after removing its filename, query, and fragment.</p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>
+  The <code>scope</code> member defines the URLs that are part of your web app's installed experience.
+  Browsers use <code>scope</code> to determine if a page is within your web app's <a href="/en-US/docs/Glossary/Application_context">application context</a>.
+</p>
+<h3 id="in-scope_and_out-of-scope_behavior">In-scope and out-of-scope behavior</h3>
+<p>
+  A URL is considered to be "within scope" if its path begins with the URL path defined in <code>scope</code>.
+  For example, if the <code>scope</code> is set to <code>/app/</code>, then the URLs <code>/app/</code>, <code>/app/page.html</code>, and <code>/app/dashboard/index.html</code> are all considered within scope, while <code>/</code> or <code>/page.html</code> are not.
+</p>
+<p>
+  When users open your installed web app, they experience an app-like interface.
+  For in-scope pages, browsers maintain the application context and preserve the app-like experience.
+  When users navigate to pages outside the app's scope, they still broadly experience the app-like interface; however, in these pages, browsers display additional UI elements like the URL bar.
+  This helps users understand that they're viewing pages outside the app's defined scope.
+</p>
+<div class="notecard note">
+  <p>
+    <strong>Note:</strong> The <code>scope</code> member doesn't prevent users from navigating to app pages outside of the defined scope.
+    Off-scope navigations are not blocked by browsers and are not opened in a new top-level browsing context.
+  </p>
+</div>
+<p>Consider a web app for exploring hiking trails with the following directory structure:</p>
+<pre class="brush: plain">web-app/
+├── manifest.json
+├── trails/
+│   ├── index.html
+│   ├── trail-list.html
+│   ├── settings/
+│   │   └── index.html
+│   └── saratoga-gap-trail.html
+├── blog/
+│   └── index.html
+</pre>
+<p>With the scope set to <code>/trails/</code>:</p>
+<ul>
+  <li>When viewing pages and subdirectories under <code>/trails/</code> (like the <code>trail-list.html</code> and <code>/trails/settings/index.html</code>), users experience the app-like interface without the browser controls (image on the left).</li>
+  <li>When navigating to pages in subdirectories like <code>/blog/</code>, which are outside the scope of the app, the app-like interface remains but users see the website address and other browser controls (image on the right).</li>
+</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Page in scope</th>
+      <th>Page out of scope</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="/en-US/docs/Web/Manifest/scope/trail-list.png" alt="Trail listing page showing app-like interface without browser controls" width="585" height="1266">
+      </td>
+      <td>
+        <img src="/en-US/docs/Web/Manifest/scope/blog.png" alt="Blog page showing website address and browser controls while maintaining app-like interface" width="585" height="1266">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="scopes_affect_on_deep-linked_pages">Scope's affect on deep-linked pages</h3>
+<p>
+  Other applications can deep link directly to specific pages of your web app.
+  The <code>scope</code> member affects how these deep-linked pages are displayed, but it is not required for deep linking to work.
+</p>
+<p>Consider the previous example of the web app for exploring hiking trails, where the <code>scope</code> set to <code>/trails/</code>:</p>
+<ul>
+  <li>If a link to <code>https://trailnav.app/trails/saratoga-gap-trail.html</code> is shared on social media, users with the Trail Navigator app installed will view this page in the app's interface without browser controls.</li>
+  <li>If a link to <code>https://trailnav.app/blog/trail-safety.html</code> is shared, these users will view the blog page in the app-like interface but with the website address and browser controls visible, since it's outside the app's defined scope.</li>
+</ul>
+<p>This behavior helps users understand whether they're viewing pages within or outside the app's scope, even when accessing the app pages through external links.</p>
+<h3 id="fallback_scope_behavior">Fallback scope behavior</h3>
+<p>The <code>scope</code> is invalid if <code>start_url</code> is not a subset of the <code>scope</code> URL. For example:</p>
+<ul>
+  <li><strong>Valid</strong>: <code>scope</code> is <code>/app/</code>, and <code>start_url</code> is <code>/app/home.html</code>.</li>
+  <li><strong>Invalid</strong>: <code>scope</code> is <code>/app/</code>, and <code>start_url</code> is <code>/index.html</code>.</li>
+</ul>
+<p>
+  If <code>scope</code> is missing or invalid, it defaults to the <code>start_url</code> value after removing its filename, query, and fragment.
+  Note that if the <code>start_url</code> is also undefined (or invalid) it defaults to the page that links to the manifest.
+  This ensures that by default the scope will start from the page that triggered the installation.
+</p>
+<p>For example:</p>
+<ul>
+  <li>If <code>start_url</code> is <code>https://example.com/app/index.html?user=123#home</code>, the scope will be <code>https://example.com/app/</code>.</li>
+  <li>If <code>start_url</code> is <code>/pages/welcome.html</code>, the scope will be <code>/pages/</code> on the same origin.</li>
+  <li>If <code>start_url</code> is <code>/pages/</code> (the trailing slash is important), the scope will be <code>/pages/</code>.</li>
+</ul>
+<p>
+  If you rely on the fallback behaviour of <code>scope</code>, ensure that URLs of all pages in your app begin with the parent path of <code>start_url</code>.
+  To avoid issues with scope determination in this way, it's recommended to explicitly specify <code>scope</code> in your manifest file.
+</p>
+<h3 id="scope_matching_mechanism">Scope matching mechanism</h3>
+<p>
+  String matching for the scope URL uses a simple prefix match, not the path structure.
+  For example, if the <code>scope</code> is set as <code>/prefix</code>, it will match URLs starting with <code>/prefix</code>, including <code>/prefix-of/index.html</code> and <code>/prefix/index.html</code>. Note that <code>/prefix-of/index.html</code> matches even though <code>prefix-of</code> is not an exact match with the scope <code>/prefix</code>.
+</p>
+<p>
+  For this reason, it's recommended to define a scope ending with a <code>/</code>.
+  Setting the <code>scope</code> as <code>/prefix/</code> ensures it will match only the pages within the <code>/prefix/</code> directory, preventing unintended matches.
+</p>
+<h2 id="examples">Examples</h2>
+<h3 id="specifying_an_absolute_url_for_scope">Specifying an absolute URL for scope</h3>
+<p>Suppose the manifest file for your web app is linked from <code>https://hikingapp.com/index.html</code>, and you want the scope to include all the subdirectories. You can specify this scope using an absolute URL that is same-origin with manifest file URL, as shown below. This ensures that pages like <code>https://hikingapp.com/store</code> and <code>https://hikingapp.com/company</code> are part of your web app.</p>
+<pre class="brush: json">{
+  "scope": "https://hikingapp.com/"
+}
+</pre>
+<h3 id="specifying_a_relative_url_for_scope">Specifying a relative URL for scope</h3>
+<p>If your manifest file's URL is <code>https://hikingapp.com/resources/manifest.json</code>, and you want the scope to be <code>https://hikingapp.com/app/</code>, you can define it as a relative URL:</p>
+<pre class="brush: json">{
+  "scope": "../app/"
+}
+</pre>
+<h3 id="defining_a_web_app_for_a_specific_section_of_your_site">Defining a web app for a specific section of your site</h3>
+<p>If you have a website with multiple sections, but you want your web app to focus on a specific section, you can define the <code>scope</code> as:</p>
+<pre class="brush: json">{
+  "name": "My Hiking Web App",
+  "start_url": "https://hikingapp.com/store/",
+  "scope": "https://hikingapp.com/store/"
+}
+</pre>
+<p>With this setup, pages like <code>https://hikingapp.com/store/products</code> are part of your web app, but <code>https://hikingapp.com/company/</code> is out of your web app's scope. For off-scope URLs, browsers may display different UI elements to let users know they've navigated away from the app's scope.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.scope" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.scope" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Manifest/start_url"><code>start_url</code></a> manifest member</li>
+  <li><a href="/en-US/docs/Glossary/Application_context">Application context</a></li>
+</ul>
+</body></html>

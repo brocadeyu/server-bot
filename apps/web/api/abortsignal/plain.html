@@ -1,0 +1,233 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>AbortSignal</code></strong> interface represents a signal object that allows you to communicate with an asynchronous operation (such as a fetch request) and abort it if required via an <a href="/en-US/docs/Web/API/AbortController"><code>AbortController</code></a> object.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AbortSignal" aria-current="page">
+    <rect x="118" y="0" width="88" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="162" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AbortSignal
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Also inherits properties from its parent interface, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="abortsignal.aborted"><a href="/en-US/docs/Web/API/AbortSignal/aborted"><code>AbortSignal.aborted</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Glossary/Boolean">Boolean</a> that indicates whether the request(s) the signal is communicating with is/are aborted (<code>true</code>) or not (<code>false</code>).</p>
+  </dd>
+  <dt id="abortsignal.reason"><a href="/en-US/docs/Web/API/AbortSignal/reason"><code>AbortSignal.reason</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A JavaScript value providing the abort reason, once the signal has aborted.</p>
+  </dd>
+</dl>
+<h2 id="static_methods">Static methods</h2>
+<p><em>Also inherits methods from its parent interface, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="abortsignal.abort"><a href="/en-US/docs/Web/API/AbortSignal/abort_static" title="AbortSignal.abort()"><code>AbortSignal.abort()</code></a></dt>
+  <dd>
+    <p>Returns an <code>AbortSignal</code> instance that is already set as aborted.</p>
+  </dd>
+  <dt id="abortsignal.any"><a href="/en-US/docs/Web/API/AbortSignal/any_static" title="AbortSignal.any()"><code>AbortSignal.any()</code></a></dt>
+  <dd>
+    <p>Returns an <code>AbortSignal</code> that aborts when any of the given abort signals abort.</p>
+  </dd>
+  <dt id="abortsignal.timeout"><a href="/en-US/docs/Web/API/AbortSignal/timeout_static" title="AbortSignal.timeout()"><code>AbortSignal.timeout()</code></a></dt>
+  <dd>
+    <p>Returns an <code>AbortSignal</code> instance that will automatically abort after a specified time.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Also inherits methods from its parent interface, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="abortsignal.throwifaborted"><a href="/en-US/docs/Web/API/AbortSignal/throwIfAborted"><code>AbortSignal.throwIfAborted()</code></a></dt>
+  <dd>
+    <p>Throws the signal's abort <a href="/en-US/docs/Web/API/AbortSignal/reason" title="reason"><code>reason</code></a> if the signal has been aborted; otherwise it does nothing.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<p><em>Also inherits events from its parent interface, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<p>Listen to this event using <a href="/en-US/docs/Web/API/EventTarget/addEventListener" title="addEventListener()"><code>addEventListener()</code></a> or by assigning an event listener to the <code>oneventname</code> property of this interface.</p>
+<dl>
+  <dt id="abort"><a href="/en-US/docs/Web/API/AbortSignal/abort_event" title="abort"><code>abort</code></a></dt>
+  <dd>
+    <p>
+      Invoked when the asynchronous operations the signal is communicating with is/are aborted.
+      Also available via the <code>onabort</code> property.
+    </p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="aborting_a_fetch_operation_using_an_explicit_signal">Aborting a fetch operation using an explicit signal</h3>
+<p>The following snippet shows how we might use a signal to abort downloading a video using the <a href="/en-US/docs/Web/API/Fetch_API">Fetch API</a>.</p>
+<p>We first create an abort controller using the <a href="/en-US/docs/Web/API/AbortController/AbortController" title="AbortController()"><code>AbortController()</code></a> constructor, then grab a reference to its associated <code>AbortSignal</code> object using the <a href="/en-US/docs/Web/API/AbortController/signal"><code>AbortController.signal</code></a> property.</p>
+<p>
+  When the <a href="/en-US/docs/Web/API/Window/fetch">fetch request</a> is initiated, we pass in the <code>AbortSignal</code> as an option inside the request's options object (the <code>{signal}</code> below). This associates the signal and controller with the fetch request, and allows us to abort it by calling <a href="/en-US/docs/Web/API/AbortController/abort"><code>AbortController.abort()</code></a>.
+  Below you can see that the fetch operation is aborted in the second event listener, which triggered when the abort button (<code>abortBtn</code>) is clicked.
+</p>
+<p>When <code>abort()</code> is called, the <code>fetch()</code> promise rejects with a <code>DOMException</code> named <code>AbortError</code>.</p>
+<pre class="brush: js">let controller;
+const url = "video.mp4";
+
+const downloadBtn = document.querySelector(".download");
+const abortBtn = document.querySelector(".abort");
+
+downloadBtn.addEventListener("click", fetchVideo);
+
+abortBtn.addEventListener("click", () =&gt; {
+  if (controller) {
+    controller.abort();
+    console.log("Download aborted");
+  }
+});
+
+async function fetchVideo() {
+  controller = new AbortController();
+  const signal = controller.signal;
+
+  try {
+    const response = await fetch(url, { signal });
+    console.log("Download complete", response);
+    // process response further
+  } catch (err) {
+    console.error(`Download error: ${err.message}`);
+  }
+}
+</pre>
+<p>If the request is aborted after the <code>fetch()</code> call has been fulfilled but before the response body has been read, then attempting to read the response body will reject with an <code>AbortError</code> exception.</p>
+<pre class="brush: js">async function get() {
+  const controller = new AbortController();
+  const request = new Request("https://example.org/get", {
+    signal: controller.signal,
+  });
+
+  const response = await fetch(request);
+  controller.abort();
+  // The next line will throw `AbortError`
+  const text = await response.text();
+  console.log(text);
+}
+</pre>
+<p>You can find a <a href="https://github.com/mdn/dom-examples/tree/main/abort-api">full working example on GitHub</a>; you can also see it <a href="https://mdn.github.io/dom-examples/abort-api/">running live</a>.</p>
+<h3 id="aborting_a_fetch_operation_with_a_timeout">Aborting a fetch operation with a timeout</h3>
+<p>
+  If you need to abort the operation on timeout then you can use the static <a href="/en-US/docs/Web/API/AbortSignal/timeout_static" title="AbortSignal.timeout()"><code>AbortSignal.timeout()</code></a> method.
+  This returns an <code>AbortSignal</code> that will automatically timeout after a certain number of milliseconds.
+</p>
+<p>
+  The code snippet below shows how you would either succeed in downloading a file, or handle a timeout error after 5 seconds.
+  Note that when there is a timeout the <code>fetch()</code> promise rejects with a <code>TimeoutError</code> <code>DOMException</code>.
+  This allows code to differentiate between timeouts (for which user notification is probably required), and user aborts.
+</p>
+<pre class="brush: js">const url = "video.mp4";
+
+try {
+  const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+  const result = await res.blob();
+  // …
+} catch (err) {
+  if (err.name === "TimeoutError") {
+    console.error("Timeout: It took more than 5 seconds to get the result!");
+  } else if (err.name === "AbortError") {
+    console.error(
+      "Fetch aborted by user action (browser stop button, closing tab, etc.",
+    );
+  } else {
+    // A network error, or some other problem.
+    console.error(`Error: type: ${err.name}, message: ${err.message}`);
+  }
+}
+</pre>
+<h3 id="aborting_a_fetch_with_timeout_or_explicit_abort">Aborting a fetch with timeout or explicit abort</h3>
+<p>If you want to abort from multiple signals, you can use <a href="/en-US/docs/Web/API/AbortSignal/any_static" title="AbortSignal.any()"><code>AbortSignal.any()</code></a> to combine them into a single signal. The following example shows this using <a href="/en-US/docs/Web/API/Window/fetch" title="fetch"><code>fetch</code></a>:</p>
+<pre class="brush: js">try {
+  const controller = new AbortController();
+  const timeoutSignal = AbortSignal.timeout(5000);
+  const res = await fetch(url, {
+    // This will abort the fetch when either signal is aborted
+    signal: AbortSignal.any([controller.signal, timeoutSignal]),
+  });
+  const body = await res.json();
+} catch (e) {
+  if (e.name === "AbortError") {
+    // Notify the user of abort.
+  } else if (e.name === "TimeoutError") {
+    // Notify the user of timeout
+  } else {
+    // A network error, or some other problem.
+    console.log(`Type: ${e.name}, Message: ${e.message}`);
+  }
+}
+</pre>
+<div class="notecard note">
+  <p><strong>Note:</strong> Unlike when using <a href="/en-US/docs/Web/API/AbortSignal/timeout_static" title="AbortSignal.timeout()"><code>AbortSignal.timeout()</code></a>, there is no way to tell whether the final abort was caused by a timeout.</p>
+</div>
+<h3 id="implementing_an_abortable_api">Implementing an abortable API</h3>
+<p>An API that needs to support aborting can accept an <code>AbortSignal</code> object, and use its state to trigger abort signal handling when needed.</p>
+<p>
+  A <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>-based API should respond to the abort signal by rejecting any unsettled promise with the <code>AbortSignal</code> abort <a href="/en-US/docs/Web/API/AbortSignal/reason" title="reason"><code>reason</code></a>.
+  For example, consider the following <code>myCoolPromiseAPI</code>, which takes a signal and returns a promise.
+  The promise is rejected immediately if the signal is already aborted, or if the abort event is detected.
+  Otherwise it completes normally and then resolves the promise.
+</p>
+<pre class="brush: js">function myCoolPromiseAPI(/* …, */ { signal }) {
+  return new Promise((resolve, reject) =&gt; {
+    // If the signal is already aborted, immediately throw in order to reject the promise.
+    if (signal.aborted) {
+      reject(signal.reason);
+    }
+
+    // Perform the main purpose of the API
+    // Call resolve(result) when done.
+
+    // Watch for 'abort' signals
+    signal.addEventListener("abort", () =&gt; {
+      // Stop the main operation
+      // Reject the promise with the abort reason.
+      reject(signal.reason);
+    });
+  });
+}
+</pre>
+<p>
+  The API might then be used as shown.
+  Note that <a href="/en-US/docs/Web/API/AbortController/abort"><code>AbortController.abort()</code></a> is called to abort the operation.
+</p>
+<pre class="brush: js">const controller = new AbortController();
+const signal = controller.signal;
+
+startSpinner();
+
+myCoolPromiseAPI({ /* …, */ signal })
+  .then((result) =&gt; {})
+  .catch((err) =&gt; {
+    if (err.name === "AbortError") return;
+    showUserErrorMessage();
+  })
+  .then(() =&gt; stopSpinner());
+
+controller.abort();
+</pre>
+<p>
+  APIs that do not return promises might react in a similar manner.
+  In some cases it may make sense to absorb the signal.
+</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.AbortSignal" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.AbortSignal" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Fetch_API">Fetch API</a></li>
+  <li><a href="https://developer.chrome.com/blog/abortable-fetch/">Abortable Fetch</a> by Jake Archibald</li>
+</ul>
+</body></html>

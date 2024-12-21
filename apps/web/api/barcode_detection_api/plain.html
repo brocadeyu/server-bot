@@ -1,0 +1,230 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The Barcode Detection API detects linear and two-dimensional barcodes in images.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>Support for barcode recognition within web apps unlocks a variety of use cases through supported barcode formats. QR codes can be used for online payments, web navigation or establishing social media connections, Aztec codes can be used to scan boarding passes and shopping apps can use EAN or UPC barcodes to compare prices of physical items.</p>
+<p>
+  Detection is achieved through the <a href="/en-US/docs/Web/API/BarcodeDetector/detect" title="detect()"><code>detect()</code></a> method, which takes an image object; it can be one of these objects:
+  a <a href="/en-US/docs/Web/API/HTMLImageElement"><code>HTMLImageElement</code></a>,
+  a <a href="/en-US/docs/Web/API/SVGImageElement"><code>SVGImageElement</code></a>,
+  a <a href="/en-US/docs/Web/API/HTMLVideoElement"><code>HTMLVideoElement</code></a>,
+  a <a href="/en-US/docs/Web/API/HTMLCanvasElement"><code>HTMLCanvasElement</code></a>,
+  an <a href="/en-US/docs/Web/API/ImageBitmap"><code>ImageBitmap</code></a>,
+  an <a href="/en-US/docs/Web/API/OffscreenCanvas"><code>OffscreenCanvas</code></a>,
+  a <a href="/en-US/docs/Web/API/VideoFrame"><code>VideoFrame</code></a>,
+  a <a href="/en-US/docs/Web/API/Blob"><code>Blob</code></a>,
+  or an <a href="/en-US/docs/Web/API/ImageData"><code>ImageData</code></a>.
+  Optional parameters can be passed to the <a href="/en-US/docs/Web/API/BarcodeDetector"><code>BarcodeDetector</code></a> constructor to provide hints on which barcode formats to detect.
+</p>
+<h3 id="supported_barcode_formats">Supported barcode formats</h3>
+<p>The Barcode Detection API supports the following barcode formats:</p>
+<table class="no-markdown">
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Description</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>aztec</td>
+      <td>
+        A square two-dimensional matrix following iso24778 and with a square
+        bullseye pattern at their center, thus resembling an Aztec pyramid. Does
+        not require a surrounding blank zone.
+      </td>
+      <td>
+        <img alt="A sample image of an Aztec barcode. A square with smaller black and white squares inside" src="/en-US/docs/Web/API/Barcode_Detection_API/aztec.gif" width="76" height="76">
+      </td>
+    </tr>
+    <tr>
+      <td>code_128</td>
+      <td>
+        A linear (one-dimensional), bidirectionally-decodable, self-checking
+        barcode following iso15417 and able to encode all 128 characters of
+        <a href="/en-US/docs/Glossary/ASCII">ASCII</a> (hence the naming).
+      </td>
+      <td>
+        <img alt="An image of a code-128 barcode. A horizontal distribution of vertical black and white lines" src="/en-US/docs/Web/API/Barcode_Detection_API/code-128.gif" width="312" height="100">
+      </td>
+    </tr>
+    <tr>
+      <td>code_39</td>
+      <td>
+        A linear (one-dimensional), self-checking barcode following iso16388. It
+        is a discrete and variable-length barcode type.
+      </td>
+      <td>
+        <img alt="An image of a code-39 barcode. A horizontal distribution of vertical black and white lines" src="/en-US/docs/Web/API/Barcode_Detection_API/code-39.png" width="748" height="300">
+      </td>
+    </tr>
+    <tr>
+      <td>code_93</td>
+      <td>
+        A linear, continuous symbology with a variable length following bc5. It
+        offers a larger information density than Code 128 and the visually
+        similar Code 39. Code 93 is used primarily by Canada Post to encode
+        supplementary delivery information.
+      </td>
+      <td>
+        <img alt="An image of a code 93 format barcode. A horizontal distribution of white and black horizontal lines" src="/en-US/docs/Web/API/Barcode_Detection_API/code-93.png" width="608" height="254">
+      </td>
+    </tr>
+    <tr>
+      <td>codabar</td>
+      <td>A linear barcode representing characters 0-9, A-D and symbols - . $ / +</td>
+      <td>
+        <img alt="An image of a codabar format barcode. A horizontal distribution of black and white vertical lines" src="/en-US/docs/Web/API/Barcode_Detection_API/codabar.png" width="550" height="160">
+      </td>
+    </tr>
+    <tr>
+      <td>data_matrix</td>
+      <td>
+        An orientation-independent two-dimensional barcode composed of black and
+        white modules arranged in either a square or rectangular pattern
+        following iso16022.
+      </td>
+      <td>
+        <img alt="An example of a data matrix barcode. A square filled with smaller black and white squares" src="/en-US/docs/Web/API/Barcode_Detection_API/data-matrix.png" width="262" height="268">
+      </td>
+    </tr>
+    <tr>
+      <td>ean_13</td>
+      <td>A linear barcode based on the UPC-A standard and defined in iso15420.</td>
+      <td>
+        <img alt="An image of an EAN-13 format barcode. A horizontal distribution of white and black lines" src="/en-US/docs/Web/API/Barcode_Detection_API/ean-13.png" width="770" height="422">
+      </td>
+    </tr>
+    <tr>
+      <td>ean_8</td>
+      <td>A linear barcode defined in iso15420 and derived from EAN-13.</td>
+      <td>
+        <img alt="An image of an EAN-8 format barcode. A horizontal distribution of vertical black and white lines" src="/en-US/docs/Web/API/Barcode_Detection_API/ean-8.png" width="450" height="362">
+      </td>
+    </tr>
+    <tr>
+      <td>itf</td>
+      <td>
+        A continuous, self-checking, bidirectionally decodable barcode. It will
+        always encode 14 digits.
+      </td>
+      <td>
+        <img alt="An image of an ITF Barcode. A horizontal distribution of white and black lines" src="/en-US/docs/Web/API/Barcode_Detection_API/ift.png" width="558" height="276">
+      </td>
+    </tr>
+    <tr>
+      <td>pdf417</td>
+      <td>
+        A continuous two-dimensional barcode symbology format with multiple rows
+        and columns. It's bi-directionally decodable and uses the iso15438
+        standard.
+      </td>
+      <td>
+        <img alt="An example of a pdf417 barcode format. A rectangle of smaller black and white squares" src="/en-US/docs/Web/API/Barcode_Detection_API/pdf417.png" width="668" height="292">
+      </td>
+    </tr>
+    <tr>
+      <td>qr_code</td>
+      <td>
+        A two-dimensional barcode that uses the iso18004 standard. The
+        information encoded can be text, URL or other data.
+      </td>
+      <td>
+        <img alt="An example of a QR code. A square of smaller black and white squares" src="/en-US/docs/Web/API/Barcode_Detection_API/qr-code.png" width="302" height="302">
+      </td>
+    </tr>
+    <tr>
+      <td>upc_a</td>
+      <td>
+        One of the most common linear barcode types and is widely applied to
+        retail in the United States. Defined in iso15420, it represents digits
+        by strips of bars and spaces, each digit being associated to a unique
+        pattern of 2 bars and 2 spaces, both of variable width. UPC-A can encode
+        12 digits that are uniquely assigned to each trade item, and it's
+        technically a subset of EAN-13 (UPC-A codes are represented in EAN-13
+        with the first character set to 0).
+      </td>
+      <td>
+        <img alt="An image of a upc-a barcode. A rectangle of black and white vertical lines with numbers underneath" src="/en-US/docs/Web/API/Barcode_Detection_API/upc-a.png" width="564" height="308">
+      </td>
+    </tr>
+    <tr>
+      <td>upc_e</td>
+      <td>
+        A variation of UPC-A defined in iso15420, compressing out unnecessary
+        zeros for a more compact barcode.
+      </td>
+      <td>
+        <img alt="An image of a upc-e barcode. A rectangle of black and white vertical lines" src="/en-US/docs/Web/API/Barcode_Detection_API/upc-e.png" width="446" height="312">
+      </td>
+    </tr>
+    <tr>
+      <td>unknown</td>
+      <td>
+        This value is used by the platform to signify that it does not know or
+        specify which barcode format is being detected or supported.
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>You can check for formats supported by the user agent via the <a href="/en-US/docs/Web/API/BarcodeDetector/getSupportedFormats_static" title="getSupportedFormats()"><code>getSupportedFormats()</code></a> method.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="barcodedetector"><a href="/en-US/docs/Web/API/BarcodeDetector"><code>BarcodeDetector</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>The <code>BarcodeDetector</code> interface of the Barcode Detection API allows detection of linear and two dimensional barcodes in images.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_detector">Creating A Detector</h3>
+<p>This example tests for browser compatibility and creates a new barcode detector object, with specified supported formats.</p>
+<pre class="brush: js">// check compatibility
+if (!("BarcodeDetector" in globalThis)) {
+  console.log("Barcode Detector is not supported by this browser.");
+} else {
+  console.log("Barcode Detector supported!");
+
+  // create new detector
+  const barcodeDetector = new BarcodeDetector({
+    formats: ["code_39", "codabar", "ean_13"],
+  });
+}
+</pre>
+<h3 id="getting_supported_formats">Getting Supported Formats</h3>
+<p>The following example calls the <code>getSupportedFormats()</code> method and logs the results to the console.</p>
+<pre class="brush: js">// check supported types
+BarcodeDetector.getSupportedFormats().then((supportedFormats) =&gt; {
+  supportedFormats.forEach((format) =&gt; console.log(format));
+});
+</pre>
+<h3 id="detect_barcodes">Detect Barcodes</h3>
+<p>This example uses the <code>detect()</code> method to detect the barcodes within the given image. These are iterated over and the barcode data is logged to the console.</p>
+<pre class="brush: js">barcodeDetector
+  .detect(imageEl)
+  .then((barcodes) =&gt; {
+    barcodes.forEach((barcode) =&gt; console.log(barcode.rawValue));
+  })
+  .catch((err) =&gt; {
+    console.log(err);
+  });
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BarcodeDetector" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BarcodeDetector" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://www.barcodefaq.com/">barcodefaq.com: A website with information about different barcodes and examples of the different types.</a></li>
+  <li><a href="https://developer.chrome.com/docs/capabilities/shape-detection#barcodedetector">The Shape Detection API: a picture is worth a thousand words, faces, and barcodes</a></li>
+</ul>
+</body></html>

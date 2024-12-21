@@ -1,0 +1,102 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong>Invoker Commands API</strong> provides a way to declaratively assign behaviors to buttons, allowing control of interactive elements when the button is enacted (clicked or invoked via a keypress, such as the spacebar or return key).</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>A common pattern on the web is to have <a href="/en-US/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a> elements control various aspects of the page, such as opening and closing <a href="/en-US/docs/Web/API/Popover_API" title="popovers">popovers</a> or <a href="/en-US/docs/Web/HTML/Element/dialog"><code>&lt;dialog&gt;</code></a> elements, formatting text, and more.</p>
+<p>Historically creating these kinds of controls has required JavaScript event listeners added to the button which can then call the APIs on the element they control. The <a href="/en-US/docs/Web/API/HTMLButtonElement/commandForElement" title="commandForElement"><code>commandForElement</code></a> and <a href="/en-US/docs/Web/API/HTMLButtonElement/command" title="command"><code>command</code></a> properties provide a way to do this declaratively for a limited set of actions. This can be advantageous for built-in commands as the user does not have to wait for JavaScript to download and execute to make these buttons interactive.</p>
+<h2 id="html_attributes">HTML attributes</h2>
+<dl>
+  <dt id="commandfor"><a href="/en-US/docs/Web/HTML/Element/button#commandfor"><code>commandfor</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Turns a <a href="/en-US/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a> element into a button, controlling the given interactive element; takes the ID of the element to control as its value.</p>
+  </dd>
+  <dt id="command"><a href="/en-US/docs/Web/HTML/Element/button#command"><code>command</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Specifies the action to be performed on an element being controlled by a control <code>&lt;button&gt;</code>, specified via the <code>commandfor</code> attribute.</p>
+  </dd>
+</dl>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="commandevent"><a href="/en-US/docs/Web/API/CommandEvent"><code>CommandEvent</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Represents an event notifying the user that a command has been issued. It is the event object for the <a href="/en-US/docs/Web/API/HTMLElement/command_event" title="command"><code>command</code></a> event. The event fires on element referenced by <a href="/en-US/docs/Web/API/HTMLButtonElement/commandForElement" title="commandForElement"><code>commandForElement</code></a>.</p>
+  </dd>
+</dl>
+<h2 id="extensions_to_other_interfaces">Extensions to other interfaces</h2>
+<h3 id="instance_properties">Instance properties</h3>
+<dl>
+  <dt id="htmlbuttonelement.commandforelement"><a href="/en-US/docs/Web/API/HTMLButtonElement/commandForElement"><code>HTMLButtonElement.commandForElement</code></a></dt>
+  <dd>
+    <p>Gets and sets the element being controlled by the button. The JavaScript equivalent of the <a href="/en-US/docs/Web/HTML/Element/button#commandfor"><code>commandfor</code></a> HTML attribute.</p>
+  </dd>
+  <dt id="htmlbuttonelement.command"><a href="/en-US/docs/Web/API/HTMLButtonElement/command"><code>HTMLButtonElement.command</code></a></dt>
+  <dd>
+    <p>Gets and sets the action to be performed on the element being controlled by the button. Reflects the value of the <a href="/en-US/docs/Web/HTML/Element/button#command"><code>command</code></a> HTML attribute.</p>
+  </dd>
+</dl>
+<h3 id="events">Events</h3>
+<dl>
+  <dt id="command_2"><a href="/en-US/docs/Web/API/HTMLElement/command_event" title="command"><code>command</code></a> event</dt>
+  <dd>
+    <p>Fired on the element referenced by the button.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_declarative_popovers">Creating declarative popovers</h3>
+<pre class="brush: html">&lt;button commandfor="mypopover" command="toggle-popover"&gt;
+  Toggle the popover
+&lt;/button&gt;
+&lt;div id="mypopover" popover&gt;
+  &lt;button commandfor="mypopover" command="hide-popover"&gt;Close&lt;/button&gt;
+  Popover content
+&lt;/div&gt;
+</pre>
+<h3 id="creating_declarative_dialogs">Creating declarative dialogs</h3>
+<pre class="brush: html">&lt;button commandfor="mydialog" command="show-modal"&gt;Show modal dialog&lt;/button&gt;
+&lt;dialog id="mydialog"&gt;
+  &lt;button commandfor="mydialog" command="close"&gt;Close&lt;/button&gt;
+  Dialog Content
+&lt;/dialog&gt;
+</pre>
+<h3 id="creating_custom_commands">Creating custom commands</h3>
+<pre class="brush: html">&lt;button commandfor="my-img" command="--rotate-left"&gt;Rotate left&lt;/button&gt;
+&lt;button commandfor="my-img" command="--rotate-right"&gt;Rotate right&lt;/button&gt;
+&lt;img id="my-img" src="photo.jpg" alt="[add appropriate alt text here]" /&gt;
+</pre>
+<pre class="brush: js">const myImg = document.getElementById("my-img");
+
+myImg.addEventListener("command", (event) =&gt; {
+  if (event.command == "--rotate-left") {
+    myImg.style.rotate = "-90deg";
+  } else if (event.command == "--rotate-right") {
+    myImg.style.rotate = "90deg";
+  }
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CommandEvent,api.HTMLButtonElement.commandForElement,api.HTMLButtonElement.command" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CommandEvent" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.HTMLButtonElement.commandForElement" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.HTMLButtonElement.command" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTMLButtonElement/command" title="command"><code>command</code></a> property</li>
+  <li><a href="/en-US/docs/Web/API/HTMLButtonElement/commandForElement" title="commandForElement"><code>commandForElement</code></a> property</li>
+  <li><a href="/en-US/docs/Web/API/CommandEvent" title="CommandEvent"><code>CommandEvent</code></a> interface</li>
+</ul>
+</body></html>

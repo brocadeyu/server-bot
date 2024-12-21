@@ -1,0 +1,106 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>GPUBuffer</code></strong> interface of the <a href="/en-US/docs/Web/API/WebGPU_API" title="WebGPU API">WebGPU API</a> represents a block of memory that can be used to store raw data to use in GPU operations.</p>
+<p>A <code>GPUBuffer</code> object instance is created using the <a href="/en-US/docs/Web/API/GPUDevice/createBuffer"><code>GPUDevice.createBuffer()</code></a> method.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="label"><a href="/en-US/docs/Web/API/GPUBuffer/label" title="label"><code>label</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>
+      A string providing a label that can be used to identify the object, for example in
+      <a href="/en-US/docs/Web/API/GPUError"><code>GPUError</code></a> messages or console warnings.
+    </p>
+  </dd>
+  <dt id="mapstate"><a href="/en-US/docs/Web/API/GPUBuffer/mapState" title="mapState"><code>mapState</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An enumerated value representing the mapped state of the <code>GPUBuffer</code>.</p>
+  </dd>
+  <dt id="size"><a href="/en-US/docs/Web/API/GPUBuffer/size" title="size"><code>size</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A number representing the length of the <code>GPUBuffer</code>'s memory allocation, in bytes.</p>
+  </dd>
+  <dt id="usage"><a href="/en-US/docs/Web/API/GPUBuffer/usage" title="usage"><code>usage</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The <a href="/en-US/docs/Glossary/Bitwise_flags">bitwise flags</a> representing the allowed usages of the <code>GPUBuffer</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="destroy"><a href="/en-US/docs/Web/API/GPUBuffer/destroy" title="destroy()"><code>destroy()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Destroys the <code>GPUBuffer</code>.</p>
+  </dd>
+  <dt id="getmappedrange"><a href="/en-US/docs/Web/API/GPUBuffer/getMappedRange" title="getMappedRange()"><code>getMappedRange()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing the mapped contents of the <code>GPUBuffer</code> in the specified range.</p>
+  </dd>
+  <dt id="mapasync"><a href="/en-US/docs/Web/API/GPUBuffer/mapAsync" title="mapAsync()"><code>mapAsync()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Maps the specified range of the <code>GPUBuffer</code>. Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves when the <code>GPUBuffer</code>'s content is ready to be accessed with <a href="/en-US/docs/Web/API/GPUBuffer/getMappedRange"><code>GPUBuffer.getMappedRange()</code></a>.</p>
+  </dd>
+  <dt id="unmap"><a href="/en-US/docs/Web/API/GPUBuffer/unmap" title="unmap()"><code>unmap()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Unmaps the mapped range of the <code>GPUBuffer</code>, making its contents available for use by the GPU again.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>In our <a href="https://mdn.github.io/dom-examples/webgpu-compute-demo/">basic compute demo</a>, we create an output buffer to read GPU calculations to, and a staging buffer to be mapped for JavaScript access.</p>
+<pre class="brush: js">const output = device.createBuffer({
+  size: BUFFER_SIZE,
+  usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC,
+});
+
+const stagingBuffer = device.createBuffer({
+  size: BUFFER_SIZE,
+  usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
+});
+</pre>
+<p>Later on, once the <code>stagingBuffer</code> contains the results of the GPU computation, a combination of <code>GPUBuffer</code> methods are used to read the data back to JavaScript so that it can then be logged to the console:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/GPUBuffer/mapAsync"><code>GPUBuffer.mapAsync()</code></a> is used to map the <code>GPUBuffer</code> for reading.</li>
+  <li><a href="/en-US/docs/Web/API/GPUBuffer/getMappedRange"><code>GPUBuffer.getMappedRange()</code></a> is used to return an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing the <code>GPUBuffer</code>'s contents.</li>
+  <li><a href="/en-US/docs/Web/API/GPUBuffer/unmap"><code>GPUBuffer.unmap()</code></a> is used to unmap the <code>GPUBuffer</code> again, once we have read the content into JavaScript as needed.</li>
+</ul>
+<pre class="brush: js">// map staging buffer to read results back to JS
+await stagingBuffer.mapAsync(
+  GPUMapMode.READ,
+  0, // Offset
+  BUFFER_SIZE, // Length
+);
+
+const copyArrayBuffer = stagingBuffer.getMappedRange(0, BUFFER_SIZE);
+const data = copyArrayBuffer.slice(0);
+stagingBuffer.unmap();
+console.log(new Float32Array(data));
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GPUBuffer" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GPUBuffer" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The <a href="/en-US/docs/Web/API/WebGPU_API">WebGPU API</a></li>
+</ul>
+</body></html>

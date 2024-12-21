@@ -1,0 +1,99 @@
+<html><head></head><body> <div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>IDBRequest</code></strong> interface of the IndexedDB API provides access to results of asynchronous requests to databases and database objects using event handler attributes. Each reading and writing operation on a database is done using a request.</p>
+<p>The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the <code>IDBRequest</code> instance.</p>
+<p>All asynchronous operations immediately return an <code>IDBRequest</code> instance. Each request has a <code>readyState</code> that is set to the <code>'pending'</code> state; this changes to <code>'done'</code> when the request is completed or fails. When the state is set to <code>done</code>, every request returns a <code>result</code> and an <code>error</code>, and an event is fired on the request. When the state is still <code>pending</code>, any attempt to access the <code>result</code> or <code>error</code> raises an <code>InvalidStateError</code> exception.</p>
+<p>In plain words, all asynchronous methods return a request object. If the request has been completed successfully, the result is made available through the <code>result</code> property and an event indicating success is fired at the request (<a href="/en-US/docs/Web/API/IDBRequest/success_event" title="success"><code>success</code></a>). If an error occurs while performing the operation, the exception is made available through the <code>error</code> property and an error event is fired (<a href="/en-US/docs/Web/API/IDBRequest/error_event" title="error"><code>error</code></a>).</p>
+<p>The interface <a href="/en-US/docs/Web/API/IDBOpenDBRequest"><code>IDBOpenDBRequest</code></a> is derived from <code>IDBRequest</code>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/IDBRequest" aria-current="page">
+    <rect x="118" y="0" width="80" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="158" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      IDBRequest
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Also inherits properties from <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="idbrequest.error"><a href="/en-US/docs/Web/API/IDBRequest/error"><code>IDBRequest.error</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMException"><code>DOMException</code></a> in the event of an unsuccessful request, indicating what went wrong.</p>
+  </dd>
+  <dt id="idbrequest.result"><a href="/en-US/docs/Web/API/IDBRequest/result"><code>IDBRequest.result</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the result of the request. If the request is not completed, the result is not available and an <code>InvalidStateError</code> exception is thrown.</p>
+  </dd>
+  <dt id="idbrequest.source"><a href="/en-US/docs/Web/API/IDBRequest/source"><code>IDBRequest.source</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The source of the request, such as an <a href="/en-US/docs/Web/API/IDBIndex"><code>IDBIndex</code></a> or an <a href="/en-US/docs/Web/API/IDBObjectStore"><code>IDBObjectStore</code></a>. If no source exists (such as when calling <a href="/en-US/docs/Web/API/IDBFactory/open"><code>IDBFactory.open</code></a>), it returns null.</p>
+  </dd>
+  <dt id="idbrequest.readystate"><a href="/en-US/docs/Web/API/IDBRequest/readyState"><code>IDBRequest.readyState</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The state of the request. Every request starts in the <code>pending</code> state. The state changes to <code>done</code> when the request completes successfully or when an error occurs.</p>
+  </dd>
+  <dt id="idbrequest.transaction"><a href="/en-US/docs/Web/API/IDBRequest/transaction"><code>IDBRequest.transaction</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The transaction for the request. This property can be null for certain requests, for example those returned from <a href="/en-US/docs/Web/API/IDBFactory/open"><code>IDBFactory.open</code></a> unless an upgrade is needed. (You're just connecting to a database, so there is no transaction to return).</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>No methods, but inherits methods from <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <code>addEventListener()</code> or by assigning an event listener to the <code>oneventname</code> property of this interface.</p>
+<dl>
+  <dt id="error"><a href="/en-US/docs/Web/API/IDBRequest/error_event"><code>error</code></a></dt>
+  <dd>
+    <p>Fired when an error caused a request to fail.</p>
+  </dd>
+  <dt id="success"><a href="/en-US/docs/Web/API/IDBRequest/success_event"><code>success</code></a></dt>
+  <dd>
+    <p>Fired when an <code>IDBRequest</code> succeeds.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<p>In the following code snippet, we open a database asynchronously and make a request; <code>onerror</code> and <code>onsuccess</code> functions are included to handle the success and error cases. For a full working example, see our <a href="https://github.com/mdn/dom-examples/tree/main/to-do-notifications">To-do Notifications</a> app (<a href="https://mdn.github.io/dom-examples/to-do-notifications/">view example live</a>.)</p>
+<pre class="brush: js">let db;
+
+// Let us open our database
+const DBOpenRequest = window.indexedDB.open("toDoList", 4);
+
+// these two event handlers act on the database being
+// opened successfully, or not
+DBOpenRequest.onerror = (event) =&gt; {
+  note.appendChild(document.createElement("li")).textContent =
+    "Error loading database.";
+};
+
+DBOpenRequest.onsuccess = (event) =&gt; {
+  note.appendChild(document.createElement("li")).textContent =
+    "Database initialized.";
+
+  // store the result of opening the database.
+  db = DBOpenRequest.result;
+};
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.IDBRequest" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.IDBRequest" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB">Using IndexedDB</a></li>
+  <li>Starting transactions: <a href="/en-US/docs/Web/API/IDBDatabase"><code>IDBDatabase</code></a></li>
+  <li>Using transactions: <a href="/en-US/docs/Web/API/IDBTransaction"><code>IDBTransaction</code></a></li>
+  <li>Setting a range of keys: <a href="/en-US/docs/Web/API/IDBKeyRange"><code>IDBKeyRange</code></a></li>
+  <li>Retrieving and making changes to your data: <a href="/en-US/docs/Web/API/IDBObjectStore"><code>IDBObjectStore</code></a></li>
+  <li>Using cursors: <a href="/en-US/docs/Web/API/IDBCursor"><code>IDBCursor</code></a></li>
+  <li>Reference example: <a href="https://github.com/mdn/dom-examples/tree/main/to-do-notifications">To-do Notifications</a> (<a href="https://mdn.github.io/dom-examples/to-do-notifications/">View the example live</a>).</li>
+</ul>
+</body></html>

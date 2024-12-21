@@ -1,0 +1,172 @@
+<html><head></head><body>
+<p>The <strong><code>Range</code></strong> interface represents a fragment of a document that can contain nodes and parts of text nodes.</p>
+<p>A range can be created by using the <a href="/en-US/docs/Web/API/Document/createRange"><code>Document.createRange()</code></a> method. Range objects can also be retrieved by using the <a href="/en-US/docs/Web/API/Selection/getRangeAt" title="getRangeAt()"><code>getRangeAt()</code></a> method of the <a href="/en-US/docs/Web/API/Selection"><code>Selection</code></a> object or the <a href="/en-US/docs/Web/API/Document/caretRangeFromPoint" title="caretRangeFromPoint()"><code>caretRangeFromPoint()</code></a> method of the <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> object.</p>
+<p>There also is the <a href="/en-US/docs/Web/API/Range/Range" title="Range()"><code>Range()</code></a> constructor available.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AbstractRange">
+    <rect x="0" y="0" width="104" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="52" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AbstractRange
+    </text>
+  </a>
+  <line x1="104" y1="14" x2="134" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="104,14 114,9 114,19 104,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Range" aria-current="page">
+    <rect x="134" y="0" width="75" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="171.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Range
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>There are no inherited properties.</em></p>
+<dl>
+  <dt id="range.collapsed"><a href="/en-US/docs/Web/API/Range/collapsed"><code>Range.collapsed</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a boolean value indicating whether the range's start and end points are at the same position.</p>
+  </dd>
+  <dt id="range.commonancestorcontainer"><a href="/en-US/docs/Web/API/Range/commonAncestorContainer"><code>Range.commonAncestorContainer</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the deepest <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> that contains the <code>startContainer</code> and <code>endContainer</code> nodes.</p>
+  </dd>
+  <dt id="range.endcontainer"><a href="/en-US/docs/Web/API/Range/endContainer"><code>Range.endContainer</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> within which the <code>Range</code> ends.</p>
+  </dd>
+  <dt id="range.endoffset"><a href="/en-US/docs/Web/API/Range/endOffset"><code>Range.endOffset</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a number representing where in the <code>endContainer</code> the <code>Range</code> ends.</p>
+  </dd>
+  <dt id="range.startcontainer"><a href="/en-US/docs/Web/API/Range/startContainer"><code>Range.startContainer</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> within which the <code>Range</code> starts.</p>
+  </dd>
+  <dt id="range.startoffset"><a href="/en-US/docs/Web/API/Range/startOffset"><code>Range.startOffset</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a number representing where in the <code>startContainer</code> the <code>Range</code> starts.</p>
+  </dd>
+</dl>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="range"><a href="/en-US/docs/Web/API/Range/Range" title="Range()"><code>Range()</code></a></dt>
+  <dd>
+    <p>Returns a <code>Range</code> object with the global <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> as its start and end.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>There are no inherited methods.</em></p>
+<dl>
+  <dt id="range.collapse"><a href="/en-US/docs/Web/API/Range/collapse"><code>Range.collapse()</code></a></dt>
+  <dd>
+    <p>Collapses the <code>Range</code> to one of its boundary points.</p>
+  </dd>
+  <dt id="range.compareboundarypoints"><a href="/en-US/docs/Web/API/Range/compareBoundaryPoints"><code>Range.compareBoundaryPoints()</code></a></dt>
+  <dd>
+    <p>Compares the boundary points of the <code>Range</code> with another <code>Range</code>.</p>
+  </dd>
+  <dt id="range.comparenode"><a href="/en-US/docs/Web/API/Range/compareNode"><code>Range.compareNode()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a constant representing whether the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> is before, after, inside, or surrounding the range.</p>
+  </dd>
+  <dt id="range.comparepoint"><a href="/en-US/docs/Web/API/Range/comparePoint"><code>Range.comparePoint()</code></a></dt>
+  <dd>
+    <p>Returns -1, 0, or 1 indicating whether the point occurs before, inside, or after the <code>Range</code>.</p>
+  </dd>
+  <dt id="range.clonecontents"><a href="/en-US/docs/Web/API/Range/cloneContents"><code>Range.cloneContents()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DocumentFragment"><code>DocumentFragment</code></a> copying the nodes of a <code>Range</code>.</p>
+  </dd>
+  <dt id="range.clonerange"><a href="/en-US/docs/Web/API/Range/cloneRange"><code>Range.cloneRange()</code></a></dt>
+  <dd>
+    <p>Returns a <code>Range</code> object with boundary points identical to the cloned <code>Range</code>.</p>
+  </dd>
+  <dt id="range.createcontextualfragment"><a href="/en-US/docs/Web/API/Range/createContextualFragment"><code>Range.createContextualFragment()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DocumentFragment"><code>DocumentFragment</code></a> created from a given string of code.</p>
+  </dd>
+  <dt id="range.deletecontents"><a href="/en-US/docs/Web/API/Range/deleteContents"><code>Range.deleteContents()</code></a></dt>
+  <dd>
+    <p>Removes the contents of a <code>Range</code> from the <a href="/en-US/docs/Web/API/Document"><code>Document</code></a>.</p>
+  </dd>
+  <dt id="range.detach"><a href="/en-US/docs/Web/API/Range/detach"><code>Range.detach()</code></a></dt>
+  <dd>
+    <p>Does nothing. Kept for compatibility.</p>
+  </dd>
+  <dt id="range.extractcontents"><a href="/en-US/docs/Web/API/Range/extractContents"><code>Range.extractContents()</code></a></dt>
+  <dd>
+    <p>Moves contents of a <code>Range</code> from the document tree into a <a href="/en-US/docs/Web/API/DocumentFragment"><code>DocumentFragment</code></a>.</p>
+  </dd>
+  <dt id="range.getboundingclientrect"><a href="/en-US/docs/Web/API/Range/getBoundingClientRect"><code>Range.getBoundingClientRect()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMRect"><code>DOMRect</code></a> object which bounds the entire contents of the <code>Range</code>; this would be the union of all the rectangles returned by <a href="/en-US/docs/Web/API/Range/getClientRects"><code>range.getClientRects()</code></a>.</p>
+  </dd>
+  <dt id="range.getclientrects"><a href="/en-US/docs/Web/API/Range/getClientRects"><code>Range.getClientRects()</code></a></dt>
+  <dd>
+    <p>Returns a list of <a href="/en-US/docs/Web/API/DOMRect"><code>DOMRect</code></a> objects that aggregates the results of <a href="/en-US/docs/Web/API/Element/getClientRects"><code>Element.getClientRects()</code></a> for all the elements in the <code>Range</code>.</p>
+  </dd>
+  <dt id="range.ispointinrange"><a href="/en-US/docs/Web/API/Range/isPointInRange"><code>Range.isPointInRange()</code></a></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> indicating whether the given point is in the <code>Range</code>.</p>
+  </dd>
+  <dt id="range.insertnode"><a href="/en-US/docs/Web/API/Range/insertNode"><code>Range.insertNode()</code></a></dt>
+  <dd>
+    <p>Insert a <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> at the start of a <code>Range</code>.</p>
+  </dd>
+  <dt id="range.intersectsnode"><a href="/en-US/docs/Web/API/Range/intersectsNode"><code>Range.intersectsNode()</code></a></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> indicating whether the given node intersects the <code>Range</code>.</p>
+  </dd>
+  <dt id="range.selectnode"><a href="/en-US/docs/Web/API/Range/selectNode"><code>Range.selectNode()</code></a></dt>
+  <dd>
+    <p>Sets the <code>Range</code> to contain the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> and its contents.</p>
+  </dd>
+  <dt id="range.selectnodecontents"><a href="/en-US/docs/Web/API/Range/selectNodeContents"><code>Range.selectNodeContents()</code></a></dt>
+  <dd>
+    <p>Sets the <code>Range</code> to contain the contents of a <a href="/en-US/docs/Web/API/Node"><code>Node</code></a>.</p>
+  </dd>
+  <dt id="range.setend"><a href="/en-US/docs/Web/API/Range/setEnd"><code>Range.setEnd()</code></a></dt>
+  <dd>
+    <p>Sets the end position of a <code>Range</code>.</p>
+  </dd>
+  <dt id="range.setstart"><a href="/en-US/docs/Web/API/Range/setStart"><code>Range.setStart()</code></a></dt>
+  <dd>
+    <p>Sets the start position of a <code>Range</code>.</p>
+  </dd>
+  <dt id="range.setendafter"><a href="/en-US/docs/Web/API/Range/setEndAfter"><code>Range.setEndAfter()</code></a></dt>
+  <dd>
+    <p>Sets the end position of a <code>Range</code> relative to another <a href="/en-US/docs/Web/API/Node"><code>Node</code></a>.</p>
+  </dd>
+  <dt id="range.setendbefore"><a href="/en-US/docs/Web/API/Range/setEndBefore"><code>Range.setEndBefore()</code></a></dt>
+  <dd>
+    <p>Sets the end position of a <code>Range</code> relative to another <a href="/en-US/docs/Web/API/Node"><code>Node</code></a>.</p>
+  </dd>
+  <dt id="range.setstartafter"><a href="/en-US/docs/Web/API/Range/setStartAfter"><code>Range.setStartAfter()</code></a></dt>
+  <dd>
+    <p>Sets the start position of a <code>Range</code> relative to another <a href="/en-US/docs/Web/API/Node"><code>Node</code></a>.</p>
+  </dd>
+  <dt id="range.setstartbefore"><a href="/en-US/docs/Web/API/Range/setStartBefore"><code>Range.setStartBefore()</code></a></dt>
+  <dd>
+    <p>Sets the start position of a <code>Range</code> relative to another <a href="/en-US/docs/Web/API/Node"><code>Node</code></a>.</p>
+  </dd>
+  <dt id="range.surroundcontents"><a href="/en-US/docs/Web/API/Range/surroundContents"><code>Range.surroundContents()</code></a></dt>
+  <dd>
+    <p>Moves content of a <code>Range</code> into a new <a href="/en-US/docs/Web/API/Node"><code>Node</code></a>.</p>
+  </dd>
+  <dt id="range.tostring"><a href="/en-US/docs/Web/API/Range/toString"><code>Range.toString()</code></a></dt>
+  <dd>
+    <p>Returns the text of the <code>Range</code>.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Range" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Range" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Document_Object_Model">The DOM interfaces index</a></li>
+</ul>
+</body></html>

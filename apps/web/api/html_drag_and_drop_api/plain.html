@@ -1,0 +1,224 @@
+<html><head></head><body>
+<p><strong>HTML Drag and Drop</strong> interfaces enable applications to use drag-and-drop features in browsers.</p>
+<p>The user may select <em>draggable</em> elements with a mouse, drag those elements to a <em>droppable</em> element, and drop them by releasing the mouse button. A translucent representation of the <em>draggable</em> elements follows the pointer during the drag operation.</p>
+<p>You can customize which elements can become <em>draggable</em>, the type of feedback the <em>draggable</em> elements produce, and the <em>droppable</em> elements.</p>
+<p>This overview of HTML Drag and Drop includes a description of the interfaces, basic steps to add drag-and-drop support to an application, and an interoperability summary of the interfaces.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<h3 id="drag_events">Drag Events</h3>
+<p>HTML drag-and-drop uses the <a href="/en-US/docs/Web/API/Event">DOM event model</a> and <em><a href="/en-US/docs/Web/API/DragEvent">drag events</a></em> inherited from <a href="/en-US/docs/Web/API/MouseEvent">mouse events</a>. A typical <em>drag operation</em> begins when a user selects a <em>draggable</em> element, continues when the user drags the element to a <em>droppable</em> element, and then ends when the user releases the dragged element.</p>
+<p>During drag operations, several event types are fired, and some events might fire many times, such as the <a href="/en-US/docs/Web/API/HTMLElement/drag_event" title="drag"><code>drag</code></a> and <a href="/en-US/docs/Web/API/HTMLElement/dragover_event" title="dragover"><code>dragover</code></a> events.</p>
+<p>Each <a href="/en-US/docs/Web/API/DragEvent#event_types">drag event type</a> has an associated event handler:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Fires when...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/en-US/docs/Web/API/HTMLElement/drag_event" title="drag"><code>drag</code></a></td>
+      <td>...a <em>dragged item</em> (element or text selection) is dragged.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/API/HTMLElement/dragend_event" title="dragend"><code>dragend</code></a></td>
+      <td>...a drag operation ends (such as releasing a mouse button or hitting the Esc key; see <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#finishing_a_drag">Finishing a Drag</a>.)</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/API/HTMLElement/dragenter_event" title="dragenter"><code>dragenter</code></a></td>
+      <td>...a dragged item enters a valid drop target. (See <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#specifying_drop_targets">Specifying Drop Targets</a>.)</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/API/HTMLElement/dragleave_event" title="dragleave"><code>dragleave</code></a></td>
+      <td>...a dragged item leaves a valid drop target.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/API/HTMLElement/dragover_event" title="dragover"><code>dragover</code></a></td>
+      <td>...a dragged item is being dragged over a valid drop target, every few hundred milliseconds.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/API/HTMLElement/dragstart_event" title="dragstart"><code>dragstart</code></a></td>
+      <td>...the user starts dragging an item. (See <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#starting_a_drag_operation">Starting a Drag Operation</a>.)</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/API/HTMLElement/drop_event" title="drop"><code>drop</code></a></td>
+      <td>...an item is dropped on a valid drop target. (See <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#performing_a_drop">Performing a Drop</a>.)</td>
+    </tr>
+  </tbody>
+</table>
+<div class="notecard note">
+  <p><strong>Note:</strong> Neither <code>dragstart</code> nor <code>dragend</code> events are fired when dragging a file into the browser from the OS.</p>
+</div>
+<h3 id="the_basics">The basics</h3>
+<p>This section is a summary of the basic steps to add drag-and-drop functionality to an application.</p>
+<h4 id="identify_what_is_draggable">Identify what is draggable</h4>
+<p>Making an element <em>draggable</em> requires adding the <a href="/en-US/docs/Web/HTML/Global_attributes/draggable"><code>draggable</code></a> attribute and the <a href="/en-US/docs/Web/API/HTMLElement/dragstart_event" title="dragstart"><code>dragstart</code></a> event handler, as shown in the following code sample:</p>
+<pre class="brush: html">&lt;script&gt;
+  function dragstartHandler(ev) {
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+  }
+
+  window.addEventListener("DOMContentLoaded", () =&gt; {
+    // Get the element by id
+    const element = document.getElementById("p1");
+    // Add the ondragstart event listener
+    element.addEventListener("dragstart", dragstartHandler);
+  });
+&lt;/script&gt;
+
+&lt;p id="p1" draggable="true"&gt;This element is draggable.&lt;/p&gt;
+</pre>
+<p>For more information, see:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Global_attributes/draggable">Draggable attribute reference</a></li>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#the_draggable_attribute">Drag operations guide</a></li>
+</ul>
+<h4 id="define_the_drags_data">Define the drag's data</h4>
+<p>The application is free to include any number of data items in a drag operation. Each data item is a string of a particular <code>type</code> — typically a MIME type such as <code>text/html</code>.</p>
+<p>Each <a href="/en-US/docs/Web/API/DragEvent"><code>DragEvent</code></a> has a <a href="/en-US/docs/Web/API/DragEvent/dataTransfer" title="dataTransfer"><code>dataTransfer</code></a> property that <em>holds</em> the event's data. This property (which is a <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> object) also has methods to <em>manage</em> drag data. The <a href="/en-US/docs/Web/API/DataTransfer/setData" title="setData()"><code>setData()</code></a> method is used to add an item to the drag data, as shown in the following example.</p>
+<pre class="brush: js">function dragstartHandler(ev) {
+  // Add different types of drag data
+  ev.dataTransfer.setData("text/plain", ev.target.innerText);
+  ev.dataTransfer.setData("text/html", ev.target.outerHTML);
+  ev.dataTransfer.setData(
+    "text/uri-list",
+    ev.target.ownerDocument.location.href,
+  );
+}
+</pre>
+<ul>
+  <li>For a list of common data types used in drag-and-drop (such as text, HTML, links, and files), see <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Recommended_drag_types">Recommended Drag Types</a>.</li>
+  <li>For more information about drag data, see <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#drag_data">Drag Data</a>.</li>
+</ul>
+<h4 id="define_the_drag_image">Define the drag image</h4>
+<p>By default, the browser supplies an image that appears beside the pointer during a drag operation. However, an application may define a custom image with the <a href="/en-US/docs/Web/API/DataTransfer/setDragImage" title="setDragImage()"><code>setDragImage()</code></a> method, as shown in the following example.</p>
+<pre class="brush: js">// Create an image and then use it for the drag image.
+// NOTE: change "example.gif" to a real image URL or the image
+// will not be created and the default drag image will be used.
+let img = new Image();
+img.src = "example.gif";
+function dragstartHandler(ev) {
+  ev.dataTransfer.setDragImage(img, 10, 10);
+}
+</pre>
+<p>Learn more about drag feedback images in:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#setting_the_drag_feedback_image">Setting the Drag Feedback Image</a></li>
+</ul>
+<h4 id="define_the_drop_effect">Define the drop effect</h4>
+<p>The <a href="/en-US/docs/Web/API/DataTransfer/dropEffect" title="dropEffect"><code>dropEffect</code></a> property is used to control the feedback the user is given during a drag-and-drop operation. It typically affects which cursor the browser displays while dragging. For example, when the user hovers over a drop target, the browser's cursor may indicate the type of operation that will occur.</p>
+<p>Three effects may be defined:</p>
+<ol>
+  <li><strong><code>copy</code></strong> indicates that the dragged data will be copied from its present location to the drop location.</li>
+  <li><strong><code>move</code></strong> indicates that the dragged data will be moved from its present location to the drop location.</li>
+  <li><strong><code>link</code></strong> indicates that some form of relationship or connection will be created between the source and drop locations.</li>
+</ol>
+<p>During the drag operation, drag effects may be modified to indicate that certain effects are allowed at certain locations.</p>
+<p>The following example shows how to use this property.</p>
+<pre class="brush: js">function dragstartHandler(ev) {
+  ev.dataTransfer.dropEffect = "copy";
+}
+</pre>
+<p>For more details, see:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#drag_effects">Drag Effects</a></li>
+</ul>
+<h4 id="define_a_drop_zone">Define a drop zone</h4>
+<p>By default, the browser prevents anything from happening when dropping something onto most HTML elements. To change that behavior so that an element becomes a <em>drop zone</em> or is <em>droppable</em>, the element must listen to both <a href="/en-US/docs/Web/API/HTMLElement/dragover_event" title="dragover"><code>dragover</code></a> and <a href="/en-US/docs/Web/API/HTMLElement/drop_event" title="drop"><code>drop</code></a> events.</p>
+<p>The following example shows how to use those attributes, and includes basic event handlers for each attribute.</p>
+<pre class="brush: html">&lt;script&gt;
+  function dragoverHandler(ev) {
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
+  }
+  function dropHandler(ev) {
+    ev.preventDefault();
+    // Get the id of the target and add the moved element to the target's DOM
+    const data = ev.dataTransfer.getData("text/plain");
+    ev.target.appendChild(document.getElementById(data));
+  }
+&lt;/script&gt;
+
+&lt;p id="target" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"&gt;
+  Drop Zone
+&lt;/p&gt;
+</pre>
+<p>Note that each handler calls <a href="/en-US/docs/Web/API/Event/preventDefault" title="preventDefault()"><code>preventDefault()</code></a> to prevent additional event processing for this event (such as <a href="/en-US/docs/Web/API/Touch_events">touch events</a> or <a href="/en-US/docs/Web/API/Pointer_events">pointer events</a>).</p>
+<p>For more information, see:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#specifying_drop_targets">Specifying Drop Targets</a></li>
+</ul>
+<h4 id="handle_the_drop_effect">Handle the drop effect</h4>
+<p>The handler for the <a href="/en-US/docs/Web/API/HTMLElement/drop_event" title="drop"><code>drop</code></a> event is free to process the drag data in an application-specific way.</p>
+<p>Typically, an application uses the <a href="/en-US/docs/Web/API/DataTransfer/getData" title="getData()"><code>getData()</code></a> method to retrieve drag items and then process them accordingly. Additionally, application semantics may differ depending on the value of the <a href="/en-US/docs/Web/API/DataTransfer/dropEffect" title="dropEffect"><code>dropEffect</code></a> and/or the state of modifier keys.</p>
+<p>The following example shows a drop handler getting the source element's <code>id</code> from the drag data, and then using the <code>id</code> to move the source element to the drop element:</p>
+<pre class="brush: html">&lt;script&gt;
+  function dragstartHandler(ev) {
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("application/my-app", ev.target.id);
+    ev.dataTransfer.effectAllowed = "move";
+  }
+  function dragoverHandler(ev) {
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
+  }
+  function dropHandler(ev) {
+    ev.preventDefault();
+    // Get the id of the target and add the moved element to the target's DOM
+    const data = ev.dataTransfer.getData("application/my-app");
+    ev.target.appendChild(document.getElementById(data));
+  }
+&lt;/script&gt;
+
+&lt;p id="p1" draggable="true" ondragstart="dragstartHandler(event)"&gt;
+  This element is draggable.
+&lt;/p&gt;
+&lt;div
+  id="target"
+  ondrop="dropHandler(event)"
+  ondragover="dragoverHandler(event)"&gt;
+  Drop Zone
+&lt;/div&gt;
+</pre>
+<p>For more information, see:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#performing_a_drop">Performing a Drop</a></li>
+</ul>
+<h4 id="drag_end">Drag end</h4>
+<p>At the end of a drag operation, the <a href="/en-US/docs/Web/API/HTMLElement/dragend_event" title="dragend"><code>dragend</code></a> event fires at the <em>source</em> element — the element that was the target of the drag start.</p>
+<p>This event fires regardless of whether the drag completed or was canceled. The <a href="/en-US/docs/Web/API/HTMLElement/dragend_event" title="dragend"><code>dragend</code></a> event handler can check the value of the <a href="/en-US/docs/Web/API/DataTransfer/dropEffect" title="dropEffect"><code>dropEffect</code></a> property to determine if the drag operation succeeded or not.</p>
+<p>For more information about handling the end of a drag operation, see:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#finishing_a_drag">Finishing a Drag</a></li>
+</ul>
+<h2 id="interfaces">Interfaces</h2>
+<p>The HTML Drag and Drop interfaces are <a href="/en-US/docs/Web/API/DragEvent"><code>DragEvent</code></a>, <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a>, <a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a> and <a href="/en-US/docs/Web/API/DataTransferItemList"><code>DataTransferItemList</code></a>.</p>
+<p>The <a href="/en-US/docs/Web/API/DragEvent"><code>DragEvent</code></a> interface has a constructor and one <a href="/en-US/docs/Web/API/DragEvent/dataTransfer" title="dataTransfer"><code>dataTransfer</code></a> property, which is a <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> object.</p>
+<p><a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> objects include the drag event's state, such as the type of drag being done (like <code>copy</code> or <code>move</code>), the drag's data (one or more items), and the MIME type of each <em>drag item</em>. <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> objects also have methods to add or remove items to the drag's data.</p>
+<p>The <a href="/en-US/docs/Web/API/DragEvent"><code>DragEvent</code></a> and <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> interfaces should be the only ones needed to add HTML Drag and Drop capabilities to an application.</p>
+<p>Each <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> object contains an <a href="/en-US/docs/Web/API/DataTransfer/items" title="items"><code>items</code></a> property, which is a <a href="/en-US/docs/Web/API/DataTransferItemList" title="list"><code>list</code></a> of <a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a> objects. A <a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a> object represents a single <em>drag item</em>, each with a <a href="/en-US/docs/Web/API/DataTransferItem/kind" title="kind"><code>kind</code></a> property (either <code>string</code> or <code>file</code>) and a <a href="/en-US/docs/Web/API/DataTransferItem/type" title="type"><code>type</code></a> property for the data item's MIME type. The <a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a> object also has methods to get the drag item's data.</p>
+<p>The <a href="/en-US/docs/Web/API/DataTransferItemList"><code>DataTransferItemList</code></a> object is a list of <a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a> objects. The list object has methods to add a drag item to the list, remove a drag item from the list, and clear the list of all drag items.</p>
+<p>A key difference between the <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> and <a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a> interfaces is that the former uses the synchronous <a href="/en-US/docs/Web/API/DataTransfer/getData" title="getData()"><code>getData()</code></a> method to access a drag item's data, but the latter instead uses the asynchronous <a href="/en-US/docs/Web/API/DataTransferItem/getAsString" title="getAsString()"><code>getAsString()</code></a> method.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> <a href="/en-US/docs/Web/API/DragEvent"><code>DragEvent</code></a> and <a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a> are broadly supported on desktop browsers. However, the <a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a> and <a href="/en-US/docs/Web/API/DataTransferItemList"><code>DataTransferItemList</code></a> interfaces have limited browser support. See <a href="#interoperability">Interoperability</a> for more information about drag-and-drop interoperability.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<ul>
+  <li><a href="https://mdn.github.io/dom-examples/drag-and-drop/copy-move-DataTransfer.html">Copying and moving elements with the <code>DataTransfer</code> interface</a></li>
+  <li><a href="https://mdn.github.io/dom-examples/drag-and-drop/copy-move-DataTransferItemList.html">Copying and moving elements with the <code>DataTransferListItem</code> interface</a></li>
+  <li>Dragging and dropping files (Firefox only): <a href="https://jsfiddle.net/9C2EF/">https://jsfiddle.net/9C2EF/</a></li>
+  <li>Dragging and dropping files (All browsers): <a href="https://jsbin.com/hiqasek/edit?html,js,output">https://jsbin.com/hiqasek/</a></li>
+  <li>A parking project using the Drag and Drop API: <a href="https://park.glitch.me/">https://park.glitch.me/</a> (You can edit <a href="https://glitch.com/edit/#!/park">here</a>)</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://html.spec.whatwg.org/multipage/dnd.html">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations">Drag Operations</a></li>
+  <li><a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Recommended_drag_types">Recommended Drag Types</a></li>
+  <li><a href="https://html.spec.whatwg.org/multipage/interaction.html#dnd">HTML Living Standard: Drag and Drop</a></li>
+  <li><a href="https://caniuse.com/#search=draganddrop">Drag and Drop interoperability data from CanIUse</a></li>
+</ul>
+</body></html>

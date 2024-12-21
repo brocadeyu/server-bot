@@ -1,0 +1,74 @@
+<html><head></head><body>
+<p>The <strong><code>MediaStreamTrackAudioSourceNode</code></strong> interface is a type of <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a> which represents a source of audio data taken from a specific <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> obtained through the <a href="/en-US/docs/Web/API/WebRTC_API">WebRTC</a> or <a href="/en-US/docs/Web/API/Media_Capture_and_Streams_API">Media Capture and Streams</a> APIs.</p>
+<p>The audio itself might be input from a microphone or other audio sampling device, or might be received through a <a href="/en-US/docs/Web/API/RTCPeerConnection"><code>RTCPeerConnection</code></a>, among other possible options.</p>
+<p>A <code>MediaStreamTrackAudioSourceNode</code> has no inputs and exactly one output, and is created using the <a href="/en-US/docs/Web/API/AudioContext/createMediaStreamTrackSource"><code>AudioContext.createMediaStreamTrackSource()</code></a> method. This interface is similar to <a href="/en-US/docs/Web/API/MediaStreamAudioSourceNode"><code>MediaStreamAudioSourceNode</code></a>, except it lets you specifically state the track to use, rather than assuming the first audio track on a stream.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AudioNode">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AudioNode
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/MediaStreamTrackAudioSourceNode" aria-current="page">
+    <rect x="223" y="0" width="248" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="347" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      MediaStreamTrackAudioSourceNode
+    </text>
+  </a></svg>
+<table class="properties">
+  <tbody>
+    <tr>
+      <th scope="row">Number of inputs</th>
+      <td><code>0</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Number of outputs</th>
+      <td><code>1</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Channel count</th>
+      <td>
+        defined by the first audio <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a>
+        passed to the
+        <a href="/en-US/docs/Web/API/AudioContext/createMediaStreamTrackSource"><code>AudioContext.createMediaStreamTrackSource()</code></a>
+        method that created it.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="mediastreamtrackaudiosourcenode"><a href="/en-US/docs/Web/API/MediaStreamTrackAudioSourceNode/MediaStreamTrackAudioSourceNode" title="MediaStreamTrackAudioSourceNode()"><code>MediaStreamTrackAudioSourceNode()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>MediaStreamTrackAudioSourceNode</code> object instance with the specified options.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>The <code>MediaStreamTrackAudioSourceNode</code> interface has no properties of its own; however, it inherits the properties of its parent, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a>.</em></p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a></em>.</p>
+<h2 id="example">Example</h2>
+<p>See <a href="/en-US/docs/Web/API/AudioContext/createMediaStreamSource#examples"><code>AudioContext.createMediaStreamSource()</code></a> for example code that uses this object.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MediaStreamTrackAudioSourceNode" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MediaStreamTrackAudioSourceNode" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API">Using the Web Audio API</a></li>
+  <li><a href="/en-US/docs/Web/API/WebRTC_API">WebRTC API</a></li>
+  <li><a href="/en-US/docs/Web/API/Media_Capture_and_Streams_API">Media Capture and Streams API (Media Streams)</a></li>
+  <li><a href="/en-US/docs/Web/API/MediaStreamAudioSourceNode"><code>MediaStreamAudioSourceNode</code></a></li>
+</ul>
+</body></html>

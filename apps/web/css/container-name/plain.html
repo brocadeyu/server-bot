@@ -1,0 +1,134 @@
+<html><head></head><body>
+<p>
+  The <strong>container-name</strong> <a href="/en-US/docs/Web/CSS">CSS</a> property specifies a list of query container names used by the <a href="/en-US/docs/Web/CSS/@container">@container</a> at-rule in a <a href="/en-US/docs/Web/CSS/CSS_containment/Container_queries">container query</a>.
+  A container query will apply styles to elements based on the size of the nearest ancestor with a containment context.
+  When a containment context is given a name, it can be specifically targeted using the <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> at-rule instead of the nearest ancestor with containment.
+</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> When using the <a href="/en-US/docs/Web/CSS/container-type"><code>container-type</code></a> and <code>container-name</code> properties, the <code>style</code> and <code>layout</code> values of the <a href="/en-US/docs/Web/CSS/contain"><code>contain</code></a> property are automatically applied.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">container-name: none;
+
+/* A single name */
+container-name: myLayout;
+
+/* Multiple names */
+container-name: myPageLayout myComponentLibrary;
+
+/* Global Values */
+container-name: inherit;
+container-name: initial;
+container-name: revert;
+container-name: revert-layer;
+container-name: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>Default value. The query container has no name.</p>
+  </dd>
+  <dt id="custom-ident"><a href="/en-US/docs/Web/CSS/custom-ident"><code>&lt;custom-ident&gt;</code></a></dt>
+  <dd>
+    <p>
+      A case-sensitive string that is used to identify the container.
+      The following conditions apply:
+    </p>
+    <ul>
+      <li>The name must not equal <code>or</code>, <code>and</code>, <code>not</code>, or <code>default</code>.</li>
+      <li>The name value must not be in quotes.</li>
+      <li>The dashed ident intended to denote author-defined identifiers (e.g., <code>--container-name</code>) is permitted.</li>
+      <li>A list of multiple names separated by a space is allowed.</li>
+    </ul>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>none</code></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td><code>none</code> or an ordered list of identifiers</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>Not animatable</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="container-name">container-name = </span><br>  <span class="token keyword">none</span>             <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/custom-ident"><span class="token property">&lt;custom-ident&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#plus" title="Plus: the entity may occur one or several times">+</a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_a_container_name">Using a container name</h3>
+<p>Given the following HTML example which is a card component with a title and some text:</p>
+<pre class="brush: html">&lt;div class="card"&gt;
+  &lt;div class="post-meta"&gt;
+    &lt;h2&gt;Card title&lt;/h2&gt;
+    &lt;p&gt;My post details.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="post-excerpt"&gt;
+    &lt;p&gt;
+      A preview of my &lt;a href="https://example.com"&gt;blog post&lt;/a&gt; about cats.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>
+  To create a containment context, add the <code>container-type</code> property to an element in CSS.
+  The following example creates two containment contexts, one for the card meta information and one for the post excerpt:
+</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> A shorthand syntax for these declarations are described in the <a href="/en-US/docs/Web/CSS/container"><code>container</code></a> page.</p>
+</div>
+<pre class="brush: css">.post-meta {
+  container-type: inline-size;
+}
+
+.post-excerpt {
+  container-type: inline-size;
+  container-name: excerpt;
+}
+</pre>
+<p>
+  Writing a container query via the <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> at-rule will apply styles to the elements of the container when the query evaluates to true.
+  The following example has two container queries, one that will apply only to the contents of the <code>.post-excerpt</code> element and one that will apply to both the <code>.post-meta</code> and <code>.post-excerpt</code> contents:
+</p>
+<pre class="brush: css">@container excerpt (min-width: 400px) {
+  p {
+    visibility: hidden;
+  }
+}
+
+@container (min-width: 400px) {
+  p {
+    font-size: 2rem;
+  }
+}
+</pre>
+<p>For more information on writing container queries, see the <a href="/en-US/docs/Web/CSS/CSS_containment/Container_queries">CSS Container Queries</a> page.</p>
+<h3 id="using_multiple_container_names">Using multiple container names</h3>
+<p>You can also provide multiple names to a container context separated by a space:</p>
+<pre class="brush: css">.post-meta {
+  container-type: inline-size;
+  container-name: meta card;
+}
+</pre>
+<p>
+  This will allow you to target the container using either name in the <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> at-rule.
+  This is useful if you want to target the same container with multiple container queries where either condition could be true:
+</p>
+<pre class="brush: css">@container meta (max-width: 500px) {
+  p {
+    visibility: hidden;
+  }
+}
+
+@container card (max-height: 200px) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.container-name" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.container-name" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_containment/Container_queries">CSS container queries</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries">Using container size and style queries</a></li>
+  <li><a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> at-rule</li>
+  <li>CSS <a href="/en-US/docs/Web/CSS/container"><code>container</code></a> shorthand property</li>
+  <li>CSS <a href="/en-US/docs/Web/CSS/container-type"><code>container-type</code></a> property</li>
+  <li>CSS <a href="/en-US/docs/Web/CSS/content-visibility"><code>content-visibility</code></a> property</li>
+</ul>
+</body></html>

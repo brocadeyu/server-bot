@@ -1,0 +1,34 @@
+<html><head></head><body>
+<p>Specifying <strong>alternative style sheets</strong> in a web page provides a way for users to see multiple versions of a page, based on their needs or preferences.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This feature is not well supported in browsers without an extension. To offer alternative presentations that work with a user's existing preferences, see the CSS <a href="/en-US/docs/Web/CSS/@media#media_features">media features</a> <a href="/en-US/docs/Web/CSS/@media/prefers-color-scheme"><code>prefers-color-scheme</code></a> and <a href="/en-US/docs/Web/CSS/@media/prefers-contrast"><code>prefers-contrast</code></a>.</p>
+</div>
+<p>Firefox lets the user select the stylesheet using the <em>View &gt; Page Style</em> submenu. Other browsers require an extension to enable this functionality. The web page can also provide its own user interface to let the user switch styles.</p>
+<h2 id="an_example_specifying_the_alternative_stylesheets">An example: specifying the alternative stylesheets</h2>
+<p>The alternate stylesheets are commonly specified using a <a href="/en-US/docs/Web/HTML/Element/link"><code>&lt;link&gt;</code></a> element with <code>rel="alternate stylesheet"</code> and <code>title="…"</code> attributes. For example:</p>
+<pre class="brush: html">&lt;link href="reset.css" rel="stylesheet" /&gt;
+
+&lt;link href="default.css" rel="stylesheet" title="Default Style" /&gt;
+&lt;link href="fancy.css" rel="alternate stylesheet" title="Fancy" /&gt;
+&lt;link href="basic.css" rel="alternate stylesheet" title="Basic" /&gt;
+</pre>
+<p>In this example, the styles "Default Style", "Fancy", and "Basic" will be listed in the <em>Page Style</em> submenu, with "Default Style" pre-selected. When the user selects a different style, the page will immediately be re-rendered using that style sheet.</p>
+<p>No matter what style is selected, the rules from the reset.css stylesheet will always be applied.</p>
+<h3 id="try_it_out">Try it out</h3>
+<p><a href="https://mdn.github.io/css-examples/alt-style-sheets/">Try a working example here</a>.</p>
+<h2 id="details">Details</h2>
+<p>Any stylesheet in a document falls into one of the following categories:</p>
+<ul>
+  <li><strong>Persistent</strong> (has <code>rel="stylesheet"</code>, no <code>title=""</code>): always applies to the document.</li>
+  <li><strong>Preferred</strong> (has <code>rel="stylesheet"</code>, with <code>title="…"</code> specified): applied by default, but <a href="/en-US/docs/Web/API/StyleSheet/disabled" title="disabled">disabled</a> if an alternate stylesheet is selected. <strong>There can only be one preferred stylesheet</strong>, so providing stylesheets with different title attributes will cause some of them to be ignored.</li>
+  <li><strong>Alternate</strong> (<code>rel="alternate stylesheet"</code>, with <code>title="…"</code> specified): disabled by default, can be selected.</li>
+</ul>
+<p>When style sheets are referenced with a <code>title</code> attribute on the <a href="/en-US/docs/Web/HTML/Element/link">&lt;link rel="stylesheet"&gt;</a> or <a href="/en-US/docs/Web/HTML/Element/style"><code>&lt;style&gt;</code></a> element, the title becomes one of the choices offered to the user. Style sheets linked with the same <code>title</code> are part of the same choice. Style sheets linked without a <code>title</code> attribute are always applied.</p>
+<p>Use <code>rel="stylesheet"</code> to link to the default style, and <code>rel="alternate stylesheet"</code> to link to alternative style sheets. This tells the browser which style sheet title should be selected by default, and makes that default selection apply in browsers that do not support alternate style sheets.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.elements.link.rel.alternate_stylesheet" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.elements.link.rel.alternate_stylesheet" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

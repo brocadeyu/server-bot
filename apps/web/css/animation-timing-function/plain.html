@@ -1,0 +1,479 @@
+<html><head></head><body>
+<p>The <strong><code>animation-timing-function</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets how an animation progresses through the duration of each cycle.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/animation-timing-function.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p>It is often convenient to use the shorthand property <a href="/en-US/docs/Web/CSS/animation"><code>animation</code></a> to set all animation properties at once.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+animation-timing-function: ease;
+animation-timing-function: ease-in;
+animation-timing-function: ease-out;
+animation-timing-function: ease-in-out;
+animation-timing-function: linear;
+animation-timing-function: step-start;
+animation-timing-function: step-end;
+
+/* cubic-bezier() function values */
+animation-timing-function: cubic-bezier(0.42, 0, 1, 1); /* ease-in */
+animation-timing-function: cubic-bezier(0, 0, 0.58, 1); /* ease-out */
+animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* ease-in-out */
+
+/* linear() function values */
+animation-timing-function: linear(0, 0.25, 1);
+animation-timing-function: linear(0 0%, 0.25 50%, 1 100%);
+animation-timing-function: linear(0, 0.25 50% 75%, 1);
+animation-timing-function: linear(0, 0.25 50%, 0.25 75%, 1);
+
+/* steps() function values */
+animation-timing-function: steps(4, jump-start);
+animation-timing-function: steps(10, jump-end);
+animation-timing-function: steps(20, jump-none);
+animation-timing-function: steps(5, jump-both);
+animation-timing-function: steps(6, start);
+animation-timing-function: steps(8, end);
+
+/* Multiple animations */
+animation-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1, 0.1);
+
+/* Global values */
+animation-timing-function: inherit;
+animation-timing-function: initial;
+animation-timing-function: revert;
+animation-timing-function: revert-layer;
+animation-timing-function: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="easing-function"><a href="/en-US/docs/Web/CSS/easing-function"><code>&lt;easing-function&gt;</code></a></dt>
+  <dd>
+    <p>The easing function that corresponds to a given animation, as determined by <a href="/en-US/docs/Web/CSS/animation-name"><code>animation-name</code></a>.</p>
+    <p>The non-step keyword values (<code>ease</code>, <code>linear</code>, <code>ease-in-out</code>, etc.) each represent cubic Bézier curves with fixed four-point values, while the <code>cubic-bezier()</code> function value allows non-predefined values to be specified. The <code>steps()</code> easing function divides the input time into a specified number of equal-length intervals. Its parameters include a number of steps and a step position.</p>
+    <dl>
+      <dt id="linear"><a href="#linear"><code>linear</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.0, 0.0, 1.0, 1.0)</code>, animates at an even speed.</p>
+      </dd>
+      <dt id="ease"><a href="#ease"><code>ease</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.25, 0.1, 0.25, 1.0)</code>, the default value, increases in velocity towards the middle of the animation, slowing back down at the end.</p>
+      </dd>
+      <dt id="ease-in"><a href="#ease-in"><code>ease-in</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.42, 0, 1.0, 1.0)</code>, starts off slowly, with the speed of the transition of the animating property increasing until complete.</p>
+      </dd>
+      <dt id="ease-out"><a href="#ease-out"><code>ease-out</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0, 0, 0.58, 1.0)</code>, starts quickly, slowing down the animation continues.</p>
+      </dd>
+      <dt id="ease-in-out"><a href="#ease-in-out"><code>ease-in-out</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.42, 0, 0.58, 1.0)</code>, with the animating properties slowly transitioning, speeding up, and then slowing down again.</p>
+      </dd>
+      <dt id="cubic-beziernumber_01_number_number_01_number"><a href="#cubic-beziernumber_01_number_number_01_number"><code>cubic-bezier(&lt;number [0,1]&gt; , &lt;number&gt; , &lt;number [0,1]&gt; , &lt;number&gt;)</code></a></dt>
+      <dd>
+        <p>An author defined cubic-bezier curve, where the first and third values must be in the range of 0 to 1.</p>
+      </dd>
+      <dt id="linearnumber_percentage12_…"><a href="#linearnumber_percentage12_…"><code>linear(&lt;number&gt; &lt;percentage&gt;{1,2}, …)</code></a></dt>
+      <dd>
+        <p>The function interpolates linearly between the provided easing stop points. A stop point is a pair of an output progress and an input percentage. The input percentage is optional and is inferred if not specified. If an input percentage is not provided then the first and last stop points are set to <code>0%</code> and <code>100%</code> respectively, and the stop points in the middle receive percentage values derived by linearly interpolating between the closest previous and next points that have a percentage value.</p>
+      </dd>
+      <dt id="stepsinteger_step-position"><a href="#stepsinteger_step-position"><code>steps(&lt;integer&gt;, &lt;step-position&gt;)</code></a></dt>
+      <dd>
+        <p>Displays an animation iteration along <em>n</em> stops along the transition, displaying each stop for equal lengths of time. For example, if <em>n</em> is 5, there are 5 steps. Whether the animation holds temporarily at 0%, 20%, 40%, 60% and 80%, on the 20%, 40%, 60%, 80% and 100%, or makes 5 stops between the 0% and 100% along the animation, or makes 5 stops including the 0% and 100% marks (on the 0%, 25%, 50%, 75%, and 100%) depends on which of the following step position is used:</p>
+        <dl>
+          <dt id="jump-start"><a href="#jump-start"><code>jump-start</code></a></dt>
+          <dd>
+            <p>Denotes a left-continuous function, so that the first jump happens when the animation begins.</p>
+          </dd>
+          <dt id="jump-end"><a href="#jump-end"><code>jump-end</code></a></dt>
+          <dd>
+            <p>Denotes a right-continuous function, so that the last jump happens when the animation ends. This is the default.</p>
+          </dd>
+          <dt id="jump-none"><a href="#jump-none"><code>jump-none</code></a></dt>
+          <dd>
+            <p>There is no jump on either end, effectively removing a step during the interpolation iteration. Instead, it holds at both the 0% mark and the 100% mark, each for 1/n of the duration.</p>
+          </dd>
+          <dt id="jump-both"><a href="#jump-both"><code>jump-both</code></a></dt>
+          <dd>
+            <p>Includes pauses at both the 0% and 100% marks, effectively adding a step during the animation iteration.</p>
+          </dd>
+          <dt id="start"><a href="#start"><code>start</code></a></dt>
+          <dd>
+            <p>Same as <code>jump-start</code>.</p>
+          </dd>
+          <dt id="end"><a href="#end"><code>end</code></a></dt>
+          <dd>
+            <p>Same as <code>jump-end</code>.</p>
+          </dd>
+        </dl>
+      </dd>
+      <dt id="step-start"><a href="#step-start"><code>step-start</code></a></dt>
+      <dd>
+        <p>Equal to <code>steps(1, jump-start)</code></p>
+      </dd>
+      <dt id="step-end"><a href="#step-end"><code>step-end</code></a></dt>
+      <dd>
+        <p>Equal to <code>steps(1, jump-end)</code></p>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+<div class="notecard note">
+  <p><strong>Note:</strong> When you specify multiple comma-separated values on an <code>animation-*</code> property, they are applied to the animations in the order in which the <a href="/en-US/docs/Web/CSS/animation-name"><code>animation-name</code></a>s appear. For situations where the number of animations and <code>animation-*</code> property values do not match, see <a href="/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations#setting_multiple_animation_property_values">Setting multiple animation property values</a>.</p>
+</div>
+<div class="notecard note">
+  <p><strong>Note:</strong> <code>animation-timing-function</code> has the same effect when creating <a href="/en-US/docs/Web/CSS/CSS_scroll-driven_animations">CSS scroll-driven animations</a> as it does for regular time-based animations.</p>
+</div>
+<h2 id="description">Description</h2>
+<p>Easing functions may be specified on individual keyframes in a <a href="/en-US/docs/Web/CSS/@keyframes"><code>@keyframes</code></a> rule. If no <strong><code>animation-timing-function</code></strong> is specified on a keyframe, the corresponding value of <strong><code>animation-timing-function</code></strong> from the element to which the animation is applied is used for that keyframe.</p>
+<p>Within a keyframe, <code>animation-timing-function</code> is an at-rule-specific descriptor, not the property of the same name. The timing is not being animated. Rather, a keyframe's easing function is applied on a property-by-property basis from the keyframe on which it is specified until the next keyframe specifying that property, or until the end of the animation if there is no subsequent keyframe specifying that property. As a result, an <strong><code>animation-timing-function</code></strong> specified on the <strong><code>100%</code></strong> or <strong><code>to</code></strong> keyframe will never be used.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>ease</code></td></tr><tr><th scope="row">Applies to</th><td>all elements, <a href="/en-US/docs/Web/CSS/::before"><code>::before</code></a> and <a href="/en-US/docs/Web/CSS/::after"><code>::after</code></a> <a href="/en-US/docs/Web/CSS/Pseudo-elements">pseudo-elements</a></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>Not animatable</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="animation-timing-function">animation-timing-function = </span><br>  <span class="token property">&lt;easing-function&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#hash_mark" title="Hash mark: the entity is repeated one or several times, each occurence separated by a comma">#</a>  <br><br><span class="token property" id="<easing-function>">&lt;easing-function&gt; = </span><br>  <span class="token property">&lt;linear-easing-function&gt;</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;cubic-bezier-easing-function&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;step-easing-function&gt;</span>          <br><br><span class="token property" id="<linear-easing-function>">&lt;linear-easing-function&gt; = </span><br>  <span class="token keyword">linear</span>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;linear()&gt;</span>  <br><br><span class="token property" id="<cubic-bezier-easing-function>">&lt;cubic-bezier-easing-function&gt; = </span><br>  <span class="token keyword">ease</span>              <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">ease-in</span>           <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">ease-out</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">ease-in-out</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;cubic-bezier()&gt;</span>  <br><br><span class="token property" id="<step-easing-function>">&lt;step-easing-function&gt; = </span><br>  <span class="token keyword">step-start</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">step-end</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;steps()&gt;</span>   <br><br><span class="token property" id="<linear()>">&lt;linear()&gt; = </span><br>  <span class="token function">linear(</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_ampersand" title="Double ampersand: all of the entities must be present, in any order">&amp;&amp;</a> <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{0,2}</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#hash_mark" title="Hash mark: the entity is repeated one or several times, each occurence separated by a comma">#</a> <span class="token function">)</span>  <br><br><span class="token property" id="<cubic-bezier()>">&lt;cubic-bezier()&gt; = </span><br>  <span class="token function">cubic-bezier(</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number [0,1]&gt;</span></a> , <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#hash_mark" title="Hash mark: the entity is repeated one or several times, each occurence separated by a comma">#</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{2}</a> <span class="token function">)</span>  <br><br><span class="token property" id="<steps()>">&lt;steps()&gt; = </span><br>  <span class="token function">steps(</span> <a href="/en-US/docs/Web/CSS/integer"><span class="token property">&lt;integer&gt;</span></a> , <span class="token property">&lt;step-position&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <span class="token function">)</span>  <br><br><span class="token property" id="<step-position>">&lt;step-position&gt; = </span><br>  <span class="token keyword">jump-start</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jump-end</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jump-none</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jump-both</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">start</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">end</span>         <br><br></pre>
+<h2 id="examples">Examples</h2>
+<p>All the examples in this section animate the <code>width</code> and <code>background-color</code> properties of several <code>&lt;div&gt;</code> elements with different <code>animation-timing-function</code> values. The width is being animated from <code>0</code> to <code>100%</code>, and the background color is being animated from lime to magenta.</p>
+<h3 id="linear_function_examples">Linear function examples</h3>
+<p>The example demonstrates the effects of various <code>linear()</code> easing function values.</p>
+<pre class="brush: html hidden">&lt;div class="parent"&gt;
+  &lt;div class="linear"&gt;'linear' value&lt;/div&gt;
+  &lt;div class="linear-fn1"&gt;linear(0, 0.5 50%, 1)&lt;/div&gt;
+  &lt;div class="linear-fn2"&gt;linear(0, 0.25 75%, 1)&lt;/div&gt;
+  &lt;div class="linear-fn3"&gt;linear(0, 0.75 25%, 1)&lt;/div&gt;
+  &lt;div class="linear-fn4"&gt;linear(0, 0.5 25% 75%, 1)&lt;/div&gt;
+  &lt;div class="linear-fn5"&gt;linear(0, 0.25 45%, 0.75 55%, 0.5 70%, 1)&lt;/div&gt;
+  &lt;div class="linear-fn6"&gt;linear(0, 1.2 50%, 0.75 80%, 1)&lt;/div&gt;
+  &lt;div class="linear-fn7"&gt;linear(0, 0.5 75%, 1 120%)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="x-axis"&gt;&lt;span&gt;25%&lt;/span&gt;&lt;span&gt;50%&lt;/span&gt;&lt;span&gt;75%&lt;/span&gt;&lt;/div&gt;
+&lt;button&gt;Play animation&lt;/button&gt;
+</pre>
+<pre class="brush: js hidden">const btn = document.querySelector("button");
+const divs = document.querySelectorAll(".parent &gt; div[class]");
+
+btn.addEventListener("click", () =&gt; {
+  btn.setAttribute("disabled", "true");
+  for (const div of divs) {
+    div.classList.remove("animate");
+    void div.offsetWidth;
+    div.classList.add("animate");
+  }
+  setTimeout(() =&gt; {
+    btn.removeAttribute("disabled");
+  }, 11000);
+});
+</pre>
+<pre class="brush: css hidden">.x-axis {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80vw;
+  margin-left: 4px;
+}
+
+.parent {
+  background: linear-gradient(
+    to right,
+    white 24.8%,
+    grey 24.8%,
+    grey 25.2%,
+    white 25.2%,
+    white 49.8%,
+    grey 49.8%,
+    grey 50.2%,
+    white 50.2%,
+    white 74.8%,
+    grey 74.8%,
+    grey 75.2%,
+    white 75.2%
+  );
+  width: 80vw;
+  font-family: monospace;
+  font-weight: bold;
+  border: 2px solid grey;
+}
+
+.animate {
+  animation-name: changeme;
+}
+
+.parent &gt; div[class] {
+  animation-fill-mode: forwards;
+  animation-duration: 10s;
+
+  width: 0;
+  margin-bottom: 4px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  text-wrap: nowrap;
+  background-color: lime;
+}
+
+@keyframes changeme {
+  0% {
+    width: 0em;
+  }
+  100% {
+    width: 100%;
+    background-color: orange;
+  }
+}
+
+.linear {
+  animation-timing-function: linear;
+}
+.linear-fn1 {
+  animation-timing-function: linear(0, 0.5 50%, 1);
+}
+.linear-fn2 {
+  animation-timing-function: linear(0, 0.25 75%, 1);
+}
+.linear-fn3 {
+  animation-timing-function: linear(0, 0.75 25%, 1);
+}
+.linear-fn4 {
+  animation-timing-function: linear(0, 0.5 25% 75%, 1);
+}
+.linear-fn5 {
+  animation-timing-function: linear(0, 0.25 45%, 0.75 55%, 0.5 70%, 1);
+}
+.linear-fn6 {
+  animation-timing-function: linear(0, 1.2 50%, 0.75 80%, 1);
+}
+.linear-fn7 {
+  animation-timing-function: linear(0, 0.5 75%, 1 120%);
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Linear function examples sample" id="frame_linear_function_examples" width="600" height="300" src="about:blank" data-live-path="/en-US/docs/Web/CSS/animation-timing-function" data-live-id="linear_function_examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The following image shows graphs of all the <code>linear()</code> function values used in this example. Input progress (time) is plotted on the x-axis and output progress is plotted on the y-axis. As per the syntax, the input progress ranges from 0 to 100%, and the output ranges from 0 to 1.</p>
+<p>
+  <img src="https://mdn.github.io/shared-assets/images/diagrams/css/animation-easing/linear-function-graphs.png" alt="An image showing 'linear' function graphs">
+</p>
+<p>Note that the output can go forward or backward.</p>
+<h3 id="cubic-bézier_examples">Cubic-Bézier examples</h3>
+<p>The example demonstrates the effects of various bézier curve easing functions.</p>
+<pre class="brush: html hidden">&lt;div class="parent"&gt;
+  &lt;div class="linear"&gt;linear&lt;/div&gt;
+  &lt;div class="ease"&gt;ease&lt;/div&gt;
+  &lt;div class="ease-in"&gt;ease-in&lt;/div&gt;
+  &lt;div class="ease-out"&gt;ease-out&lt;/div&gt;
+  &lt;div class="ease-in-out"&gt;ease-in-out&lt;/div&gt;
+  &lt;div class="cb"&gt;cubic-bezier(.5, -0.5, 1, 1.5)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="x-axis"&gt;&lt;span&gt;50%&lt;/span&gt;&lt;/div&gt;
+&lt;button&gt;Play animation&lt;/button&gt;
+</pre>
+<pre class="brush: js hidden">const btn = document.querySelector("button");
+const divs = document.querySelectorAll(".parent &gt; div[class]");
+
+btn.addEventListener("click", () =&gt; {
+  btn.setAttribute("disabled", "true");
+  for (const div of divs) {
+    div.classList.remove("animate");
+    void div.offsetWidth;
+    div.classList.add("animate");
+  }
+  setTimeout(() =&gt; {
+    btn.removeAttribute("disabled");
+  }, 11000);
+});
+</pre>
+<pre class="brush: css hidden">.x-axis {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80vw;
+  margin-left: 4px;
+}
+
+.parent {
+  background: linear-gradient(
+    to right,
+    white 49.8%,
+    grey 49.8%,
+    grey 50.2%,
+    white 50.2%
+  );
+  width: 80vw;
+  font-family: monospace;
+  font-weight: bold;
+  border: 2px solid grey;
+}
+
+.animate {
+  animation-name: changeme;
+}
+
+.parent &gt; div[class] {
+  animation-fill-mode: forwards;
+  animation-duration: 10s;
+
+  width: 0;
+  margin-bottom: 4px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  text-wrap: nowrap;
+  background-color: lime;
+}
+
+@keyframes changeme {
+  0% {
+    width: 0em;
+  }
+  100% {
+    width: 100%;
+    background-color: orange;
+  }
+}
+
+.linear {
+  animation-timing-function: linear;
+}
+.ease {
+  animation-timing-function: ease;
+}
+.ease-in {
+  animation-timing-function: ease-in;
+}
+.ease-out {
+  animation-timing-function: ease-out;
+}
+.ease-in-out {
+  animation-timing-function: ease-in-out;
+}
+.cb {
+  animation-timing-function: cubic-bezier(0.5, -0.5, 1, 1.5);
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Cubic-Bezier examples sample" id="frame_cubic-bezier_examples" width="600" height="250" src="about:blank" data-live-path="/en-US/docs/Web/CSS/animation-timing-function" data-live-id="cubic-bezier_examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The following image shows graphs of all the cubic bézier function values used in this example. The input progress (time) ranges from 0 to 1 and the output progress ranges from 0 to 1.</p>
+<p>
+  <img src="https://mdn.github.io/shared-assets/images/diagrams/css/animation-easing/cubic-bezier-function-graphs.png" alt="An image showing 'cubic-bezier' function graphs">
+</p>
+<h3 id="step_examples">Step examples</h3>
+<p>This example demonstrates the effects of several step easing function values.</p>
+<pre class="brush: html hidden">&lt;div class="parent"&gt;
+  &lt;div class="linear"&gt;linear&lt;/div&gt;
+  &lt;div class="start"&gt;steps(4, start)&lt;/div&gt;
+  &lt;div class="jump-start"&gt;steps(4, jump-start)&lt;/div&gt;
+  &lt;div class="end"&gt;steps(4, end)&lt;/div&gt;
+  &lt;div class="jump-end"&gt;steps(4, jump-end)&lt;/div&gt;
+  &lt;div class="jump-both"&gt;steps(4, jump-both)&lt;/div&gt;
+  &lt;div class="jump-none"&gt;steps(4, jump-none)&lt;/div&gt;
+  &lt;div class="step-start"&gt;step-start&lt;/div&gt;
+  &lt;div class="step-end"&gt;step-end&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="x-axis"&gt;&lt;span&gt;25%&lt;/span&gt;&lt;span&gt;50%&lt;/span&gt;&lt;span&gt;75%&lt;/span&gt;&lt;/div&gt;
+&lt;button&gt;Play animation&lt;/button&gt;
+</pre>
+<pre class="brush: js hidden">const btn = document.querySelector("button");
+const divs = document.querySelectorAll(".parent &gt; div[class]");
+
+btn.addEventListener("click", () =&gt; {
+  btn.setAttribute("disabled", "true");
+  for (const div of divs) {
+    div.classList.remove("animate");
+    void div.offsetWidth;
+    div.classList.add("animate");
+  }
+  setTimeout(() =&gt; {
+    btn.removeAttribute("disabled");
+  }, 11000);
+});
+</pre>
+<pre class="brush: css hidden">.x-axis {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80vw;
+  margin-left: 4px;
+}
+
+.parent {
+  background: linear-gradient(
+    to right,
+    white 24.8%,
+    grey 24.8%,
+    grey 25.2%,
+    white 25.2%,
+    white 49.8%,
+    grey 49.8%,
+    grey 50.2%,
+    white 50.2%,
+    white 74.8%,
+    grey 74.8%,
+    grey 75.2%,
+    white 75.2%
+  );
+  width: 80vw;
+  font-family: monospace;
+  font-weight: bold;
+  border: 2px solid grey;
+}
+
+.animate {
+  animation-name: changeme;
+}
+
+.parent &gt; div[class] {
+  animation-fill-mode: forwards;
+  animation-duration: 10s;
+
+  width: 0;
+  margin-bottom: 4px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  text-wrap: nowrap;
+  background-color: lime;
+}
+
+@keyframes changeme {
+  0% {
+    width: 0em;
+  }
+  100% {
+    width: 100%;
+    background-color: orange;
+  }
+}
+</pre>
+<pre class="brush: css hidden">.linear {
+  animation-timing-function: linear;
+}
+
+.start {
+  animation-timing-function: steps(4, start);
+}
+.jump-start {
+  animation-timing-function: steps(4, jump-start);
+}
+.end {
+  animation-timing-function: steps(4, end);
+}
+.jump-end {
+  animation-timing-function: steps(4, jump-end);
+}
+.jump-both {
+  animation-timing-function: steps(4, jump-both);
+}
+.jump-none {
+  animation-timing-function: steps(4, jump-none);
+}
+.step-start {
+  animation-timing-function: step-start;
+}
+.step-end {
+  animation-timing-function: step-end;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Step examples sample" id="frame_step_examples" width="600" height="350" src="about:blank" data-live-path="/en-US/docs/Web/CSS/animation-timing-function" data-live-id="step_examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The following image shows graphs of all the <code>step()</code> function values used in this example. The input progress (time) and output progress range from 0 to 1.</p>
+<p>
+  <img src="https://mdn.github.io/shared-assets/images/diagrams/css/animation-easing/step-function-graphs.png" alt="image showing 'steps' function graphs">
+</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.animation-timing-function" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.animation-timing-function" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations">Using CSS animations</a></li>
+  <li><a href="/en-US/docs/Web/CSS/easing-function"><code>&lt;easing-function&gt;</code></a></li>
+  <li>JavaScript <a href="/en-US/docs/Web/API/AnimationEvent"><code>AnimationEvent</code></a> API</li>
+  <li><a href="https://cubic-bezier.com">Cubic bézier generation tool</a></li>
+  <li>Other related animation properties: <a href="/en-US/docs/Web/CSS/animation"><code>animation</code></a>, <a href="/en-US/docs/Web/CSS/animation-composition"><code>animation-composition</code></a>, <a href="/en-US/docs/Web/CSS/animation-delay"><code>animation-delay</code></a>, <a href="/en-US/docs/Web/CSS/animation-direction"><code>animation-direction</code></a>, <a href="/en-US/docs/Web/CSS/animation-duration"><code>animation-duration</code></a>, <a href="/en-US/docs/Web/CSS/animation-fill-mode"><code>animation-fill-mode</code></a>, <a href="/en-US/docs/Web/CSS/animation-iteration-count"><code>animation-iteration-count</code></a>, <a href="/en-US/docs/Web/CSS/animation-name"><code>animation-name</code></a>, <a href="/en-US/docs/Web/CSS/animation-play-state"><code>animation-play-state</code></a>, <a href="/en-US/docs/Web/CSS/animation-timeline"><code>animation-timeline</code></a></li>
+</ul>
+</body></html>

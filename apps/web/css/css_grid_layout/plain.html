@@ -1,0 +1,138 @@
+<html><head></head><body>
+<p>The <strong>CSS grid layout</strong> module excels at dividing a page into major regions or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.</p>
+<p>Like tables, grid layout enables an author to align elements into columns and rows. However, many more layouts are either possible or easier with CSS grid than they were with tables. For example, a grid container's child elements could position themselves so they actually overlap and layer, similar to CSS positioned elements.</p>
+<h2 id="basic_example">Basic example</h2>
+<p>The example below shows a three-column track grid with new rows created at a minimum of 100 pixels and a maximum of auto. Items have been placed onto the grid using line-based placement.</p>
+<pre class="brush: css hidden">* {
+  box-sizing: border-box;
+}
+.wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.wrapper &gt; div {
+  border: 2px solid rgb(233 171 88);
+  border-radius: 5px;
+  background-color: rgb(233 171 88 / 50%);
+  padding: 1em;
+  color: #d9480f;
+}
+</pre>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;div class="wrapper"&gt;
+  &lt;div class="one"&gt;One&lt;/div&gt;
+  &lt;div class="two"&gt;Two&lt;/div&gt;
+  &lt;div class="three"&gt;Three&lt;/div&gt;
+  &lt;div class="four"&gt;Four&lt;/div&gt;
+  &lt;div class="five"&gt;Five&lt;/div&gt;
+  &lt;div class="six"&gt;Six&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.one {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+}
+.three {
+  grid-column: 1;
+  grid-row: 2 / 5;
+}
+.four {
+  grid-column: 3;
+  grid-row: 3;
+}
+.five {
+  grid-column: 2;
+  grid-row: 4;
+}
+.six {
+  grid-column: 3;
+  grid-row: 4;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Basic example sample" id="frame_basic_example" width="100%" height="460" src="about:blank" data-live-path="/en-US/docs/Web/CSS/CSS_grid_layout" data-live-id="basic_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/display"><code>display</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-template-columns"><code>grid-template-columns</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-template-rows"><code>grid-template-rows</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-template-areas"><code>grid-template-areas</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-template"><code>grid-template</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-auto-columns"><code>grid-auto-columns</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-auto-rows"><code>grid-auto-rows</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-auto-flow"><code>grid-auto-flow</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid"><code>grid</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-row-start"><code>grid-row-start</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-column-start"><code>grid-column-start</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-row-end"><code>grid-row-end</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-column-end"><code>grid-column-end</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-row"><code>grid-row</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-column"><code>grid-column</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/grid-area"><code>grid-area</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/row-gap"><code>row-gap</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/column-gap"><code>column-gap</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/gap"><code>gap</code></a></li>
+</ul>
+<h3 id="functions">Functions</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/repeat"><code>repeat()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/minmax"><code>minmax()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/fit-content_function"><code>fit-content()</code></a></li>
+</ul>
+<h3 id="data_types">Data types</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/flex_value"><code>&lt;flex&gt;</code></a></li>
+</ul>
+<h2 id="guides">Guides</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout">Basic concepts of grid layout</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Relationship_of_grid_layout_with_other_layout_methods">Relationship of grid layout with other layout methods</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Grid_template_areas">Grid template areas</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Grid_layout_using_line-based_placement">Grid layout using line-based placement</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Grid_layout_using_named_grid_lines">Grid layout using named grid lines</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout">Auto-placement in grid layout</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Box_alignment_in_grid_layout">Box alignment in grid layout</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Grids_logical_values_and_writing_modes">Grids, logical values, and writing modes</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Grid_layout_and_accessibility">Grid layout and accessibility</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Realizing_common_layouts_using_grids">Realizing common layouts using grids</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid">Subgrid</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout/Masonry_layout">Masonry layout</a></li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-grid/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Glossary:
+    <ul>
+      <li><a href="/en-US/docs/Glossary/Grid">Grid</a></li>
+      <li><a href="/en-US/docs/Glossary/Grid_Lines">Grid lines</a></li>
+      <li><a href="/en-US/docs/Glossary/Grid_Tracks">Grid tracks</a></li>
+      <li><a href="/en-US/docs/Glossary/Grid_Cell">Grid cell</a></li>
+      <li><a href="/en-US/docs/Glossary/Grid_Areas">Grid area</a></li>
+      <li><a href="/en-US/docs/Glossary/Gutters">Gutters</a></li>
+      <li><a href="/en-US/docs/Glossary/Grid_Axis">Grid axis</a></li>
+      <li><a href="/en-US/docs/Glossary/Grid_Row">Grid row</a></li>
+      <li><a href="/en-US/docs/Glossary/Grid_Column">Grid column</a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout">CSS flexible box layout</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_display">CSS display</a> module</li>
+  <li><a href="https://gridbyexample.com/">Grid by example</a></li>
+  <li><a href="https://tympanus.net/codrops/css_reference/grid/">CSS grid reference</a> via Codrops</li>
+  <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/examine_grid_layouts/index.html">CSS grid inspector - Firefox DevTools</a></li>
+  <li><a href="https://mozilladevelopers.github.io/playground/css-grid/">CSS grid playground</a></li>
+  <li><a href="https://cssgridgarden.com/">CSS grid garden</a> - A game for learning CSS grid</li>
+</ul>
+</body></html>

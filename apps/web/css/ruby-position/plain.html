@@ -1,0 +1,99 @@
+<html><head></head><body>
+<p>The <strong><code>ruby-position</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property defines the position of a ruby element relative to its base element. It can be positioned over the element (<code>over</code>), under it (<code>under</code>), or between the characters on their right side (<code>inter-character</code>).</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/ruby-position.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+ruby-position: over;
+ruby-position: under;
+ruby-position: alternate;
+ruby-position: alternate over;
+ruby-position: alternate under;
+ruby-position: inter-character;
+
+/* Global values */
+ruby-position: inherit;
+ruby-position: initial;
+ruby-position: revert;
+ruby-position: revert-layer;
+ruby-position: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="over"><a href="#over"><code>over</code></a></dt>
+  <dd>
+    <p>
+      <img src="/en-US/docs/Web/CSS/ruby-position/screen_shot_2015-03-04_at_13.02.20.png" alt="Over example" width="154" height="62">
+      Is a keyword indicating that the ruby has to be placed over the main text for horizontal scripts and right to it for vertical scripts.
+    </p>
+  </dd>
+  <dt id="under"><a href="#under"><code>under</code></a></dt>
+  <dd>
+    <p>
+      <img src="/en-US/docs/Web/CSS/ruby-position/screen_shot_2015-03-04_at_13.02.07.png" alt="Under example" width="156" height="68">
+      Is a keyword indicating that the ruby has to be placed under the main text for horizontal scripts and left to it for vertical scripts.
+    </p>
+  </dd>
+  <dt id="alternate"><a href="#alternate"><code>alternate</code></a></dt>
+  <dd>
+    <p>Is a keyword indicating that the ruby alternates between over and under, when there are multiple levels of annotation.</p>
+  </dd>
+  <dt id="inter-character"><a href="#inter-character"><code>inter-character</code></a></dt>
+  <dd>
+    <p>When specified, it behaves as <code>over</code> in vertical writing modes. Otherwise, it indicates that the ruby has to be placed between the different characters, appearing on the right of the base in horizontal text and forcing the children of the ruby annotation container to have a <code>vertical-rl</code> writing mode.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>alternate</code></td></tr><tr><th scope="row">Applies to</th><td>ruby annotations containers</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="ruby-position">ruby-position = </span><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">alternate</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">over</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">under</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">inter-character</span>                    <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="ruby_positioned_over_the_text">Ruby positioned over the text</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;ruby&gt;
+  &lt;rb&gt;超電磁砲&lt;/rb&gt;
+  &lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;レールガン&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;
+&lt;/ruby&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">ruby {
+  ruby-position: over;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Ruby positioned over the text sample" id="frame_ruby_positioned_over_the_text" width="100" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/ruby-position" data-live-id="ruby_positioned_over_the_text" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="ruby_positioned_under_the_text">Ruby positioned under the text</h3>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;ruby&gt;
+  &lt;rb&gt;超電磁砲&lt;/rb&gt;
+  &lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;レールガン&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;
+&lt;/ruby&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">ruby {
+  ruby-position: under;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Ruby positioned under the text sample" id="frame_ruby_positioned_under_the_text" width="100" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/ruby-position" data-live-id="ruby_positioned_under_the_text" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="ruby_alternate">Ruby alternate</h3>
+<h4 id="html_3">HTML</h4>
+<pre class="brush: html">&lt;ruby&gt;
+  &lt;rb&gt;A&lt;/rb&gt;&lt;rb&gt;B&lt;/rb&gt;&lt;rb&gt;C&lt;/rb&gt;
+  &lt;rtc&gt;Above&lt;/rtc&gt;
+  &lt;rtc&gt;Below&lt;/rtc&gt;
+&lt;/ruby&gt;
+</pre>
+<h4 id="css_3">CSS</h4>
+<pre class="brush: css">ruby {
+  ruby-position: alternate; /* this is also the initial value */
+}
+</pre>
+<h4 id="result_3">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Ruby alternate sample" id="frame_ruby_alternate" width="100" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/ruby-position" data-live-id="ruby_alternate" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.ruby-position" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.ruby-position" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Element/ruby"><code>&lt;ruby&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/rt"><code>&lt;rt&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/rp"><code>&lt;rp&gt;</code></a>, and <a href="/en-US/docs/Web/HTML/Element/rtc"><code>&lt;rtc&gt;</code></a> HTML elements</li>
+  <li><a href="/en-US/docs/Web/CSS/ruby-align"><code>ruby-align</code></a></li>
+</ul>
+</body></html>

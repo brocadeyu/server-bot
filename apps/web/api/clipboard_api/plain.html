@@ -1,0 +1,132 @@
+<html><head></head><body>
+<p>The <strong>Clipboard API</strong> provides the ability to respond to clipboard commands (cut, copy, and paste), as well as to asynchronously read from and write to the system clipboard.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> Use this API in preference to the deprecated <a href="/en-US/docs/Web/API/Document/execCommand"><code>document.execCommand()</code></a> method for accessing the clipboard.</p>
+</div>
+<div class="notecard note">
+  <p><strong>Note:</strong> This API is <em>not available</em> in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a> (not exposed via <a href="/en-US/docs/Web/API/WorkerNavigator"><code>WorkerNavigator</code></a>).</p>
+</div>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>
+  The <em>system clipboard</em> is a data buffer belonging to the operating system hosting the browser, which is used for short-term data storage and/or data transfers between documents or applications.
+  It is usually implemented as an anonymous, temporary <a href="https://en.wikipedia.org/wiki/Data_buffer">data buffer</a>, sometimes called the <em>paste buffer</em>, that can be accessed from most or all programs within the environment via defined programming interfaces.
+</p>
+<p>The Clipboard API allows users to programmatically read and write text and other kinds of data to and from the system clipboard in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a>, provided the user has met the criteria outlined in the <a href="#security_considerations">Security considerations</a>.</p>
+<p>
+  Events are fired as the result of <a href="/en-US/docs/Web/API/Element/cut_event" title="cut"><code>cut</code></a>, <a href="/en-US/docs/Web/API/Element/copy_event" title="copy"><code>copy</code></a>, and <a href="/en-US/docs/Web/API/Element/paste_event" title="paste"><code>paste</code></a> operations modifying the clipboard.
+  The events have a default action, for example the <code>copy</code> action copies the current selection to the system clipboard by default.
+  The default action can be overridden by the event handler — see each of the events for more information.
+</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="clipboard"><a href="/en-US/docs/Web/API/Clipboard"><code>Clipboard</code></a> <span class="badge inline secure" title="This feature is available only in secure contexts (HTTPS)">Secure context</span></dt>
+  <dd>
+    <p>
+      Provides an interface for reading and writing text and data to or from the system clipboard.
+      The specification refers to this as the 'Async Clipboard API'.
+    </p>
+  </dd>
+  <dt id="clipboardevent"><a href="/en-US/docs/Web/API/ClipboardEvent"><code>ClipboardEvent</code></a></dt>
+  <dd>
+    <p>
+      Represents events providing information related to modification of the clipboard, that is <a href="/en-US/docs/Web/API/Element/cut_event" title="cut"><code>cut</code></a>, <a href="/en-US/docs/Web/API/Element/copy_event" title="copy"><code>copy</code></a>, and <a href="/en-US/docs/Web/API/Element/paste_event" title="paste"><code>paste</code></a> events.
+      The specification refers to this as the 'Clipboard Event API'.
+    </p>
+  </dd>
+  <dt id="clipboarditem"><a href="/en-US/docs/Web/API/ClipboardItem"><code>ClipboardItem</code></a> <span class="badge inline secure" title="This feature is available only in secure contexts (HTTPS)">Secure context</span></dt>
+  <dd>
+    <p>Represents a single item format, used when reading or writing data.</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<p>The Clipboard API extends the following APIs, adding the listed features.</p>
+<dl>
+  <dt id="navigator.clipboard"><a href="/en-US/docs/Web/API/Navigator/clipboard"><code>Navigator.clipboard</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <span class="badge inline secure" title="This feature is available only in secure contexts (HTTPS)">Secure context</span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/Clipboard"><code>Clipboard</code></a> object that provides read and write access to the system clipboard.</p>
+  </dd>
+  <dt id="element"><a href="#element"><code>Element</code></a> <a href="/en-US/docs/Web/API/Element/copy_event"><code>copy</code></a> event</dt>
+  <dd>
+    <p>An event fired whenever the user initiates a copy action.</p>
+  </dd>
+  <dt id="element_2"><a href="#element_2"><code>Element</code></a> <a href="/en-US/docs/Web/API/Element/cut_event"><code>cut</code></a> event</dt>
+  <dd>
+    <p>An event fired whenever the user initiates a cut action.</p>
+  </dd>
+  <dt id="element_3"><a href="#element_3"><code>Element</code></a> <a href="/en-US/docs/Web/API/Element/paste_event"><code>paste</code></a> event</dt>
+  <dd>
+    <p>An event fired whenever the user initiates a paste action.</p>
+  </dd>
+</dl><!-- Note `Window: clipboardchange` event is in spec but not implemented -->
+<h2 id="security_considerations">Security considerations</h2>
+<p>The Clipboard API allows users to programmatically read and write text and other kinds of data to and from the system clipboard in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a>.</p>
+<p>
+  The specification requires that a user has recently interacted with the page in order to read from the clipboard (<a href="/en-US/docs/Web/Security/User_activation">transient user activation</a> is required).
+  If the read operation is caused by user interaction with a browser or OS "paste element" (such as a context menu), the browser is expected to prompt the user for acknowledgement.
+  For writing to the clipboard the specification expects that the page has been granted the <a href="/en-US/docs/Web/API/Permissions_API">Permissions API</a> <code>clipboard-write</code> permission, and the browser may also require <a href="/en-US/docs/Web/Security/User_activation">transient user activation</a>.
+  Browsers may place additional restrictions over use of the methods to access the clipboard.
+</p>
+<p>
+  Browser implementations have diverged from the specification.
+  The differences are captured in the <a href="#browser_compatibility">Browser compatibility</a> section and the current state is summarized below:
+</p>
+<p>Chromium browsers:</p>
+<ul>
+  <li>
+    Reading requires the <a href="/en-US/docs/Web/API/Permissions_API">Permissions API</a> <code>clipboard-read</code> permission be granted.
+    Transient activation is not required.
+  </li>
+  <li>
+    Writing requires either the <code>clipboard-read</code> permission or transient activation.
+    If the permission is granted, it persists, and further transient activation is not required.
+  </li>
+  <li>The HTTP <a href="/en-US/docs/Web/HTTP/Headers/Permissions-Policy">Permissions-Policy</a> permissions <code>clipboard-read</code> and <code>clipboard-write</code> must be allowed for <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> elements that access the clipboard.</li>
+  <li>No persistent paste-prompt is displayed when a read operation is caused by a browser or OS "paste element".</li>
+</ul>
+<p>Firefox &amp; Safari:</p>
+<ul>
+  <li>Reading and writing require transient activation.</li>
+  <li>The paste-prompt is suppressed if reading same-origin clipboard content, but not cross-origin content.</li>
+  <li>The <code>clipboard-read</code> and <code>clipboard-write</code> permissions are not supported (and not planned to be supported) by Firefox or Safari.</li>
+</ul>
+<p>Firefox <a href="/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard">Web Extensions</a>:</p>
+<ul>
+  <li>
+    Reading text is only available for extensions with the Web Extension <a href="/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions#clipboardread"><code>clipboardRead</code></a> permission.
+    With this permission the extension does not require transient activation or a paste prompt.
+  </li>
+  <li>
+    Writing text is available in secure context and with transient activation.
+    With the Web Extension <a href="/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions#clipboardwrite"><code>clipboardWrite</code></a> permission transient activation is not required.
+  </li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="accessing_the_clipboard">Accessing the clipboard</h3>
+<p>The system clipboard is accessed through the <a href="/en-US/docs/Web/API/Navigator/clipboard"><code>Navigator.clipboard</code></a> global.</p>
+<p>
+  This snippet fetches the text from the clipboard and appends it to the first element found with the class <code>editor</code>.
+  Since <a href="/en-US/docs/Web/API/Clipboard/readText" title="readText()"><code>readText()</code></a> (and <a href="/en-US/docs/Web/API/Clipboard/read" title="read()"><code>read()</code></a>, for that matter) returns an empty string if the clipboard isn't text, this code is safe.
+</p>
+<pre class="brush: js">navigator.clipboard
+  .readText()
+  .then(
+    (clipText) =&gt; (document.querySelector(".editor").innerText += clipText),
+  );
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Clipboard,api.ClipboardEvent,api.ClipboardItem" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Clipboard" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.ClipboardEvent" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.ClipboardItem" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://web.dev/articles/async-clipboard">Image support for Async Clipboard article</a></li>
+</ul>
+</body></html>

@@ -1,0 +1,105 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>
+  The <strong>Permissions API</strong> provides a consistent programmatic way to query the status of API permissions attributed to the current context, such as a web page or worker.
+  For example, it can be used to determine if permission to access a particular feature or API has been granted, denied, or requires specific user permission.
+</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>
+  Historically different APIs handle their own permissions inconsistently — for example the <a href="/en-US/docs/Web/API/Notifications_API">Notifications API</a> provided its own methods for requesting permissions and checking permission status, whereas the <a href="/en-US/docs/Web/API/Geolocation">Geolocation API</a> did not.
+  The Permissions API provides the tools to allow developers to implement a consistent user experience for working with permissions.
+</p>
+<p>
+  The permissions from this API effectively aggregate all security restrictions for the context, including any requirement for an API to be used in a secure context, <a href="/en-US/docs/Web/HTTP/Headers/Permissions-Policy">Permissions-Policy</a> restrictions applied to the document, requirements for user interaction, and user prompts.
+  So, for example, if an API is restricted by permissions policy, the returned permission would be <code>denied</code> and the user would not be prompted for access.
+</p>
+<p>The <code>permissions</code> property has been made available on the <a href="/en-US/docs/Web/API/Navigator"><code>Navigator</code></a> object, both in the standard browsing context and the worker context (<a href="/en-US/docs/Web/API/WorkerNavigator"><code>WorkerNavigator</code></a> — so permission checks are available inside workers), and returns a <a href="/en-US/docs/Web/API/Permissions"><code>Permissions</code></a> object that provides access to the Permissions API functionality.</p>
+<p>Once you have this object you can then use the <a href="/en-US/docs/Web/API/Permissions/query"><code>Permissions.query()</code></a> method to return a promise that resolves with the <a href="/en-US/docs/Web/API/PermissionStatus"><code>PermissionStatus</code></a> for a specific API.</p>
+<h3 id="requesting_permission">Requesting permission</h3>
+<p>If the permission status is <code>prompt</code>, the user must acknowledge a prompt to grant access to the feature.</p>
+<p>
+  The mechanism that triggers this prompt will depend on the specific API — it is not defined as part of the Permissions API.
+  Generally the trigger is code calling a method to access or open the feature, or that registers for notifications from the feature that will subsequently access it.
+</p>
+<p>
+  Note that not all features require a prompt.
+  Permission might be granted by a <code>Permission Policy</code>, implicitly by <a href="/en-US/docs/Glossary/Transient_activation">transient activation</a>, or via some other mechanism.
+</p>
+<h3 id="revoking_permission">Revoking permission</h3>
+<p>
+  Permission revocation is not managed by the API.
+  More specifically, a <a href="/en-US/docs/Web/API/Permissions/revoke"><code>Permissions.revoke()</code></a> method was proposed, but has since been removed from those browsers where it was implemented.
+</p>
+<p>Users can manually remove permission for particular sites using browser settings:</p>
+<ul>
+  <li><strong>Firefox</strong>: <em>Hamburger Menu &gt; Settings &gt; Privacy &amp; Security &gt; Permissions</em> (then select the <strong>Settings</strong> button for the permission of interest).</li>
+  <li><strong>Chrome</strong>: <em>Hamburger Menu &gt; Settings &gt; Show advanced settings</em>. In the <em>Privacy</em> section, click <em>Content Settings</em>. In the resulting dialog, find the <em>Location</em> section and select <em>Ask when a site tries to…</em>. Finally, click <em>Manage Exceptions</em> and remove the permissions you granted to the sites you are interested in.</li>
+</ul>
+<h3 id="permission-aware_apis">Permission-aware APIs</h3>
+<p>
+  Not all APIs' permission statuses can be queried using the Permissions API.
+  A non-exhaustive list of permission-aware APIs includes:
+</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Background_Synchronization_API">Background Synchronization API</a>: <code>background-sync</code> (should always be granted)</li>
+  <li><a href="/en-US/docs/Web/API/Clipboard_API#security_considerations">Clipboard_API</a>: <code>clipboard-read</code>, <code>clipboard-write</code></li>
+  <li><a href="/en-US/docs/Web/API/Compute_Pressure_API">Compute Pressure API</a>: <code>compute-pressure</code></li>
+  <li><a href="/en-US/docs/Web/API/Geolocation_API#security_considerations">Geolocation API</a>: <code>geolocation</code></li>
+  <li><a href="/en-US/docs/Web/API/Local_Font_Access_API">Local Font Access API</a>: <code>local-fonts</code></li>
+  <li><a href="/en-US/docs/Web/API/Media_Capture_and_Streams_API">Media Capture and Streams API</a>: <code>microphone</code>, <code>camera</code></li>
+  <li><a href="/en-US/docs/Web/API/Notifications_API">Notifications API</a>: <code>notifications</code></li>
+  <li><a href="/en-US/docs/Web/API/Payment_Handler_API">Payment Handler API</a>: <code>payment-handler</code></li>
+  <li><a href="/en-US/docs/Web/API/Push_API">Push API</a>: <code>push</code></li>
+  <li><a href="/en-US/docs/Web/API/Screen_Wake_Lock_API">Screen Wake Lock API</a>: <code>screen-wake-lock</code></li>
+  <li><a href="/en-US/docs/Web/API/Sensor_APIs">Sensor APIs</a>: <code>accelerometer</code>, <code>gyroscope</code>, <code>magnetometer</code>, <code>ambient-light-sensor</code></li>
+  <li><a href="/en-US/docs/Web/API/Storage_Access_API">Storage Access API</a>: <code>storage-access</code>, <code>top-level-storage-access</code></li>
+  <li><a href="/en-US/docs/Web/API/Storage_API">Storage API</a>: <code>persistent-storage</code></li>
+  <li><a href="/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth API</a>: <code>bluetooth</code></li>
+  <li><a href="/en-US/docs/Web/API/Web_MIDI_API">Web MIDI API</a>: <code>midi</code></li>
+  <li><a href="/en-US/docs/Web/API/Window_Management_API">Window Management API</a>: <code>window-management</code></li>
+</ul>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="permissions"><a href="/en-US/docs/Web/API/Permissions"><code>Permissions</code></a></dt>
+  <dd>
+    <p>Provides the core Permission API functionality, such as methods for querying and revoking permissions.</p>
+  </dd>
+  <dt id="permissionstatus"><a href="/en-US/docs/Web/API/PermissionStatus"><code>PermissionStatus</code></a></dt>
+  <dd>
+    <p>Provides access to the current status of a permission, and an event handler to respond to changes in permission status.</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<dl>
+  <dt id="navigator.permissions"><a href="/en-US/docs/Web/API/Navigator/permissions"><code>Navigator.permissions</code></a> and <a href="/en-US/docs/Web/API/WorkerNavigator/permissions"><code>WorkerNavigator.permissions</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Provides access to the <a href="/en-US/docs/Web/API/Permissions"><code>Permissions</code></a> object from the main context and worker context respectively.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>
+  We have created an example called Location Finder.
+  You can <a href="https://chrisdavidmills.github.io/location-finder-permissions-api/">run the example live</a>, <a href="https://github.com/chrisdavidmills/location-finder-permissions-api/tree/gh-pages">view the source code on GitHub</a>, or read more about how it works in our article <a href="/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API">Using the Permissions API</a>.
+</p>
+<p>The <a href="/en-US/docs/Web/API/Permissions/query#test_support_for_various_permissions"><code>Permissions.query()</code> example</a> also so shows code that tests most permissions on the current browser and logs the result.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Permissions,api.Navigator.permissions,api.WorkerNavigator.permissions" data-spec-urls="https://w3c.github.io/permissions/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Permissions" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.Navigator.permissions" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.WorkerNavigator.permissions" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API">Using the Permissions API</a></li>
+  <li><a href="https://blog.addpipe.com/using-permissions-api-to-detect-getusermedia-responses/">Using the Permissions API to Detect How Often Users Allow or Deny Camera Access</a></li>
+  <li><a href="/en-US/docs/Web/API/Notification/permission_static" title="Notification.permission"><code>Notification.permission</code></a></li>
+  <li><a href="/en-US/docs/Web/Privacy">Privacy, permissions, and information security</a></li>
+</ul>
+</body></html>

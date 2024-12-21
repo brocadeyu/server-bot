@@ -1,0 +1,62 @@
+<html><head></head><body>
+<p>The <code>AudioScheduledSourceNode</code> interface—part of the Web Audio API—is a parent interface for several types of audio source node interfaces which share the ability to be started and stopped, optionally at specified times. Specifically, this interface defines the <a href="/en-US/docs/Web/API/AudioScheduledSourceNode/start" title="start()"><code>start()</code></a> and <a href="/en-US/docs/Web/API/AudioScheduledSourceNode/stop" title="stop()"><code>stop()</code></a> methods, as well as the <a href="/en-US/docs/Web/API/AudioScheduledSourceNode/ended_event" title="ended"><code>ended</code></a> event.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> You can't create an <code>AudioScheduledSourceNode</code> object directly. Instead, use an interface which extends it, such as <a href="/en-US/docs/Web/API/AudioBufferSourceNode"><code>AudioBufferSourceNode</code></a>, <a href="/en-US/docs/Web/API/OscillatorNode"><code>OscillatorNode</code></a> or <a href="/en-US/docs/Web/API/ConstantSourceNode"><code>ConstantSourceNode</code></a>.</p>
+</div>
+<p>Unless stated otherwise, nodes based upon <code>AudioScheduledSourceNode</code> output silence when not playing (that is, before <code>start()</code> is called and after <code>stop()</code> is called). Silence is represented, as always, by a stream of samples with the value zero (0).</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AudioNode">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AudioNode
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AudioScheduledSourceNode" aria-current="page">
+    <rect x="223" y="0" width="192" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="319" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AudioScheduledSourceNode
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its parent interface, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a>.</em></p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent interface, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a>, and adds the following methods:</em></p>
+<dl>
+  <dt id="start"><a href="/en-US/docs/Web/API/AudioScheduledSourceNode/start" title="start()"><code>start()</code></a></dt>
+  <dd>
+    <p>Schedules the node to begin playing the constant sound at the specified time. If no time is specified, the node begins playing immediately.</p>
+  </dd>
+  <dt id="stop"><a href="/en-US/docs/Web/API/AudioScheduledSourceNode/stop" title="stop()"><code>stop()</code></a></dt>
+  <dd>
+    <p>Schedules the node to stop playing at the specified time. If no time is specified, the node stops playing at once.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <a href="/en-US/docs/Web/API/EventTarget/addEventListener"><code>addEventListener()</code></a> or by assigning an event listener to the <code>oneventname</code> property of this interface:</p>
+<dl>
+  <dt id="ended"><a href="/en-US/docs/Web/API/AudioScheduledSourceNode/ended_event"><code>ended</code></a></dt>
+  <dd>
+    <p>Fired when the source node has stopped playing, either because it's reached a predetermined stop time, the full duration of the audio has been performed, or because the entire buffer has been played.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.AudioScheduledSourceNode" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.AudioScheduledSourceNode" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API">Using the Web Audio API</a></li>
+  <li><a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a></li>
+</ul>
+</body></html>

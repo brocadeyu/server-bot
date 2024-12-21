@@ -1,0 +1,44 @@
+<html><head></head><body>
+<p>The <strong><code>symbols()</code></strong> CSS function enables defining counter styles inline, directly as a value of properties such as <a href="/en-US/docs/Web/CSS/list-style"><code>list-style</code></a>, providing a less powerful but simpler alternative to the <a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a> method of defining a counter style.</p>
+<p>Unlike <a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a>, which defines a reusable counter style, <code>symbols()</code> is <em>anonymous</em> (i.e., it can only be used once). This function accepts strings and images as values. In comparison, the <a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a>'s <a href="/en-US/docs/Web/CSS/@counter-style/symbols"><code>symbols</code></a> descriptor also accepts identifiers.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">symbols() = symbols( &lt;symbols-type&gt;? [ &lt;string&gt; | &lt;image&gt; ]+ );
+</pre>
+<p><code>&lt;symbols-type&gt;</code> can be one of the following:</p>
+<ul>
+  <li><code>cyclic</code>: The system cycles through the given values in the order of their definition, and returns to the start when it reaches the end.</li>
+  <li><code>numeric</code>: The system interprets the given values as the successive units of a place-value numbering system.</li>
+  <li><code>alphabetic</code>: The system interprets the given values as the digits of an alphabetic numbering system, like a place-value numbering system but without <code>0</code>.</li>
+  <li><code>symbolic</code>: The system cycles through the values, printing them an additional time at each cycle (one time for the first cycle, two times for the second, etc.).</li>
+  <li><code>fixed</code>: The system cycles through the given values once, then falls back to Arabic numerals.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;ol&gt;
+  &lt;li&gt;One&lt;/li&gt;
+  &lt;li&gt;Two&lt;/li&gt;
+  &lt;li&gt;Three&lt;/li&gt;
+  &lt;li&gt;Four&lt;/li&gt;
+  &lt;li&gt;Five&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">ol {
+  list-style: symbols(cyclic "*" "†" "‡");
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="100%" height="200" src="about:blank" data-live-path="/en-US/docs/Web/CSS/symbols" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.list-style-type.symbols" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.list-style-type.symbols" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a> descriptors: <a href="/en-US/docs/Web/CSS/@counter-style/system"><code>system</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/symbols"><code>symbols</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/additive-symbols"><code>additive-symbols</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/prefix"><code>prefix</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/suffix"><code>suffix</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/range"><code>range</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/pad"><code>pad</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/speak-as"><code>speak-as</code></a>, <a href="/en-US/docs/Web/CSS/@counter-style/fallback"><code>fallback</code></a></li>
+  <li>List style properties: <a href="/en-US/docs/Web/CSS/list-style"><code>list-style</code></a>, <a href="/en-US/docs/Web/CSS/list-style-type"><code>list-style-type</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_counter_styles">CSS counter styles</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_lists">CSS lists and counters</a> module</li>
+</ul>
+</body></html>

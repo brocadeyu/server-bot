@@ -1,0 +1,50 @@
+<html><head></head><body>
+<p>The <strong><code>:focus</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents an element (such as a form input) that has received focus. It is generally triggered when the user clicks or taps on an element or selects it with the keyboard's <kbd>Tab</kbd> key.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-focus.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<div class="notecard note">
+  <p><strong>Note:</strong> This pseudo-class applies only to the focused element itself. Use <a href="/en-US/docs/Web/CSS/:focus-within"><code>:focus-within</code></a> if you want to select an element that <em>contains</em> a focused element.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:focus {
+  /* ... */
+}
+</pre>
+<h2 id="accessibility">Accessibility</h2>
+<p>Make sure the visual focus indicator can be seen by people with low vision. This will also benefit anyone use a screen in a brightly lit space (like outside in the sun). <a href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html">WCAG 2.1 SC 1.4.11 Non-Text Contrast</a> requires that the visual focus indicator be at least 3 to 1.</p>
+<ul>
+  <li>Accessible Visual Focus Indicators: <a href="https://www.deque.com/blog/give-site-focus-tips-designing-usable-focus-indicators/">Give Your Site Some Focus! Tips for Designing Useful and Usable Focus Indicators</a></li>
+</ul>
+<h3 id="focus_outline_none_"><code>:focus { outline: none; }</code></h3>
+<p>Never just remove the focus outline (visible focus indicator) without replacing it with a focus outline that will pass <a href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html">WCAG 2.1 SC 1.4.11 Non-Text Contrast</a>.</p>
+<ul>
+  <li>Quick Tip: <a href="https://www.a11yproject.com/posts/never-remove-css-outlines/">Never remove CSS outlines</a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;div&gt;&lt;input class="red-input" value="I'll be red when focused." /&gt;&lt;/div&gt;
+&lt;div&gt;&lt;input class="blue-input" value="I'll be blue when focused." /&gt;&lt;/div&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">.red-input:focus {
+  background: yellow;
+  color: red;
+}
+
+.blue-input:focus {
+  background: yellow;
+  color: blue;
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:focus" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.focus" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.focus" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:focus-visible"><code>:focus-visible</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:focus-within"><code>:focus-within</code></a></li>
+</ul>
+</body></html>

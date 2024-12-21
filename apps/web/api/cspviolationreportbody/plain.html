@@ -1,0 +1,198 @@
+<html><head></head><body> <div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <code>CSPViolationReportBody</code> interface is an extension of the <a href="/en-US/docs/Web/API/Reporting_API">Reporting API</a> that represents the body of a Content Security Policy (CSP) violation report.</p>
+<p>CSP violations are thrown when the webpage attempts to load a resource that violates the policy set by the <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"><code>Content-Security-Policy</code></a> HTTP header.</p>
+<p>
+  CSP violation reports are returned in the <a href="/en-US/docs/Web/API/ReportingObserver/ReportingObserver#reports">reports</a> parameter of <a href="/en-US/docs/Web/API/ReportingObserver"><code>ReportingObserver</code></a> callbacks that have a <code>type</code> of <code>"csp-violation"</code>.
+  The <code>body</code> property of those reports is an instance of <code>CSPViolationReportBody</code>.
+</p>
+<p>
+  CSP violation reports may also be sent as JSON objects to the endpoint specified in the <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-to"><code>report-to</code></a> policy directive of the <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"><code>Content-Security-Policy</code></a> header.
+  These reports similarly have a <code>type</code> of <code>"csp-violation"</code>, and a <code>body</code> property containing a serialization of an instance of this interface.
+</p>
+<div class="notecard note">
+  <p>
+    <strong>Note:</strong> CSP violation reports sent by the Reporting API, when an endpoint is specified using the CSP <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-to"><code>report-to</code></a> directive, are similar (but not identical) to the "CSP report" <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri#violation_report_syntax">JSON objects</a> sent when endpoints are specified using the <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri"><code>report-uri</code></a> directive.
+    The Reporting API and <code>report-to</code> directive are intended to replace the older report format and the <code>report-uri</code> directive.
+  </p>
+</div><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/ReportBody">
+    <rect x="0" y="0" width="80" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="40" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      ReportBody
+    </text>
+  </a>
+  <line x1="80" y1="14" x2="110" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="80,14 90,9 90,19 80,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSPViolationReportBody" aria-current="page">
+    <rect x="110" y="0" width="176" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="198" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSPViolationReportBody
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Also inherits properties from its parent interface, <a href="/en-US/docs/Web/API/ReportBody"><code>ReportBody</code></a>.</em></p>
+<dl>
+  <dt id="cspviolationreportbody.blockedurl"><a href="/en-US/docs/Web/API/CSPViolationReportBody/blockedURL"><code>CSPViolationReportBody.blockedURL</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string representing either the type or the URL of the resource that was blocked because it violates the CSP.</p>
+  </dd>
+  <dt id="cspviolationreportbody.columnnumber"><a href="/en-US/docs/Web/API/CSPViolationReportBody/columnNumber"><code>CSPViolationReportBody.columnNumber</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The column number in the script at which the violation occurred.</p>
+  </dd>
+  <dt id="cspviolationreportbody.disposition"><a href="/en-US/docs/Web/API/CSPViolationReportBody/disposition"><code>CSPViolationReportBody.disposition</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Indicates how the violated policy is configured to be treated by the user agent. This will be <code>"enforce"</code> or <code>"report"</code>.</p>
+  </dd>
+  <dt id="cspviolationreportbody.documenturl"><a href="/en-US/docs/Web/API/CSPViolationReportBody/documentURL"><code>CSPViolationReportBody.documentURL</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string representing the URL of the document or worker in which the violation was found.</p>
+  </dd>
+  <dt id="cspviolationreportbody.effectivedirective"><a href="/en-US/docs/Web/API/CSPViolationReportBody/effectiveDirective"><code>CSPViolationReportBody.effectiveDirective</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string representing the directive whose enforcement uncovered the violation.</p>
+  </dd>
+  <dt id="cspviolationreportbody.linenumber"><a href="/en-US/docs/Web/API/CSPViolationReportBody/lineNumber"><code>CSPViolationReportBody.lineNumber</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The line number in the script at which the violation occurred.</p>
+  </dd>
+  <dt id="cspviolationreportbody.originalpolicy"><a href="/en-US/docs/Web/API/CSPViolationReportBody/originalPolicy"><code>CSPViolationReportBody.originalPolicy</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string containing the policy whose enforcement uncovered the violation.</p>
+  </dd>
+  <dt id="cspviolationreportbody.referrer"><a href="/en-US/docs/Web/API/CSPViolationReportBody/referrer"><code>CSPViolationReportBody.referrer</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string representing the URL for the referrer of the resources whose policy was violated, or <code>null</code>.</p>
+  </dd>
+  <dt id="cspviolationreportbody.sample"><a href="/en-US/docs/Web/API/CSPViolationReportBody/sample"><code>CSPViolationReportBody.sample</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string representing a sample of the resource that caused the violation, usually the first 40 characters. This will only be populated if the resource is an inline script, event handler, or style — external resources causing a violation will not generate a sample.</p>
+  </dd>
+  <dt id="cspviolationreportbody.sourcefile"><a href="/en-US/docs/Web/API/CSPViolationReportBody/sourceFile"><code>CSPViolationReportBody.sourceFile</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>If the violation occurred as a result of a script, this will be the URL of the script; otherwise, it will be <code>null</code>. Both <code>columnNumber</code> and <code>lineNumber</code> should have non-null values if this property is not <code>null</code>.</p>
+  </dd>
+  <dt id="cspviolationreportbody.statuscode"><a href="/en-US/docs/Web/API/CSPViolationReportBody/statusCode"><code>CSPViolationReportBody.statusCode</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A number representing the HTTP status code of the document or worker in which the violation occurred.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Also inherits methods from its parent interface, <a href="/en-US/docs/Web/API/ReportBody"><code>ReportBody</code></a>.</em></p>
+<dl>
+  <dt id="cspviolationreportbody.tojson"><a href="/en-US/docs/Web/API/CSPViolationReportBody/toJSON"><code>CSPViolationReportBody.toJSON()</code></a></dt>
+  <dd>
+    <p>A <em>serializer</em> which returns a JSON representation of the <code>CSPViolationReportBody</code> object.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="obtaining_a_cspviolationreportbody_object">Obtaining a <code>CSPViolationReportBody</code> object</h3>
+<p>
+  To obtain a <code>CSPViolationReportBody</code> object, you must configure your page so that a CSP violation will occur.
+  In this example, we will set our CSP to only allow content from the site's own origin, and then attempt to load a script from <code>apis.google.com</code>, which is an external origin.
+</p>
+<p>First, we will set our <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"><code>Content-Security-Policy</code></a> header in the HTTP response:</p>
+<pre class="brush: http">Content-Security-Policy: default-src 'self';
+</pre>
+<p>or in the HTML <a href="/en-US/docs/Web/HTML/Element/meta"><code>&lt;meta&gt;</code></a> element:</p>
+<pre class="brush: html">&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'" /&gt;
+</pre>
+<p>Then, we will attempt to load an external script:</p>
+<pre class="brush: html">&lt;!-- This should generate a CSP violation --&gt;
+&lt;script src="https://apis.google.com/js/platform.js"&gt;&lt;/script&gt;
+</pre>
+<p>Finally, we will create a new <a href="/en-US/docs/Web/API/ReportingObserver"><code>ReportingObserver</code></a> object to listen for CSP violations (this will need to be loaded from the same location, before the script that causes the violation).</p>
+<pre class="brush: js">const observer = new ReportingObserver(
+  (reports, observer) =&gt; {
+    reports.forEach((violation) =&gt; {
+      console.log(violation);
+      console.log(JSON.stringify(violation));
+    });
+  },
+  {
+    types: ["csp-violation"],
+    buffered: true,
+  },
+);
+
+observer.observe();
+</pre>
+<p>
+  Above we log the each violation report object and a JSON-string version of the object, which might look similar to the object below.
+  Note that the <code>body</code> is an instance of the <code>CSPViolationReportBody</code> and the <code>type</code> is <code>"csp-violation"</code>.
+</p>
+<pre class="brush: js">{
+    "type": "csp-violation",
+    "url": "http://127.0.0.1:9999/",
+    "body": {
+        "sourceFile": null,
+        "lineNumber": null,
+        "columnNumber": null,
+        "documentURL": "http://127.0.0.1:9999/",
+        "referrer": "",
+        "blockedURL": "https://apis.google.com/js/platform.js",
+        "effectiveDirective": "script-src-elem",
+        "originalPolicy": "default-src 'self';",
+        "sample": "",
+        "disposition": "enforce",
+        "statusCode": 200
+    }
+}
+</pre>
+<h3 id="sending_a_csp_violation_report">Sending a CSP violation report</h3>
+<p>
+  Configuring a web page to send a CSP violation report is similar to the previous example.
+  As before, you need to configure your page so that there is a violation.
+</p>
+<p>
+  In addition, you also need to specify the endpoint(s) where the report will be sent.
+  A server specifies endpoints using the <a href="/en-US/docs/Web/HTTP/Headers/Reporting-Endpoints"><code>Reporting-Endpoints</code></a> response header: these must be secure URLs (HTTPS).
+  The CSP <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-to"><code>report-to</code></a> directive is then used to specify that a particular endpoint is used for reporting CSP violations:
+</p>
+<pre class="brush: http">Reporting-Endpoints: csp-endpoint="https://example.com/csp-report-to"
+Content-Security-Policy: default-src 'self'; report-to csp-endpoint
+</pre>
+<p>As before, we can trigger a violation by loading an external script from a location that is not allowed by our CSP header:</p>
+<pre class="brush: html">&lt;!-- This should generate a CSP violation --&gt;
+&lt;script src="https://apis.google.com/js/platform.js"&gt;&lt;/script&gt;
+</pre>
+<p>
+  The violation report will then be sent to the indicated endpoint as a JSON file.
+  As you can see from the example below, the <code>type</code> is <code>"csp-violation"</code> and the <code>body</code> property is a serialization of the <code>CSPViolationReportBody</code> object:
+</p>
+<pre class="brush: json">[
+  {
+    "age": 53531,
+    "body": {
+      "blockedURL": "inline",
+      "columnNumber": 59,
+      "disposition": "enforce",
+      "documentURL": "https://example.com/csp-report-to",
+      "effectiveDirective": "script-src-elem",
+      "lineNumber": 1441,
+      "originalPolicy": "default-src 'self'; report-to csp-endpoint",
+      "referrer": "https://www.google.com/",
+      "sample": "",
+      "sourceFile": "https://example.com/csp-report-to",
+      "statusCode": 200
+    },
+    "type": "csp-violation",
+    "url": "https://example.com/csp-report-to",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+  }
+]
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSPViolationReportBody" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSPViolationReportBody" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/ReportBody"><code>ReportBody</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ReportingObserver"><code>ReportingObserver</code></a></li>
+  <li><a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"><code>Content-Security-Policy</code></a></li>
+  <li><a href="/en-US/docs/Web/API/SecurityPolicyViolationEvent"><code>SecurityPolicyViolationEvent</code></a></li>
+</ul>
+</body></html>

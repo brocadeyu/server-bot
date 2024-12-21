@@ -1,0 +1,90 @@
+<html><head></head><body>
+<p>The <strong><code>DOMTokenList</code></strong> interface represents a set of space-separated tokens. Such a set is returned by <a href="/en-US/docs/Web/API/Element/classList"><code>Element.classList</code></a> or <a href="/en-US/docs/Web/API/HTMLLinkElement/relList"><code>HTMLLinkElement.relList</code></a>, and many others.</p>
+<p>A <code>DOMTokenList</code> is indexed beginning with <code>0</code> as with JavaScript <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> objects. <code>DOMTokenList</code> is always case-sensitive.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="domtokenlist.length"><a href="/en-US/docs/Web/API/DOMTokenList/length"><code>DOMTokenList.length</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An <code>integer</code> representing the number of objects stored in the object.</p>
+  </dd>
+  <dt id="domtokenlist.value"><a href="/en-US/docs/Web/API/DOMTokenList/value"><code>DOMTokenList.value</code></a></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Glossary/Stringifier">stringifier</a> property that returns the value of the list as a string.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="domtokenlist.item"><a href="/en-US/docs/Web/API/DOMTokenList/item"><code>DOMTokenList.item()</code></a></dt>
+  <dd>
+    <p>Returns the item in the list by its index, or <code>null</code> if the index is greater than or equal to the list's <code>length</code>.</p>
+  </dd>
+  <dt id="domtokenlist.contains"><a href="/en-US/docs/Web/API/DOMTokenList/contains"><code>DOMTokenList.contains()</code></a></dt>
+  <dd>
+    <p>Returns <code>true</code> if the list contains the given token, otherwise <code>false</code>.</p>
+  </dd>
+  <dt id="domtokenlist.add"><a href="/en-US/docs/Web/API/DOMTokenList/add"><code>DOMTokenList.add()</code></a></dt>
+  <dd>
+    <p>Adds the specified tokens to the list.</p>
+  </dd>
+  <dt id="domtokenlist.remove"><a href="/en-US/docs/Web/API/DOMTokenList/remove"><code>DOMTokenList.remove()</code></a></dt>
+  <dd>
+    <p>Removes the specified tokens from the list.</p>
+  </dd>
+  <dt id="domtokenlist.replace"><a href="/en-US/docs/Web/API/DOMTokenList/replace"><code>DOMTokenList.replace()</code></a></dt>
+  <dd>
+    <p>Replaces the token with another one.</p>
+  </dd>
+  <dt id="domtokenlist.supports"><a href="/en-US/docs/Web/API/DOMTokenList/supports"><code>DOMTokenList.supports()</code></a></dt>
+  <dd>
+    <p>Returns <code>true</code> if the given token is in the associated attribute's supported tokens.</p>
+  </dd>
+  <dt id="domtokenlist.toggle"><a href="/en-US/docs/Web/API/DOMTokenList/toggle"><code>DOMTokenList.toggle()</code></a></dt>
+  <dd>
+    <p>Removes the token from the list if it exists, or adds it to the list if it doesn't. Returns a boolean indicating whether the token is in the list after the operation.</p>
+  </dd>
+  <dt id="domtokenlist.entries"><a href="/en-US/docs/Web/API/DOMTokenList/entries"><code>DOMTokenList.entries()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a>, allowing you to go through all key/value pairs contained in this object.</p>
+  </dd>
+  <dt id="domtokenlist.foreach"><a href="/en-US/docs/Web/API/DOMTokenList/forEach"><code>DOMTokenList.forEach()</code></a></dt>
+  <dd>
+    <p>Executes a provided callback function once for each <code>DOMTokenList</code> element.</p>
+  </dd>
+  <dt id="domtokenlist.keys"><a href="/en-US/docs/Web/API/DOMTokenList/keys"><code>DOMTokenList.keys()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a>, allowing you to go through all keys of the key/value pairs contained in this object.</p>
+  </dd>
+  <dt id="domtokenlist.values"><a href="/en-US/docs/Web/API/DOMTokenList/values"><code>DOMTokenList.values()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a>, allowing you to go through all values of the key/value pairs contained in this object.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>In the following simple example, we retrieve the list of classes set on a <a href="/en-US/docs/Web/HTML/Element/p"><code>&lt;p&gt;</code></a> element as a <code>DOMTokenList</code> using <a href="/en-US/docs/Web/API/Element/classList"><code>Element.classList</code></a>, add a class using <a href="/en-US/docs/Web/API/DOMTokenList/add"><code>DOMTokenList.add()</code></a>, and then update the <a href="/en-US/docs/Web/API/Node/textContent"><code>Node.textContent</code></a> of the <code>&lt;p&gt;</code> to equal the <code>DOMTokenList</code>.</p>
+<p>First, the HTML:</p>
+<pre class="brush: html">&lt;p class="a b c"&gt;&lt;/p&gt;
+</pre>
+<p>Now the JavaScript:</p>
+<pre class="brush: js">let para = document.querySelector("p");
+let classes = para.classList;
+para.classList.add("d");
+para.textContent = `paragraph classList is "${classes}"`;
+</pre>
+<p>The output looks like this:</p><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="100%" height="60" src="about:blank" data-live-path="/en-US/docs/Web/API/DOMTokenList" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="trimming_of_whitespace_and_removal_of_duplicates">Trimming of whitespace and removal of duplicates</h2>
+<p>Methods that modify the <code>DOMTokenList</code> (such as <a href="/en-US/docs/Web/API/DOMTokenList/add"><code>DOMTokenList.add()</code></a>) automatically trim any excess <a href="/en-US/docs/Glossary/Whitespace">Whitespace</a> and remove duplicate values from the list. For example:</p>
+<pre class="brush: html">&lt;span class="    d   d e f"&gt;&lt;/span&gt;
+</pre>
+<pre class="brush: js">let span = document.querySelector("span");
+let classes = span.classList;
+span.classList.add("x");
+span.textContent = `span classList is "${classes}"`;
+</pre>
+<p>The output looks like this:</p><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Trimming of whitespace and removal of duplicates sample" id="frame_trimming_of_whitespace_and_removal_of_duplicates" width="100%" height="60" src="about:blank" data-live-path="/en-US/docs/Web/API/DOMTokenList" data-live-id="trimming_of_whitespace_and_removal_of_duplicates" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.DOMTokenList" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.DOMTokenList" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

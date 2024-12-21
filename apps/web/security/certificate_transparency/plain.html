@@ -1,0 +1,22 @@
+<html><head></head><body>
+<p><strong>Certificate Transparency</strong> is an open framework designed to protect against and monitor for certificate mis-issuances. It's defined in <a href="https://www.rfc-editor.org/rfc/rfc9162">RFC 9162</a>. With certificate transparency, newly-issued certificates are 'logged' to publicly-run, often independent <em>CT logs</em> — which maintain an append-only, cryptographically-assured record of issued TLS certificates.</p>
+<p>In this way, certificate authorities (CAs) can be subject to much greater public scrutiny and oversight. Potentially malicious certificates, such as those that violate the CA/B Forum <em>Baseline Requirements</em>, can be detected and revoked much more quickly. Browser vendors and root store maintainers are also empowered to make more informed decisions regarding problematic CAs that they may decide to distrust.</p>
+<h2 id="background">Background</h2>
+<p>CT logs are built upon the foundation of the <em>Merkle tree</em> data structure. Nodes are labelled with the <em>cryptographic hashes</em> of their child nodes. Leaf nodes contain hashes of actual pieces of data. The label of the root node therefore depends on all other nodes in the tree.</p>
+<p>In the context of certificate transparency, the data hashed by the leaf nodes are the certificates that have been issued by the various different CAs operating today. Certificate inclusion can be verified via an <em>audit proof</em> which can be generated and verified efficiently, in logarithmic O(log n) time.</p>
+<p>Certificate transparency initially came about in 2013 against a backdrop of CA compromises (DigiNotar breach in 2011), questionable decisions (Trustwave subordinate root incident in 2012) and technical issuance issues (weak, 512-bit certificate issuance by DigiCert Sdn Bhd of Malaysia).</p>
+<h2 id="implementation">Implementation</h2>
+<p>When certificates are submitted to a CT log, a <em>signed certificate timestamp</em> (SCT) is generated and returned. This serves as a proof that the certificate has been submitted and will be added to the log.</p>
+<p>The specification states that compliant servers <em>must</em> provide a number of these SCTs to TLS clients when they connect. This can be accomplished via a number of different mechanisms:</p>
+<ul>
+  <li>X.509v3 certificate extension which embeds signed certificate timestamps directly into the leaf certificate</li>
+  <li>A TLS extension of type <code>signed_certificate_timestamp</code> sent during the handshake</li>
+  <li>OCSP stapling (that is, the <code>status_request</code> TLS extension) and providing a <code>SignedCertificateTimestampList</code> with one or more SCTs</li>
+</ul>
+<p>With the X.509 certificate extension, the included SCTs are decided by the issuing CA. Since June 2021, most actively used and valid publicly-trusted certificates contain transparency data embedded in this extension. This method should not require web servers to be modified.</p>
+<p>With the latter methods, servers will need to be updated to send the required data. The advantage is that the server operator can customize the CT log sources providing the SCTs sent via the TLS extension/stapled OCSP response.</p>
+<h2 id="browser_requirements">Browser Requirements</h2>
+<p>Google Chrome requires CT log inclusion for all certificates issues with a notBefore date of after 30 April 2018. Users will be prevented from visiting sites using non-compliant TLS certificates. Chrome had previously required CT inclusion for <em>Extended Validation</em> (EV) and Symantec-issued certificates.</p>
+<p>Apple <a href="https://support.apple.com/en-gb/103214">requires</a> a varying number of SCTs in order for Safari and other servers to trust server certificates.</p>
+<p>Firefox <a href="https://bugzil.la/1281469">does not</a> currently check or require the use of CT logs for sites that users visit.</p>
+</body></html>

@@ -1,0 +1,168 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>CacheStorage</code></strong> interface represents the storage for <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> objects.</p>
+<p>The interface:</p>
+<ul>
+  <li>Provides a master directory of all the named caches that can be accessed by a <a href="/en-US/docs/Web/API/ServiceWorker"><code>ServiceWorker</code></a> or other type of worker or <a href="/en-US/docs/Web/API/Window"><code>window</code></a> scope (you're not limited to only using it with service workers).</li>
+  <li>Maintains a mapping of string names to corresponding <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> objects.</li>
+</ul>
+<p>Use <a href="/en-US/docs/Web/API/CacheStorage/open"><code>CacheStorage.open()</code></a> to obtain a <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> instance.</p>
+<p>Use <a href="/en-US/docs/Web/API/CacheStorage/match"><code>CacheStorage.match()</code></a> to check if a given <a href="/en-US/docs/Web/API/Request"><code>Request</code></a> is a key in any of the <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> objects that the <code>CacheStorage</code> object tracks.</p>
+<p>You can access <code>CacheStorage</code> through the <a href="/en-US/docs/Web/API/Window/caches"><code>Window.caches</code></a> property in windows or through the <a href="/en-US/docs/Web/API/WorkerGlobalScope/caches"><code>WorkerGlobalScope.caches</code></a> property in workers.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> <code>CacheStorage</code> always rejects with a <code>SecurityError</code> on untrusted origins (i.e. those that aren't using HTTPS, although this definition will likely become more complex in the future.) When testing on Firefox, you can get around this by checking the <strong>Enable Service Workers over HTTP (when toolbox is open)</strong> option in the Firefox DevTools options/gear menu. Furthermore, because <code>CacheStorage</code> requires file-system access, it may be unavailable in private mode in Firefox.</p>
+</div>
+<div class="notecard note">
+  <p><strong>Note:</strong> <a href="/en-US/docs/Web/API/CacheStorage/match"><code>CacheStorage.match()</code></a> is a convenience method. Equivalent functionality to match a cache entry can be implemented by returning an array of cache names from <a href="/en-US/docs/Web/API/CacheStorage/keys"><code>CacheStorage.keys()</code></a>, opening each cache with <a href="/en-US/docs/Web/API/CacheStorage/open"><code>CacheStorage.open()</code></a>, and matching the one you want with <a href="/en-US/docs/Web/API/Cache/match"><code>Cache.match()</code></a>.</p>
+</div>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="cachestorage.match"><a href="/en-US/docs/Web/API/CacheStorage/match"><code>CacheStorage.match()</code></a></dt>
+  <dd>
+    <p>Checks if a given <a href="/en-US/docs/Web/API/Request"><code>Request</code></a> is a key in any of the <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> objects that the <code>CacheStorage</code> object tracks, and returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to that match.</p>
+  </dd>
+  <dt id="cachestorage.has"><a href="/en-US/docs/Web/API/CacheStorage/has"><code>CacheStorage.has()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to <code>true</code> if a <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> object matching the <code>cacheName</code> exists.</p>
+  </dd>
+  <dt id="cachestorage.open"><a href="/en-US/docs/Web/API/CacheStorage/open"><code>CacheStorage.open()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to the <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> object matching the <code>cacheName</code> (a new cache is created if it doesn't already exist.)</p>
+  </dd>
+  <dt id="cachestorage.delete"><a href="/en-US/docs/Web/API/CacheStorage/delete"><code>CacheStorage.delete()</code></a></dt>
+  <dd>
+    <p>Finds the <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> object matching the <code>cacheName</code>, and if found, deletes the <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> object and returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to <code>true</code>. If no <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> object is found, it resolves to <code>false</code>.</p>
+  </dd>
+  <dt id="cachestorage.keys"><a href="/en-US/docs/Web/API/CacheStorage/keys"><code>CacheStorage.keys()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that will resolve with an array containing strings corresponding to all of the named <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> objects tracked by the <code>CacheStorage</code>. Use this method to iterate over a list of all the <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> objects.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>
+  This code snippet is from the MDN <a href="https://github.com/mdn/dom-examples/tree/main/service-worker/simple-service-worker">simple service worker example</a> (see <a href="https://bncb2v.csb.app/">simple service worker running live</a>.)
+  This service worker script waits for an <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event" title="install"><code>install</code></a> event to fire, then runs <a href="/en-US/docs/Web/API/ExtendableEvent/waitUntil" title="waitUntil"><code>waitUntil</code></a> to handle the install process for the app. This consists of calling <a href="/en-US/docs/Web/API/CacheStorage/open"><code>CacheStorage.open</code></a> to create a new cache, then using <a href="/en-US/docs/Web/API/Cache/addAll"><code>Cache.addAll</code></a> to add a series of assets to it.
+</p>
+<p>In the second code block, we wait for a <a href="/en-US/docs/Web/API/FetchEvent"><code>FetchEvent</code></a> to fire. We construct a custom response like so:</p>
+<ol>
+  <li>Check whether a match for the request is found in the CacheStorage. If so, serve that.</li>
+  <li>If not, fetch the request from the network, then also open the cache created in the first block and add a clone of the request to it using <a href="/en-US/docs/Web/API/Cache/put"><code>Cache.put</code></a> (<code>cache.put(event.request, response.clone())</code>.)</li>
+  <li>If this fails (e.g. because the network is down), return a fallback response.</li>
+</ol>
+<p>Finally, return whatever the custom response ended up being equal to, using <a href="/en-US/docs/Web/API/FetchEvent/respondWith"><code>FetchEvent.respondWith</code></a>.</p>
+<pre class="brush: js">self.addEventListener("install", (event) =&gt; {
+  event.waitUntil(
+    caches
+      .open("v1")
+      .then((cache) =&gt;
+        cache.addAll([
+          "/",
+          "/index.html",
+          "/style.css",
+          "/app.js",
+          "/image-list.js",
+          "/star-wars-logo.jpg",
+          "/gallery/bountyHunters.jpg",
+          "/gallery/myLittleVader.jpg",
+          "/gallery/snowTroopers.jpg",
+        ]),
+      ),
+  );
+});
+
+self.addEventListener("fetch", (event) =&gt; {
+  event.respondWith(
+    caches.match(event.request).then((response) =&gt; {
+      // caches.match() always resolves
+      // but in case of success response will have value
+      if (response !== undefined) {
+        return response;
+      } else {
+        return fetch(event.request)
+          .then((response) =&gt; {
+            // response may be used only once
+            // we need to save clone to put one copy in cache
+            // and serve second one
+            let responseClone = response.clone();
+
+            caches.open("v1").then((cache) =&gt; {
+              cache.put(event.request, responseClone);
+            });
+            return response;
+          })
+          .catch(() =&gt; caches.match("/gallery/myLittleVader.jpg"));
+      }
+    }),
+  );
+});
+</pre>
+<p>This snippet shows how the API can be used outside of a service worker context, and uses the <code>await</code> operator for much more readable code.</p>
+<pre class="brush: js">// Try to get data from the cache, but fall back to fetching it live.
+async function getData() {
+  const cacheVersion = 1;
+  const cacheName = `myapp-${cacheVersion}`;
+  const url = "https://jsonplaceholder.typicode.com/todos/1";
+  let cachedData = await getCachedData(cacheName, url);
+
+  if (cachedData) {
+    console.log("Retrieved cached data");
+    return cachedData;
+  }
+
+  console.log("Fetching fresh data");
+
+  const cacheStorage = await caches.open(cacheName);
+  await cacheStorage.add(url);
+  cachedData = await getCachedData(cacheName, url);
+  await deleteOldCaches(cacheName);
+
+  return cachedData;
+}
+
+// Get data from the cache.
+async function getCachedData(cacheName, url) {
+  const cacheStorage = await caches.open(cacheName);
+  const cachedResponse = await cacheStorage.match(url);
+
+  if (!cachedResponse || !cachedResponse.ok) {
+    return false;
+  }
+
+  return await cachedResponse.json();
+}
+
+// Delete any old caches to respect user's disk space.
+async function deleteOldCaches(currentCache) {
+  const keys = await caches.keys();
+
+  for (const key of keys) {
+    const isOurCache = key.startsWith("myapp-");
+    if (currentCache === key || !isOurCache) {
+      continue;
+    }
+    caches.delete(key);
+  }
+}
+
+try {
+  const data = await getData();
+  console.log({ data });
+} catch (error) {
+  console.error({ error });
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CacheStorage" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CacheStorage" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers">Using Service Workers</a></li>
+  <li><a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Window/caches"><code>Window.caches</code></a> and <a href="/en-US/docs/Web/API/WorkerGlobalScope/caches"><code>WorkerGlobalScope.caches</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Web_Storage_API#private_browsing_incognito_modes">Private Browsing / Incognito modes</a></li>
+</ul>
+</body></html>

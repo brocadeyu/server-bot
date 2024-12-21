@@ -1,0 +1,93 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>PaintWorkletGlobalScope</code></strong> interface of the <a href="/en-US/docs/Web/API/CSS_Painting_API">CSS Painting API</a> represents the global object available inside a paint <a href="/en-US/docs/Web/API/Worklet"><code>Worklet</code></a>.</p>
+<h2 id="privacy_concerns">Privacy concerns</h2>
+<p>To avoid leaking visited links, this feature is currently disabled in Chrome-based browsers for <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> elements with an <a href="/en-US/docs/Web/HTML/Element/a#href"><code>href</code></a> attribute, and for children of such elements. For details, see the following:</p>
+<ul>
+  <li>The CSS Painting API <a href="https://drafts.css-houdini.org/css-paint-api/#privacy-considerations">Privacy Considerations section</a></li>
+  <li>The CSS Painting API spec issue <a href="https://github.com/w3c/css-houdini-drafts/issues/791">"CSS Paint API leaks browsing history"</a></li>
+</ul>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface inherits properties from <a href="/en-US/docs/Web/API/WorkletGlobalScope"><code>WorkletGlobalScope</code></a>.</em></p>
+<dl>
+  <dt id="paintworkletglobalscope.devicepixelratio"><a href="/en-US/docs/Web/API/PaintWorkletGlobalScope/devicePixelRatio"><code>PaintWorkletGlobalScope.devicePixelRatio</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the current device's ratio of physical pixels to logical pixels.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface inherits methods from <a href="/en-US/docs/Web/API/WorkletGlobalScope"><code>WorkletGlobalScope</code></a>.</em></p>
+<dl>
+  <dt id="paintworkletglobalscope.registerpaint"><a href="/en-US/docs/Web/API/PaintWorkletGlobalScope/registerPaint"><code>PaintWorkletGlobalScope.registerPaint()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Registers a class to programmatically generate an image where a CSS property expects a file.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following three examples go together to show creating, loading, and using a paint <code>Worklet</code>.</p>
+<h3 id="create_a_paint_worklet">Create a paint worklet</h3>
+<p>The following shows an example worklet module. This should be in a separate js file. Note that <code>registerPaint()</code> is called without a reference to a paint <code>Worklet</code>.</p>
+<pre class="brush: js">class CheckerboardPainter {
+  paint(ctx, geom, properties) {
+    // The global object here is a PaintWorkletGlobalScope
+    // Methods and properties can be accessed directly
+    // as global features or prefixed using self
+    const dpr = self.devicePixelRatio;
+
+    // Use `ctx` as if it was a normal canvas
+    const colors = ["red", "green", "blue"];
+    const size = 32;
+    for (let y = 0; y &lt; geom.height / size; y++) {
+      for (let x = 0; x &lt; geom.width / size; x++) {
+        const color = colors[(x + y) % colors.length];
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.rect(x * size, y * size, size, size);
+        ctx.fill();
+      }
+    }
+  }
+}
+
+// Register our class under a specific name
+registerPaint("checkerboard", CheckerboardPainter);
+</pre>
+<h3 id="load_a_paint_worklet">Load a paint worklet</h3>
+<p>The following example demonstrates loading the above worklet from its js file and does so by feature detection.</p>
+<pre class="brush: js">if ("paintWorklet" in CSS) {
+  CSS.paintWorklet.addModule("checkerboard.js");
+}
+</pre>
+<h3 id="use_a_paint_worklet">Use a paint worklet</h3>
+<p>This example shows how to use a paint <code>Worklet</code> in a stylesheet, including the simplest way to provide a fallback if <code>CSS.paintWorklet</code> isn't supported.</p>
+<pre class="brush: html">&lt;style&gt;
+  textarea {
+    background-image: url(checkerboard);
+    background-image: paint(checkerboard);
+  }
+&lt;/style&gt;
+&lt;textarea&gt;&lt;/textarea&gt;
+</pre>
+<p>You can also use the <a href="/en-US/docs/Web/CSS/@supports"><code>@supports</code></a> at-rule.</p>
+<pre class="brush: css">@supports (background: paint(id)) {
+  background-image: paint(checkerboard);
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PaintWorkletGlobalScope" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PaintWorkletGlobalScope" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSS_Painting_API">CSS Painting API</a></li>
+  <li><a href="/en-US/docs/Web/API/Houdini_APIs">Houdini APIs</a></li>
+</ul>
+</body></html>

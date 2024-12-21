@@ -1,0 +1,206 @@
+<html><head></head><body>
+<p>
+  The <strong><code>zoom</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property can be used to control the magnification level of an element.
+  <a href="/en-US/docs/Web/CSS/transform-function/scale"><code>transform: scale()</code></a> can be used as an alternative to this property.
+</p>
+<p>
+  The <code>zoom</code> CSS property scales the targeted element, which can affect the page layout.
+  When scaling, the zoomed element scales from <code>top</code> and <code>center</code> when using the default <a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a>.
+</p>
+<p>
+  In contrast, an element scaled using <a href="/en-US/docs/Web/CSS/transform-function/scale"><code>scale()</code></a> will not cause layout recalculation or move other elements on the page.
+  If using <code>scale()</code> makes the contents larger than the containing element, then <a href="/en-US/docs/Web/CSS/overflow"><code>overflow</code></a> comes into effect.
+  Additionally, elements adjusted using <code>scale()</code> transform from the <code>center</code> by default; this can be changed with the <a href="/en-US/docs/Web/CSS/transform-origin"><code>transform-origin</code></a> CSS property.
+</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;percentage&gt; values */
+zoom: 50%;
+zoom: 200%;
+
+/* &lt;number&gt; values */
+zoom: 1.1;
+zoom: 0.7;
+
+/* Non-standard keyword values */
+zoom: normal;
+zoom: reset;
+
+/* Global values */
+zoom: inherit;
+zoom: initial;
+zoom: revert;
+zoom: revert-layer;
+zoom: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="percentage"><a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a></dt>
+  <dd>
+    <p>Zoom factor. <code>100%</code> is equivalent to <code>normal</code>. Values larger than <code>100%</code> zoom in. Values smaller than <code>100%</code> zoom out.</p>
+  </dd>
+  <dt id="number"><a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a></dt>
+  <dd>
+    <p>Zoom factor. Equivalent to the corresponding percentage (<code>1.0</code> = <code>100%</code> = <code>normal</code>). Values larger than <code>1.0</code> zoom in. Values smaller than <code>1.0</code> zoom out.</p>
+  </dd>
+</dl>
+<p>Two non-standard keyword values are not recommended. Check <a href="#browser_compatibility">browser compatibility</a> data:</p>
+<dl>
+  <dt id="normal"><a href="#normal"><code>normal</code></a></dt>
+  <dd>
+    <p>Render the element at its normal size; equal to <code>zoom: 1</code>. Use the global <a href="/en-US/docs/Web/CSS/unset"><code>unset</code></a> keyword value instead.</p>
+  </dd>
+  <dt id="reset"><a href="#reset"><code>reset</code></a></dt>
+  <dd>
+    <p>Resets the value to <code>zoom: 1</code> and prevents the element from being (de)magnified if the user applies non-pinch-based zooming (e.g. by pressing <kbd>Ctrl</kbd> - <kbd>-</kbd> or <kbd>Ctrl</kbd> + <kbd>+</kbd> keyboard shortcuts) to the document.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>normal</code></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>Not animatable</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="zoom">zoom = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number [0,∞]&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage [0,∞]&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="resizing_paragraphs">Resizing paragraphs</h3>
+<p>In this example the paragraph elements are zoomed, on hovering a paragraph the <code>zoom</code> value is <code>unset</code>.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p class="small"&gt;Small&lt;/p&gt;
+&lt;p class="normal"&gt;Normal&lt;/p&gt;
+&lt;p class="big"&gt;Big&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css hidden">body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+}
+</pre>
+<pre class="brush: css">.small {
+  zoom: 75%;
+}
+.normal {
+  zoom: normal;
+}
+.big {
+  zoom: 2.5;
+}
+p:hover {
+  zoom: unset;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="resizing paragraphs sample" id="frame_resizing_paragraphs" src="about:blank" data-live-path="/en-US/docs/Web/CSS/zoom" data-live-id="resizing_paragraphs" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="resizing_elements">Resizing elements</h3>
+<p>In this example the <code>div</code> elements are zoomed using the <code>normal</code>, <code>&lt;percentage&gt;</code>, and <code>&lt;number&gt;</code> values.</p>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;div id="a" class="circle"&gt;&lt;/div&gt;
+&lt;div id="b" class="circle"&gt;&lt;/div&gt;
+&lt;div id="c" class="circle"&gt;&lt;/div&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">div.circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  vertical-align: middle;
+  display: inline-block;
+}
+div#a {
+  background-color: gold;
+  zoom: normal; /* circle is 25px diameter */
+}
+div#b {
+  background-color: green;
+  zoom: 200%; /* circle is 50px diameter */
+}
+div#c {
+  background-color: blue;
+  zoom: 2.9; /* circle is 72.5px diameter */
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="resizing elements sample" id="frame_resizing_elements" src="about:blank" data-live-path="/en-US/docs/Web/CSS/zoom" data-live-id="resizing_elements" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="creating_a_zoom_control">Creating a zoom control</h3>
+<p>In this example a <code>select</code> field is used to change the zoom level of the element.</p>
+<h4 id="html_3">HTML</h4>
+<p>In this first block, of HTML, a <code>select</code> field is defined with the different <code>zoom</code> values to be used.</p>
+<pre class="brush: html">&lt;section class="controls"&gt;
+  &lt;label for="zoom"
+    &gt;Zoom level
+    &lt;select name="zoom" id="zoom"&gt;
+      &lt;option value="0.5"&gt;Extra Small&lt;/option&gt;
+      &lt;option value="0.75"&gt;Small&lt;/option&gt;
+      &lt;option value="normal" selected&gt;Normal&lt;/option&gt;
+      &lt;option value="1.5"&gt;Large&lt;/option&gt;
+      &lt;option value="2"&gt;Extra Large&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/label&gt;
+&lt;/section&gt;
+</pre>
+<p>In this second block a <strong>not supported</strong> message is added that will be hidden if the browser supports <code>zoom</code>.</p>
+<pre class="brush: html">&lt;p class="zoom-notice"&gt;CSS zoom is not supported&lt;/p&gt;
+</pre>
+<p>The final block just defines the content that will be zoomed.</p>
+<pre class="brush: html">&lt;section class="content"&gt;
+  &lt;h1&gt;This is the heading&lt;/h1&gt;
+  &lt;p&gt;
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat inventore
+    ea eveniet, fugiat in consequatur molestiae nostrum repellendus nam
+    provident repellat officiis facilis alias facere obcaecati quos sunt
+    voluptas! Iste.
+  &lt;/p&gt;
+  &lt;p&gt;
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat inventore
+    ea eveniet, fugiat in consequatur molestiae nostrum repellendus nam
+    provident repellat officiis facilis alias facere obcaecati quos sunt
+    voluptas! Iste.
+  &lt;/p&gt;
+&lt;/section&gt;
+</pre>
+<h4 id="css_3">CSS</h4>
+<p>In this first block, of CSS, we are setting the starting value for the <code>--zoom-level</code> using <a href="/en-US/docs/Web/CSS/--*">custom properties</a> and then using that as the value for <code>zoom</code> on the content block.</p>
+<pre class="brush: css">html {
+  --zoom-level: normal;
+}
+.content {
+  max-width: 60ch;
+  margin: auto;
+  zoom: var(--zoom-level);
+}
+</pre>
+<pre class="brush: css hidden">.controls,
+.zoom-notice {
+  display: flex;
+  justify-content: space-around;
+}
+.zoom-notice {
+  color: red;
+}
+</pre>
+<p>In this final CSS block we are checking to see if the browser supports <code>zoom</code> and if so setting the <strong>not supported</strong> message to <code>display: none;</code>.</p>
+<pre class="brush: css">@supports (zoom: 1) {
+  .zoom-notice {
+    display: none;
+  }
+}
+</pre>
+<h4 id="javascript">JavaScript</h4>
+<p>This JavaScript watches for a change in the select field and sets the new value for <code>--zoom-level</code> on the content <code>section</code>, e.g. <code>style="--zoom-level: 1.5;"</code>.</p>
+<pre class="brush: js">const zoomControl = document.querySelector("#zoom");
+const content = document.querySelector(".content");
+const updateZoom = () =&gt; {
+  content.style = `--zoom-level: ${zoomControl.value}`;
+};
+zoomControl.addEventListener("change", updateZoom);
+</pre>
+<h4 id="result_3">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="creating a zoom control sample" id="frame_creating_a_zoom_control" width="550" height="280" src="about:blank" data-live-path="/en-US/docs/Web/CSS/zoom" data-live-id="creating_a_zoom_control" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.zoom" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.zoom" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://css-tricks.com/almanac/properties/z/zoom/"><code>zoom</code> entry in CSS-Tricks' CSS Almanac</a></li>
+  <li><a href="/en-US/docs/Web/CSS/transform"><code>transform</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/scale"><code>scale</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/unset"><code>unset</code></a> keyword</li>
+  <li><a href="https://css-tricks.com/almanac/properties/z/zoom/">Legacy <code>zoom</code> property</a> via CSS-Tricks (2013)</li>
+</ul>
+</body></html>

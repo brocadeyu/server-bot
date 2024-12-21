@@ -1,0 +1,64 @@
+<html><head></head><body><p>EXSLT is a set of extensions to <a href="/en-US/docs/Web/XSLT">XSLT</a>. There are a number of modules; those that are supported by Firefox are listed below:</p><dl><dt class="landingPageList" id="common_exsl"><a href="/en-US/docs/Web/EXSLT/exsl">Common (exsl)</a></dt><dd class="landingPageList"><p>The EXSLT Common package provides basic functions that expand upon the capabilities of XSLT. The namespace for the Common package is <code>http://exslt.org/common</code>.</p></dd><dt class="landingPageList" id="math_math"><a href="/en-US/docs/Web/EXSLT/math">Math (math)</a></dt><dd class="landingPageList"><p>The EXSLT Math package provides functions for working with numeric values and comparing nodes. The namespace for the Math package is <code>http://exslt.org/math</code>.</p></dd><dt class="landingPageList" id="regular_expressions_regexp"><a href="/en-US/docs/Web/EXSLT/regexp">Regular expressions (regexp)</a></dt><dd class="landingPageList"><p>The EXSLT Regular Expressions package provides functions that allow testing, matching, and replacing text using JavaScript style regular expressions. The namespace for the Regular Expressions package is <code>http://exslt.org/regular-expressions</code>.</p></dd><dt class="landingPageList" id="sets_set"><a href="/en-US/docs/Web/EXSLT/set">Sets (set)</a></dt><dd class="landingPageList"><p>The EXSLT Sets package offers functions that let you perform set manipulation. The namespace for these functions is <code>http://exslt.org/sets</code>.</p></dd><dt class="landingPageList" id="strings_str"><a href="/en-US/docs/Web/EXSLT/str">Strings (str)</a></dt><dd class="landingPageList"><p>The EXSLT Strings package provides functions that allow the manipulation of strings. The namespace for the Strings package is <code>http://exslt.org/strings</code>.</p></dd></dl>
+<h2 id="exslt_modules">EXSLT modules</h2>
+<p>To use an EXSLT function, you need to declare the namespace the function is in, and then use the appropriate prefix when calling the function. For example, to use the regular expressions package:</p>
+<pre class="brush: xml">&lt;xsl:stylesheet version="1.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:regexp="http://exslt.org/regular-expressions"&gt;
+  &lt;xsl:template match="/"&gt;
+    …
+    &lt;xsl:value-of select="regexp:replace(/root/@value, 'before', 'gi', 'AFTER')"/&gt;
+    …
+  &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre>
+<h3 id="common">Common</h3>
+<p>The EXSLT Common package provides basic functions that expand upon the capabilities of XSLT. The namespace for the Common package is <code>http://exslt.org/common</code>.</p>
+<h4 id="functions">Functions</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/EXSLT/exsl/node-set"><code>exsl:node-set()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/exsl/object-type"><code>exsl:object-type()</code></a></li>
+</ul>
+<h3 id="math">Math</h3>
+<p>The EXSLT Math package provides functions for working with numeric values and comparing nodes. The namespace for the Math package is <code>http://exslt.org/math</code>.</p>
+<h4 id="functions_2">Functions</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/EXSLT/math/highest"><code>math:highest()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/math/lowest"><code>math:lowest()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/math/max"><code>math:max()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/math/min"><code>math:min()</code></a></li>
+</ul>
+<h3 id="regular_expressions">Regular expressions</h3>
+<p>The EXSLT Regular Expressions package provides functions that allow testing, matching, and replacing text using JavaScript style regular expressions.</p>
+<p>The EXSLT Regular Expressions namespace is <code>http://exslt.org/regular-expressions</code>.</p>
+<h4 id="functions_3">Functions</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/EXSLT/regexp/match"><code>regexp:match()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/regexp/replace"><code>regexp:replace()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/regexp/test"><code>regexp:test()</code></a></li>
+</ul>
+<h3 id="sets">Sets</h3>
+<p>The EXSLT Sets package offers functions that let you perform set manipulation. The namespace for these functions is <code>http://exslt.org/sets</code>.</p>
+<h4 id="functions_4">Functions</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/EXSLT/set/difference"><code>set:difference()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/set/distinct"><code>set:distinct()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/set/intersection"><code>set:intersection()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/set/has-same-node"><code>set:has-same-node()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/set/leading"><code>set:leading()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/set/trailing"><code>set:trailing()</code></a></li>
+</ul>
+<h3 id="strings">Strings</h3>
+<p>The EXSLT Strings package provides functions that allow the manipulation of strings. The namespace for the Strings package is <code>http://exslt.org/strings</code>.</p>
+<h4 id="functions_5">Functions</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/EXSLT/str/concat"><code>str:concat()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/str/split"><code>str:split()</code></a></li>
+  <li><a href="/en-US/docs/Web/EXSLT/str/tokenize"><code>str:tokenize()</code></a></li>
+</ul>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://exslt.github.io/">EXSLT website</a></li>
+</ul>
+
+</body></html>

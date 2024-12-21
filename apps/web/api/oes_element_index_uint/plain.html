@@ -1,0 +1,28 @@
+<html><head></head><body>
+<p>The <strong><code>OES_element_index_uint</code></strong> extension is part of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> and adds support for <code>gl.UNSIGNED_INT</code> types to <a href="/en-US/docs/Web/API/WebGLRenderingContext/drawElements"><code>WebGLRenderingContext.drawElements()</code></a>.</p>
+<p>WebGL extensions are available using the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="/en-US/docs/Web/API/WebGL_API/Using_Extensions">Using Extensions</a> in the <a href="/en-US/docs/Web/API/WebGL_API/Tutorial">WebGL tutorial</a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This extension is only available to <a href="/en-US/docs/Web/API/WebGLRenderingContext" title="WebGL1">WebGL1</a> contexts. In <a href="/en-US/docs/Web/API/WebGL2RenderingContext" title="WebGL2">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default.</p>
+</div>
+<h2 id="extended_methods">Extended methods</h2>
+<p>This extension extends <a href="/en-US/docs/Web/API/WebGLRenderingContext/drawElements"><code>WebGLRenderingContext.drawElements()</code></a>:</p>
+<ul>
+  <li>The <code>type</code> parameter now accepts <code>gl.UNSIGNED_INT</code>.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const ext = gl.getExtension("OES_element_index_uint");
+
+gl.drawElements(gl.POINTS, 8, gl.UNSIGNED_INT, 0);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.OES_element_index_uint" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.OES_element_index_uint" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/drawElements"><code>WebGLRenderingContext.drawElements()</code></a></li>
+</ul>
+</body></html>

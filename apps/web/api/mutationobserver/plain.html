@@ -1,0 +1,70 @@
+<html><head></head><body>
+<p>The <strong><code>MutationObserver</code></strong> interface provides the ability to watch for changes being made to the <a href="/en-US/docs/Web/API/Document_Object_Model">DOM</a> tree. It is designed as a replacement for the older <a href="/en-US/docs/Web/API/MutationEvent">Mutation Events</a> feature, which was part of the DOM3 Events specification.</p>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="mutationobserver"><a href="/en-US/docs/Web/API/MutationObserver/MutationObserver" title="MutationObserver()"><code>MutationObserver()</code></a></dt>
+  <dd>
+    <p>Creates and returns a new <code>MutationObserver</code> which will invoke a specified callback function when DOM changes occur.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="disconnect"><a href="/en-US/docs/Web/API/MutationObserver/disconnect" title="disconnect()"><code>disconnect()</code></a></dt>
+  <dd>
+    <p>Stops the <code>MutationObserver</code> instance from receiving further notifications until and unless <a href="/en-US/docs/Web/API/MutationObserver/observe" title="observe()"><code>observe()</code></a> is called again.</p>
+  </dd>
+  <dt id="observe"><a href="/en-US/docs/Web/API/MutationObserver/observe" title="observe()"><code>observe()</code></a></dt>
+  <dd>
+    <p>Configures the <code>MutationObserver</code> to begin receiving notifications through its callback function when DOM changes matching the given options occur.</p>
+  </dd>
+  <dt id="takerecords"><a href="/en-US/docs/Web/API/MutationObserver/takeRecords" title="takeRecords()"><code>takeRecords()</code></a></dt>
+  <dd>
+    <p>Removes all pending notifications from the <code>MutationObserver</code>'s notification queue and returns them in a new <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="/en-US/docs/Web/API/MutationRecord"><code>MutationRecord</code></a> objects.</p>
+  </dd>
+</dl>
+<h2 id="mutation_observer_customize_resize_event_listener_demo">Mutation Observer &amp; customize resize event listener &amp; demo</h2>
+<p><a href="https://codepen.io/milofultz/pen/LYjPXPw">https://codepen.io/milofultz/pen/LYjPXPw</a></p>
+<h2 id="example">Example</h2>
+<p>The following example was adapted from <a href="https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/">this blog post</a>.</p>
+<pre class="brush: js">// Select the node that will be observed for mutations
+const targetNode = document.getElementById("some-id");
+
+// Options for the observer (which mutations to observe)
+const config = { attributes: true, childList: true, subtree: true };
+
+// Callback function to execute when mutations are observed
+const callback = (mutationList, observer) =&gt; {
+  for (const mutation of mutationList) {
+    if (mutation.type === "childList") {
+      console.log("A child node has been added or removed.");
+    } else if (mutation.type === "attributes") {
+      console.log(`The ${mutation.attributeName} attribute was modified.`);
+    }
+  }
+};
+
+// Create an observer instance linked to the callback function
+const observer = new MutationObserver(callback);
+
+// Start observing the target node for configured mutations
+observer.observe(targetNode, config);
+
+// Later, you can stop observing
+observer.disconnect();
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MutationObserver" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MutationObserver" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/PerformanceObserver"><code>PerformanceObserver</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ResizeObserver"><code>ResizeObserver</code></a></li>
+  <li><a href="/en-US/docs/Web/API/IntersectionObserver"><code>IntersectionObserver</code></a></li>
+  <li><a href="https://developer.chrome.com/blog/detect-dom-changes-with-mutation-observers/">A brief overview</a></li>
+  <li><a href="https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/">A more in-depth discussion</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eRZ4pO0gVWw">A screencast by Chromium developer Rafael Weinstein</a></li>
+</ul>
+</body></html>

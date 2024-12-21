@@ -1,0 +1,60 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The GamepadEvent interface of the Gamepad API contains references to gamepads connected to the system, which is what the gamepad events <a href="/en-US/docs/Web/API/Window/gamepadconnected_event" title="gamepadconnected"><code>gamepadconnected</code></a> and <a href="/en-US/docs/Web/API/Window/gamepaddisconnected_event" title="gamepaddisconnected"><code>gamepaddisconnected</code></a> are fired in response to.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/GamepadEvent" aria-current="page">
+    <rect x="105" y="0" width="96" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="153" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      GamepadEvent
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="gamepadevent"><a href="/en-US/docs/Web/API/GamepadEvent/GamepadEvent" title="GamepadEvent()"><code>GamepadEvent()</code></a></dt>
+  <dd>
+    <p>Returns a new <code>GamepadEvent</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="gamepadevent.gamepad"><a href="/en-US/docs/Web/API/GamepadEvent/gamepad"><code>GamepadEvent.gamepad</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/Gamepad"><code>Gamepad</code></a> object, providing access to the associated gamepad data for the event fired.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The gamepad property being called on a fired <a href="/en-US/docs/Web/API/Window/gamepadconnected_event" title="gamepadconnected"><code>gamepadconnected</code></a> event.</p>
+<pre class="brush: js">window.addEventListener("gamepadconnected", (e) =&gt; {
+  console.log(
+    "Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    e.gamepad.index,
+    e.gamepad.id,
+    e.gamepad.buttons.length,
+    e.gamepad.axes.length,
+  );
+});
+</pre>
+<p>And on a <a href="/en-US/docs/Web/API/Window/gamepaddisconnected_event" title="gamepaddisconnected"><code>gamepaddisconnected</code></a> event.</p>
+<pre class="brush: js">window.addEventListener("gamepaddisconnected", (e) =&gt; {
+  console.log(
+    "Gamepad disconnected from index %d: %s",
+    e.gamepad.index,
+    e.gamepad.id,
+  );
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GamepadEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GamepadEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<p><a href="/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API">Using the Gamepad API</a></p>
+</body></html>

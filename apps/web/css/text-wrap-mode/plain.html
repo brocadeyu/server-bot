@@ -1,0 +1,84 @@
+<html><head></head><body>
+<p>The <strong><code>text-wrap-mode</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property controls whether the text inside an element is wrapped. The different values provide alternate ways of wrapping the content of a block element. It can also be set, and reset, using the <a href="/en-US/docs/Web/CSS/text-wrap"><code>text-wrap</code></a> shorthand.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The name of this property is a placeholder, pending the CSSWG finding a better name.</p>
+</div><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/text-wrap-mode.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+text-wrap-style: wrap;
+text-wrap-style: nowrap;
+
+/* Global values */
+text-wrap-style: inherit;
+text-wrap-style: initial;
+text-wrap-style: revert;
+text-wrap-style: revert-layer;
+text-wrap-style: unset;
+</pre>
+<h2 id="values">Values</h2>
+<p>This property specifies whether lines may wrap at unforced soft wrap opportunities. Possible values:</p>
+<dl>
+  <dt id="wrap"><a href="#wrap"><code>wrap</code></a></dt>
+  <dd>
+    <p>Text is wrapped across lines at appropriate characters (for example spaces, in languages like English that use space separators) to minimize overflow. This is the default value.</p>
+  </dd>
+  <dt id="nowrap"><a href="#nowrap"><code>nowrap</code></a></dt>
+  <dd>
+    <p>Text does not wrap across lines. It will overflow its containing element rather than breaking onto a new line.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>wrap</code></td></tr><tr><th scope="row">Applies to</th><td>text and block containers</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="text-wrap-mode">text-wrap-mode = </span><br>  <span class="token keyword">wrap</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">nowrap</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<div class="notecard note">
+  <p><strong>Note:</strong> Check the browser support for this property.</p>
+</div>
+<h3 id="wrapping_content">Wrapping content</h3>
+<p>The default setting is to wrap the content so the <code>text-wrap-mode</code> property is not necessary. In this example the content will flow over to the next line so that it fits in the box, the last line is longer that the containing box so overflows.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div class="box"&gt;CSS IS AWESOME&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">.box {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 64px;
+  box-sizing: border-box;
+  border: 4px solid black;
+  padding: 0px 3px;
+  width: 223px;
+  text-wrap-mode: wrap;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="wrapping content sample" id="frame_wrapping_content" width="100%" height="250" src="about:blank" data-live-path="/en-US/docs/Web/CSS/text-wrap-mode" data-live-id="wrapping_content" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="not_wrapping_content">Not wrapping content</h3>
+<p>In this example the content will <strong>not</strong> flow over to the next line so that it fits in the box as the content has been specifically told not to wrap with <code>text-wrap-mode: nowrap;</code>, the content is longer that the containing box so overflows.</p>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;div class="box"&gt;CSS IS AWESOME&lt;/div&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">.box {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 64px;
+  box-sizing: border-box;
+  border: 4px solid black;
+  padding: 0px 3px;
+  width: 223px;
+  text-wrap-mode: nowrap;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="not wrapping content sample" id="frame_not_wrapping_content" width="100%" height="100" src="about:blank" data-live-path="/en-US/docs/Web/CSS/text-wrap-mode" data-live-id="not_wrapping_content" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.text-wrap-mode" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.text-wrap-mode" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/text-wrap"><code>text-wrap</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/text-wrap-style"><code>text-wrap-style</code></a></li>
+</ul>
+</body></html>

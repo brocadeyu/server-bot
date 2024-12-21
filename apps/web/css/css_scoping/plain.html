@@ -1,0 +1,98 @@
+<html><head></head><body>
+<p>The <strong>CSS scoping</strong> module defines the CSS scoping and encapsulation mechanisms, focusing on the <a href="/en-US/docs/Web/API/Web_components/Using_shadow_DOM">Shadow DOM</a> <a href="https://css.oddbird.net/scope/">scoping</a> mechanism.</p>
+<p>CSS styles are either global in scope or scoped to a <a href="/en-US/docs/Glossary/Shadow_tree">shadow tree</a>. Globally scoped styles apply to all the elements in the node tree that match the selector, including custom elements in that tree, but not to the shadow trees composing each custom element. Selectors and their associated style definitions don't bleed between scopes.</p>
+<p>Within the CSS of a shadow tree, selectors don't select elements outside the tree, either in the global scope or in other shadow trees. Each custom element has its own shadow tree, which contains all the components that make up the custom element (but not the custom element, or "host", itself).</p>
+<p>Sometimes it's useful to be able to style a host from inside the shadow tree context. The CSS scoping module makes this possible by defining selectors that:</p>
+<ul>
+  <li>Enable a shadow tree to style its host.</li>
+  <li>Enable external CSS to style elements within a shadow DOM (but only if the associated custom element is set up to accept external styles).</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<h3 id="selectors">Selectors</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:host"><code>:host</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:host_function"><code>:host()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:host-context"><code>:host-context()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::slotted"><code>::slotted</code></a></li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="web_components"><a href="/en-US/docs/Web/API/Web_components">Web components</a></dt>
+  <dd>
+    <p>An introduction to the different technologies used to create reusable web components — custom elements whose functionality is encapsulated away from the rest of your code.</p>
+  </dd>
+  <dt id="using_shadow_dom"><a href="/en-US/docs/Web/API/Web_components/Using_shadow_DOM">Using shadow DOM</a></dt>
+  <dd>
+    <p>Shadow DOM fundamentals, including attaching a shadow DOM to an element, adding to the shadow DOM tree, and styling.</p>
+  </dd>
+  <dt id="using_templates_and_slots"><a href="/en-US/docs/Web/API/Web_components/Using_templates_and_slots">Using templates and slots</a></dt>
+  <dd>
+    <p>Defining reusable HTML structure using <a href="/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/slot"><code>&lt;slot&gt;</code></a> elements, and using that structure inside web components.</p>
+  </dd>
+  <dt id="using_custom_elements"><a href="/en-US/docs/Web/API/Web_components/Using_custom_elements">Using custom elements</a></dt>
+  <dd>
+    <p>Introduction to the Custom Elements API, the JavaScript API used to create custom elements that encapsulate functionality.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li>
+    <p>CSS <a href="/en-US/docs/Web/CSS/:defined"><code>:defined</code></a> pseudo-class</p>
+  </li>
+  <li>
+    <p>CSS <a href="/en-US/docs/Web/CSS/::part"><code>::part</code></a> pseudo-element</p>
+  </li>
+  <li>
+    <p>HTML <a href="/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a> element</p>
+  </li>
+  <li>
+    <p>HTML <a href="/en-US/docs/Web/HTML/Element/slot"><code>&lt;slot&gt;</code></a> element</p>
+  </li>
+  <li>
+    <p>HTML <a href="/en-US/docs/Web/HTML/Global_attributes/slot"><code>slot</code></a> attribute</p>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Glossary/Shadow_tree">Shadow tree</a> glossary term</p>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Glossary/DOM">DOM</a> glossary term</p>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#compound_selector">Compound selector</a> term</p>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/Selector_list">Selector list</a> term</p>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/API/Web_components">Web components</a> interfaces, properties, and methods</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/API/CustomElementRegistry"><code>CustomElementRegistry</code></a> interface</li>
+      <li><a href="/en-US/docs/Web/API/Element"><code>Element</code></a> API
+        <ul>
+          <li><a href="/en-US/docs/Web/API/Element/slot"><code>Element.slot</code></a> property</li>
+          <li><a href="/en-US/docs/Web/API/Element/assignedSlot"><code>Element.assignedSlot</code></a> property</li>
+          <li><a href="/en-US/docs/Web/API/Element/attachShadow"><code>Element.attachShadow()</code></a> method</li>
+        </ul>
+      </li>
+      <li><a href="/en-US/docs/Web/API/HTMLSlotElement"><code>HTMLSlotElement</code></a> interface</li>
+      <li><a href="/en-US/docs/Web/API/HTMLTemplateElement"><code>HTMLTemplateElement</code></a> interface</li>
+      <li><a href="/en-US/docs/Web/API/ShadowRoot"><code>ShadowRoot</code></a> interface</li>
+    </ul>
+  </li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> Despite the name, the <a href="/en-US/docs/Web/CSS/:scope"><code>:scope</code></a> pseudo-class, which represents elements that are a reference point (or scope) for selectors to match against, is defined in the <a href="/en-US/docs/Web/CSS/CSS_selectors">Selectors</a> module. It is otherwise unrelated to the CSS scoping module, which is focused on scoping as it pertains to the Shadow DOM scoping mechanism.</p>
+</div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-scoping/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_selectors">CSS selectors</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_pseudo-elements">CSS pseudo elements</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_namespaces">CSS namespaces</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_shadow_parts">CSS shadow-parts</a> module</li>
+  <li><a href="https://web.dev/learn/html/template/">Template, slot, and shadow</a> on web.dev (2023)</li>
+  <li><a href="https://web.dev/articles/custom-elements-best-practices">Custom element best practices</a> on web.dev (2019)</li>
+</ul>
+</body></html>

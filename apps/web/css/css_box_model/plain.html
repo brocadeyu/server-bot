@@ -1,0 +1,143 @@
+<html><head></head><body>
+<p>The <strong>CSS box model</strong> module defines the <code>height</code>, <code>width</code>, <code>margin</code>, and <code>padding</code> properties, which along with <a href="/en-US/docs/Web/CSS/CSS_backgrounds_and_borders">border properties</a> make up the CSS <a href="/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model">box model</a>.</p>
+<p>Every visible element on a webpage is a box laid out according to the <a href="/en-US/docs/Web/CSS/Visual_formatting_model">visual formatting model</a>. CSS properties define their size, position, and stacking level, with the box model properties (and others) defining the extrinsic size of each box, and the space around them.</p>
+<p>Each box has a rectangular content area, inside which any text, images, and other content is displayed. The content may be surrounded by padding, a border, and a margin, on one or more sides. The padding is around the content, the border is around the padding, and the margin sits outside the border. The box model describes how these features — the content, padding, border, and margin — work together to create a box as displayed by CSS.</p>
+<p>
+  <img src="/en-US/docs/Web/CSS/CSS_box_model/boxmodel.png" alt="The components of the CSS box model" width="967" height="720">
+</p>
+<p>The CSS box model module defines physical (or "page relative") properties such as <code>width</code> and <code>margin-top</code>. Flow-relative properties such as <code>inline-size</code> and <code>margin-block-start</code> (which relate to text direction) are defined in <a href="/en-US/docs/Web/CSS/CSS_logical_properties_and_values">Logical Properties and Values</a>. The box model module is extended by the <a href="/en-US/docs/Web/CSS/CSS_box_sizing">CSS box sizing module</a>, which introduces the <a href="/en-US/docs/Glossary/Intrinsic_Size">intrinsic size</a> value and enables defining <a href="/en-US/docs/Glossary/Aspect_ratio">aspect ratio</a>s for elements that are auto-sized in at least one dimension.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/box-sizing"><code>box-sizing</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/height"><code>height</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin"><code>margin</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin-bottom"><code>margin-bottom</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin-left"><code>margin-left</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin-right"><code>margin-right</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin-top"><code>margin-top</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin-trim"><code>margin-trim</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/max-height"><code>max-height</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/max-width"><code>max-width</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/min-height"><code>min-height</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/min-width"><code>min-width</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/padding"><code>padding</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/padding-bottom"><code>padding-bottom</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/padding-left"><code>padding-left</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/padding-right"><code>padding-right</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/padding-top"><code>padding-top</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/width"><code>width</code></a></li>
+</ul>
+<h3 id="data_types">Data types</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/box-edge"><code>&lt;box&gt;</code></a>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/box-edge#visual-box"><code>&lt;visual-box&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/box-edge#layout-box"><code>&lt;layout-box&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/box-edge#paint-box"><code>&lt;paint-box&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/box-edge#coord-box"><code>&lt;coord-box&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/box-edge#geometry-box"><code>&lt;geometry-box&gt;</code></a></li>
+    </ul>
+  </li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="introduction_to_the_css_box_model"><a href="/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model">Introduction to the CSS box model</a></dt>
+  <dd>
+    <p>Explains one of the fundamental concepts of CSS: the box model. This model defines how CSS lays out elements, including their content, padding, border, and margin areas.</p>
+  </dd>
+  <dt id="mastering_margin_collapsing"><a href="/en-US/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing">Mastering margin collapsing</a></dt>
+  <dd>
+    <p>Sometimes, two adjacent margins are collapsed into one. This article describes the rules that govern when and why this happens, and how to control it.</p>
+  </dd>
+  <dt id="visual_formatting_model"><a href="/en-US/docs/Web/CSS/Visual_formatting_model">Visual formatting model</a></dt>
+  <dd>
+    <p>Explains the visual formatting model.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_backgrounds_and_borders">CSS backgrounds and borders</a> module
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/border-width"><code>border-width</code></a> shorthand</li>
+      <li><a href="/en-US/docs/Web/CSS/border-bottom-width"><code>border-bottom-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-left-width"><code>border-left-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-right-width"><code>border-right-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-top-width"><code>border-top-width</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_logical_properties_and_values">CSS logical properties</a> module
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/block-size"><code>block-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/inline-size"><code>inline-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/max-block-size"><code>max-block-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/max-inline-size"><code>max-inline-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/min-block-size"><code>min-block-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/min-inline-size"><code>min-inline-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/margin-block"><code>margin-block</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/margin-block-end"><code>margin-block-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/margin-block-start"><code>margin-block-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/margin-inline"><code>margin-inline</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/margin-inline-end"><code>margin-inline-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/margin-inline-start"><code>margin-inline-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/padding-block"><code>padding-block</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/padding-block-end"><code>padding-block-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/padding-block-start"><code>padding-block-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/padding-inline"><code>padding-inline</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/padding-inline-end"><code>padding-inline-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/padding-inline-start"><code>padding-inline-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-block"><code>border-block</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-block-end"><code>border-block-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-block-end-width"><code>border-block-end-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-block-start"><code>border-block-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-block-start-width"><code>border-block-start-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-block-style"><code>border-block-style</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-block-width"><code>border-block-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-inline"><code>border-inline</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-inline-end"><code>border-inline-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-inline-end-width"><code>border-inline-end-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-inline-start"><code>border-inline-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-inline-start-width"><code>border-inline-start-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/border-inline-width"><code>border-inline-width</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_box_sizing">CSS box sizing</a> module
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/aspect-ratio"><code>aspect-ratio</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-block-size"><code>contain-intrinsic-block-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-height"><code>contain-intrinsic-height</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-inline-size"><code>contain-intrinsic-inline-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-size"><code>contain-intrinsic-size</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-width"><code>contain-intrinsic-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/max-height"><code>max-height</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/max-width"><code>max-width</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/min-height"><code>min-height</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/min-width"><code>min-width</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_overflow">CSS overflow</a> module
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/overflow"><code>overflow</code></a> shorthand</li>
+      <li><a href="/en-US/docs/Web/CSS/overflow-block"><code>overflow-block</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/overflow-clip-margin"><code>overflow-clip-margin</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/overflow-inline"><code>overflow-inline</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/overflow-x"><code>overflow-x</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/overflow-y"><code>overflow-y</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/text-overflow"><code>text-overflow</code></a></li>
+    </ul>
+  </li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-box-4/,https://drafts.csswg.org/css-box-3/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_display">CSS display</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout">CSS flex layout</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_grid_layout">CSS grid layout</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_table">CSS table</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_positioned_layout">CSS positioned layout</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_fragmentation">CSS fragmentation</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_box_sizing/Understanding_aspect-ratio">Understanding aspect ratios</a></li>
+</ul>
+</body></html>

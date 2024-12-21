@@ -1,0 +1,85 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>BarcodeDetector</code></strong> interface of the <a href="/en-US/docs/Web/API/Barcode_Detection_API">Barcode Detection API</a> allows detection of linear and two dimensional barcodes in images.</p>
+<h2 id="constructors">Constructors</h2>
+<dl>
+  <dt id="barcodedetector.barcodedetector"><a href="/en-US/docs/Web/API/BarcodeDetector/BarcodeDetector" title="BarcodeDetector.BarcodeDetector()"><code>BarcodeDetector.BarcodeDetector()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Creates and returns a <code>BarcodeDetector</code> object, with optional <code>BarcodeDetectorOptions</code>.</p>
+  </dd>
+</dl>
+<h2 id="static_methods">Static methods</h2>
+<dl>
+  <dt id="getsupportedformats"><a href="/en-US/docs/Web/API/BarcodeDetector/getSupportedFormats_static" title="getSupportedFormats()"><code>getSupportedFormats()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which fulfills with an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of supported <a href="/en-US/docs/Web/API/Barcode_Detection_API#supported_barcode_formats">barcode format types</a>.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="detect"><a href="/en-US/docs/Web/API/BarcodeDetector/detect" title="detect()"><code>detect()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which fulfills with an array of <code>DetectedBarcode</code> objects with the following properties:</p>
+    <ul>
+      <li><code>boundingBox</code>: A <a href="/en-US/docs/Web/API/DOMRectReadOnly"><code>DOMRectReadOnly</code></a>, which returns the dimensions of a rectangle representing the extent of a detected barcode, aligned with the image.</li>
+      <li><code>cornerPoints</code>: The x and y co-ordinates of the four corner points of the detected barcode relative to the image, starting with the top left and working clockwise. This may not be square due to perspective distortions within the image.</li>
+      <li><code>format</code>: The detected barcode format. (For a full list of formats, consult the <a href="/en-US/docs/Web/API/Barcode_Detection_API#supported_barcode_formats">supported barcode format</a>) list.</li>
+      <li><code>rawValue</code>: A string decoded from the barcode data.</li>
+    </ul>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_detector">Creating A Detector</h3>
+<p>This example creates a new barcode detector object, with specified supported formats and tests for browser compatibility.</p>
+<pre class="brush: js">// check compatibility
+if (!("BarcodeDetector" in globalThis)) {
+  console.log("Barcode Detector is not supported by this browser.");
+} else {
+  console.log("Barcode Detector supported!");
+
+  // create new detector
+  const barcodeDetector = new BarcodeDetector({
+    formats: ["code_39", "codabar", "ean_13"],
+  });
+}
+</pre>
+<h3 id="getting_supported_formats">Getting Supported Formats</h3>
+<p>The following example calls the <code>getSupportFormat()</code> static method and logs the results to the console.</p>
+<pre class="brush: js">// check supported types
+BarcodeDetector.getSupportedFormats().then((supportedFormats) =&gt; {
+  supportedFormats.forEach((format) =&gt; console.log(format));
+});
+</pre>
+<h3 id="detect_barcodes">Detect Barcodes</h3>
+<p>This example uses the <code>detect()</code> method to detect the barcodes within the given image. These are iterated over and the barcode data is logged to the console.</p>
+<pre class="brush: js">barcodeDetector
+  .detect(imageEl)
+  .then((barcodes) =&gt; {
+    barcodes.forEach((barcode) =&gt; console.log(barcode.rawValue));
+  })
+  .catch((err) =&gt; {
+    console.log(err);
+  });
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BarcodeDetector" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BarcodeDetector" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://www.barcodefaq.com/">barcodefaq.com: A website with information about different barcodes and examples of the different types.</a></li>
+  <li><a href="https://developer.chrome.com/docs/capabilities/shape-detection#barcodedetector">Accelerated Shape Detection in Images</a></li>
+</ul>
+</body></html>

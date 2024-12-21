@@ -1,0 +1,39 @@
+<html><head></head><body><div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div>
+<p>The <strong><code>::-moz-color-swatch</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-elements">pseudo-element</a> is a <a href="/en-US/docs/Web/CSS/Mozilla_Extensions">Mozilla extension</a> that represents the color selected in an <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> of <code>type="color"</code>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> Using <code>::-moz-color-swatch</code> with anything but an <code>&lt;input type="color"&gt;</code> doesn't match anything and has no effect.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">::-moz-color-swatch {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;input type="color" value="#de2020" /&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">input[type="color"]::-moz-color-swatch {
+  border-radius: 10px;
+  border-style: none;
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="300" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/::-moz-color-swatch" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.-moz-color-swatch" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>
+    <p>Similar pseudo-elements used by other browsers:</p>
+    <ul>
+      <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{cssxref(&quot;::-webkit-color-swatch&quot;)}}"><code>::-webkit-color-swatch</code></a>, pseudo-element supported by WebKit and Blink (Safari, Chrome, and Opera)</li>
+    </ul>
+  </li>
+</ul>
+</body></html>

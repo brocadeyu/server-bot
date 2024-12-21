@@ -1,0 +1,155 @@
+<html><head></head><body>
+<p>The <strong>CSS generated content</strong> module defines how an element's content can be replaced and content can be added to a document with CSS.</p>
+<p>Generated content can be used for content replacement, in which case the content of a DOM node is replaced with a CSS <code>&lt;image&gt;</code>. The CSS generated content also enables generating language-specific quotes, creating custom list item numbers and bullets, and visually adding content by generating content on select pseudo-elements as anonymous replaced elements.</p>
+<h3 id="generated_content_in_action">Generated content in action</h3>
+<pre class="brush: html hidden live-sample___generated_content">&lt;div&gt;&lt;/div&gt;
+</pre>
+<pre class="brush: css hidden live-sample___generated_content">body,
+div {
+  background-repeat: no-repeat;
+}
+body {
+  background-image: linear-gradient(#3a67ab, #e8f6ff 100%);
+}
+div {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background-image: linear-gradient(
+      115deg,
+      transparent 48%,
+      brown,
+      #996600,
+      brown,
+      transparent 52%
+    ),
+    linear-gradient(
+      60deg,
+      transparent 48%,
+      brown,
+      #996600,
+      brown,
+      transparent 52%
+    ),
+    radial-gradient(
+      circle 10px at 50% 50%,
+      #333333 30%,
+      #999999 50%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle 10px at 50% 50%,
+      #333333 30%,
+      #999999 50%,
+      transparent 50%
+    ),
+    radial-gradient(circle at 50% 50%, white 30%, #eeeeee 50%, transparent 50%),
+    radial-gradient(circle at 50% 50%, white 30%, #eeeeee 50%, transparent 50%),
+    radial-gradient(circle at 50% 50%, white 30%, #eeeeee 50%, transparent 50%);
+  background-size:
+    100px 100px,
+    100px 100px,
+    15px 15px,
+    15px 15px,
+    200px 200px,
+    300px 300px,
+    400px 400px;
+  background-position:
+    95% 120px,
+    5% 120px,
+    46% 80px,
+    54% 80px,
+    50% 0,
+    50% 90px,
+    50% 220px;
+}
+div::after {
+  content: "";
+  border: transparent solid 4px;
+  border-left: orange 30px solid;
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+}
+
+div::before {
+  content: "Only one &lt;div&gt;";
+  font-size: min(6vh, 2rem);
+  justify-content: center;
+  display: flex;
+  font-family: comic-sans, papyrus, sans-serif;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="generated content sample" id="frame_generated_content" height="400px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/CSS_generated_content" data-live-id="generated_content" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The HTML for this sample is a single, empty <a href="/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> inside an otherwise empty <a href="/en-US/docs/Web/HTML/Element/body"><code>&lt;body&gt;</code></a>. The snowman was created with <a href="/en-US/docs/Web/CSS/CSS_images">CSS images</a> and <a href="/en-US/docs/Web/CSS/CSS_backgrounds_and_borders">CSS backgrounds and borders</a>. The carrot nose was added using generated content: an empty box with a wide orange <a href="/en-US/docs/Web/CSS/border-left">left border</a> added to the <a href="/en-US/docs/Web/CSS/::before"><code>::before</code></a> pseudo-element. The text is also generated content: "only one &lt;div&gt;" was generated with the <a href="/en-US/docs/Web/CSS/content"><code>content</code></a> property applied to the <a href="/en-US/docs/Web/CSS/::after"><code>::after</code></a> pseudo-element.</p>
+<p>Click "Play" in the example above to see or edit the code in the MDN Playground.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/content"><code>content</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/quotes"><code>quotes</code></a></li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> The CSS generated content module introduces four at-risk properties that have not been implemented: <code>string-set</code>, <code>bookmark-label</code>, <code>bookmark-level</code>, and <code>bookmark-state</code>.</p>
+</div>
+<h3 id="functions">Functions</h3>
+<p>The CSS generated content module introduces six yet-to-be implemented CSS functions including <code>content()</code>, <code>string()</code>, and <code>leader()</code>, and the three <a href="/en-US/docs/Web/CSS/content#target"><code>&lt;target&gt;</code></a> functions <code>target-counter()</code>, <code>target-counters()</code>, and <code>target-text()</code>.</p>
+<h3 id="data_types">Data types</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/content"><code>&lt;content-list&gt;</code></a></li>
+  <li><code>&lt;content-replacement&gt;</code> (see <a href="/en-US/docs/Web/CSS/image"><code>&lt;image&gt;</code></a>)</li>
+  <li><a href="/en-US/docs/Web/CSS/image"><code>&lt;image&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/content#counter"><code>&lt;counter&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/content#quote"><code>&lt;quote&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/content#target"><code>&lt;target&gt;</code></a></li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="how_to_guide_for_generated_content"><a href="/en-US/docs/Learn_web_development/Howto/Solve_CSS_problems/Generated_content">"How to" guide for generated content</a></dt>
+  <dd>
+    <p>Learn how to add text or image content to a document using the <a href="/en-US/docs/Web/CSS/content"><code>content</code></a> property.</p>
+  </dd>
+  <dt id="create_fancy_boxes_with_generated_content"><a href="/en-US/docs/Learn_web_development/Howto/Solve_CSS_problems/Create_fancy_boxes">Create fancy boxes with generated content</a></dt>
+  <dd>
+    <p>Example of styling generated content for visual effects.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_pseudo-elements">CSS pseudo-elements</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/::before"><code>::before</code></a> pseudo-element</li>
+      <li><a href="/en-US/docs/Web/CSS/::after"><code>::after</code></a> pseudo-element</li>
+      <li><a href="/en-US/docs/Web/CSS/::marker"><code>::marker</code></a> pseudo-element</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_lists">CSS lists and counters</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/counter"><code>counter()</code></a> function</li>
+      <li><a href="/en-US/docs/Web/CSS/counters"><code>counters()</code></a> function</li>
+      <li><a href="/en-US/docs/Web/CSS/counter-increment"><code>counter-increment</code></a> property</li>
+      <li><a href="/en-US/docs/Web/CSS/counter-reset"><code>counter-reset</code></a> property</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_Values_and_Units">CSS values and units</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/attr"><code>attr()</code></a> function</li>
+      <li><a href="/en-US/docs/Web/CSS/string"><code>&lt;string&gt;</code></a> data type</li>
+      <li><a href="/en-US/docs/Web/CSS/image"><code>&lt;image&gt;</code></a> data type</li>
+    </ul>
+  </li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-content/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_pseudo-elements">CSS pseudo-elements</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_lists">CSS lists and counters</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/Replaced_element">Replaced elements</a></li>
+</ul>
+</body></html>

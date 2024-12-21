@@ -1,0 +1,112 @@
+<html><head></head><body>
+<p>The <strong>CSS basic user interface</strong> module lets you define the rendering and functionality of features related to the user interface including outline properties, visual feedback to pointing device and keyboard, and altering the default appearance of UI widgets.</p>
+<p>Basic user interface properties can be used to improve user experience and accessibility by providing visual cues to elements that are being interacted with, including styling mouse cursors and keyboard directional focus navigation, and styling caret cursors when an editable element has focus. The module provides for providing outlines to focused (or not) elements without impacting an element's <a href="/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model#what_is_the_css_box_model">box model</a> dimensions and styling. This UI module also enables the styling of user interface controls.</p>
+<h3 id="basic_user_interface_in_action">Basic user interface in action</h3>
+<p>To view how basic user interface properties can alter the appearance of UI features, interact with the elements in this sample. Note that some features in this sample improve usability while others harm user experience.</p>
+<pre class="brush: html hidden live-sample___basicUI">&lt;div&gt;&lt;span contenteditable&gt;Edit this text &lt;/span&gt;&lt;/div&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Play with these fake form controls&lt;/legend&gt;
+  &lt;input type="checkbox" id="check" /&gt;
+  &lt;input type="radio" name="a" /&gt;
+  &lt;input type="radio" name="a" /&gt;
+  &lt;input type="range" /&gt;
+  &lt;progress&gt;&lt;/progress&gt;
+&lt;/fieldset&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Be careful not to ruin usability: try resizing these.&lt;/legend&gt;
+  &lt;textarea&gt;
+  cursor: wait;
+  &lt;/textarea&gt;
+  &lt;textarea&gt;
+  resize: none;
+  &lt;/textarea&gt;
+  &lt;textarea&gt;
+  pointer-events: none;
+  &lt;/textarea&gt;
+&lt;/fieldset&gt;
+</pre>
+<pre class="brush: css hidden live-sample___basicUI">body {
+  font-family: sans-serif;
+  font-size: 1.25rem;
+}
+[contenteditable] {
+  cursor: copy;
+  caret-color: magenta;
+  border: 1px solid #ccc;
+}
+:focus {
+  outline: dashed magenta 3px;
+  outline-offset: 10px;
+}
+* {
+  accent-color: magenta;
+}
+div,
+fieldset {
+  margin: 20px;
+}
+textarea:nth-of-type(1) {
+  cursor: wait;
+}
+textarea:nth-of-type(2) {
+  resize: none;
+}
+textarea:nth-of-type(3) {
+  pointer-events: none;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="basicUI sample" id="frame_basicui" height="300px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/CSS_basic_user_interface" data-live-id="basicui" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The CSS <a href="/en-US/docs/Web/CSS/outline"><code>outline</code></a> and <a href="/en-US/docs/Web/CSS/outline-offset"><code>outline-offset</code></a> properties were used to provide feedback to users which element currently has focus. An <a href="/en-US/docs/Web/CSS/accent-color"><code>accent-color</code></a> provides a theme color to all the form controls. The caret that appears when the text is edit has the same color thanks to the <a href="/en-US/docs/Web/CSS/caret-color"><code>caret-color</code></a> property. These can all be considered UI improvements.</p>
+<p>Some features harm usability. The <a href="/en-US/docs/Web/CSS/cursor"><code>cursor</code></a> property was used to change cursors from the browser default which is confusing. The <a href="/en-US/docs/Web/CSS/resize"><code>resize</code></a> property prevents the second <a href="/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a> from being resizable while the <a href="/en-US/docs/Web/CSS/pointer-events"><code>pointer-events</code></a> property prevents the third <code>&lt;textarea&gt;</code> from receiving click events. It is still focusable using the keyboard.</p>
+<p>Click "Play" in the example above to see or edit the code for the animation in the MDN Playground.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/accent-color"><code>accent-color</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/appearance"><code>appearance</code></a></li>
+  <li>
+    <p><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{CSSxRef(&quot;caret&quot;)}}"><code>caret</code></a>, shorthand for:</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/caret-color"><code>caret-color</code></a></li>
+      <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{CSSxRef(&quot;caret-shape&quot;)}}"><code>caret-shape</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/cursor"><code>cursor</code></a></li>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{CSSxRef(&quot;nav-down&quot;)}}"><code>nav-down</code></a></li>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{CSSxRef(&quot;nav-left&quot;)}}"><code>nav-left</code></a></li>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{CSSxRef(&quot;nav-right&quot;)}}"><code>nav-right</code></a></li>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{CSSxRef(&quot;nav-up&quot;)}}"><code>nav-up</code></a></li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/outline"><code>outline</code></a>, shorthand for:</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/outline-color"><code>outline-color</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/outline-style"><code>outline-style</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/outline-width"><code>outline-width</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/outline-offset"><code>outline-offset</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/pointer-events"><code>pointer-events</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/resize"><code>resize</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/user-select"><code>user-select</code></a></li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="learn_forms_advanced_form_styling"><a href="/en-US/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling">Learn forms: advanced form styling</a></dt>
+  <dd>
+    <p>Explains how <a href="/en-US/docs/Web/CSS/appearance"><code>appearance</code></a> can be used to style form controls.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li>CSS <a href="/en-US/docs/Web/CSS/cursor"><code>cursor</code></a> property</li>
+  <li>SVG <a href="/en-US/docs/Web/SVG/Attribute/cursor"><code>cursor</code></a> attribute</li>
+  <li>CSS <a href="/en-US/docs/Web/CSS/:focus"><code>:focus</code></a>, <a href="/en-US/docs/Web/CSS/:focus-within"><code>:focus-within</code></a>, and <a href="/en-US/docs/Web/CSS/:focus-visible"><code>:focus-visible</code></a> pseudoclasses</li>
+  <li><a href="/en-US/docs/Web/API/CaretPosition"><code>CaretPosition</code></a> Interface</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-ui/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://www.deque.com/blog/give-site-focus-tips-designing-usable-focus-indicators/">Tips for Designing Useful and Usable Focus Indicators</a> (2016)</li>
+</ul>
+</body></html>

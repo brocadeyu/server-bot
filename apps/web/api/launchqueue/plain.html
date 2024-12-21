@@ -1,0 +1,44 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>LaunchQueue</code></strong> interface of the <a href="/en-US/docs/Web/API/Launch_Handler_API" title="Launch Handler API">Launch Handler API</a> is available via the <a href="/en-US/docs/Web/API/Window/launchQueue"><code>Window.launchQueue</code></a> property. When a <a href="/en-US/docs/Web/Progressive_web_apps">progressive web app</a> (PWA) is launched with a <a href="/en-US/docs/Web/Manifest/launch_handler"><code>launch_handler</code></a> <code>client_mode</code> value of <code>focus-existing</code>, <code>navigate-new</code>, or <code>navigate-existing</code>, <code>LaunchQueue</code> provides access to functionality that allows custom launch navigation handling to be implemented in the PWA. This functionality is controlled by the properties of the <a href="/en-US/docs/Web/API/LaunchParams"><code>LaunchParams</code></a> object passed into the <a href="/en-US/docs/Web/API/LaunchQueue/setConsumer" title="setConsumer()"><code>setConsumer()</code></a> callback function.</p>
+<h2 id="instance_methods">Instance Methods</h2>
+<dl>
+  <dt id="setconsumer"><a href="/en-US/docs/Web/API/LaunchQueue/setConsumer" title="setConsumer()"><code>setConsumer()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Contains a callback function that handles custom launch navigation for a PWA.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">if ("launchQueue" in window) {
+  window.launchQueue.setConsumer((launchParams) =&gt; {
+    if (launchParams.targetURL) {
+      const params = new URL(launchParams.targetURL).searchParams;
+
+      // Assuming a music player app that gets a track passed to it to be played
+      const track = params.get("track");
+      if (track) {
+        audio.src = track;
+        title.textContent = new URL(track).pathname.substr(1);
+        audio.play();
+      }
+    }
+  });
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.LaunchQueue" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.LaunchQueue" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/web-platform/launch-handler/">Launch Handler API: Control how your app is launched</a></li>
+  <li><a href="/en-US/docs/Web/API/Window/launchQueue"><code>Window.launchQueue</code></a></li>
+  <li><a href="https://launch-handler.glitch.me/">Musicr 2.0</a> demo app</li>
+</ul>
+</body></html>

@@ -1,0 +1,57 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>GPUAdapterInfo</code></strong> interface of the <a href="/en-US/docs/Web/API/WebGPU_API" title="WebGPU API">WebGPU API</a> contains identifying information about a <a href="/en-US/docs/Web/API/GPUAdapter"><code>GPUAdapter</code></a>.</p>
+<p>A <code>GPUAdapterInfo</code> object instance is retrieved using the <a href="/en-US/docs/Web/API/GPUAdapter/info"><code>GPUAdapter.info</code></a> property.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="architecture"><a href="/en-US/docs/Web/API/GPUAdapterInfo/architecture" title="architecture"><code>architecture</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The name of the family or class of GPUs the adapter belongs to. Returns an empty string if it is not available.</p>
+  </dd>
+  <dt id="description"><a href="/en-US/docs/Web/API/GPUAdapterInfo/description" title="description"><code>description</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A human-readable string describing the adapter. Returns an empty string if it is not available.</p>
+  </dd>
+  <dt id="device"><a href="/en-US/docs/Web/API/GPUAdapterInfo/device" title="device"><code>device</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A vendor-specific identifier for the adapter. Returns an empty string if it is not available.</p>
+  </dd>
+  <dt id="vendor"><a href="/en-US/docs/Web/API/GPUAdapterInfo/vendor" title="vendor"><code>vendor</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The name of the adapter vendor. Returns an empty string if it is not available.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const adapter = await navigator.gpu.requestAdapter();
+if (!adapter) {
+  throw Error("Couldn't request WebGPU adapter.");
+}
+
+const adapterInfo = adapter.info;
+console.log(adapterInfo.vendor);
+console.log(adapterInfo.architecture);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GPUAdapterInfo" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GPUAdapterInfo" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/GPUAdapter/info"><code>GPUAdapter.info</code></a></li>
+  <li>The <a href="/en-US/docs/Web/API/WebGPU_API">WebGPU API</a></li>
+</ul>
+</body></html>

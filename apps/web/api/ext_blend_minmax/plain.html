@@ -1,0 +1,39 @@
+<html><head></head><body>
+<p>The <strong><code>EXT_blend_minmax</code></strong> extension is part of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> and extends blending capabilities by adding two new blend equations: the minimum or maximum color components of the source and destination colors.</p>
+<p>WebGL extensions are available using the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="/en-US/docs/Web/API/WebGL_API/Using_Extensions">Using Extensions</a> in the <a href="/en-US/docs/Web/API/WebGL_API/Tutorial">WebGL tutorial</a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This extension is only available to <a href="/en-US/docs/Web/API/WebGLRenderingContext" title="WebGL1">WebGL1</a> contexts. In <a href="/en-US/docs/Web/API/WebGL2RenderingContext" title="WebGL2">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default. The constants in WebGL2 are <code>gl.MIN</code> and <code>gl.MAX</code>.</p>
+</div>
+<h2 id="constants">Constants</h2>
+<p>This extension adds two new constants, which can be used in <a href="/en-US/docs/Web/API/WebGLRenderingContext/blendEquation"><code>WebGLRenderingContext.blendEquation()</code></a> and <a href="/en-US/docs/Web/API/WebGLRenderingContext/blendEquationSeparate"><code>WebGLRenderingContext.blendEquationSeparate()</code></a>:</p>
+<dl>
+  <dt id="ext.min_ext"><a href="#ext.min_ext"><code>ext.MIN_EXT</code></a></dt>
+  <dd>
+    <p>Produces the minimum color components of the source and destination colors.</p>
+  </dd>
+  <dt id="ext.max_ext"><a href="#ext.max_ext"><code>ext.MAX_EXT</code></a></dt>
+  <dd>
+    <p>Produces the maximum color components of the source and destination colors.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const ext = gl.getExtension("EXT_blend_minmax");
+
+gl.blendEquation(ext.MIN_EXT);
+gl.blendEquation(ext.MAX_EXT);
+
+gl.blendEquationSeparate(ext.MIN_EXT, ext.MAX_EXT);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.EXT_blend_minmax" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.EXT_blend_minmax" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/blendEquation"><code>WebGLRenderingContext.blendEquation()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/blendEquationSeparate"><code>WebGLRenderingContext.blendEquationSeparate()</code></a></li>
+</ul>
+</body></html>

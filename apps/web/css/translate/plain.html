@@ -1,0 +1,100 @@
+<html><head></head><body>
+<p>The <strong><code>translate</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property allows you to specify translation transforms individually and independently of the <a href="/en-US/docs/Web/CSS/transform"><code>transform</code></a> property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the <code>transform</code> value.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/translate.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+translate: none;
+
+/* Single values */
+translate: 100px;
+translate: 50%;
+
+/* Two values */
+translate: 100px 200px;
+translate: 50% 105px;
+
+/* Three values */
+translate: 50% 105px 5rem;
+
+/* Global values */
+translate: inherit;
+translate: initial;
+translate: revert;
+translate: revert-layer;
+translate: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="single"><a href="#single">Single </a><a href="/en-US/docs/Web/CSS/length-percentage"><code>&lt;length-percentage&gt;</code></a> value</dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> or <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> that specifies a translation along the X-axis. Equivalent to a <code>translate()</code> (2D translation) function with a single value specified.</p>
+  </dd>
+  <dt id="two"><a href="#two">Two </a><a href="/en-US/docs/Web/CSS/length-percentage"><code>&lt;length-percentage&gt;</code></a> values</dt>
+  <dd>
+    <p>Two <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> or <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> that specify the X and Y axis translation values (respectively) of a 2D translation. Equivalent to a <code>translate()</code> (2D translation) function with two values specified.</p>
+  </dd>
+  <dt id="three_values"><a href="#three_values">Three values</a></dt>
+  <dd>
+    <p>Two <a href="/en-US/docs/Web/CSS/length-percentage"><code>&lt;length-percentage&gt;</code></a> and single <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> values that specify the X, Y, and Z axis translation values (respectively) of a 3D translation. Equivalent to a <code>translate3d()</code> (3D translation) function.</p>
+  </dd>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>Specifies that no translation should be applied.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>none</code></td></tr><tr><th scope="row">Applies to</th><td>transformable elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row">Percentages</th><td>refer to the size of bounding box</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified, but with relative lengths converted into absolute lengths</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a transform</td></tr><tr><th scope="row">Creates <a href="/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context">stacking context</a></th><td>yes</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="translate">translate = </span><br>  <span class="token keyword">none</span>                                                <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;length-percentage&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token property">&lt;length-percentage&gt;</span> <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a>  <br><br><span class="token property" id="<length-percentage>">&lt;length-percentage&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="translating_an_element_on_hover">Translating an element on hover</h3>
+<p>
+  This example shows how to use the <code>translate</code> property to move an element in three axes.
+  The first box is moved along the X axis and the second box is moved along the X and Y axes.
+  The third box is moved along the X, Y and Z axes and has the appearance of moving toward the viewer because of the addition of <a href="/en-US/docs/Web/CSS/perspective"><code>perspective</code></a> to the parent element.
+</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div class="wrapper"&gt;
+  &lt;div id="box1"&gt;translate X&lt;/div&gt;
+  &lt;div id="box2"&gt;translate X,Y&lt;/div&gt;
+  &lt;div id="box3"&gt;translate X,Y,Z&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">.wrapper {
+  perspective: 100px;
+  display: inline-flex;
+  gap: 1em;
+}
+.wrapper &gt; div {
+  width: 7em;
+  line-height: 7em;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+  border: 3px dotted;
+}
+#box1:hover {
+  translate: 20px;
+}
+
+#box2:hover {
+  translate: 20px 20px;
+}
+
+#box3:hover {
+  translate: 5px 5px 30px;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Translating an element on hover sample" id="frame_translating_an_element_on_hover" width="100%" height="175" src="about:blank" data-live-path="/en-US/docs/Web/CSS/translate" data-live-id="translating_an_element_on_hover" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.translate" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.translate" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/scale"><code>scale</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/rotate"><code>rotate</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/transform"><code>transform</code></a></li>
+</ul>
+<p>Note: skew is not an independent transform value</p>
+</body></html>

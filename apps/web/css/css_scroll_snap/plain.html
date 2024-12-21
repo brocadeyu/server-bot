@@ -1,0 +1,326 @@
+<html><head></head><body>
+<p>The <strong>CSS scroll snap</strong> module provides properties that let you control the panning and scrolling behavior by defining snap positions. Content can be snapped into position as the user scrolls overflowing content within a <a href="/en-US/docs/Glossary/Scroll_container">scroll container</a>, providing paging and scroll positioning.</p>
+<p>This module includes the scroll container scroll-padding properties to adjust the optimal viewing region of paging during scroll-into-view operations. It also includes scroll-margin and scroll-alignment, set on the scroll container's children, to adjust the children's visual area when that child is scrolled into view, as well as a property to force scrolling to stop on individual children.</p>
+<h2 id="scroll_snap_in_action">Scroll snap in action</h2>
+<p>
+  To view scroll snapping in the box below, scroll up-and-down and left-and-right through the grid of 45 numbered boxes in the scrollable viewport.
+  Click "Play" in the example below to view the or edit the source in the MDN Playground:
+</p>
+<pre class="brush: js hidden live-sample___scroll_snap">const positions = ["start", "center", "end"];
+const inlineDirection = document.getElementById("inline");
+const blockDirection = document.getElementById("block");
+const stop = document.getElementById("stop");
+const snap = document.getElementById("snap");
+const all = document.querySelector("article");
+const rules = document.styleSheets[0].cssRules;
+
+inlineDirection.addEventListener("change", () =&gt; {
+  setSSA();
+});
+blockDirection.addEventListener("change", () =&gt; {
+  setSSA();
+});
+stop.addEventListener("change", () =&gt; {
+  setSST();
+});
+window.addEventListener("load", () =&gt; {
+  setSST();
+  setSSA();
+});
+snap.addEventListener("change", () =&gt; {
+  all.classList.toggle("snapDisabled");
+});
+
+function setSSA() {
+  rules[0].style.scrollSnapAlign = `${positions[blockDirection.value]} ${
+    positions[inlineDirection.value]
+  }`;
+}
+
+function setSST() {
+  if (stop.checked) {
+    rules[0].style.scrollSnapStop = "always";
+  } else {
+    rules[0].style.scrollSnapStop = "normal";
+  }
+}
+</pre>
+<pre class="brush: html hidden live-sample___scroll_snap">&lt;article&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div&gt;
+    &lt;fieldset&gt;
+      &lt;legend&gt;Change the options&lt;/legend&gt;
+      &lt;p&gt;
+        &lt;label
+          &gt;&lt;input
+            type="range"
+            min="0"
+            max="2"
+            value="1"
+            list="places"
+            id="block" /&gt;
+          block position&lt;/label
+        &gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+        &lt;label&gt;
+          &lt;input
+            type="range"
+            min="0"
+            max="2"
+            value="1"
+            list="places"
+            id="inline" /&gt;
+          inline position
+        &lt;/label&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+        &lt;label&gt;
+          &lt;input type="checkbox" id="stop" /&gt;
+          Prevent scrolling past boxes
+        &lt;/label&gt;
+      &lt;/p&gt;
+    &lt;/fieldset&gt;
+
+    &lt;p&gt;
+      &lt;label&gt;&lt;input type="checkbox" id="snap" /&gt; disable snapping&lt;/label&gt;
+    &lt;/p&gt;
+
+    &lt;datalist id="places"&gt;
+      &lt;option value="0"&gt;start&lt;/option&gt;
+      &lt;option value="1"&gt;center&lt;/option&gt;
+      &lt;option value="2"&gt;end&lt;/option&gt;
+    &lt;/datalist&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+</pre>
+<pre class="brush: css hidden live-sample___scroll_snap">li {
+  /*
+  starts with:
+      scroll-snap-align: center center;
+      scroll-snap-stop: normal (defaults);
+
+  CSS gets changed with JavaScript when you change the controls.
+  the following can be set:
+      scroll-snap-stop: always | normal;
+      scroll-snap-align: start | center | end {2}
+        */
+}
+ul {
+  overflow: auto;
+  scroll-snap-type: both mandatory;
+  overscroll-behavior-x: contain;
+}
+article.snapDisabled fieldset {
+  opacity: 20%;
+  pointer-events: none;
+}
+article.snapDisabled ul {
+  scroll-snap-type: initial;
+  overscroll-behavior-x: initial;
+}
+
+@layer pageSetup {
+  article {
+    display: flex;
+    gap: 2vw;
+  }
+  div {
+    flex: 1;
+  }
+  ul {
+    display: grid;
+    gap: 6.25vw;
+    padding: 12.5vw;
+    box-sizing: border-box;
+    border: 1px solid;
+    grid-template-columns: repeat(5, 1fr);
+    background: conic-gradient(
+      at bottom left,
+      red 0deg,
+      yellow 15deg,
+      green 30deg,
+      blue 45deg,
+      purple 60deg,
+      magenta 75deg
+    );
+    background-attachment: local;
+    margin: auto;
+    width: 20vw;
+    height: 20vw;
+  }
+  li {
+    scroll-snap-align: center;
+    height: 12.5vw;
+    width: 12.5vw;
+    outline: 3px inset;
+    list-style-type: none;
+    background: white;
+    font-family: monospace;
+    font-size: 3rem;
+    line-height: 12vw;
+    text-align: center;
+    counter-increment: items 1;
+  }
+  li::after {
+    content: counter(items);
+  }
+  input {
+    vertical-align: bottom;
+  }
+  p {
+    font-family: monospace;
+  }
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="scroll snap sample" id="frame_scroll_snap" height="250px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/CSS_scroll_snap" data-live-id="scroll_snap" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>With scroll snap, one of the numbered boxes that you scroll to will snap into place. The initial CSS makes the numbered box snap into the center of the viewport. Use the sliders to change the block and inline snap positions.</p>
+<p>Using snap properties, you can allow or block the scrolling past an element, a numbered box in this case. Select the "Prevent scrolling past boxes" checkbox to force all scrolling actions to be limited to scrolling to an adjacent box.</p>
+<p>To compare scroll snapping to regular scrolling, check the "disable snapping" checkbox and try scrolling again.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties_on_containers">Properties on containers</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/scroll-snap-type"><code>scroll-snap-type</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/scroll-padding"><code>scroll-padding</code></a>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-top"><code>scroll-padding-top</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-right"><code>scroll-padding-right</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-bottom"><code>scroll-padding-bottom</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-left"><code>scroll-padding-left</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-inline"><code>scroll-padding-inline</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-inline-start"><code>scroll-padding-inline-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-inline-end"><code>scroll-padding-inline-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-block"><code>scroll-padding-block</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-block-start"><code>scroll-padding-block-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-padding-block-end"><code>scroll-padding-block-end</code></a></li>
+    </ul>
+  </li>
+</ul>
+<h3 id="properties_on_children">Properties on children</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/scroll-snap-align"><code>scroll-snap-align</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/scroll-margin"><code>scroll-margin</code></a>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-top"><code>scroll-margin-top</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-right"><code>scroll-margin-right</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-bottom"><code>scroll-margin-bottom</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-left"><code>scroll-margin-left</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-inline"><code>scroll-margin-inline</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-inline-start"><code>scroll-margin-inline-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-inline-end"><code>scroll-margin-inline-end</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-block"><code>scroll-margin-block</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-block-start"><code>scroll-margin-block-start</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/scroll-margin-block-end"><code>scroll-margin-block-end</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/scroll-snap-stop"><code>scroll-snap-stop</code></a></li>
+</ul>
+<h3 id="events">Events</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Element/scrollsnapchange_event" title="scrollsnapchange"><code>scrollsnapchange</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></li>
+  <li><a href="/en-US/docs/Web/API/Element/scrollsnapchanging_event" title="scrollsnapchanging"><code>scrollsnapchanging</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></li>
+</ul>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/SnapEvent"><code>SnapEvent</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr>
+    <ul>
+      <li><a href="/en-US/docs/Web/API/SnapEvent/snapTargetBlock"><code>SnapEvent.snapTargetBlock</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></li>
+      <li><a href="/en-US/docs/Web/API/SnapEvent/snapTargetInline"><code>SnapEvent.snapTargetInline</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></li>
+    </ul>
+  </li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="basic_concepts_of_css_scroll_snap"><a href="/en-US/docs/Web/CSS/CSS_scroll_snap/Basic_concepts">Basic concepts of CSS scroll snap</a></dt>
+  <dd>
+    <p>An overview and examples of CSS scroll snap features.</p>
+  </dd>
+  <dt id="using_scroll_snap_events"><a href="/en-US/docs/Web/CSS/CSS_scroll_snap/Using_scroll_snap_events">Using scroll snap events</a></dt>
+  <dd>
+    <p>A guide to using the <a href="/en-US/docs/Web/API/Element/scrollsnapchanging_event" title="scrollsnapchanging"><code>scrollsnapchanging</code></a> and <a href="/en-US/docs/Web/API/Element/scrollsnapchange_event" title="scrollsnapchange"><code>scrollsnapchange</code></a> scroll snap events that are fired when the browser determines a new snap target is pending or selected.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:target"><code>:target</code></a> pseudo-class</li>
+  <li><a href="/en-US/docs/Web/CSS/overflow"><code>overflow</code></a> CSS property</li>
+  <li>Element <a href="/en-US/docs/Web/API/Element/scroll" title="scroll()"><code>scroll()</code></a> method</li>
+  <li>Element <a href="/en-US/docs/Web/API/Element/scrollBy" title="scrollBy()"><code>scrollBy()</code></a> method</li>
+  <li>Element <a href="/en-US/docs/Web/API/Element/scrollIntoView" title="scrollIntoView()"><code>scrollIntoView()</code></a> method</li>
+  <li>Element <a href="/en-US/docs/Web/API/Element/scrollTo" title="scrollTo()"><code>scrollTo()</code></a> method</li>
+  <li>Element <a href="/en-US/docs/Web/API/Element/scroll_event" title="scroll"><code>scroll</code></a> event</li>
+  <li>Element <a href="/en-US/docs/Web/API/Element/scrollend_event" title="scrollend"><code>scrollend</code></a> event</li>
+  <li><a href="/en-US/docs/Web/Accessibility/ARIA/Roles/scrollbar_role"><code>scrollbar</code></a> ARIA role</li>
+  <li><a href="/en-US/docs/Glossary/Scroll_container">Scroll container</a> glossary term</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-scroll-snap/,https://drafts.csswg.org/css-scroll-snap-2/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_overflow">CSS overflow</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_scrollbars_styling">CSS scrollbars styling</a> module</li>
+  <li><a href="https://adrianroselli.com/2022/06/keyboard-only-scrolling-areas.html">Keyboard-only scrolling areas</a> on adrianroselli.com (2022)</li>
+  <li><a href="https://codepen.io/collection/KpqBGW">Scroll snap examples</a> on CodePen (2022)</li>
+  <li><a href="https://web.dev/articles/css-scroll-snap">Well-controlled scrolling with CSS scroll snap</a> on web.dev (2021)</li>
+  <li><a href="https://css-tricks.com/practical-css-scroll-snapping/">Practical CSS scroll snapping/</a> on CSS-Tricks (2020)</li>
+  <li><a href="https://12daysofweb.dev/2022/css-scroll-snap/">CSS scroll snap</a> on 12 Days of Web (2019)</li>
+</ul>
+</body></html>

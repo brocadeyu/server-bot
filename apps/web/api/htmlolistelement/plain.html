@@ -1,0 +1,82 @@
+<html><head></head><body>
+<p>The <strong><code>HTMLOListElement</code></strong> interface provides special properties (beyond those defined on the regular <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> interface it also has available to it by inheritance) for manipulating ordered list elements.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Element">
+    <rect x="223" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Element
+    </text>
+  </a>
+  <line x1="298" y1="14" x2="328" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="298,14 308,9 308,19 298,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLElement">
+    <rect x="328" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="372" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLElement
+    </text>
+  </a>
+  <line x1="416" y1="14" x2="446" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="416,14 426,9 426,19 416,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLOListElement" aria-current="page">
+    <rect x="446" y="0" width="128" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="510" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLOListElement
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="htmlolistelement.reversed"><a href="/en-US/docs/Web/API/HTMLOListElement/reversed"><code>HTMLOListElement.reversed</code></a></dt>
+  <dd>
+    <p>A boolean value reflecting the <a href="/en-US/docs/Web/HTML/Element/ol#reversed"><code>reversed</code></a> and defining if the numbering is descending, that is its value is <code>true</code>, or ascending (<code>false</code>).</p>
+  </dd>
+  <dt id="htmlolistelement.start"><a href="/en-US/docs/Web/API/HTMLOListElement/start"><code>HTMLOListElement.start</code></a></dt>
+  <dd>
+    <p>A <code>long</code> value reflecting the <a href="/en-US/docs/Web/HTML/Element/ol#start"><code>start</code></a> and defining the value of the first number of the first element of the list.</p>
+  </dd>
+  <dt id="htmlolistelement.type"><a href="/en-US/docs/Web/API/HTMLOListElement/type"><code>HTMLOListElement.type</code></a></dt>
+  <dd>
+    <p>A string value reflecting the <a href="/en-US/docs/Web/HTML/Element/ol#type"><code>type</code></a> and defining the kind of marker to be used to display. It can have the following values:</p>
+    <ul>
+      <li><code>'1'</code> meaning that decimal numbers are used: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, …</li>
+      <li><code>'a'</code> meaning that the lowercase latin alphabet is used: <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, <code>e</code>, …</li>
+      <li><code>'A'</code> meaning that the uppercase latin alphabet is used: <code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>, <code>E</code>, …</li>
+      <li><code>'i'</code> meaning that the lowercase latin numerals are used: <code>i</code>, <code>ii</code>, <code>iii</code>, <code>iv</code>, <code>v</code>, …</li>
+      <li><code>'I'</code> meaning that the uppercase latin numerals are used: <code>I</code>, <code>II</code>, <code>III</code>, <code>IV</code>, <code>V</code>, …</li>
+    </ul>
+  </dd>
+  <dt id="htmlolistelement.compact"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLOListElement.compact&quot;)}}"><code>HTMLOListElement.compact</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A boolean value indicating that spacing between list items should be reduced. This property reflects the <a href="/en-US/docs/Web/HTML/Element/ol#compact"><code>compact</code></a> attribute only, it doesn't consider the <a href="/en-US/docs/Web/CSS/line-height"><code>line-height</code></a> CSS property used for that behavior in modern pages.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>No specific method; inherits methods from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLOListElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLOListElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The HTML element implementing this interface: <a href="/en-US/docs/Web/HTML/Element/ol"><code>&lt;ol&gt;</code></a>.</li>
+</ul>
+</body></html>

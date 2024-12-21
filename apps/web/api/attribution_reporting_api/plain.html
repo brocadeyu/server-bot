@@ -1,0 +1,122 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong>Attribution Reporting API</strong> enables developers to measure conversions — for example when a user clicks an ad embedded on one site and then proceeds to purchase the item over on the vendor's site — and then access reports on those conversions. It does this without relying on third-party tracking cookies.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>Advertisers commonly want to measure how many users see an ad and then go on to view and purchase a product (conversions). This allows them to figure out what advertising placements are giving them the greatest return on investment (ROI) so they can adjust their advertising strategy accordingly. The process of measuring conversions usually includes capturing data such as:</p>
+<ul>
+  <li>Which users converted (for example purchased an item, or signed up for a service), and how many.</li>
+  <li>The geographic regions they are based in.</li>
+  <li>What sites the ads were placed on.</li>
+  <li>How many products were sold, services were signed up for, etc.</li>
+  <li>How much revenue was generated.</li>
+</ul>
+<p>Traditionally on the web, conversion has been measured using third-party tracking cookies. An ad will typically be embedded on a web page in an <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>, which can set a cookie containing information about the user and their interaction with the ad.</p>
+<p>Later on, when the user decides to visit the advertiser's site, provided it is from the same domain as the ad, that site can access the third-party cookie set previously by the ad. The advertiser can then associate the data from the ad with their own first-party data to answer questions such as "did the user purchase a product after interacting with an ad for the product from another site?"</p>
+<p>This is bad for user <a href="/en-US/docs/Web/Privacy">privacy</a>. At this point, any page from the same domain can get access to that cookie, plus information from sites that embed those pages. A surprisingly large number of parties will be able to access that data, and infer other data about the user based on their browsing habits.</p>
+<p>The Attribution Reporting API provides a way to measure ad conversions in a way that protects user privacy.</p>
+<h3 id="how_does_it_work">How does it work?</h3>
+<p>Let's illustrate how the Attribution Reporting API works via an example.</p>
+<p>Say we have a online shop, <code>shop.example</code> (aka the advertiser), which embeds an ad for one of its products on a content site, <code>news.example</code> (aka the publisher). The ad content is found at <code>ad.shop.example</code>.</p>
+<p>The online shop owners want to measure how many conversions they get from users interacting with the ad, viewing the product page on their site, and putting the product into their shopping cart.</p>
+<p>
+  <img src="/en-US/docs/Web/API/Attribution_Reporting_API/ara-flow.png" alt="Image representation of the steps described below" width="1652" height="948">
+</p>
+<p>The steps involved are as follows:</p>
+<ol>
+  <li>When a user visits the <code>news.example</code> site, an <strong>attribution source</strong> can be registered for specific user interactions with the embedded ad. There are several ways that a user can interact with ads on the page. For an ad interaction to register an attribution source, the ad must send a request with an <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible"><code>Attribution-Reporting-Eligible</code></a> header to indicate that the response is eligible to register an attribution source. Registration will be completed if the response includes an appropriate <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Source"><code>Attribution-Reporting-Register-Source</code></a> header. The attribution source can be, for example:
+    <ul>
+      <li>A link. In this case, the interaction is the user clicking on the link (directly via an <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> element, or via a <a href="/en-US/docs/Web/API/Window/open"><code>Window.open()</code></a> call). The source is registered via the response to the navigation request.</li>
+      <li>An image such as an advertising banner or a 1x1 transparent tracking pixel. In this case, the interaction is the user visiting the page. The source is registered when the image loads, i.e. when the server responds to the image request.</li>
+      <li>A fetch request (i.e. a <a href="/en-US/docs/Web/API/Window/fetch" title="fetch()"><code>fetch()</code></a> or <a href="/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a>). In this case the interaction can be specified as whatever makes sense for your app — for example the fetch request could be invoked by a <code>click</code> or <code>submit</code> event. The source is registered once the response comes back.</li>
+    </ul>
+  </li>
+  <li>When the attribution source interaction occurs, the source data returned in the <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Source"><code>Attribution-Reporting-Register-Source</code></a> header is stored in a private local cache accessible only by the browser. This data includes the contextual and first-party data available to the page and the advertiser, the origin of the ad tech company that is collecting the conversion data, and one or more destinations (<a href="/en-US/docs/Glossary/eTLD">eTLD+1</a>s) where you expect the conversion from that ad to occur (i.e. the advertiser's site(s), for example <code>shop.example</code>).</li>
+  <li>When the user later visits <code>shop.example</code>, this site can register an <strong>attribution trigger</strong> when an interaction indicates that a conversion has occurred (for example, the user clicks the "Add to cart" button on <code>shop.example</code>). The browser will then send a request along with an <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible"><code>Attribution-Reporting-Eligible</code></a> header to indicate that the response is eligible to register an attribution trigger, and registration will be completed if the response includes an appropriate <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Trigger"><code>Attribution-Reporting-Register-Trigger</code></a> header. The attribution trigger can be, for example:
+    <ul>
+      <li>An image such as a shopping cart icon or a 1x1 transparent tracking pixel. In this case, the interaction is the user visiting the page. The trigger is registered when the image loads, i.e. when the server responds to the image request.</li>
+      <li>A fetch request (i.e. a <a href="/en-US/docs/Web/API/Window/fetch" title="fetch()"><code>fetch()</code></a> or <a href="/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a>). In this case the interaction can be specified as whatever makes sense for your app — for example the fetch request could be invoked by a <code>click</code> or <code>submit</code> event. The trigger is registered once the response comes back.</li>
+    </ul>
+  </li>
+  <li>When the trigger attribution completes, the browser attempts to match the data from the <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Trigger">Attribution-Reporting-Register-Trigger</a> header with a source data entry saved in the private local cache (see 2.). See <a href="/en-US/docs/Web/API/Attribution_Reporting_API/Registering_triggers">Registering attribution triggers</a> for matching methodology and requirements.</li>
+  <li>If a match is made, the browser sends report data to an endpoint on a reporting server typically owned by the ad tech provider where it can be securely analyzed. Unlike with cookies, the data is only available to the specific site you send it to - there will be no data shared elsewhere. These reports can be either:
+    <ul>
+      <li><strong>Event-level reports</strong>: Reports based on an attribution source event, where detailed source data is associated with coarse trigger data. For example, a report may look like "Click ID 200498 on <code>ad.shop.example</code> led to a purchase on <code>shop.example</code>", where "Click ID 200498" is the detailed source data, and "purchase" is the coarse trigger data. The detailed source data may encode first-party or contextual data from the source page, and the trigger data may encode the event from the trigger page.</li>
+      <li><strong>Summary reports</strong>: More detailed reports that combine data from multiple conversions on both the source and trigger side. For example "Campaign ID 774653 on <code>news.example</code> has led to 654 sales of widgets on <code>shop.example</code> from users in Italy, with a total revenue of $9540." Compiling a summary report requires usage of an aggregation service (see for example the <a href="https://github.com/privacysandbox/aggregation-service">Google aggregation service</a>).</li>
+    </ul>
+  </li>
+</ol>
+<p>For more information on implementing the functionality required for the above steps, see:</p>
+<ol>
+  <li><a href="/en-US/docs/Web/API/Attribution_Reporting_API/Registering_sources">Registering attribution sources</a></li>
+  <li><a href="/en-US/docs/Web/API/Attribution_Reporting_API/Registering_triggers">Registering attribution triggers</a></li>
+  <li><a href="/en-US/docs/Web/API/Attribution_Reporting_API/Generating_reports">Generating reports</a></li>
+</ol>
+<h2 id="interfaces">Interfaces</h2>
+<p>The Attribution Reporting API doesn't define any distinct interfaces of its own.</p>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<dl>
+  <dt id="htmlanchorelement.attributionsrc"><a href="/en-US/docs/Web/API/HTMLAnchorElement/attributionSrc"><code>HTMLAnchorElement.attributionSrc</code></a>, <a href="/en-US/docs/Web/API/HTMLImageElement/attributionSrc"><code>HTMLImageElement.attributionSrc</code></a>, <a href="/en-US/docs/Web/API/HTMLScriptElement/attributionSrc"><code>HTMLScriptElement.attributionSrc</code></a></dt>
+  <dd>
+    <p>The <code>attributionSrc</code> property allows you to get and set the <code>attributionsrc</code> attribute on <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a>, and <a href="/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> elements programmatically. It reflects the value of that attribute.</p>
+  </dd>
+  <dt id="fetch"><a href="/en-US/docs/Web/API/Window/fetch" title="fetch()"><code>fetch()</code></a> and the <a href="/en-US/docs/Web/API/Request/Request" title="Request()"><code>Request()</code></a> constructor, the <code>attributionReporting</code> option</dt>
+  <dd>
+    <p>When generating a request via <a href="/en-US/docs/Web/API/Window/fetch" title="fetch()"><code>fetch()</code></a>, this indicates that you want the response to be able to register an attribution source or trigger.</p>
+  </dd>
+  <dt id="xmlhttprequest.setattributionreporting"><a href="/en-US/docs/Web/API/XMLHttpRequest/setAttributionReporting"><code>XMLHttpRequest.setAttributionReporting()</code></a></dt>
+  <dd>
+    <p>When generating a request via <a href="/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a>, this indicates that you want the response to be able to register an attribution source or trigger.</p>
+  </dd>
+  <dt id="window.open"><a href="/en-US/docs/Web/API/Window/open"><code>Window.open()</code></a>, the <code>attributionsrc</code> feature keyword</dt>
+  <dd>
+    <p>Causes completion of the registration of an attribution source <em>and</em> triggers the browser to store the associated source data (as provided in the <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Source"><code>Attribution-Reporting-Register-Source</code></a> response header) when the <code>open()</code> method completes. Note that <code>Window.open()</code> calls cannot be used to register attribution triggers.</p>
+  </dd>
+</dl>
+<h2 id="html_elements">HTML elements</h2>
+<dl>
+  <dt id="a"><a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a>, and <a href="/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> — the <code>attributionsrc</code> attribute</dt>
+  <dd>
+    <p>Specifies that you want the browser to send an <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible"><code>Attribution-Reporting-Eligible</code></a> header along with the associated resource request. On the server-side this header is used to trigger sending an <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Source"><code>Attribution-Reporting-Register-Source</code></a> or <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Trigger"><code>Attribution-Reporting-Register-Trigger</code></a> header in the response. When registering an attribution source, this is required; when registering an attribution trigger it is only required if you want to specify a separate registration server to the resource the <code>src</code> attribute is pointing at. Note that <code>&lt;a&gt;</code> elements cannot be used to register attribution triggers.</p>
+  </dd>
+</dl>
+<h2 id="http_headers">HTTP headers</h2>
+<dl>
+  <dt id="attribution-reporting-eligible"><a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible"><code>Attribution-Reporting-Eligible</code></a></dt>
+  <dd>
+    <p>HTTP request that indicates that the corresponding response is eligible to register an attribution source or trigger.</p>
+  </dd>
+  <dt id="attribution-reporting-register-source"><a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Source"><code>Attribution-Reporting-Register-Source</code></a></dt>
+  <dd>
+    <p>HTTP response that registers a page feature as an attribution source. This is included as part of a response to a request that included an <code>Attribution-Reporting-Eligible</code> header.</p>
+  </dd>
+  <dt id="attribution-reporting-register-trigger"><a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Trigger"><code>Attribution-Reporting-Register-Trigger</code></a></dt>
+  <dd>
+    <p>HTTP response that registers a page feature as an attribution trigger. This is included as part of a response to a request that included an <code>Attribution-Reporting-Eligible</code> header.</p>
+  </dd>
+  <dt id="permissions-policy"><a href="/en-US/docs/Web/HTTP/Headers/Permissions-Policy"><code>Permissions-Policy</code></a> <a href="/en-US/docs/Web/HTTP/Headers/Permissions-Policy/attribution-reporting"><code>attribution-reporting</code></a> directive</dt>
+  <dd>
+    <p>Controls whether the current document is allowed to use attribution reporting.</p>
+  </dd>
+</dl>
+<h2 id="enrollment_and_local_testing">Enrollment and local testing</h2>
+<p>To use the Attribution Reporting API in your sites, you must specify it in the <a href="/en-US/docs/Web/Privacy/Privacy_sandbox/Enrollment">privacy sandbox enrollment process</a>. If you don't do this, the API flow is blocked at response time, i.e. the response headers are ignored and sources and triggers are not registered.</p>
+<p>You can still test your Attribution Reporting API code locally without enrollment. To allow local testing, enable the following Chrome developer flag:</p>
+<p><code>chrome://flags/#privacy-sandbox-enrollment-overrides</code></p>
+<h2 id="examples">Examples</h2>
+<p>See <a href="https://arapi-home.web.app/">Demo: Attribution Reporting API</a> for an example implementation (see the <a href="https://github.com/GoogleChromeLabs/trust-safety-demo/tree/main/attribution-reporting">source code also</a>).</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.elements.a.attributionsrc" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.elements.a.attributionsrc" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://wicg.github.io/attribution-reporting-api/validate-headers">Attribution Reporting Header Validation tool</a></li>
+  <li><a href="https://developers.google.com/privacy-sandbox/private-advertising/attribution-reporting/">Attribution reporting</a> on developers.google.com (2023)</li>
+  <li><a href="https://developers.google.com/privacy-sandbox/private-advertising/attribution-reporting/enable-conversion-measurement">Enable conversion measurement</a> on developers.google.com (2023)</li>
+  <li><a href="https://developers.google.com/privacy-sandbox/">The Privacy Sandbox</a> on developers.google.com (2023)</li>
+</ul>
+</body></html>

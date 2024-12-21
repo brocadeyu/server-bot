@@ -1,0 +1,154 @@
+<html><head></head><body>
+<p>The <strong><code>font-variant-east-asian</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property controls the use of alternate glyphs for East Asian scripts, like Japanese and Chinese.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/font-variant-east-asian.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">font-variant-east-asian: normal;
+font-variant-east-asian: ruby;
+font-variant-east-asian: jis78; /* &lt;east-asian-variant-values&gt; */
+font-variant-east-asian: jis83; /* &lt;east-asian-variant-values&gt; */
+font-variant-east-asian: jis90; /* &lt;east-asian-variant-values&gt; */
+font-variant-east-asian: jis04; /* &lt;east-asian-variant-values&gt; */
+font-variant-east-asian: simplified; /* &lt;east-asian-variant-values&gt; */
+font-variant-east-asian: traditional; /* &lt;east-asian-variant-values&gt; */
+font-variant-east-asian: full-width; /* &lt;east-asian-width-values&gt; */
+font-variant-east-asian: proportional-width; /* &lt;east-asian-width-values&gt; */
+font-variant-east-asian: ruby full-width jis83;
+
+/* Global values */
+font-variant-east-asian: inherit;
+font-variant-east-asian: initial;
+font-variant-east-asian: revert;
+font-variant-east-asian: revert-layer;
+font-variant-east-asian: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="normal"><a href="#normal"><code>normal</code></a></dt>
+  <dd>
+    <p>This keyword leads to the deactivation of the use of such alternate glyphs.</p>
+  </dd>
+  <dt id="ruby"><a href="#ruby"><code>ruby</code></a></dt>
+  <dd>
+    <p>This keyword forces the use of special glyphs for ruby characters. As these are usually smaller, font creators often designs specific forms, usually slightly bolder to improve the contrast. This keyword corresponds to the OpenType values <code>ruby</code>.</p>
+  </dd>
+  <dt id="east-asian-variant-values"><a href="#east-asian-variant-values"><code>&lt;east-asian-variant-values&gt;</code></a></dt>
+  <dd>
+    <p>These values specify a set of logographic glyph variants which should be used for display. Possible values are:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Standard defining the glyphs</th>
+          <th>OpenType equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>jis78</code></td>
+          <td><a href="https://en.wikipedia.org/wiki/JIS_X_0208#First_standard">JIS X 0208:1978</a></td>
+          <td><code>jp78</code></td>
+        </tr>
+        <tr>
+          <td><code>jis83</code></td>
+          <td><a href="https://en.wikipedia.org/wiki/JIS_X_0208#Second_standard">JIS X 0208:1983</a></td>
+          <td><code>jp83</code></td>
+        </tr>
+        <tr>
+          <td><code>jis90</code></td>
+          <td><a href="https://en.wikipedia.org/wiki/JIS_X_0208#Third_standard">JIS X 0208:1990</a></td>
+          <td><code>jp90</code></td>
+        </tr>
+        <tr>
+          <td><code>jis04</code></td>
+          <td><a href="https://en.wikipedia.org/wiki/JIS_X_0213">JIS X 0213:2004</a></td>
+          <td><code>jp04</code></td>
+        </tr>
+        <tr>
+          <td><code>simplified</code></td>
+          <td>None, use the simplified Chinese glyphs</td>
+          <td><code>smpl</code></td>
+        </tr>
+        <tr>
+          <td><code>traditional</code></td>
+          <td>None, use the traditional Chinese glyphs</td>
+          <td><code>trad</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+  <dt id="east-asian-width-values"><a href="#east-asian-width-values"><code>&lt;east-asian-width-values&gt;</code></a></dt>
+  <dd>
+    <p>These values control the sizing of figures used for East Asian characters. Two values are possible:</p>
+    <ul>
+      <li><code>proportional-width</code> activating the set of East Asian characters which vary in width. It corresponds to the OpenType values <code>pwid</code>.</li>
+      <li><code>full-width</code> activating the set of East Asian characters which are all of the same, roughly square, width metric. It corresponds to the OpenType values <code>fwid</code>.</li>
+    </ul>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>normal</code></td></tr><tr><th scope="row">Applies to</th><td>all elements and text. It also applies to <a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a> and <a href="/en-US/docs/Web/CSS/::first-line"><code>::first-line</code></a>.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="font-variant-east-asian">font-variant-east-asian = </span><br>  <span class="token keyword">normal</span>                                              <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token property">&lt;east-asian-variant-values&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <span class="token property">&lt;east-asian-width-values&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <span class="token keyword">ruby</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a>  <br><br><span class="token property" id="<east-asian-variant-values>">&lt;east-asian-variant-values&gt; = </span><br>  <span class="token keyword">jis78</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jis83</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jis90</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jis04</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">simplified</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">traditional</span>  <br><br><span class="token property" id="<east-asian-width-values>">&lt;east-asian-width-values&gt; = </span><br>  <span class="token keyword">full-width</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">proportional-width</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_east_asian_glyph_variants">Setting East Asian glyph variants</h3>
+<p>This example require font "Yu Gothic" installed in your OS, other fonts may not support OpenType features.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;table&gt;
+  &lt;thead&gt;&lt;/thead&gt;
+  &lt;tbody style="border:0;"&gt;
+    &lt;tr&gt;
+      &lt;th&gt;normal/jis78:&lt;/th&gt;
+      &lt;td&gt;麹町&lt;/td&gt;
+      &lt;td class="jis78"&gt;麹町&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;normal/ruby:&lt;/th&gt;
+      &lt;td&gt;しんかんせん&lt;/td&gt;
+      &lt;td class="ruby"&gt;しんかんせん&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;normal/traditional:&lt;/th&gt;
+      &lt;td&gt;大学&lt;/td&gt;
+      &lt;td class="traditional"&gt;大学&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">td {
+  font-family: "Yu Gothic";
+  font-size: 20px;
+}
+th {
+  color: grey;
+  padding-right: 10px;
+}
+
+.ruby {
+  font-variant-east-asian: ruby;
+}
+
+.jis78 {
+  font-variant-east-asian: jis78;
+}
+
+.traditional {
+  font-variant-east-asian: traditional;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Setting East Asian glyph variants sample" id="frame_setting_east_asian_glyph_variants" src="about:blank" data-live-path="/en-US/docs/Web/CSS/font-variant-east-asian" data-live-id="setting_east_asian_glyph_variants" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.font-variant-east-asian" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.font-variant-east-asian" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/font-variant"><code>font-variant</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-variant-alternates"><code>font-variant-alternates</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-variant-caps"><code>font-variant-caps</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-variant-emoji"><code>font-variant-emoji</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-variant-ligatures"><code>font-variant-ligatures</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-variant-numeric"><code>font-variant-numeric</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-variant-position"><code>font-variant-position</code></a></li>
+</ul>
+</body></html>

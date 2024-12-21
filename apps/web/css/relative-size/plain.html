@@ -1,0 +1,48 @@
+<html><head></head><body>
+<p>The <strong><code>&lt;relative-size&gt;</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Types">data type</a> describes relative size keywords. The <code>&lt;relative-size&gt;</code> keywords define a size relative to the computed size of the parent element. This data type is used in the <a href="/en-US/docs/Web/CSS/font"><code>font</code></a> shorthand and <a href="/en-US/docs/Web/CSS/font-size"><code>font-size</code></a> properties.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: plain">&lt;relative-size&gt; = smaller | larger
+</pre>
+<h3 id="values">Values</h3>
+<p>The <code>&lt;relative-size&gt;</code> data type is defined using a keyword value chosen from the list below.</p>
+<dl>
+  <dt id="smaller"><a href="#smaller"><code>smaller</code></a></dt>
+  <dd>
+    <p>A relative size one size smaller than the inherited size.</p>
+  </dd>
+  <dt id="larger"><a href="#larger"><code>larger</code></a></dt>
+  <dd>
+    <p>A relative size one size larger than the inherited size.</p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The <code>&lt;relative-size&gt;</code> keywords are relative to the current size of the element. If the inherited size is defined using an <a href="/en-US/docs/Web/CSS/absolute-size"><code>&lt;absolute-size&gt;</code></a> keyword, the <code>&lt;relative-size&gt;</code> value equates to the adjacent size in the <a href="/en-US/docs/Web/CSS/absolute-size#description"><code>&lt;absolute-size&gt;</code> table</a>. Otherwise, the relative increase or decrease in size is between 120% and 150%.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="comparing_the_keyword_values">Comparing the keyword values</h3>
+<pre class="brush: html">&lt;ul&gt;
+  &lt;li class="smaller"&gt;font-size: smaller;&lt;/li&gt;
+  &lt;li&gt;font-size is not specified&lt;/li&gt;
+  &lt;li class="larger"&gt;font-size: larger;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<pre class="brush: css">li {
+  margin-bottom: 0.3em;
+}
+.smaller {
+  font-size: smaller;
+}
+.larger {
+  font-size: larger;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Comparing the keyword values sample" id="frame_comparing_the_keyword_values" width="100%" height="100" src="about:blank" data-live-path="/en-US/docs/Web/CSS/relative-size" data-live-id="comparing_the_keyword_values" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-fonts/#valdef-font-size-relative-size">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>CSS <a href="/en-US/docs/Web/CSS/absolute-size"><code>&lt;absolute-size&gt;</code></a> data type</li>
+  <li>CSS <a href="/en-US/docs/Web/CSS/font"><code>font</code></a> and <a href="/en-US/docs/Web/CSS/font-size"><code>font-size</code></a> properties</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_fonts">CSS fonts</a> module</li>
+</ul>
+</body></html>

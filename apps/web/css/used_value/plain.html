@@ -1,0 +1,103 @@
+<html><head></head><body>
+<p>The <strong>used value</strong> of a <a href="/en-US/docs/Web/CSS">CSS</a> property is its value after all calculations have been performed on the <a href="/en-US/docs/Web/CSS/computed_value">computed value</a>.</p>
+<p>After the <a href="/en-US/docs/Glossary/User_agent">user agent</a> has finished its calculations, every CSS property has a used value. The used values of dimensions (e.g., <a href="/en-US/docs/Web/CSS/width"><code>width</code></a>, <a href="/en-US/docs/Web/CSS/line-height"><code>line-height</code></a>) are in pixels. The used values of shorthand properties (e.g., <a href="/en-US/docs/Web/CSS/background"><code>background</code></a>) are consistent with those of their component properties (e.g., <a href="/en-US/docs/Web/CSS/background-color"><code>background-color</code></a> or <a href="/en-US/docs/Web/CSS/background-size"><code>background-size</code></a>) and with <a href="/en-US/docs/Web/CSS/position"><code>position</code></a> and <a href="/en-US/docs/Web/CSS/float"><code>float</code></a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <a href="/en-US/docs/Web/API/Window/getComputedStyle" title="getComputedStyle()"><code>getComputedStyle()</code></a> DOM API returns the <a href="/en-US/docs/Web/CSS/resolved_value">resolved value</a>, which may either be the <a href="/en-US/docs/Web/CSS/computed_value">computed value</a> or the used value, depending on the property.</p>
+</div>
+<h2 id="example">Example</h2>
+<p>This example computes and displays the used <code>width</code> value of three elements (updates on resize):</p>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;div id="no-width"&gt;
+  &lt;p&gt;No explicit width.&lt;/p&gt;
+  &lt;p class="show-used-width"&gt;..&lt;/p&gt;
+
+  &lt;div id="width-50"&gt;
+    &lt;p&gt;Explicit width: 50%.&lt;/p&gt;
+    &lt;p class="show-used-width"&gt;..&lt;/p&gt;
+
+    &lt;div id="width-inherit"&gt;
+      &lt;p&gt;Explicit width: inherit.&lt;/p&gt;
+      &lt;p class="show-used-width"&gt;..&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">#no-width {
+  width: auto;
+}
+
+#width-50 {
+  width: 50%;
+}
+
+#width-inherit {
+  width: inherit;
+}
+
+/* Make results easier to see */
+div {
+  border: 1px solid red;
+  padding: 8px;
+}
+</pre>
+<h3 id="javascript">JavaScript</h3>
+<pre class="brush: js">function updateUsedWidth(id) {
+  const div = document.getElementById(id);
+  const par = div.querySelector(".show-used-width");
+  const wid = window.getComputedStyle(div)["width"];
+  par.textContent = `Used width: ${wid}.`;
+}
+
+function updateAllUsedWidths() {
+  updateUsedWidth("no-width");
+  updateUsedWidth("width-50");
+  updateUsedWidth("width-inherit");
+}
+
+updateAllUsedWidths();
+window.addEventListener("resize", updateAllUsedWidths);
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Example sample" id="frame_example" width="80%" height="372" src="about:blank" data-live-path="/en-US/docs/Web/CSS/used_value" data-live-id="example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="difference_from_computed_value">Difference from computed value</h2>
+<p>CSS 2.0 defined only <em>computed value</em> as the last step in a property's calculation. Then, CSS 2.1 introduced the distinct definition of used value. An element could then explicitly inherit a width/height of a parent, whose computed value is a percentage. For CSS properties that don't depend on layout (e.g., <code>display</code>, <code>font-size</code>, or <code>line-height</code>), the computed values and used values are the same. The following are the CSS 2.1 properties that do depend on layout, so they have a different computed value and used value: (taken from <a href="https://www.w3.org/TR/CSS2/changes.html#q21.36">CSS 2.1 Changes: Specified, computed, and actual values</a>):</p>
+<ul>
+  <li><code>background-position</code></li>
+  <li><code>bottom</code>, <code>left</code>, <code>right</code>, <code>top</code></li>
+  <li><code>height</code>, <code>width</code></li>
+  <li><code>margin-bottom</code>, <code>margin-left</code>, <code>margin-right</code>, <code>margin-top</code></li>
+  <li><code>min-height</code>, <code>min-width</code></li>
+  <li><code>padding-bottom</code>, <code>padding-left</code>, <code>padding-right</code>, <code>padding-top</code></li>
+  <li><code>text-indent</code></li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://www.w3.org/TR/CSS22/cascade.html#used-value">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Window/getComputedStyle"><code>window.getComputedStyle</code></a></li>
+  <li>CSS key concepts:
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/Syntax">CSS syntax</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Comments">Comments</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Specificity">Specificity</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Inheritance">Inheritance</a></li>
+      <li><a href="/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model">Box model</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Layout_mode">Layout modes</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Visual_formatting_model">Visual formatting models</a></li>
+      <li><a href="/en-US/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing">Margin collapsing</a></li>
+      <li>Values
+        <ul>
+          <li><a href="/en-US/docs/Web/CSS/initial_value">Initial values</a></li>
+          <li><a href="/en-US/docs/Web/CSS/computed_value">Computed values</a></li>
+          <li><a href="/en-US/docs/Web/CSS/resolved_value">Resolved values</a></li>
+          <li><a href="/en-US/docs/Web/CSS/actual_value">Actual values</a></li>
+        </ul>
+      </li>
+      <li><a href="/en-US/docs/Web/CSS/Value_definition_syntax">Value definition syntax</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Shorthand_properties">Shorthand properties</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Replaced_element">Replaced elements</a></li>
+    </ul>
+  </li>
+</ul>
+</body></html>

@@ -1,0 +1,73 @@
+<html><head></head><body>
+<p>The <strong><code>unset</code></strong> CSS keyword resets a property to its inherited value if the property naturally inherits from its parent, and to its <a href="/en-US/docs/Web/CSS/initial_value">initial value</a> if not. In other words, it behaves like the <a href="/en-US/docs/Web/CSS/inherit"><code>inherit</code></a> keyword in the first case, when the property is an <a href="/en-US/docs/Web/CSS/Inheritance#inherited_properties">inherited property</a>, and like the <a href="/en-US/docs/Web/CSS/initial"><code>initial</code></a> keyword in the second case, when the property is a <a href="/en-US/docs/Web/CSS/Inheritance#non-inherited_properties">non-inherited property</a>.</p>
+<p><strong><code>unset</code></strong> can be applied to any CSS property, including the CSS shorthand property <a href="/en-US/docs/Web/CSS/all"><code>all</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="color">Color</h3>
+<p><a href="/en-US/docs/Web/CSS/color#formal_definition"><code>color</code></a> is an inherited property.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p&gt;This text is red.&lt;/p&gt;
+&lt;div class="foo"&gt;
+  &lt;p&gt;This text is also red.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="bar"&gt;
+  &lt;p&gt;This text is green (default inherited value).&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">.foo {
+  color: blue;
+}
+
+.bar {
+  color: green;
+}
+
+p {
+  color: red;
+}
+
+.bar p {
+  color: unset;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Color sample" id="frame_color" src="about:blank" data-live-path="/en-US/docs/Web/CSS/unset" data-live-id="color" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="border">Border</h3>
+<p><a href="/en-US/docs/Web/CSS/border#formal_definition"><code>border</code></a> is a non-inherited property.</p>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;p&gt;This text has a red border.&lt;/p&gt;
+&lt;div&gt;
+  &lt;p&gt;This text has a red border.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="bar"&gt;
+  &lt;p&gt;This text has a black border (initial default, not inherited).&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">div {
+  border: 1px solid green;
+}
+
+p {
+  border: 1px solid red;
+}
+
+.bar p {
+  border-color: unset;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Border sample" id="frame_border" width="auto" height="200" src="about:blank" data-live-path="/en-US/docs/Web/CSS/unset" data-live-id="border" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.global_keywords.unset" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.global_keywords.unset" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Use the <a href="/en-US/docs/Web/CSS/initial"><code>initial</code></a> keyword to set a property to its initial value.</li>
+  <li>Use the <a href="/en-US/docs/Web/CSS/inherit"><code>inherit</code></a> keyword to make an element's property the same as its parent.</li>
+  <li>Use the <a href="/en-US/docs/Web/CSS/revert"><code>revert</code></a> keyword to reset a property to the value established by the user-agent stylesheet (or by user styles, if any exist).</li>
+  <li>Use the <a href="/en-US/docs/Web/CSS/revert-layer"><code>revert-layer</code></a> keyword to reset a property to the value established in a previous cascade layer.</li>
+  <li>The <a href="/en-US/docs/Web/CSS/all"><code>all</code></a> property lets you reset all properties to their initial, inherited, reverted, or unset state at once.</li>
+</ul>
+</body></html>

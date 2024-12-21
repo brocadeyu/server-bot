@@ -1,0 +1,110 @@
+<html><head></head><body>
+<p>The <strong><code>mask-clip</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property determines the area which is affected by a mask. The painted content of an element must be restricted to this area.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;coord-box&gt; values */
+mask-clip: content-box;
+mask-clip: padding-box;
+mask-clip: border-box;
+mask-clip: fill-box;
+mask-clip: stroke-box;
+mask-clip: view-box;
+
+/* Keyword values */
+mask-clip: no-clip;
+
+/* Non-standard keyword values */
+-webkit-mask-clip: border;
+-webkit-mask-clip: padding;
+-webkit-mask-clip: content;
+-webkit-mask-clip: text;
+
+/* Multiple values */
+mask-clip: padding-box, no-clip;
+mask-clip: view-box, fill-box, border-box;
+
+/* Global values */
+mask-clip: inherit;
+mask-clip: initial;
+mask-clip: revert;
+mask-clip: revert-layer;
+mask-clip: unset;
+</pre>
+<p>One or more of the keyword values listed below, separated by commas.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="content-box"><a href="#content-box"><code>content-box</code></a></dt>
+  <dd>
+    <p>The painted content is clipped to the content box.</p>
+  </dd>
+  <dt id="padding-box"><a href="#padding-box"><code>padding-box</code></a></dt>
+  <dd>
+    <p>The painted content is clipped to the padding box.</p>
+  </dd>
+  <dt id="border-box"><a href="#border-box"><code>border-box</code></a></dt>
+  <dd>
+    <p>The painted content is clipped to the border box.</p>
+  </dd>
+  <dt id="fill-box"><a href="#fill-box"><code>fill-box</code></a></dt>
+  <dd>
+    <p>The painted content is clipped to the object bounding box.</p>
+  </dd>
+  <dt id="stroke-box"><a href="#stroke-box"><code>stroke-box</code></a></dt>
+  <dd>
+    <p>The painted content is clipped to the stroke bounding box.</p>
+  </dd>
+  <dt id="view-box"><a href="#view-box"><code>view-box</code></a></dt>
+  <dd>
+    <p>Uses the nearest SVG viewport as reference box. If a <a href="/en-US/docs/Web/SVG/Attribute/viewBox"><code>viewBox</code></a> attribute is specified for the element creating the SVG viewport, the reference box is positioned at the origin of the coordinate system established by the <code>viewBox</code> attribute and the dimension of the reference box is set to the width and height values of the <code>viewBox</code> attribute.</p>
+  </dd>
+  <dt id="no-clip"><a href="#no-clip"><code>no-clip</code></a></dt>
+  <dd>
+    <p>The painted content is not clipped.</p>
+  </dd>
+  <dt id="border"><a href="#border"><code>border</code></a></dt>
+  <dd>
+    <p>This keyword behaves the same as <code>border-box</code>.</p>
+  </dd>
+  <dt id="padding"><a href="#padding"><code>padding</code></a></dt>
+  <dd>
+    <p>This keyword behaves the same as <code>padding-box</code>.</p>
+  </dd>
+  <dt id="content"><a href="#content"><code>content</code></a></dt>
+  <dd>
+    <p>This keyword behaves the same as <code>content-box</code>.</p>
+  </dd>
+  <dt id="text"><a href="#text"><code>text</code></a></dt>
+  <dd>
+    <p>This keyword clips the mask image to the text of the element.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>border-box</code></td></tr><tr><th scope="row">Applies to</th><td>all elements; In SVG, it applies to container elements excluding the <a href="/en-US/docs/Web/SVG/Element/defs"><code>&lt;defs&gt;</code></a> element and all graphics elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="mask-clip">mask-clip = </span><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token property">&lt;coord-box&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">no-clip</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#hash_mark" title="Hash mark: the entity is repeated one or several times, each occurence separated by a comma">#</a>  <br><br><span class="token property" id="<coord-box>">&lt;coord-box&gt; = </span><br>  <span class="token property">&lt;paint-box&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">view-box</span>     <br><br><span class="token property" id="<paint-box>">&lt;paint-box&gt; = </span><br>  <span class="token property">&lt;visual-box&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">fill-box</span>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">stroke-box</span>    <br><br><span class="token property" id="<visual-box>">&lt;visual-box&gt; = </span><br>  <span class="token keyword">content-box</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">padding-box</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">border-box</span>   <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="clipping_a_mask_to_the_border_box">Clipping a mask to the border box</h3>
+<p>Click "Play" in the live sample to open the code in the MDN Playground and change the <code>mask-clip</code> value to any of the allowed values described above.</p>
+<pre class="brush: html live-sample___mask-clip-example">&lt;div class="masked"&gt;&lt;/div&gt;
+</pre>
+<pre class="brush: css live-sample___mask-clip-example">.masked {
+  width: 100px;
+  height: 100px;
+  background-color: #8cffa0;
+  margin: 20px;
+  border: 20px solid #8ca0ff;
+  padding: 20px;
+
+  mask-image: url(https://mdn.github.io/shared-assets/images/examples/mdn.svg);
+  mask-size: 100% 100%;
+  mask-clip: border-box;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="mask-clip-example sample" id="frame_mask-clip-example" height="250px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/mask-clip" data-live-id="mask-clip-example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.mask-clip" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.mask-clip" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://css-tricks.com/clipping-masking-css/">Clipping and Masking in CSS</a></li>
+</ul>
+</body></html>

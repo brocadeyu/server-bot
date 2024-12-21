@@ -1,0 +1,36 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>:local-link</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents a link to the same document. Therefore an element that is the source anchor of a hyperlink whose target's absolute URL matches the element's own document URL.</p>
+<pre class="brush: css">/* Selects any &lt;a&gt; that links to the current document */
+a:local-link {
+  color: green;
+}
+</pre>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:local-link {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;a href="#target"&gt;This is a link on the current page.&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://example.com"&gt;This is an external link&lt;/a&gt;&lt;br /&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">a:local-link {
+  color: green;
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:local-link" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/selectors/#local-link-pseudo">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<p>Currently, no browsers have implemented this feature.</p>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Link-related pseudo-classes: <a href="/en-US/docs/Web/CSS/:link"><code>:link</code></a>, <a href="/en-US/docs/Web/CSS/:visited"><code>:visited</code></a>, <a href="/en-US/docs/Web/CSS/:hover"><code>:hover</code></a>, <a href="/en-US/docs/Web/CSS/:active"><code>:active</code></a>, <a href="/en-US/docs/Web/CSS/:any-link"><code>:any-link</code></a></li>
+</ul>
+</body></html>

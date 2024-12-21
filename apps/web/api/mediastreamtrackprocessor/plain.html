@@ -1,0 +1,44 @@
+<html><head></head><body>
+<p>The <strong><code>MediaStreamTrackProcessor</code></strong> interface of the <a href="/en-US/docs/Web/API/Insertable_Streams_for_MediaStreamTrack_API">Insertable Streams for MediaStreamTrack API</a> consumes a <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> object's source and generates a stream of media frames.</p>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="mediastreamtrackprocessor"><a href="/en-US/docs/Web/API/MediaStreamTrackProcessor/MediaStreamTrackProcessor" title="MediaStreamTrackProcessor()"><code>MediaStreamTrackProcessor()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>MediaStreamTrackProcessor</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="mediastreamtrackprocessor.readable"><a href="/en-US/docs/Web/API/MediaStreamTrackProcessor/readable"><code>MediaStreamTrackProcessor.readable</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/ReadableStream"><code>ReadableStream</code></a>.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example is from the article <a href="https://developer.chrome.com/docs/capabilities/web-apis/mediastreamtrack-insertable-media-processing">Insertable streams for MediaStreamTrack</a>, and demonstrates a barcode scanner application, which transforms the stream accessed via <a href="/en-US/docs/Web/API/MediaStreamTrackProcessor/readable"><code>MediaStreamTrackProcessor.readable</code></a> by highlighting the barcode.</p>
+<pre class="brush: js">const stream = await getUserMedia({ video: true });
+const videoTrack = stream.getVideoTracks()[0];
+
+const trackProcessor = new MediaStreamTrackProcessor({ track: videoTrack });
+const trackGenerator = new MediaStreamTrackGenerator({ kind: "video" });
+
+const transformer = new TransformStream({
+  async transform(videoFrame, controller) {
+    const barcodes = await detectBarcodes(videoFrame);
+    const newFrame = highlightBarcodes(videoFrame, barcodes);
+    videoFrame.close();
+    controller.enqueue(newFrame);
+  },
+});
+
+trackProcessor.readable
+  .pipeThrough(transformer)
+  .pipeTo(trackGenerator.writable);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MediaStreamTrackProcessor" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MediaStreamTrackProcessor" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

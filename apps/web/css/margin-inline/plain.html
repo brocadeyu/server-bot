@@ -1,0 +1,78 @@
+<html><head></head><body>
+<p>The <strong><code>margin-inline</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Shorthand_properties">shorthand property</a> is a shorthand property that defines both the logical inline start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/margin-inline.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="constituent_properties">Constituent properties</h2>
+<p>This property is a shorthand for the following CSS properties:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/margin-inline-start"><code>margin-inline-start</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin-inline-end"><code>margin-inline-end</code></a></li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;length&gt; values */
+margin-inline: 10px 20px; /* An absolute length */
+margin-inline: 1em 2em; /* relative to the text size */
+margin-inline: 5% 2%; /* relative to the nearest block container's width */
+margin-inline: 10px; /* sets both start and end values */
+
+/* Keyword values */
+margin-inline: auto;
+
+/* Global values */
+margin-inline: inherit;
+margin-inline: initial;
+margin-inline: revert;
+margin-inline: revert-layer;
+margin-inline: unset;
+</pre>
+<p>This property corresponds to the <a href="/en-US/docs/Web/CSS/margin-top"><code>margin-top</code></a> and <a href="/en-US/docs/Web/CSS/margin-bottom"><code>margin-bottom</code></a>, or the <a href="/en-US/docs/Web/CSS/margin-right"><code>margin-right</code></a> and <a href="/en-US/docs/Web/CSS/margin-left"><code>margin-left</code></a> properties, depending on the values defined for <a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a>, <a href="/en-US/docs/Web/CSS/direction"><code>direction</code></a>, and <a href="/en-US/docs/Web/CSS/text-orientation"><code>text-orientation</code></a>.</p>
+<p>The <code>margin-inline</code> property may be specified using one or two values.</p>
+<ul>
+  <li>When <strong>one</strong> value is specified, it applies the same margin to <strong>both start and end</strong>.</li>
+  <li>When <strong>two</strong> values are specified, the first margin applies to the <strong>start</strong>, the second to the <strong>end</strong>.</li>
+</ul>
+<h3 id="values">Values</h3>
+<p>The <code>margin-inline</code> property takes the same values as the <a href="/en-US/docs/Web/CSS/margin#values"><code>margin</code></a> property.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/margin-inline-start"><code>margin-inline-start</code></a>: <code>0</code></li><li><a href="/en-US/docs/Web/CSS/margin-inline-end"><code>margin-inline-end</code></a>: <code>0</code></li></ul></td></tr><tr><th scope="row">Applies to</th><td>same as <a href="/en-US/docs/Web/CSS/margin"><code>margin</code></a></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row">Percentages</th><td>depends on layout model</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/margin-inline-start"><code>margin-inline-start</code></a>: if specified as a length, the corresponding absolute length; if specified as a percentage, the specified value; otherwise, <code>auto</code></li><li><a href="/en-US/docs/Web/CSS/margin-inline-end"><code>margin-inline-end</code></a>: if specified as a length, the corresponding absolute length; if specified as a percentage, the specified value; otherwise, <code>auto</code></li></ul></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="margin-inline">margin-inline = </span><br>  <a href="/en-US/docs/Web/CSS/margin-top"><span class="token property">&lt;'margin-top'&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{1,2}</a>  <br><br><span class="token property" id="<margin-top>">&lt;margin-top&gt; = </span><br>  <span class="token property">&lt;length-percentage&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">auto</span>                 <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;anchor-size()&gt;</span>      <br><br><span class="token property" id="<length-percentage>">&lt;length-percentage&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br><span class="token property" id="<anchor-size()>">&lt;anchor-size()&gt; = </span><br>  <span class="token function">anchor-size(</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token property">&lt;anchor-name&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <span class="token property">&lt;anchor-size&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> , <span class="token property">&lt;length-percentage&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <span class="token function">)</span>  <br><br><span class="token property" id="<anchor-name>">&lt;anchor-name&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/dashed-ident"><span class="token property">&lt;dashed-ident&gt;</span></a>  <br><br><span class="token property" id="<anchor-size>">&lt;anchor-size&gt; = </span><br>  <span class="token keyword">width</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">height</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">block</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">inline</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">self-block</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">self-inline</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_inline_start_and_end_margins">Setting inline start and end margins</h3>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">div {
+  background-color: yellow;
+  width: 120px;
+  height: auto;
+  border: 1px solid green;
+}
+
+p {
+  margin: 0;
+  margin-inline: 20px 40px;
+  background-color: tan;
+}
+
+.verticalExample {
+  writing-mode: vertical-rl;
+}
+</pre>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div&gt;
+  &lt;p&gt;Example text&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="verticalExample"&gt;
+  &lt;p&gt;Example text&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Setting inline start and end margins sample" id="frame_setting_inline_start_and_end_margins" width="140" height="240" src="about:blank" data-live-path="/en-US/docs/Web/CSS/margin-inline" data-live-id="setting_inline_start_and_end_margins" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.margin-inline" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.margin-inline" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_logical_properties_and_values">CSS Logical Properties and Values</a></li>
+  <li>The mapped physical properties: <a href="/en-US/docs/Web/CSS/margin-top"><code>margin-top</code></a>, <a href="/en-US/docs/Web/CSS/margin-right"><code>margin-right</code></a>, <a href="/en-US/docs/Web/CSS/margin-bottom"><code>margin-bottom</code></a>, and <a href="/en-US/docs/Web/CSS/margin-left"><code>margin-left</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a>, <a href="/en-US/docs/Web/CSS/direction"><code>direction</code></a>, <a href="/en-US/docs/Web/CSS/text-orientation"><code>text-orientation</code></a></li>
+</ul>
+</body></html>

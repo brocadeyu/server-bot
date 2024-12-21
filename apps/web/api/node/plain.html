@@ -1,0 +1,400 @@
+<html><head></head><body>
+<p>
+  The <a href="/en-US/docs/Glossary/DOM">DOM</a> <strong><code>Node</code></strong> interface is an abstract base
+  class upon which many other DOM API objects are based, thus letting those object types
+  to be used similarly and often interchangeably. As an abstract class, there is
+  no such thing as a plain <code>Node</code> object. All objects that implement
+  <code>Node</code> functionality are based on one of its subclasses. Most notable are
+  <a href="/en-US/docs/Web/API/Document"><code>Document</code></a>, <a href="/en-US/docs/Web/API/Element"><code>Element</code></a>, and <a href="/en-US/docs/Web/API/DocumentFragment"><code>DocumentFragment</code></a>.
+</p>
+<p>
+  In addition, every kind of DOM node is represented by an interface based on
+  <code>Node</code>. These include <a href="/en-US/docs/Web/API/Attr"><code>Attr</code></a>, <a href="/en-US/docs/Web/API/CharacterData"><code>CharacterData</code></a>
+  (which <a href="/en-US/docs/Web/API/Text"><code>Text</code></a>, <a href="/en-US/docs/Web/API/Comment"><code>Comment</code></a>, <a href="/en-US/docs/Web/API/CDATASection"><code>CDATASection</code></a> and
+  <a href="/en-US/docs/Web/API/ProcessingInstruction"><code>ProcessingInstruction</code></a> are all based on), and <a href="/en-US/docs/Web/API/DocumentType"><code>DocumentType</code></a>.
+</p>
+<p>
+  In some cases, a particular feature of the base <code>Node</code> interface may not
+  apply to one of its child interfaces; in that case, the inheriting node may
+  return <code>null</code> or throw an exception, depending on circumstances. For example,
+  attempting to add children to a node type that cannot have children will throw an
+  exception.
+</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node" aria-current="page">
+    <rect x="118" y="0" width="75" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>In addition to the properties below, <code>Node</code> inherits properties from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a></em>.</p>
+<dl>
+  <dt id="node.baseuri"><a href="/en-US/docs/Web/API/Node/baseURI"><code>Node.baseURI</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a string representing the base URL of the document
+      containing the <code>Node</code>.
+    </p>
+  </dd>
+  <dt id="node.childnodes"><a href="/en-US/docs/Web/API/Node/childNodes"><code>Node.childNodes</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a live <a href="/en-US/docs/Web/API/NodeList"><code>NodeList</code></a> containing all the children of this node
+      (including elements, text and comments). <a href="/en-US/docs/Web/API/NodeList"><code>NodeList</code></a> being live means that
+      if the children of the <code>Node</code> change, the <a href="/en-US/docs/Web/API/NodeList"><code>NodeList</code></a> object is
+      automatically updated.
+    </p>
+  </dd>
+  <dt id="node.firstchild"><a href="/en-US/docs/Web/API/Node/firstChild"><code>Node.firstChild</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a <code>Node</code> representing the first direct child node of the node,
+      or <code>null</code> if the node has no child.
+    </p>
+  </dd>
+  <dt id="node.isconnected"><a href="/en-US/docs/Web/API/Node/isConnected"><code>Node.isConnected</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      A boolean indicating whether or not the Node is connected (directly or indirectly)
+      to the context object, e.g. the <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> object in the case of the
+      normal DOM, or the <a href="/en-US/docs/Web/API/ShadowRoot"><code>ShadowRoot</code></a> in the case of a shadow DOM.
+    </p>
+  </dd>
+  <dt id="node.lastchild"><a href="/en-US/docs/Web/API/Node/lastChild"><code>Node.lastChild</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a <code>Node</code> representing the last direct child node of the node,
+      or <code>null</code> if the node has no child.
+    </p>
+  </dd>
+  <dt id="node.nextsibling"><a href="/en-US/docs/Web/API/Node/nextSibling"><code>Node.nextSibling</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a <code>Node</code> representing the next node in the tree, or
+      <code>null</code> if there isn't such node.
+    </p>
+  </dd>
+  <dt id="node.nodename"><a href="/en-US/docs/Web/API/Node/nodeName"><code>Node.nodeName</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a string containing the name of the <code>Node</code>. The
+      structure of the name will differ with the node type. E.g. An
+      <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> will contain the name of the corresponding tag, like
+      <code>'AUDIO'</code> for an <a href="/en-US/docs/Web/API/HTMLAudioElement"><code>HTMLAudioElement</code></a>, a <a href="/en-US/docs/Web/API/Text"><code>Text</code></a>
+      node will have the <code>'#text'</code> string, or a <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> node will
+      have the <code>'#document'</code> string.
+    </p>
+  </dd>
+  <dt id="node.nodetype"><a href="/en-US/docs/Web/API/Node/nodeType"><code>Node.nodeType</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns an <code>unsigned short</code> representing the type of the node. Possible
+      values are:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>ELEMENT_NODE</code></td>
+          <td><code>1</code></td>
+        </tr>
+        <tr>
+          <td><code>ATTRIBUTE_NODE</code></td>
+          <td><code>2</code></td>
+        </tr>
+        <tr>
+          <td><code>TEXT_NODE</code></td>
+          <td><code>3</code></td>
+        </tr>
+        <tr>
+          <td><code>CDATA_SECTION_NODE</code></td>
+          <td><code>4</code></td>
+        </tr>
+        <tr>
+          <td><code>PROCESSING_INSTRUCTION_NODE</code></td>
+          <td><code>7</code></td>
+        </tr>
+        <tr>
+          <td><code>COMMENT_NODE</code></td>
+          <td><code>8</code></td>
+        </tr>
+        <tr>
+          <td><code>DOCUMENT_NODE</code></td>
+          <td><code>9</code></td>
+        </tr>
+        <tr>
+          <td><code>DOCUMENT_TYPE_NODE</code></td>
+          <td><code>10</code></td>
+        </tr>
+        <tr>
+          <td><code>DOCUMENT_FRAGMENT_NODE</code></td>
+          <td><code>11</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+  <dt id="node.nodevalue"><a href="/en-US/docs/Web/API/Node/nodeValue"><code>Node.nodeValue</code></a></dt>
+  <dd>
+    <p>Returns / Sets the value of the current node.</p>
+  </dd>
+  <dt id="node.ownerdocument"><a href="/en-US/docs/Web/API/Node/ownerDocument"><code>Node.ownerDocument</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns the <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> that this node belongs to. If the node is itself
+      a document, returns <code>null</code>.
+    </p>
+  </dd>
+  <dt id="node.parentnode"><a href="/en-US/docs/Web/API/Node/parentNode"><code>Node.parentNode</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a <code>Node</code> that is the parent of this node. If there is no such
+      node, like if this node is the top of the tree or if doesn't participate in a tree,
+      this property returns <code>null</code>.
+    </p>
+  </dd>
+  <dt id="node.parentelement"><a href="/en-US/docs/Web/API/Node/parentElement"><code>Node.parentElement</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns an <a href="/en-US/docs/Web/API/Element"><code>Element</code></a> that is the parent of this node. If the node has
+      no parent, or if that parent is not an <a href="/en-US/docs/Web/API/Element"><code>Element</code></a>, this property returns
+      <code>null</code>.
+    </p>
+  </dd>
+  <dt id="node.previoussibling"><a href="/en-US/docs/Web/API/Node/previousSibling"><code>Node.previousSibling</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>
+      Returns a <code>Node</code> representing the previous node in the tree, or
+      <code>null</code> if there isn't such node.
+    </p>
+  </dd>
+  <dt id="node.textcontent"><a href="/en-US/docs/Web/API/Node/textContent"><code>Node.textContent</code></a></dt>
+  <dd>
+    <p>Returns / Sets the textual content of an element and all its descendants.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>In addition to the methods below, <code>Node</code> inherits methods from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="node.appendchild"><a href="/en-US/docs/Web/API/Node/appendChild"><code>Node.appendChild()</code></a></dt>
+  <dd>
+    <p>
+      Adds the specified <code>childNode</code> argument as the last child to the current node.
+      If the argument referenced an existing node on the DOM tree, the node will be detached
+      from its current position and attached at the new position.
+    </p>
+  </dd>
+  <dt id="node.clonenode"><a href="/en-US/docs/Web/API/Node/cloneNode"><code>Node.cloneNode()</code></a></dt>
+  <dd>
+    <p>
+      Clone a <code>Node</code>, and optionally, all of its contents. By default, it
+      clones the content of the node.
+    </p>
+  </dd>
+  <dt id="node.comparedocumentposition"><a href="/en-US/docs/Web/API/Node/compareDocumentPosition"><code>Node.compareDocumentPosition()</code></a></dt>
+  <dd>
+    <p>Compares the position of the current node against another node in any other document.</p>
+  </dd>
+  <dt id="node.contains"><a href="/en-US/docs/Web/API/Node/contains"><code>Node.contains()</code></a></dt>
+  <dd>
+    <p>
+      Returns <code>true</code> or <code>false</code> value indicating whether or not a node is a
+      descendant of the calling node.
+    </p>
+  </dd>
+  <dt id="node.getrootnode"><a href="/en-US/docs/Web/API/Node/getRootNode"><code>Node.getRootNode()</code></a></dt>
+  <dd>
+    <p>Returns the context object's root which optionally includes the shadow root if it is available.</p>
+  </dd>
+  <dt id="node.haschildnodes"><a href="/en-US/docs/Web/API/Node/hasChildNodes"><code>Node.hasChildNodes()</code></a></dt>
+  <dd>
+    <p>Returns a boolean value indicating whether or not the element has any child nodes.</p>
+  </dd>
+  <dt id="node.insertbefore"><a href="/en-US/docs/Web/API/Node/insertBefore"><code>Node.insertBefore()</code></a></dt>
+  <dd>
+    <p>
+      Inserts a <code>Node</code> before the reference node as a child of a specified
+      parent node.
+    </p>
+  </dd>
+  <dt id="node.isdefaultnamespace"><a href="/en-US/docs/Web/API/Node/isDefaultNamespace"><code>Node.isDefaultNamespace()</code></a></dt>
+  <dd>
+    <p>
+      Accepts a namespace URI as an argument and returns a boolean value with a
+      value of <code>true</code> if the namespace is the default namespace on the given node
+      or <code>false</code> if not.
+    </p>
+  </dd>
+  <dt id="node.isequalnode"><a href="/en-US/docs/Web/API/Node/isEqualNode"><code>Node.isEqualNode()</code></a></dt>
+  <dd>
+    <p>
+      Returns a boolean value which indicates whether or not two nodes are of the
+      same type and all their defining data points match.
+    </p>
+  </dd>
+  <dt id="node.issamenode"><a href="/en-US/docs/Web/API/Node/isSameNode"><code>Node.isSameNode()</code></a></dt>
+  <dd>
+    <p>
+      Returns a boolean value indicating whether or not the two nodes are
+      the same (that is, they reference the same object).
+    </p>
+  </dd>
+  <dt id="node.lookupprefix"><a href="/en-US/docs/Web/API/Node/lookupPrefix"><code>Node.lookupPrefix()</code></a></dt>
+  <dd>
+    <p>
+      Returns a string containing the prefix for a given namespace URI,
+      if present, and <code>null</code> if not. When multiple prefixes are possible, the
+      result is implementation-dependent.
+    </p>
+  </dd>
+  <dt id="node.lookupnamespaceuri"><a href="/en-US/docs/Web/API/Node/lookupNamespaceURI"><code>Node.lookupNamespaceURI()</code></a></dt>
+  <dd>
+    <p>
+      Accepts a prefix and returns the namespace URI associated with it on the given node
+      if found (and <code>null</code> if not). Supplying <code>null</code> for the prefix
+      will return the default namespace.
+    </p>
+  </dd>
+  <dt id="node.normalize"><a href="/en-US/docs/Web/API/Node/normalize"><code>Node.normalize()</code></a></dt>
+  <dd>
+    <p>Clean up all the text nodes under this element (merge adjacent, remove empty).</p>
+  </dd>
+  <dt id="node.removechild"><a href="/en-US/docs/Web/API/Node/removeChild"><code>Node.removeChild()</code></a></dt>
+  <dd>
+    <p>
+      Removes a child node from the current element, which must be a child of the current
+      node.
+    </p>
+  </dd>
+  <dt id="node.replacechild"><a href="/en-US/docs/Web/API/Node/replaceChild"><code>Node.replaceChild()</code></a></dt>
+  <dd>
+    <p>
+      Replaces one child <code>Node</code> of the current one with the second one given
+      in parameter.
+    </p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="remove_all_children_nested_within_a_node">Remove all children nested within a node</h3>
+<p>This function remove each first child of an element, until there are none left.</p>
+<pre class="brush: js">function removeAllChildren(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+</pre>
+<p>Using this function is a single call. Here we empty the body of the document:</p>
+<pre class="brush: js">removeAllChildren(document.body);
+</pre>
+<p>An alternative could be to set the textContent to the empty string: <code>document.body.textContent = ""</code>.</p>
+<h3 id="recurse_through_child_nodes">Recurse through child nodes</h3>
+<p>
+  The following function recursively calls a callback function for each node contained by
+  a root node (including the root itself):
+</p>
+<pre class="brush: js">function eachNode(rootNode, callback) {
+  if (!callback) {
+    const nodes = [];
+    eachNode(rootNode, (node) =&gt; {
+      nodes.push(node);
+    });
+    return nodes;
+  }
+
+  if (callback(rootNode) === false) {
+    return false;
+  }
+
+  if (rootNode.hasChildNodes()) {
+    for (const node of rootNode.childNodes) {
+      if (eachNode(node, callback) === false) {
+        return;
+      }
+    }
+  }
+}
+</pre>
+<p>
+  The function recursively calls a function for each descendant node of
+  <code>rootNode</code> (including the root itself).
+</p>
+<p>
+  If <code>callback</code> is omitted, the function returns an
+  <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> instead, which contains <code>rootNode</code> and all
+  nodes contained within.
+</p>
+<p>
+  If <code>callback</code> is provided, and it returns
+  <code>false</code> when called, the current recursion level is aborted, and the function
+  resumes execution at the last parent's level. This can be used to abort loops once a
+  node has been found (such as searching for a text node which contains a certain string).
+</p>
+<p>The function has two parameters:</p>
+<dl>
+  <dt id="rootnode"><a href="#rootnode"><code>rootNode</code></a></dt>
+  <dd>
+    <p>The <code>Node</code> object whose descendants will be recursed through.</p>
+  </dd>
+  <dt id="callback"><a href="#callback"><code>callback</code></a> <span class="badge inline optional">Optional</span></dt>
+  <dd>
+    <p>
+      An optional callback <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a> that
+      receives a <code>Node</code> as its only argument. If omitted, <code>eachNode</code>
+      returns an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of every node contained within
+      <code>rootNode</code> (including the root itself).
+    </p>
+  </dd>
+</dl>
+<p>
+  The following demonstrates a real-world use of the <code>eachNode()</code> function:
+  searching for text on a web-page.
+</p>
+<p>We use a wrapper function named <code>grep</code> to do the searching:</p>
+<pre class="brush: js">function grep(parentNode, pattern) {
+  let matches = [];
+  let endScan = false;
+
+  eachNode(parentNode, (node) =&gt; {
+    if (endScan) {
+      return false;
+    }
+
+    // Ignore anything which isn't a text node
+    if (node.nodeType !== Node.TEXT_NODE) {
+      return;
+    }
+
+    if (typeof pattern === "string" &amp;&amp; node.textContent.includes(pattern)) {
+      matches.push(node);
+    } else if (pattern.test(node.textContent)) {
+      if (!pattern.global) {
+        endScan = true;
+        matches = node;
+      } else {
+        matches.push(node);
+      }
+    }
+  });
+
+  return matches;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Node" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Node" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

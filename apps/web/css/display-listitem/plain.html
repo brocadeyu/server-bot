@@ -1,0 +1,39 @@
+<html><head></head><body>
+<p>The <code>list-item</code> keyword causes the element to generate a <code>::marker</code> pseudo-element with the content specified by its <a href="/en-US/docs/Web/CSS/list-style"><code>list-style</code></a> properties (for example a bullet point) together with a principal box of the specified type for its own contents.</p>
+<h2 id="syntax">Syntax</h2>
+<p>A single value of <code>list-item</code> will cause the element to behave like a list item. This can be used together with <a href="/en-US/docs/Web/CSS/list-style-type"><code>list-style-type</code></a> and <a href="/en-US/docs/Web/CSS/list-style-position"><code>list-style-position</code></a>.</p>
+<p><code>list-item</code> can also be combined with any <a href="/en-US/docs/Web/CSS/display-outside"><code>&lt;display-outside&gt;</code></a> keyword and the <code>flow</code> or <code>flow-root</code> <a href="/en-US/docs/Web/CSS/display-inside"><code>&lt;display-inside&gt;</code></a> keywords.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> In browsers that support the two-value syntax, if no inner value is specified it will default to <code>flow</code>. If no outer value is specified, the principal box will have an outer display type of <code>block</code>.</p>
+</div>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="<display-listitem>">&lt;display-listitem&gt; = </span><br>  <span class="token property">&lt;display-outside&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_ampersand" title="Double ampersand: all of the entities must be present, in any order">&amp;&amp;</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">flow</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">flow-root</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_ampersand" title="Double ampersand: all of the entities must be present, in any order">&amp;&amp;</a><br>  <span class="token keyword">list-item</span>              <br><br><span class="token property" id="<display-outside>">&lt;display-outside&gt; = </span><br>  <span class="token keyword">block</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">inline</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">run-in</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;div class="fake-list"&gt;I will display as a list item&lt;/div&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">.fake-list {
+  display: list-item;
+  list-style-position: inside;
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="100%" height="150" src="about:blank" data-live-path="/en-US/docs/Web/CSS/display-listitem" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.display.list-item" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.display.list-item" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/display"><code>display</code></a>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/display-outside"><code>&lt;display-outside&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/display-inside"><code>&lt;display-inside&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/display-internal"><code>&lt;display-internal&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/display-box"><code>&lt;display-box&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/display-legacy"><code>&lt;display-legacy&gt;</code></a></li>
+    </ul>
+  </li>
+</ul>
+</body></html>

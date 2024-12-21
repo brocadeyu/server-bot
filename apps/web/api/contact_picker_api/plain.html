@@ -1,0 +1,82 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The Contact Picker API allows users to select entries from their contact list and share limited details of the selected entries with a website or application.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This API is <em>not available</em> in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a> (not exposed via <a href="/en-US/docs/Web/API/WorkerNavigator"><code>WorkerNavigator</code></a>).</p>
+</div>
+<h2 id="contact_picker_api_concepts_and_usage">Contact Picker API Concepts and Usage</h2>
+<p>Access to contacts has long been a feature available within native applications. The Contacts Picker API brings that functionality to web applications.</p>
+<p>Use cases include selecting contacts to message via an email or chat application, selecting a contacts phone number for use with voice over IP (VOIP), or for discovering contacts who have already joined a social platform. User agents can also offer a consistent experience with other applications on a users device.</p>
+<p>When calling the <a href="/en-US/docs/Web/API/ContactsManager/select" title="select"><code>select</code></a> method of the <a href="/en-US/docs/Web/API/ContactsManager"><code>ContactsManager</code></a> interface, the user is presented with a contact picker, whereby they can then select contact information to share with the web application. User interaction is required before permission to display the contact picker is granted and access to contacts is not persistent; the user must grant access every time a request is made by the application.</p>
+<p>This API is only available from a secure top-level browsing context and very carefully considers the sensitivity and privacy of contact data. The onus is on the user for choosing data to share and only allows specific data for selected contacts, with no access to any data for other contacts.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="contactaddress"><a href="/en-US/docs/Web/API/ContactAddress"><code>ContactAddress</code></a></dt>
+  <dd>
+    <p>Represents a physical address.</p>
+  </dd>
+  <dt id="contactsmanager"><a href="/en-US/docs/Web/API/ContactsManager"><code>ContactsManager</code></a></dt>
+  <dd>
+    <p>Provides a way for users to select and share limited details of contacts with a web application.</p>
+  </dd>
+  <dt id="navigator.contacts"><a href="/en-US/docs/Web/API/Navigator/contacts"><code>Navigator.contacts</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/ContactsManager"><code>ContactsManager</code></a> object instance, from which all other functionality can be accessed.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="feature_detection">Feature Detection</h3>
+<p>The following code checks whether the Contact Picker API is supported.</p>
+<pre class="brush: js">const supported = "contacts" in navigator;
+</pre>
+<h3 id="checking_for_supported_properties">Checking for Supported Properties</h3>
+<p>The following asynchronous function uses the <code>getProperties()</code> method to check for supported properties.</p>
+<pre class="brush: js">async function checkProperties() {
+  const supportedProperties = await navigator.contacts.getProperties();
+  if (supportedProperties.includes("name")) {
+    // run code for name support
+  }
+  if (supportedProperties.includes("email")) {
+    // run code for email support
+  }
+  if (supportedProperties.includes("tel")) {
+    // run code for telephone number support
+  }
+  if (supportedProperties.includes("address")) {
+    // run code for address support
+  }
+  if (supportedProperties.includes("icon")) {
+    // run code for avatar support
+  }
+}
+</pre>
+<h3 id="selecting_contacts">Selecting Contacts</h3>
+<p>The following example sets an array of properties to be retrieved for each contact, as well as setting an options object to allow for multiple contacts to be selected.</p>
+<p>An asynchronous function is then defined which uses the <code>select()</code> method to present the user with a contact picker interface and handle the chosen results.</p>
+<pre class="brush: js">const props = ["name", "email", "tel", "address", "icon"];
+const opts = { multiple: true };
+
+async function getContacts() {
+  try {
+    const contacts = await navigator.contacts.select(props, opts);
+    handleResults(contacts);
+  } catch (ex) {
+    // Handle any errors here.
+  }
+}
+</pre>
+<p><code>handleResults()</code> is a developer defined function.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ContactsManager" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ContactsManager" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/capabilities/web-apis/contact-picker">A Contact Picker for the Web</a></li>
+  <li><a href="https://contact-picker.glitch.me/">A Contact Picker demo on glitch</a></li>
+</ul>
+</body></html>

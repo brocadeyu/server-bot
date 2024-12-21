@@ -1,0 +1,37 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>DOMStringList</code></strong> interface is a legacy type returned by some APIs and represents a non-modifiable list of strings (<code>DOMString</code>).</p>
+<p>This interface was an <a href="https://stackoverflow.com/questions/74630989/why-use-domstringlist-rather-than-an-array/74641156#74641156">attempt to create an unmodifiable list</a> and only continues to be supported to not break code that's already using it. Modern APIs represent list structures using types based on JavaScript <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a>, thus making many array methods available, and at the same time imposing additional semantics on their usage (such as making their items read-only).</p>
+<p>These historical reasons do not mean that you as a developer should avoid <code>DOMStringList</code>. You don't create <code>DOMStringList</code> objects yourself, but you get them from APIs such as <code>Location.ancestorOrigins</code>, and these APIs are not deprecated. However, be careful of the semantic differences from a real array.</p>
+<p>This interface is used in <a href="/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a> and in the <a href="/en-US/docs/Web/API/Location"><code>Location</code></a> API:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/IDBDatabase/objectStoreNames"><code>IDBDatabase.objectStoreNames</code></a></li>
+  <li><a href="/en-US/docs/Web/API/IDBObjectStore/indexNames"><code>IDBObjectStore.indexNames</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Location/ancestorOrigins"><code>Location.ancestorOrigins</code></a></li>
+</ul>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="domstringlist.length"><a href="/en-US/docs/Web/API/DOMStringList/length"><code>DOMStringList.length</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the size of the list.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="domstringlist.item"><a href="/en-US/docs/Web/API/DOMStringList/item"><code>DOMStringList.item()</code></a></dt>
+  <dd>
+    <p>Returns a string from the list with the given index.</p>
+  </dd>
+  <dt id="domstringlist.contains"><a href="/en-US/docs/Web/API/DOMStringList/contains"><code>DOMStringList.contains()</code></a></dt>
+  <dd>
+    <p>Returns a boolean indicating whether the given string is in the list.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.DOMStringList" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.DOMStringList" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

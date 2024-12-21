@@ -1,0 +1,84 @@
+<html><head></head><body>
+<p>The <strong><code>CSSNestedDeclarations</code></strong> interface of the <a href="/en-US/docs/Web/API/CSSRule">CSS Rule API</a> is used to group nested <a href="/en-US/docs/Web/API/CSSRule"><code>CSSRule</code></a>s.</p>
+<p>The interface allows the <a href="/en-US/docs/Web/API/CSS_Object_Model">CSS Object Model (CSSOM</a> to mirror the structure of CSS documents with nested CSS rules, and ensure that rules are parsed and evaluated in the order that they are declared.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> &gt; <a href="#browser_compatibility">Browser versions</a> with implementations that do not support this interface may parse nested rules in the wrong order.</p>
+</div><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSRule">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSRule
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSNestedDeclarations" aria-current="page">
+    <rect x="105" y="0" width="168" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="189" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSNestedDeclarations
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its ancestor <a href="/en-US/docs/Web/API/CSSRule"><code>CSSRule</code></a>.</em></p>
+<dl>
+  <dt id="cssnesteddeclarations.style"><a href="/en-US/docs/Web/API/CSSNestedDeclarations/style"><code>CSSNestedDeclarations.style</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the values of the nested rules.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>No specific methods; inherits methods from its ancestor <a href="/en-US/docs/Web/API/CSSRule"><code>CSSRule</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<h3 id="css">CSS</h3>
+<p>The CSS below includes a selector <code>.foo</code> that contains two declarations and a media query.</p>
+<pre class="brush: css">.foo {
+  background-color: silver;
+  @media (screen) {
+    color: tomato;
+  }
+  color: black;
+}
+</pre>
+<p>This is represented by a number of JavaScript objects in the <a href="/en-US/docs/Web/API/CSS_Object_Model">CSS Object Model</a>:</p>
+<ul>
+  <li>
+    A <a href="/en-US/docs/Web/API/CSSStyleRule"><code>CSSStyleRule</code></a> object that represents the <code>background-color: silver</code> rule.
+    This can be returned via <code>document.styleSheets[0].cssRules[0]</code>.
+  </li>
+  <li>A <a href="/en-US/docs/Web/API/CSSMediaRule"><code>CSSMediaRule</code></a> object that represents the <code>@media (screen)</code> rule, and which can be returned via <code>document.styleSheets[0].cssRules[0].cssRules[0]</code>.
+    <ul>
+      <li>
+        The <code>CSSMediaRule</code> object contains a <code>CSSNestedDeclaration</code> object which represents the <code>color: tomato</code> rule nested by the <code>@media (screen)</code> rule.
+        This can be returned via <code>document.styleSheets[0].cssRules[0].cssRules[0].cssRules[0]</code>.
+      </li>
+    </ul>
+  </li>
+  <li>The final rule is a <code>CSSNestedDeclaration</code> object that represents the <code>color: black</code> rule in the stylesheet, and which can be returned via <code>document.styleSheets[0].cssRules[0].cssRules[1]</code>.</li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> All top-level styles after the first <code>CSSNestedDeclaration</code> must also be represented as <code>CSSNestedDeclaration</code> objects in order to follow the <a href="/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting#nested_declarations_rule">CSS nested declarations rule</a></p>
+</div>
+<h3 id="cssom_css_object_model">CSSOM (CSS Object Model)</h3>
+<pre class="brush: txt">↳ CSSStyleRule
+  .style
+    - background-color: silver
+  ↳ CSSMediaRule
+    ↳ CSSNestedDeclarations
+      .style (CSSStyleDeclaration, 1) =
+      - color: tomato
+  ↳ CSSNestedDeclarations
+    .style (CSSStyleDeclaration, 1) =
+      - color: black
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSSNestedDeclarations" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSSNestedDeclarations" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See Also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSSNestedDeclarations/style"><code>CSSNestedDeclarations.style</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting#nested_declarations_rule">The Nested Declarations Rule</a></li>
+</ul>
+</body></html>

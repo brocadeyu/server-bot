@@ -1,0 +1,113 @@
+<html><head></head><body>
+<p>The <strong><code>border-width</code></strong> <a href="/en-US/docs/Web/CSS/Shorthand_properties">shorthand</a> <a href="/en-US/docs/Web/CSS">CSS</a> property sets the width of an element's border.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/border-width.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="constituent_properties">Constituent properties</h2>
+<p>This property is a shorthand for the following CSS properties:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/border-bottom-width"><code>border-bottom-width</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/border-left-width"><code>border-left-width</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/border-right-width"><code>border-right-width</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/border-top-width"><code>border-top-width</code></a></li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+border-width: thin;
+border-width: medium;
+border-width: thick;
+
+/* &lt;length&gt; values */
+border-width: 4px;
+border-width: 1.2rem;
+
+/* top and bottom | left and right */
+border-width: 2px 1.5em;
+
+/* top | left and right | bottom */
+border-width: 1px 2em 1.5cm;
+
+/* top | right | bottom | left */
+border-width: 1px 2em 0 4rem;
+
+/* Global values */
+border-width: inherit;
+border-width: initial;
+border-width: revert;
+border-width: revert-layer;
+border-width: unset;
+</pre>
+<p>The <code>border-width</code> property may be specified using one, two, three, or four values.</p>
+<ul>
+  <li>When <strong>one</strong> value is specified, it applies the same width to <strong>all four sides</strong>.</li>
+  <li>When <strong>two</strong> values are specified, the first width applies to the <strong>top and bottom</strong>, the second to the <strong>left and right</strong>.</li>
+  <li>When <strong>three</strong> values are specified, the first width applies to the <strong>top</strong>, the second to the <strong>left and right</strong>, the third to the <strong>bottom</strong>.</li>
+  <li>When <strong>four</strong> values are specified, the widths apply to the <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, and <strong>left</strong> in that order (clockwise).</li>
+</ul>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="line-width"><a href="#line-width"><code>&lt;line-width&gt;</code></a></dt>
+  <dd>
+    <p>Defines the width of the border, either as an explicit nonnegative <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> or a keyword. If it's a keyword, it must be one of the following values:</p>
+    <ul>
+      <li><code>thin</code></li>
+      <li><code>medium</code></li>
+      <li><code>thick</code></li>
+    </ul>
+  </dd>
+</dl>
+<div class="notecard note">
+  <p><strong>Note:</strong> Because the specification doesn't define the exact thickness denoted by each keyword, the precise result when using one of them is implementation-specific. Nevertheless, they always follow the pattern <code>thin ≤ medium ≤ thick</code>, and the values are constant within a single document.</p>
+</div>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/border-top-width"><code>border-top-width</code></a>: <code>medium</code></li><li><a href="/en-US/docs/Web/CSS/border-right-width"><code>border-right-width</code></a>: <code>medium</code></li><li><a href="/en-US/docs/Web/CSS/border-bottom-width"><code>border-bottom-width</code></a>: <code>medium</code></li><li><a href="/en-US/docs/Web/CSS/border-left-width"><code>border-left-width</code></a>: <code>medium</code></li></ul></td></tr><tr><th scope="row">Applies to</th><td>all elements. It also applies to <a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a>.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/border-bottom-width"><code>border-bottom-width</code></a>: the absolute length or <code>0</code> if <a href="/en-US/docs/Web/CSS/border-bottom-style"><code>border-bottom-style</code></a> is <code>none</code> or <code>hidden</code></li><li><a href="/en-US/docs/Web/CSS/border-left-width"><code>border-left-width</code></a>: the absolute length or <code>0</code> if <a href="/en-US/docs/Web/CSS/border-left-style"><code>border-left-style</code></a> is <code>none</code> or <code>hidden</code></li><li><a href="/en-US/docs/Web/CSS/border-right-width"><code>border-right-width</code></a>: the absolute length or <code>0</code> if <a href="/en-US/docs/Web/CSS/border-right-style"><code>border-right-style</code></a> is <code>none</code> or <code>hidden</code></li><li><a href="/en-US/docs/Web/CSS/border-top-width"><code>border-top-width</code></a>: the absolute length or <code>0</code> if <a href="/en-US/docs/Web/CSS/border-top-style"><code>border-top-style</code></a> is <code>none</code> or <code>hidden</code></li></ul></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/border-bottom-width"><code>border-bottom-width</code></a>: a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a></li><li><a href="/en-US/docs/Web/CSS/border-left-width"><code>border-left-width</code></a>: a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a></li><li><a href="/en-US/docs/Web/CSS/border-right-width"><code>border-right-width</code></a>: a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a></li><li><a href="/en-US/docs/Web/CSS/border-top-width"><code>border-top-width</code></a>: a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a></li></ul></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="border-width">border-width = </span><br>  <span class="token property">&lt;line-width&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{1,4}</a>  <br><br><span class="token property" id="<line-width>">&lt;line-width&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length [0,∞]&gt;</span></a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">thin</span>            <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">medium</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">thick</span>           <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="a_mix_of_values_and_lengths">A mix of values and lengths</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p id="one-value"&gt;one value: 6px wide border on all 4 sides&lt;/p&gt;
+&lt;p id="two-values"&gt;
+  two different values: 2px wide top and bottom border, 10px wide right and left
+  border
+&lt;/p&gt;
+&lt;p id="three-values"&gt;
+  three different values: 0.3em top, 9px bottom, and zero width right and left
+&lt;/p&gt;
+&lt;p id="four-values"&gt;
+  four different values: "thin" top, "medium" right, "thick" bottom, and 1em
+  left
+&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">#one-value {
+  border: ridge #ccc;
+  border-width: 6px;
+}
+#two-values {
+  border: solid red;
+  border-width: 2px 10px;
+}
+#three-values {
+  border: dotted orange;
+  border-width: 0.3em 0 9px;
+}
+#four-values {
+  border: solid lightgreen;
+  border-width: thin medium thick 1em;
+}
+p {
+  width: auto;
+  margin: 0.25em;
+  padding: 0.25em;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="A mix of values and lengths sample" id="frame_a_mix_of_values_and_lengths" width="320" height="320" src="about:blank" data-live-path="/en-US/docs/Web/CSS/border-width" data-live-id="a_mix_of_values_and_lengths" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.border-width" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.border-width" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The border-related shorthand properties: <a href="/en-US/docs/Web/CSS/border"><code>border</code></a>, <a href="/en-US/docs/Web/CSS/border-style"><code>border-style</code></a>, <a href="/en-US/docs/Web/CSS/border-color"><code>border-color</code></a></li>
+  <li>The border-width-related properties: <a href="/en-US/docs/Web/CSS/border-bottom-width"><code>border-bottom-width</code></a>, <a href="/en-US/docs/Web/CSS/border-left-width"><code>border-left-width</code></a>, <a href="/en-US/docs/Web/CSS/border-right-width"><code>border-right-width</code></a>, <a href="/en-US/docs/Web/CSS/border-top-width"><code>border-top-width</code></a></li>
+</ul>
+</body></html>

@@ -1,0 +1,67 @@
+<html><head></head><body>
+<p>The <strong><code>-webkit-line-clamp</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property allows limiting of the contents of a <a href="/en-US/docs/Glossary/Block">block</a> to the specified number of lines.</p>
+<p>It only works in combination with the <a href="/en-US/docs/Web/CSS/display"><code>display</code></a> property set to <code>-webkit-box</code> or <code>-webkit-inline-box</code> and the <a href="/en-US/docs/Web/CSS/box-orient"><code>-webkit-box-orient</code></a> property set to <code>vertical</code>. Despite them being deprecated, the co-dependency of these three properties is fully specified behavior and will continue to be supported.</p>
+<p>In most cases you will also want to set <a href="/en-US/docs/Web/CSS/overflow"><code>overflow</code></a> to <code>hidden</code>, otherwise the contents won't be clipped but an ellipsis will still be shown after the specified number of lines.</p>
+<p>When applied to anchor elements, the truncating can happen in the middle of the text, not necessarily at the end.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This property was originally implemented in WebKit and has some issues, such as the dependency on two other legacy properties. It got standardized in <a href="https://drafts.csswg.org/css-overflow-4/#propdef--webkit-line-clamp">CSS Overflow Module Level 4</a> for legacy support. CSS Overflow Module Level 4 also defines a <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{cssxref(&quot;line-clamp&quot;)}}"><code>line-clamp</code></a> property, which is meant to replace this property and avoid its issues. However, all browsers that support <code>line-clamp</code> will also support <code>-webkit-line-clamp</code> for compatibility reasons.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword value */
+-webkit-line-clamp: none;
+
+/* &lt;integer&gt; values */
+-webkit-line-clamp: 3;
+-webkit-line-clamp: 10;
+
+/* Global values */
+-webkit-line-clamp: inherit;
+-webkit-line-clamp: initial;
+-webkit-line-clamp: revert;
+-webkit-line-clamp: revert-layer;
+-webkit-line-clamp: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>This value specifies that the content won't be clamped.</p>
+  </dd>
+  <dt id="integer"><a href="/en-US/docs/Web/CSS/integer"><code>&lt;integer&gt;</code></a></dt>
+  <dd>
+    <p>This value specifies the number of lines after which the content will be clamped. It must be greater than 0.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>none</code></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>by computed value type</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="-webkit-line-clamp">-webkit-line-clamp = </span><br>  <span class="token keyword">none</span>             <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/integer"><span class="token property">&lt;integer [1,∞]&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="truncating_a_paragraph">Truncating a paragraph</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p&gt;
+  In this example the &lt;code&gt;-webkit-line-clamp&lt;/code&gt; property is set to
+  &lt;code&gt;3&lt;/code&gt;, which means the text is clamped after three lines. An ellipsis
+  will be shown at the point where the text is clamped.
+&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">p {
+  width: 300px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Truncating a paragraph sample" id="frame_truncating_a_paragraph" width="100%" height="130" src="about:blank" data-live-path="/en-US/docs/Web/CSS/-webkit-line-clamp" data-live-id="truncating_a_paragraph" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.line-clamp" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.line-clamp" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://css-tricks.com/line-clampin/">Line Clampin' (Truncating Multiple Line Text)</a></li>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{cssxref(&quot;line-clamp&quot;)}}"><code>line-clamp</code></a></li>
+</ul>
+</body></html>

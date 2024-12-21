@@ -1,0 +1,86 @@
+<html><head></head><body>
+<p>The <strong><code>:last-of-type</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents the last element of its type among a group of sibling elements.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-last-of-type.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:last-of-type {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="styling_the_last_paragraph">Styling the last paragraph</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;h2&gt;Heading&lt;/h2&gt;
+&lt;p&gt;Paragraph 1&lt;/p&gt;
+&lt;p&gt;Paragraph 2&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">p:last-of-type {
+  color: red;
+  font-style: italic;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Styling the last paragraph sample" id="frame_styling_the_last_paragraph" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:last-of-type" data-live-id="styling_the_last_paragraph" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="nested_elements">Nested elements</h3>
+<p>This example shows how nested elements can also be targeted. Note that the <a href="/en-US/docs/Web/CSS/Universal_selectors">universal selector</a> (<code>*</code>) is implied when no simple selector is written.</p>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;article&gt;
+  &lt;div&gt;This `div` is first.&lt;/div&gt;
+  &lt;div&gt;This &lt;span&gt;nested `span` is last&lt;/span&gt;!&lt;/div&gt;
+  &lt;div&gt;
+    This &lt;em&gt;nested `em` is first&lt;/em&gt;, but this &lt;em&gt;nested `em` is last&lt;/em&gt;!
+  &lt;/div&gt;
+  &lt;p&gt;This `p` qualifies!&lt;/p&gt;
+  &lt;div&gt;This is the final `div`!&lt;/div&gt;
+&lt;/article&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">article :last-of-type {
+  background-color: pink;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Nested elements sample" id="frame_nested_elements" width="500" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:last-of-type" data-live-id="nested_elements" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="multiple_selectors_elements">Multiple selectors elements</h3>
+<p>This HTML example contains nested elements of different types. The CSS contains both type selectors and class selectors.</p>
+<h4 id="html_3">HTML</h4>
+<pre class="brush: html">&lt;p&gt;This `p` is not selected.&lt;/p&gt;
+&lt;p&gt;This `p` is not selected either.&lt;/p&gt;
+&lt;p&gt;
+  This `p` is last `p` element of its parent e.g. `body` selected by `p` type
+  selector.
+&lt;/p&gt;
+&lt;div class="container"&gt;
+  &lt;div class="item"&gt;This `div` is not selected.&lt;/div&gt;
+  &lt;div class="item"&gt;This `div` is not selected either.&lt;/div&gt;
+  &lt;div class="item"&gt;
+    This `div` is last `div` element of its parent `div` selected by `.container
+    .item` class selector.
+  &lt;/div&gt;
+  &lt;p class="item"&gt;
+    This `p` is last `p` element of its parent `div` selected by `.container
+    .item` class selector.
+  &lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css_3">CSS</h4>
+<pre class="brush: css">p:last-of-type {
+  background: skyblue;
+}
+
+.container .item:last-of-type {
+  color: red;
+  font-weight: bold;
+}
+</pre>
+<h4 id="result_3">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Multiple selectors elements sample" id="frame_multiple_selectors_elements" width="500" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:last-of-type" data-live-id="multiple_selectors_elements" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The last <code>&lt;div&gt;</code> and the last <code>&lt;p&gt;</code> are both red and bold as the <code>.item:last-of-type</code> selects the last of every type if that last element also has the <code>item</code> class.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.last-of-type" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.last-of-type" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:last-child"><code>:last-child</code></a>, <a href="/en-US/docs/Web/CSS/:nth-last-of-type"><code>:nth-last-of-type</code></a></li>
+</ul>
+</body></html>

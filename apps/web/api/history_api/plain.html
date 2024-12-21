@@ -1,0 +1,72 @@
+<html><head></head><body>
+<p>The <strong>History API</strong> provides access to the browser's session history (not to be confused with <a href="/en-US/docs/Mozilla/Add-ons/WebExtensions/API/history">WebExtensions history</a>) through the <a href="/en-US/docs/Web/API/Window/history" title="history"><code>history</code></a> global object. It exposes useful methods and properties that let you navigate back and forth through the user's history, and manipulate the contents of the history stack.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This API is only available on the main thread (<a href="/en-US/docs/Web/API/Window"><code>Window</code></a>). It cannot be accessed in <a href="/en-US/docs/Web/API/Worker"><code>Worker</code></a> or <a href="/en-US/docs/Web/API/Worklet"><code>Worklet</code></a> contexts.</p>
+</div>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>Moving backward and forward through the user's history is done using the <a href="/en-US/docs/Web/API/History/back" title="back()"><code>back()</code></a>, <a href="/en-US/docs/Web/API/History/forward" title="forward()"><code>forward()</code></a>, and <a href="/en-US/docs/Web/API/History/go" title="go()"><code>go()</code></a> methods.</p>
+<h3 id="moving_forward_and_backward">Moving forward and backward</h3>
+<p>To move backward through history:</p>
+<pre class="brush: js">history.back();
+</pre>
+<p>This acts exactly as if the user clicked on the <kbd><strong>Back</strong></kbd> button in their browser toolbar.</p>
+<p>Similarly, you can move forward (as if the user clicked the <kbd><strong>Forward</strong></kbd> button), like this:</p>
+<pre class="brush: js">history.forward();
+</pre>
+<h3 id="moving_to_a_specific_point_in_history">Moving to a specific point in history</h3>
+<p>You can use the <a href="/en-US/docs/Web/API/History/go" title="go()"><code>go()</code></a> method to load a specific page from session history, identified by its relative position to the current page. (The current page's relative position is <code>0</code>.)</p>
+<p>To move back one page (the equivalent of calling <a href="/en-US/docs/Web/API/History/back" title="back()"><code>back()</code></a>):</p>
+<pre class="brush: js">history.go(-1);
+</pre>
+<p>To move forward a page, just like calling <a href="/en-US/docs/Web/API/History/forward" title="forward()"><code>forward()</code></a>:</p>
+<pre class="brush: js">history.go(1);
+</pre>
+<p>Similarly, you can move forward 2 pages by passing <code>2</code>, and so forth.</p>
+<p>Another use for the <code>go()</code> method is to refresh the current page by either passing <code>0</code>, or by invoking it without an argument:</p>
+<pre class="brush: js">// The following statements
+// both have the effect of
+// refreshing the page
+history.go(0);
+history.go();
+</pre>
+<p>You can determine the number of pages in the history stack by looking at the value of the <code>length</code> property:</p>
+<pre class="brush: js">const numberOfEntries = history.length;
+</pre>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="history"><a href="/en-US/docs/Web/API/History"><code>History</code></a></dt>
+  <dd>
+    <p>Allows manipulation of the browser <em>session history</em> (that is, the pages visited in the tab or frame that the current page is loaded in).</p>
+  </dd>
+  <dt id="popstateevent"><a href="/en-US/docs/Web/API/PopStateEvent"><code>PopStateEvent</code></a></dt>
+  <dd>
+    <p>The interface of the <a href="/en-US/docs/Web/API/Window/popstate_event" title="popstate"><code>popstate</code></a> event.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example assigns a listener for the <a href="/en-US/docs/Web/API/Window/popstate_event" title="popstate"><code>popstate</code></a> event. It then illustrates some of the methods of the history object to add, replace, and move within the browser history for the current tab.</p>
+<pre class="brush: js">window.addEventListener("popstate", (event) =&gt; {
+  alert(
+    `location: ${document.location}, state: ${JSON.stringify(event.state)}`,
+  );
+});
+
+history.pushState({ page: 1 }, "title 1", "?page=1");
+history.pushState({ page: 2 }, "title 2", "?page=2");
+history.replaceState({ page: 3 }, "title 3", "?page=3");
+history.back(); // alerts "location: http://example.com/example.html?page=1, state: {"page":1}"
+history.back(); // alerts "location: http://example.com/example.html, state: null"
+history.go(2); // alerts "location: http://example.com/example.html?page=3, state: {"page":3}"
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.History" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.History" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Window/history" title="history"><code>history</code></a> global object</li>
+  <li><a href="/en-US/docs/Web/API/Window/popstate_event" title="popstate"><code>popstate</code></a> event</li>
+</ul>
+</body></html>

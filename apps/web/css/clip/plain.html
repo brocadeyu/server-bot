@@ -1,0 +1,99 @@
+<html><head></head><body><div class="notecard deprecated">
+    <h4 id="deprecated">Deprecated</h4>
+    <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p>
+</div>
+<div class="notecard warning">
+  <p><strong>Warning:</strong> Where possible, authors are encouraged to use the newer <a href="/en-US/docs/Web/CSS/clip-path"><code>clip-path</code></a> property instead.</p>
+</div>
+<p>The <strong><code>clip</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property defines a visible portion of an element. The <code>clip</code> property applies only to absolutely positioned elements — that is, elements with <a href="/en-US/docs/Web/CSS/position"><code>position:absolute</code></a> or <a href="/en-US/docs/Web/CSS/position"><code>position:fixed</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword value */
+clip: auto;
+
+/* &lt;shape&gt; values */
+clip: rect(1px, 10em, 3rem, 2ch);
+
+/* Global values */
+clip: inherit;
+clip: initial;
+clip: revert;
+clip: revert-layer;
+clip: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="shape"><a href="/en-US/docs/Web/CSS/shape"><code>&lt;shape&gt;</code></a></dt>
+  <dd>
+    <p>A rectangular <a href="/en-US/docs/Web/CSS/shape"><code>&lt;shape&gt;</code></a> of the form <code>rect(&lt;top&gt;, &lt;right&gt;, &lt;bottom&gt;, &lt;left&gt;)</code>. The <code>&lt;top&gt;</code> and <code>&lt;bottom&gt;</code> values are offsets from the <em>inside top border edge</em> of the box, while <code>&lt;right&gt;</code> and <code>&lt;left&gt;</code> are offsets from the <em>inside left border edge</em> of the box — that is, the extent of the padding box.</p>
+    <p>The <code>&lt;top&gt;</code>, <code>&lt;right&gt;</code>, <code>&lt;bottom&gt;</code>, and <code>&lt;left&gt;</code> values may be either a <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> or <code>auto</code>. If any side's value is <code>auto</code>, the element is clipped to that side's <em>inside border edge</em>.</p>
+  </dd>
+  <dt id="auto"><a href="#auto"><code>auto</code></a></dt>
+  <dd>
+    <p>The element does not clip (default). This is different from <code>rect(auto, auto, auto, auto)</code>, which clips to the element's inside border edges.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>absolutely positioned elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td><code>auto</code> if specified as <code>auto</code>, otherwise a rectangle with four values, each of which is <code>auto</code> if specified as <code>auto</code> or the computed length otherwise</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a <a href="/en-US/docs/Web/CSS/shape#interpolation" title="Values of the <shape> CSS data type which are rectangles are interpolated over their top, right, bottom and left component, each treated as a real, floating-point number.">rectangle</a></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="clip">clip = </span><br>  <span class="token property">&lt;rect()&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">auto</span>      <br><br><span class="token property" id="<rect()>">&lt;rect()&gt; = </span><br>  <span class="token function">rect(</span> <a href="/en-US/docs/Web/CSS/top"><span class="token property">&lt;top&gt;</span></a> , <a href="/en-US/docs/Web/CSS/right"><span class="token property">&lt;right&gt;</span></a> , <a href="/en-US/docs/Web/CSS/bottom"><span class="token property">&lt;bottom&gt;</span></a> , <a href="/en-US/docs/Web/CSS/left"><span class="token property">&lt;left&gt;</span></a> <span class="token function">)</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="clipping_an_image">Clipping an image</h3>
+<pre class="brush: html">&lt;p class="dotted-border"&gt;
+  &lt;img src="macarons.png" alt="Original graphic" /&gt;
+  &lt;img id="top-left" src="macarons.png" alt="Graphic clipped to upper left" /&gt;
+  &lt;img id="middle" src="macarons.png" alt="Graphic clipped towards middle" /&gt;
+  &lt;img
+    id="bottom-right"
+    src="macarons.png"
+    alt="Graphic clipped to bottom right" /&gt;
+&lt;/p&gt;
+</pre>
+<pre class="brush: css">.dotted-border {
+  border: dotted;
+  position: relative;
+  width: 390px;
+  height: 400px;
+}
+
+#top-left,
+#middle,
+#bottom-right {
+  position: absolute;
+  top: 0;
+}
+
+#top-left {
+  left: 400px;
+  clip: rect(0, 130px, 90px, 0);
+}
+
+#middle {
+  left: 270px;
+  clip: rect(100px, 260px, 190px, 130px);
+}
+
+#bottom-right {
+  left: 140px;
+  clip: rect(200px, 390px, 290px, 260px);
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="clipping an image sample" id="frame_clipping_an_image" height="450px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/clip" data-live-id="clipping_an_image" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.clip" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.clip" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>This property is deprecated. Use <a href="/en-US/docs/Web/CSS/clip-path"><code>clip-path</code></a> instead.</li>
+  <li>Related CSS properties:
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/text-overflow"><code>text-overflow</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/white-space"><code>white-space</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/overflow-x"><code>overflow-x</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/overflow-y"><code>overflow-y</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/overflow"><code>overflow</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/display"><code>display</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/position"><code>position</code></a></li>
+    </ul>
+  </li>
+</ul>
+</body></html>

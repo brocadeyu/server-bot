@@ -1,0 +1,55 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>PermissionStatus</code></strong> interface of the <a href="/en-US/docs/Web/API/Permissions_API">Permissions API</a> provides the state of an object and an event handler for monitoring changes to said state.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PermissionStatus" aria-current="page">
+    <rect x="118" y="0" width="128" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="182" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PermissionStatus
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="permissionstatus.name"><a href="/en-US/docs/Web/API/PermissionStatus/name"><code>PermissionStatus.name</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the name of a requested permission, identical to the <code>name</code> passed to <a href="/en-US/docs/Web/API/Permissions/query"><code>Permissions.query</code></a>.</p>
+  </dd>
+  <dt id="permissionstatus.state"><a href="/en-US/docs/Web/API/PermissionStatus/state"><code>PermissionStatus.state</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the state of a requested permission; one of <code>'granted'</code>, <code>'denied'</code>, or <code>'prompt'</code>.</p>
+  </dd>
+</dl>
+<h3 id="events">Events</h3>
+<dl>
+  <dt id="change"><a href="/en-US/docs/Web/API/PermissionStatus/change_event" title="change"><code>change</code></a></dt>
+  <dd>
+    <p>Invoked upon changes to <code>PermissionStatus.state</code>.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<pre class="brush: js">navigator.permissions
+  .query({ name: "geolocation" })
+  .then((permissionStatus) =&gt; {
+    console.log(`geolocation permission status is ${permissionStatus.state}`);
+    permissionStatus.onchange = () =&gt; {
+      console.log(
+        `geolocation permission status has changed to ${permissionStatus.state}`,
+      );
+    };
+  });
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PermissionStatus" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PermissionStatus" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

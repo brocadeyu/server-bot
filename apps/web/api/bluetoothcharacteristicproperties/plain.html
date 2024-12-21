@@ -1,0 +1,88 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>BluetoothCharacteristicProperties</code></strong> interface of the <a href="/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth API</a> provides the operations that are valid on the given <a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic"><code>BluetoothRemoteGATTCharacteristic</code></a>.</p>
+<p>This interface is returned by calling <a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/properties"><code>BluetoothRemoteGATTCharacteristic.properties</code></a>.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="authenticatedsignedwrites"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/authenticatedSignedWrites" title="authenticatedSignedWrites"><code>authenticatedSignedWrites</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if signed writing to the characteristic value is permitted.</p>
+  </dd>
+  <dt id="broadcast"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/broadcast" title="broadcast"><code>broadcast</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if the broadcast of the characteristic value is permitted using the Server Characteristic Configuration Descriptor.</p>
+  </dd>
+  <dt id="indicate"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/indicate" title="indicate"><code>indicate</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if indications of the characteristic value with acknowledgement is permitted.</p>
+  </dd>
+  <dt id="notify"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/notify" title="notify"><code>notify</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if notifications of the characteristic value without acknowledgement is permitted.</p>
+  </dd>
+  <dt id="read"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/read" title="read"><code>read</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if the reading of the characteristic value is permitted.</p>
+  </dd>
+  <dt id="reliablewrite"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/reliableWrite" title="reliableWrite"><code>reliableWrite</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if reliable writes to the characteristic is permitted.</p>
+  </dd>
+  <dt id="writableauxiliaries"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/writableAuxiliaries" title="writableAuxiliaries"><code>writableAuxiliaries</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if reliable writes to the characteristic descriptor is permitted.</p>
+  </dd>
+  <dt id="write"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/write" title="write"><code>write</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if the writing to the characteristic with response is permitted.</p>
+  </dd>
+  <dt id="writewithoutresponse"><a href="/en-US/docs/Web/API/BluetoothCharacteristicProperties/writeWithoutResponse" title="writeWithoutResponse"><code>writeWithoutResponse</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <code>boolean</code> that is <code>true</code> if the writing to the characteristic without response is permitted.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example shows how tell if a GATT characteristic supports value change notifications.</p>
+<pre class="brush: js">let device = await navigator.bluetooth.requestDevice({
+  filters: [{ services: ["heart_rate"] }],
+});
+let gatt = await device.gatt.connect();
+let service = await gatt.getPrimaryService("heart_rate");
+let characteristic = await service.getCharacteristic("heart_rate_measurement");
+if (characteristic.properties.notify) {
+  characteristic.addEventListener(
+    "characteristicvaluechanged",
+    async (event) =&gt; {
+      console.log(`Received heart rate measurement: ${event.target.value}`);
+    },
+  );
+  await characteristic.startNotifications();
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BluetoothCharacteristicProperties" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BluetoothCharacteristicProperties" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

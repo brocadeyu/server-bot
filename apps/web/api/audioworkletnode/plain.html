@@ -1,0 +1,96 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<div class="notecard note">
+  <p><strong>Note:</strong> Although the interface is available outside <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a>, the <a href="/en-US/docs/Web/API/BaseAudioContext/audioWorklet"><code>BaseAudioContext.audioWorklet</code></a> property is not, thus custom <a href="/en-US/docs/Web/API/AudioWorkletProcessor"><code>AudioWorkletProcessor</code></a>s cannot be defined outside them.</p>
+</div>
+<p>The <strong><code>AudioWorkletNode</code></strong> interface of the <a href="/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a> represents a base class for a user-defined <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a>, which can be connected to an audio routing graph along with other nodes. It has an associated <a href="/en-US/docs/Web/API/AudioWorkletProcessor"><code>AudioWorkletProcessor</code></a>, which does the actual audio processing in a Web Audio rendering thread.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AudioNode">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AudioNode
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AudioWorkletNode" aria-current="page">
+    <rect x="223" y="0" width="128" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="287" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AudioWorkletNode
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="audioworkletnode"><a href="/en-US/docs/Web/API/AudioWorkletNode/AudioWorkletNode" title="AudioWorkletNode()"><code>AudioWorkletNode()</code></a></dt>
+  <dd>
+    <p>Creates a new instance of an <code>AudioWorkletNode</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Also Inherits properties from its parent, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a></em>.</p>
+<dl>
+  <dt id="audioworkletnode.port"><a href="/en-US/docs/Web/API/AudioWorkletNode/port"><code>AudioWorkletNode.port</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/MessagePort"><code>MessagePort</code></a> used for bidirectional communication between the node and its associated <a href="/en-US/docs/Web/API/AudioWorkletProcessor"><code>AudioWorkletProcessor</code></a>. The other end is available under the <a href="/en-US/docs/Web/API/AudioWorkletProcessor/port" title="port"><code>port</code></a> property of the processor.</p>
+  </dd>
+  <dt id="audioworkletnode.parameters"><a href="/en-US/docs/Web/API/AudioWorkletNode/parameters"><code>AudioWorkletNode.parameters</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/AudioParamMap"><code>AudioParamMap</code></a> — a collection of <a href="/en-US/docs/Web/API/AudioParam"><code>AudioParam</code></a> objects. They are instantiated during the creation of the underlying <code>AudioWorkletProcessor</code>. If the <code>AudioWorkletProcessor</code> has a static <a href="/en-US/docs/Web/API/AudioWorkletProcessor/parameterDescriptors" title="parameterDescriptors"><code>parameterDescriptors</code></a> getter, the <a href="/en-US/docs/Web/API/AudioParamDescriptor"><code>AudioParamDescriptor</code></a> array returned from it is used to create <code>AudioParam</code> objects on the <code>AudioWorkletNode</code>. With this mechanism it is possible to make your own <code>AudioParam</code> objects accessible from your <code>AudioWorkletNode</code>. You can then use their values in the associated <code>AudioWorkletProcessor</code>.</p>
+  </dd>
+</dl>
+<h3 id="events">Events</h3>
+<dl>
+  <dt id="processorerror"><a href="/en-US/docs/Web/API/AudioWorkletNode/processorerror_event" title="processorerror"><code>processorerror</code></a></dt>
+  <dd>
+    <p>Fired when an error is thrown in associated <a href="/en-US/docs/Web/API/AudioWorkletProcessor"><code>AudioWorkletProcessor</code></a>. Once fired, the processor and consequently the node will output silence throughout its lifetime.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Also inherits methods from its parent, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a></em>.</p>
+<p><em>The <code>AudioWorkletNode</code> interface does not define any methods of its own.</em></p>
+<h2 id="examples">Examples</h2>
+<p>In this example we create a custom <code>AudioWorkletNode</code> that outputs random noise.</p>
+<p>First, we need to define a custom <a href="/en-US/docs/Web/API/AudioWorkletProcessor"><code>AudioWorkletProcessor</code></a>, which will output random noise, and register it. Note that this should be done in a separate file.</p>
+<pre class="brush: js">// random-noise-processor.js
+class RandomNoiseProcessor extends AudioWorkletProcessor {
+  process(inputs, outputs, parameters) {
+    const output = outputs[0];
+    output.forEach((channel) =&gt; {
+      for (let i = 0; i &lt; channel.length; i++) {
+        channel[i] = Math.random() * 2 - 1;
+      }
+    });
+    return true;
+  }
+}
+
+registerProcessor("random-noise-processor", RandomNoiseProcessor);
+</pre>
+<p>Next, in our main script file we'll load the processor, create an instance of <code>AudioWorkletNode</code> passing it the name of the processor, and connect the node to an audio graph.</p>
+<pre class="brush: js">const audioContext = new AudioContext();
+await audioContext.audioWorklet.addModule("random-noise-processor.js");
+const randomNoiseNode = new AudioWorkletNode(
+  audioContext,
+  "random-noise-processor",
+);
+randomNoiseNode.connect(audioContext.destination);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.AudioWorkletNode" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.AudioWorkletNode" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a></li>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API">Using the Web Audio API</a></li>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API/Using_AudioWorklet">Using AudioWorklet</a></li>
+</ul>
+</body></html>

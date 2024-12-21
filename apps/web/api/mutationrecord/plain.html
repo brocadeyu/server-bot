@@ -1,0 +1,58 @@
+<html><head></head><body>
+<p>The <strong><code>MutationRecord</code></strong> is a read-only interface that represents an individual DOM mutation observed by a <a href="/en-US/docs/Web/API/MutationObserver"><code>MutationObserver</code></a>. It is the object inside the array passed to the callback of a <a href="/en-US/docs/Web/API/MutationObserver"><code>MutationObserver</code></a>.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="mutationrecord.addednodes"><a href="/en-US/docs/Web/API/MutationRecord/addedNodes"><code>MutationRecord.addedNodes</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The nodes added by a mutation. Will be an empty <a href="/en-US/docs/Web/API/NodeList"><code>NodeList</code></a> if no nodes were added.</p>
+  </dd>
+  <dt id="mutationrecord.attributename"><a href="/en-US/docs/Web/API/MutationRecord/attributeName"><code>MutationRecord.attributeName</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The name of the changed attribute as a string, or <code>null</code>.</p>
+  </dd>
+  <dt id="mutationrecord.attributenamespace"><a href="/en-US/docs/Web/API/MutationRecord/attributeNamespace"><code>MutationRecord.attributeNamespace</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The namespace of the changed attribute as a string, or <code>null</code>.</p>
+  </dd>
+  <dt id="mutationrecord.nextsibling"><a href="/en-US/docs/Web/API/MutationRecord/nextSibling"><code>MutationRecord.nextSibling</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The next sibling of the added or removed nodes, or <code>null</code>.</p>
+  </dd>
+  <dt id="mutationrecord.oldvalue"><a href="/en-US/docs/Web/API/MutationRecord/oldValue"><code>MutationRecord.oldValue</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The value depends on the <a href="/en-US/docs/Web/API/MutationRecord/type"><code>MutationRecord.type</code></a>:</p>
+    <ul>
+      <li>For <code>attributes</code>, it is the value of the changed attribute before the change.</li>
+      <li>For <code>characterData</code>, it is the data of the changed node before the change.</li>
+      <li>For <code>childList</code>, it is <code>null</code>.</li>
+    </ul>
+  </dd>
+  <dt id="mutationrecord.previoussibling"><a href="/en-US/docs/Web/API/MutationRecord/previousSibling"><code>MutationRecord.previousSibling</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The previous sibling of the added or removed nodes, or <code>null</code>.</p>
+  </dd>
+  <dt id="mutationrecord.removednodes"><a href="/en-US/docs/Web/API/MutationRecord/removedNodes"><code>MutationRecord.removedNodes</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The nodes removed by a mutation. Will be an empty <a href="/en-US/docs/Web/API/NodeList"><code>NodeList</code></a> if no nodes were removed.</p>
+  </dd>
+  <dt id="mutationrecord.target"><a href="/en-US/docs/Web/API/MutationRecord/target"><code>MutationRecord.target</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The node the mutation affected, depending on the <code>MutationRecord.type</code>.</p>
+    <ul>
+      <li>For <code>attributes</code>, it is the element whose attribute changed.</li>
+      <li>For <code>characterData</code>, it is the <code>CharacterData</code> node.</li>
+      <li>For <code>childList</code>, it is the node whose children changed.</li>
+    </ul>
+  </dd>
+  <dt id="mutationrecord.type"><a href="/en-US/docs/Web/API/MutationRecord/type"><code>MutationRecord.type</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string representing the type of mutation: <code>attributes</code> if the mutation was an attribute mutation, <code>characterData</code> if it was a mutation to a <code>CharacterData</code> node, and <code>childList</code> if it was a mutation to the tree of nodes.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MutationRecord" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MutationRecord" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

@@ -1,0 +1,70 @@
+<html><head></head><body>
+<p>The <strong><code>text-underline-offset</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets the offset distance of an underline text decoration line (applied using <a href="/en-US/docs/Web/CSS/text-decoration"><code>text-decoration</code></a>) from its original position.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/text-underline-offset.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p><code>text-underline-offset</code> is not part of the <a href="/en-US/docs/Web/CSS/text-decoration"><code>text-decoration</code></a> shorthand. While an element can have multiple <code>text-decoration</code> lines, <code>text-underline-offset</code> only impacts underlining, and <strong>not</strong> other possible line decoration options such as <code>overline</code> or <code>line-through</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Single keyword */
+text-underline-offset: auto;
+
+/* length */
+text-underline-offset: 0.1em;
+text-underline-offset: 3px;
+
+/* percentage */
+text-underline-offset: 20%;
+
+/* Global values */
+text-underline-offset: inherit;
+text-underline-offset: initial;
+text-underline-offset: revert;
+text-underline-offset: revert-layer;
+text-underline-offset: unset;
+</pre>
+<p>The <code>text-underline-offset</code> property is specified as a single value from the list below.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="auto"><a href="#auto"><code>auto</code></a></dt>
+  <dd>
+    <p>The browser chooses the appropriate offset for underlines.</p>
+  </dd>
+  <dt id="length"><a href="#length"><code>&lt;length&gt;</code></a></dt>
+  <dd>
+    <p>Specifies the offset of underlines as a <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a>, overriding the font file suggestion and the browser default. It is recommended to use <code>em</code> units so the offset scales with the font size.</p>
+  </dd>
+  <dt id="percentage"><a href="#percentage"><code>&lt;percentage&gt;</code></a></dt>
+  <dd>
+    <p>Specifies the offset of underlines as a <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> of <strong>1 em</strong> in the element's font. A percentage inherits as a relative value, and so therefore scales with changes in the font. For a given application of this property, the offset is constant across the whole box that the underline is applied to, even if there are child elements with different font sizes or vertical alignment.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>all elements. It also applies to <a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a> and <a href="/en-US/docs/Web/CSS/::first-line"><code>::first-line</code></a>.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row">Percentages</th><td>refer to the font size of the element itself</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>by computed value type</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="text-underline-offset">text-underline-offset = </span><br>  <span class="token keyword">auto</span>                 <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;length-percentage&gt;</span>  <br><br><span class="token property" id="<length-percentage>">&lt;length-percentage&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="demonstration_of_text-underline-offset">Demonstration of text-underline-offset</h3>
+<pre class="brush: html">&lt;p class="one-line"&gt;Here's some text with an offset wavy red underline!&lt;/p&gt;
+&lt;br /&gt;
+&lt;p class="two-lines"&gt;
+  This text has lines both above and below it. Only the bottom one is offset.
+&lt;/p&gt;
+</pre>
+<pre class="brush: css">p {
+  text-decoration: underline wavy red;
+  text-underline-offset: 1em;
+}
+
+.two-lines {
+  text-decoration-color: purple;
+  text-decoration-line: underline overline;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" src="about:blank" data-live-path="/en-US/docs/Web/CSS/text-underline-offset" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.text-underline-offset" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.text-underline-offset" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/text-decoration"><code>text-decoration</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/text-decoration-thickness"><code>text-decoration-thickness</code></a></li>
+</ul>
+</body></html>

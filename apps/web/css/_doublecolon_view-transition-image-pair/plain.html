@@ -1,0 +1,51 @@
+<html><head></head><body>
+<p>The <strong><code>::view-transition-image-pair</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-elements">pseudo-element</a> represents a container for a <a href="/en-US/docs/Web/API/View_Transitions_API">view transition's</a> "old" and "new" view states — before and after the transition.</p>
+<p>During a view transition, <code>::view-transition-image-pair</code> is included in the associated pseudo-element tree as explained in <a href="/en-US/docs/Web/API/View_Transitions_API/Using#the_view_transition_pseudo-element_tree">The view transition pseudo-element tree</a>. It is only ever a child of a <a href="/en-US/docs/Web/CSS/::view-transition-group"><code>::view-transition-group</code></a>. In terms of children, it can have a <a href="/en-US/docs/Web/CSS/::view-transition-new"><code>::view-transition-new</code></a> or a <a href="/en-US/docs/Web/CSS/::view-transition-old"><code>::view-transition-old</code></a>, or both.</p>
+<p><code>::view-transition-image-pair</code> is given the following default styling in the UA stylesheet:</p>
+<pre class="brush: css">:root::view-transition-image-pair(*) {
+  position: absolute;
+  inset: 0;
+
+  animation-duration: inherit;
+  animation-fill-mode: inherit;
+  animation-delay: inherit;
+}
+</pre>
+<p>During a view transition, <code>::view-transition-image-pair</code> has <a href="/en-US/docs/Web/CSS/isolation"><code>isolation: isolate</code></a> set on it in the view transition style sheet so that its children can be blended with non-normal blend modes without affecting other visual outputs.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">::view-transition-image-pair(&lt;pt-name-selector&gt;) {
+  /* ... */
+}
+</pre>
+<p><code>&lt;pt-name-selector&gt;</code> can be one of the following values:</p>
+<dl>
+  <dt id="sect1"><a href="#sect1"><code>*</code></a></dt>
+  <dd>
+    <p>Causes the pseudo-element to match all view transition groups.</p>
+  </dd>
+  <dt id="root"><a href="#root"><code>root</code></a></dt>
+  <dd>
+    <p>Causes the pseudo-element to match the default <code>root</code> view transition group created by the user agent to contain the view transition for the overall page. This group includes any element not assigned to its own specific view transition group via the <a href="/en-US/docs/Web/CSS/view-transition-name"><code>view-transition-name</code></a> property.</p>
+  </dd>
+  <dt id="custom-ident"><a href="/en-US/docs/Web/CSS/custom-ident"><code>&lt;custom-ident&gt;</code></a></dt>
+  <dd>
+    <p>Causes the pseudo-element to match a specific view transition group created by assigning the given <a href="/en-US/docs/Web/CSS/custom-ident"><code>&lt;custom-ident&gt;</code></a> to an element via the <a href="/en-US/docs/Web/CSS/view-transition-name"><code>view-transition-name</code></a> property.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: css">::view-transition-image-pair(root) {
+  isolation: auto;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.view-transition-image-pair" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.view-transition-image-pair" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/View_Transitions_API">View Transitions API</a></li>
+  <li><a href="https://developer.chrome.com/docs/web-platform/view-transitions/">Smooth transitions with the View Transitions API</a></li>
+</ul>
+</body></html>

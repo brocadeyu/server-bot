@@ -1,0 +1,52 @@
+<html><head></head><body><div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div>
+<p>The <strong><code>::-webkit-progress-inner-element</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-elements">pseudo-element</a> represents the outermost container of the <a href="/en-US/docs/Web/HTML/Element/progress"><code>&lt;progress&gt;</code></a> element. It is the parent of the <a href="/en-US/docs/Web/CSS/::-webkit-progress-bar"><code>::-webkit-progress-bar</code></a> pseudo-element.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> In order to let <code>::-webkit-progress-value</code> take effect, <a href="/en-US/docs/Web/CSS/appearance"><code>appearance</code></a> needs to be set to <code>none</code> on the <code>&lt;progress&gt;</code> element.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">::-webkit-progress-inner-element {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<p>These examples work only on Blink and WebKit.</p>
+<h3 id="adding_a_black_border_around_the_progress_bar">Adding a black border around the progress bar</h3>
+<p>In this example, a 2px black border is added around the progress bar.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;progress value="10" max="50"&gt;&lt;/progress&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">progress {
+  -webkit-appearance: none;
+}
+
+::-webkit-progress-inner-element {
+  border: 2px solid black;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Adding a black border around the progress bar sample" id="frame_adding_a_black_border_around_the_progress_bar" width="200" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/::-webkit-progress-inner-element" data-live-id="adding_a_black_border_around_the_progress_bar" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h4 id="result_screenshot">Result screenshot</h4>
+<p>If you're not using a Blink or WebKit browser, the above code results in a progress bar looking like this:</p>
+<p>
+  <img src="/en-US/docs/Web/CSS/::-webkit-progress-inner-element/-webkit-progress-inner-element_example.png" alt="Progressbar is a long green and grey box with a black border. The left 20% of the box is green. The right 80% is grey." width="176" height="32">
+</p>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.-webkit-progress-inner-element" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>
+    <p>The pseudo-elements used by WebKit/Blink to style other parts of a <a href="/en-US/docs/Web/HTML/Element/progress"><code>&lt;progress&gt;</code></a> element:</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/::-webkit-progress-bar"><code>::-webkit-progress-bar</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/::-webkit-progress-value"><code>::-webkit-progress-value</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/::-moz-progress-bar"><code>::-moz-progress-bar</code></a></li>
+</ul>
+</body></html>

@@ -1,0 +1,135 @@
+<html><head></head><body>
+<p>The <code>id</code> manifest member is used to specify a unique identifier for your web application.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Absolute URL */
+"id": "https://example.com/myapp"
+
+/* Relative URL */
+"id": "myapp/v2"
+
+/* URL with query parameters */
+"id": "myapp?version=2&amp;mode=trial"
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="id"><a href="#id"><code>id</code></a></dt>
+  <dd>
+    <p>
+      A string that takes the form of a URL.
+      The URL must be same-origin with the <a href="/en-US/docs/Web/Manifest/start_url"><code>start_url</code></a> of your web app.
+      If <code>id</code> is a relative URL, it is resolved using the origin of <code>start_url</code>. Any fragment in the <code>id</code> is always ignored.
+      If <code>id</code> is not specified or the value is invalid in any way (such as not a string, not a valid URL, not same-origin with <code>start_url</code>), the <code>start_url</code> value is used.
+    </p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The <code>id</code> manifest member serves as a unique identifier for your web app. It allows browsers to distinguish between different applications:</p>
+<ul>
+  <li>When a browser comes across an app manifest with an <code>id</code> that does not correspond to an already installed application, it treats that manifest as a description of a distinct application, even if it is served from the same URL as another application.</li>
+  <li>When a browser comes across an app manifest with an <code>id</code> that matches the identity of an already installed app, it treats the new manifest as a replacement for the existing app's manifest, even if the app is served from a different URL than the one installed previously.</li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> While the <code>id</code> is processed like a URL, it does not point to a resource that can be accessed, so it is not required to be within the app's <a href="/en-US/docs/Web/Manifest/scope">scope</a>.</p>
+</div>
+<p>The <code>id</code> can also be used by services that collect lists of web apps to uniquely identify applications.</p>
+<p>A few key points to remember while using the <code>id</code> member:</p>
+<ul>
+  <li>Use a leading <code>/</code> to specify that the <code>id</code> is a root-relative URL path.</li>
+  <li>Since <code>id</code> is resolved against <code>start_url</code>'s origin, <code>id</code> values such as <code>../foo</code>, <code>foo</code>, <code>/foo</code>, and <code>./foo</code> all resolve to the same identifier relative to the origin. For example, if <code>start_url</code> is <code>https://example.com/app/</code>, all these <code>id</code> values will resolve to <code>https://example.com/foo/</code>.</li>
+  <li>Standard URL encoding and decoding rules apply when resolving the <code>id</code> value.</li>
+  <li>Fragments in the <code>id</code> are removed during processing. For example, if <code>id</code> is set to <code>foo#bar</code>, it will be resolved as <code>foo</code>. Similarly, if <code>id</code> is undefined and the <code>start_url</code> is <code>https://example.com/app/#home</code>, <code>id</code> will resolve to <code>https://example.com/app/</code>.</li>
+  <li>Query parameters in the <code>id</code> are preserved and included in the final resolved identifier.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_distinct_app_version">Creating a distinct app version</h3>
+<p>Suppose you create a web app with the following manifest:</p>
+<pre class="brush: json">{
+  "name": "My Weather Application",
+  "id": "https://example.com/weatherapp/v1",
+  "start_url": "https://example.com/app"
+}
+</pre>
+<p>If you later create another version of this app with significant changes and want it to be treated as a different app, you can add the manifest as:</p>
+<pre class="brush: json">{
+  "name": "My Weather Application",
+  "id": "https://example.com/weatherapp/v2",
+  "start_url": "https://example.com/app"
+}
+</pre>
+<p>In this case, even though both manifest files are served from the same URL, browsers will treat the new manifest as a description of a distinct application because the <code>id</code> is different. As a result, users can have both versions installed simultaneously.</p>
+<h3 id="updating_an_existing_app">Updating an existing app</h3>
+<p>Consider a scenario where you deploy a web app with the following manifest:</p>
+<pre class="brush: json">{
+  "name": "My Weather Application",
+  "id": "https://example.com/weatherapp/",
+  "start_url": "https://old-domain.com/app"
+}
+</pre>
+<p>However, you later decide to move the app to a different domain. You would then update the manifest as follows:</p>
+<pre class="brush: json">{
+  "name": "My Weather Application",
+  "id": "https://example.com/weatherapp/",
+  "start_url": "https://new-domain.com/app"
+}
+</pre>
+<p>Browsers will treat this new manifest as an update to the existing app because the <code>id</code> values match. In this case, users will receive an update to their existing app, rather than being prompted to install a new app.</p>
+<h3 id="understanding_id_resolution">Understanding <code>id</code> resolution</h3>
+<p>Assume that the <code>start_url</code> for your app is <code>https://example.com/my-app/home</code>. The following table demonstrates how different <code>id</code> values in the manifest will be resolved:</p>
+<table>
+  <thead>
+    <tr>
+      <th><code>id</code> in manifest</th>
+      <th>Resolved <code>id</code></th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>undefined</td>
+      <td><code>https://example.com/my-app/home</code></td>
+      <td>Defaults to <code>start_url</code></td>
+    </tr>
+    <tr>
+      <td><code>""</code></td>
+      <td><code>https://example.com/my-app/home</code></td>
+      <td>Empty string resolves to <code>start_url</code></td>
+    </tr>
+    <tr>
+      <td><code>/</code></td>
+      <td><code>https://example.com/</code></td>
+      <td>Root-relative URL</td>
+    </tr>
+    <tr>
+      <td><code>foo?x=y</code></td>
+      <td><code>https://example.com/foo?x=y</code></td>
+      <td>Relative path resolved against <code>start_url</code>'s origin with query parameters preserved</td>
+    </tr>
+    <tr>
+      <td><code>foo#heading</code></td>
+      <td><code>https://example.com/foo</code></td>
+      <td>Relative path resolved against <code>start_url</code>'s origin with fragment removed</td>
+    </tr>
+    <tr>
+      <td><code>https://anothersite.com/foo</code></td>
+      <td><code>https://example.com/my-app/home</code></td>
+      <td>Cross-origin URL not allowed, falls back to <code>start_url</code></td>
+    </tr>
+    <tr>
+      <td><code>😀</code></td>
+      <td><code>https://example.com/%F0%9F%98%80</code></td>
+      <td>Non-ASCII character encoded in URL</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.id" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.id" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Manifest/scope"><code>scope</code></a> manifest member</li>
+  <li><a href="/en-US/docs/Web/Manifest/start_url"><code>start_url</code></a> manifest member</li>
+</ul>
+</body></html>

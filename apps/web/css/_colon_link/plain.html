@@ -1,0 +1,37 @@
+<html><head></head><body>
+<p>The <strong><code>:link</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents an element that has not yet been visited. It matches every unvisited <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> or <a href="/en-US/docs/Web/HTML/Element/area"><code>&lt;area&gt;</code></a> element that has an <code>href</code> attribute.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-link.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p>Styles defined by the <code>:link</code> and <a href="/en-US/docs/Web/CSS/:visited"><code>:visited</code></a> pseudo-classes can be overridden by any subsequent user-action pseudo-classes (<a href="/en-US/docs/Web/CSS/:hover"><code>:hover</code></a> or <a href="/en-US/docs/Web/CSS/:active"><code>:active</code></a>) that have at least equal specificity. To style links appropriately, put the <code>:link</code> rule before all other link-related rules, as defined by the <em>LVHA-order</em>: <code>:link</code> — <code>:visited</code> — <code>:hover</code> — <code>:active</code>. The <code>:visited</code> pseudo-class and <code>:link</code> pseudo-class are mutually exclusive.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> Use <a href="/en-US/docs/Web/CSS/:any-link"><code>:any-link</code></a> to select an element independent of whether it has been visited or not.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:link {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<p>By default, most browsers apply a special <a href="/en-US/docs/Web/CSS/color"><code>color</code></a> value to visited links. Thus, the links in this example will probably have special font colors only before you visit them. (After that, you'll need to clear your browser history to see them again.) However, the <a href="/en-US/docs/Web/CSS/background-color"><code>background-color</code></a> values are likely to remain, as most browsers do not set that property on visited links by default.</p>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;a href="#ordinary-target"&gt;This is an ordinary link.&lt;/a&gt;&lt;br /&gt;
+&lt;a href=""&gt;You've already visited this link.&lt;/a&gt;&lt;br /&gt;
+&lt;a&gt;Placeholder link (won't get styled)&lt;/a&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">a:link {
+  background-color: gold;
+  color: green;
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:link" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.link" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.link" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Link-related pseudo-classes: <a href="/en-US/docs/Web/CSS/:visited"><code>:visited</code></a>, <a href="/en-US/docs/Web/CSS/:hover"><code>:hover</code></a>, <a href="/en-US/docs/Web/CSS/:active"><code>:active</code></a></li>
+</ul>
+</body></html>

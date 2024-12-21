@@ -1,0 +1,65 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>PerformanceObserver</code></strong> interface is used to observe performance measurement events and be notified of new <a href="/en-US/docs/Web/API/PerformanceEntry" title="performance entries">performance entries</a> as they are recorded in the browser's <em>performance timeline</em>.</p>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="performanceobserver"><a href="/en-US/docs/Web/API/PerformanceObserver/PerformanceObserver" title="PerformanceObserver()"><code>PerformanceObserver()</code></a></dt>
+  <dd>
+    <p>Creates and returns a new <code>PerformanceObserver</code> object.</p>
+  </dd>
+</dl>
+<h2 id="static_properties">Static properties</h2>
+<dl>
+  <dt id="performanceobserver.supportedentrytypes"><a href="/en-US/docs/Web/API/PerformanceObserver/supportedEntryTypes_static" title="PerformanceObserver.supportedEntryTypes"><code>PerformanceObserver.supportedEntryTypes</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an array of the <a href="/en-US/docs/Web/API/PerformanceEntry/entryType" title="entryType"><code>entryType</code></a> values supported by the user agent.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="performanceobserver.observe"><a href="/en-US/docs/Web/API/PerformanceObserver/observe" title="PerformanceObserver.observe()"><code>PerformanceObserver.observe()</code></a></dt>
+  <dd>
+    <p>Specifies the set of entry types to observe. The performance observer's callback function will be invoked when performance entry is recorded for one of the specified <code>entryTypes</code>.</p>
+  </dd>
+  <dt id="performanceobserver.disconnect"><a href="/en-US/docs/Web/API/PerformanceObserver/disconnect" title="PerformanceObserver.disconnect()"><code>PerformanceObserver.disconnect()</code></a></dt>
+  <dd>
+    <p>Stops the performance observer callback from receiving performance entries.</p>
+  </dd>
+  <dt id="performanceobserver.takerecords"><a href="/en-US/docs/Web/API/PerformanceObserver/takeRecords" title="PerformanceObserver.takeRecords()"><code>PerformanceObserver.takeRecords()</code></a></dt>
+  <dd>
+    <p>Returns the current list of performance entries stored in the performance observer, emptying it out.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_performanceobserver">Creating a PerformanceObserver</h3>
+<p>
+  The following example creates a <code>PerformanceObserver</code> watching for "mark" (<a href="/en-US/docs/Web/API/PerformanceMark"><code>PerformanceMark</code></a>) and "measure" (<a href="/en-US/docs/Web/API/PerformanceMeasure"><code>PerformanceMeasure</code></a>) events.
+  The <code>perfObserver</code> callback provides a <code>list</code> (<a href="/en-US/docs/Web/API/PerformanceObserverEntryList"><code>PerformanceObserverEntryList</code></a>) which allows you to get observed performance entries.
+</p>
+<pre class="brush: js">function perfObserver(list, observer) {
+  list.getEntries().forEach((entry) =&gt; {
+    if (entry.entryType === "mark") {
+      console.log(`${entry.name}'s startTime: ${entry.startTime}`);
+    }
+    if (entry.entryType === "measure") {
+      console.log(`${entry.name}'s duration: ${entry.duration}`);
+    }
+  });
+}
+const observer = new PerformanceObserver(perfObserver);
+observer.observe({ entryTypes: ["measure", "mark"] });
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PerformanceObserver" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PerformanceObserver" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/MutationObserver"><code>MutationObserver</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ResizeObserver"><code>ResizeObserver</code></a></li>
+  <li><a href="/en-US/docs/Web/API/IntersectionObserver"><code>IntersectionObserver</code></a></li>
+</ul>
+</body></html>

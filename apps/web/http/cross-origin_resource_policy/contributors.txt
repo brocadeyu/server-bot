@@ -1,0 +1,10 @@
+# Contributors by commit history
+https://github.com/mdn/content/commits/main/files/en-us/web/http/cross-origin_resource_policy/index.md
+
+# Original Wiki contributors
+dd-pardal
+lol768
+Malvoz
+Tigt
+tdresser
+fscholz

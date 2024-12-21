@@ -1,0 +1,74 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong>Battery Status API</strong>, more often referred to as the <strong>Battery API</strong>, provides information about the system's battery charge level and lets you be notified by events that are sent when the battery level or charging status change. This can be used to adjust your app's resource usage to reduce battery drain when the battery is low, or to save changes before the battery runs out in order to prevent data loss.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This API is <em>not available</em> in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a> (not exposed via <a href="/en-US/docs/Web/API/WorkerNavigator"><code>WorkerNavigator</code></a>).</p>
+</div>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="batterymanager"><a href="/en-US/docs/Web/API/BatteryManager"><code>BatteryManager</code></a></dt>
+  <dd>
+    <p>Provides information about the system's battery charge level.</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<dl>
+  <dt id="navigator.getbattery"><a href="/en-US/docs/Web/API/Navigator/getBattery"><code>Navigator.getBattery()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a <a href="/en-US/docs/Web/API/BatteryManager"><code>BatteryManager</code></a> object.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<p>In this example, we watch for changes both to the charging status (whether or not we're plugged in and charging) and for changes to the battery level and timing. This is done by listening for the <a href="/en-US/docs/Web/API/BatteryManager/chargingchange_event" title="chargingchange"><code>chargingchange</code></a>, <a href="/en-US/docs/Web/API/BatteryManager/levelchange_event" title="levelchange"><code>levelchange</code></a>, <a href="/en-US/docs/Web/API/BatteryManager/chargingtimechange_event" title="chargingtimechange"><code>chargingtimechange</code></a>, <a href="/en-US/docs/Web/API/BatteryManager/dischargingtimechange_event" title="dischargingtimechange"><code>dischargingtimechange</code></a> events.</p>
+<pre class="brush: js">navigator.getBattery().then((battery) =&gt; {
+  function updateAllBatteryInfo() {
+    updateChargeInfo();
+    updateLevelInfo();
+    updateChargingInfo();
+    updateDischargingInfo();
+  }
+  updateAllBatteryInfo();
+
+  battery.addEventListener("chargingchange", () =&gt; {
+    updateChargeInfo();
+  });
+  function updateChargeInfo() {
+    console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
+  }
+
+  battery.addEventListener("levelchange", () =&gt; {
+    updateLevelInfo();
+  });
+  function updateLevelInfo() {
+    console.log(`Battery level: ${battery.level * 100}%`);
+  }
+
+  battery.addEventListener("chargingtimechange", () =&gt; {
+    updateChargingInfo();
+  });
+  function updateChargingInfo() {
+    console.log(`Battery charging time: ${battery.chargingTime} seconds`);
+  }
+
+  battery.addEventListener("dischargingtimechange", () =&gt; {
+    updateDischargingInfo();
+  });
+  function updateDischargingInfo() {
+    console.log(`Battery discharging time: ${battery.dischargingTime} seconds`);
+  }
+});
+</pre>
+<p>See also <a href="https://www.w3.org/TR/battery-status/#examples">the example in the specification</a>.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BatteryManager,api.Navigator.getBattery" data-spec-urls="https://w3c.github.io/battery/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BatteryManager" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.Navigator.getBattery" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://hacks.mozilla.org/2012/02/using-the-battery-api-part-of-webapi/">Hacks blog post - Using the Battery API</a></li>
+</ul>
+</body></html>

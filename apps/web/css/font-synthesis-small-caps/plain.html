@@ -1,0 +1,69 @@
+<html><head></head><body>
+<p>The <strong><code>font-synthesis-small-caps</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property lets you specify whether or not the browser may synthesize small-caps typeface when it is missing in a font family. Small-caps glyphs typically use the form of uppercase letters but are reduced to the size of lowercase letters.</p>
+<p>It is often convenient to use the shorthand property <a href="/en-US/docs/Web/CSS/font-synthesis"><code>font-synthesis</code></a> to control all typeface synthesis values.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+font-synthesis-small-caps: auto;
+font-synthesis-small-caps: none;
+
+/* Global values */
+font-synthesis-small-caps: inherit;
+font-synthesis-small-caps: initial;
+font-synthesis-small-caps: revert;
+font-synthesis-small-caps: revert-layer;
+font-synthesis-small-caps: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="auto"><a href="#auto"><code>auto</code></a></dt>
+  <dd>
+    <p>Indicates that the missing small-caps typeface may be synthesized by the browser if needed.</p>
+  </dd>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>Indicates that the synthesis of the missing small-caps typeface by the browser is not allowed.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>all elements and text. It also applies to <a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a> and <a href="/en-US/docs/Web/CSS/::first-line"><code>::first-line</code></a>.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="font-synthesis-small-caps">font-synthesis-small-caps = </span><br>  <span class="token keyword">auto</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">none</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="disabling_synthesis_of_small-caps_typeface">Disabling synthesis of small-caps typeface</h3>
+<p>This example shows turning off synthesis of the small-caps typeface by the browser in the <code>Montserrat</code> font.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p class="english"&gt;
+  These are the default &lt;span class="small-caps"&gt;small-caps&lt;/span&gt;,
+  &lt;strong&gt;bold&lt;/strong&gt;, and &lt;em&gt;oblique&lt;/em&gt; typefaces.
+&lt;/p&gt;
+
+&lt;p class="english no-syn"&gt;
+  The &lt;span class="small-caps"&gt;small-caps&lt;/span&gt; typeface is turned off here but
+  not the &lt;strong&gt;bold&lt;/strong&gt; and &lt;em&gt;oblique&lt;/em&gt; typefaces.
+&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">@import url("https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap");
+
+.english {
+  font-family: "Montserrat", sans-serif;
+}
+.small-caps {
+  font-variant: small-caps;
+}
+.no-syn {
+  font-synthesis-small-caps: none;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Disabling synthesis of small-caps typeface sample" id="frame_disabling_synthesis_of_small-caps_typeface" height="100" src="about:blank" data-live-path="/en-US/docs/Web/CSS/font-synthesis-small-caps" data-live-id="disabling_synthesis_of_small-caps_typeface" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.font-synthesis-small-caps" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.font-synthesis-small-caps" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/font-synthesis">font-synthesis</a> shorthand, <a href="/en-US/docs/Web/CSS/font-synthesis-style">font-synthesis-style</a>, <a href="/en-US/docs/Web/CSS/font-synthesis-weight">font-synthesis-weight</a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-style"><code>font-style</code></a>, <a href="/en-US/docs/Web/CSS/font-variant"><code>font-variant</code></a>, <a href="/en-US/docs/Web/CSS/font-variant-caps"><code>font-variant-caps</code></a>, <a href="/en-US/docs/Web/CSS/font-weight"><code>font-weight</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CanvasRenderingContext2D/fontVariantCaps">CanvasRenderingContext2D: fontVariantCaps property</a></li>
+</ul>
+</body></html>

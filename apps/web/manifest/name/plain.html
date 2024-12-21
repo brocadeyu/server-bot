@@ -1,0 +1,51 @@
+<html><head></head><body>
+<p>The <code>name</code> manifest member is used to specify the full name of your web application as it's usually displayed to users, such as in application lists or as a label for your application's icon.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Full names of web apps */
+"name": "Daily Task Planner"
+"name": "Recipe and Pantry Tracker"
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="name"><a href="#name"><code>name</code></a></dt>
+  <dd>
+    <p>A string that specifies the full name of your web app.</p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The <code>name</code> manifest member serves as the <a href="/en-US/docs/Glossary/Accessible_name">accessible name</a> for your installed app. It is displayed to users in various contexts, such as in a list of other installed web apps, as a label for your app's icon, or in the application switcher or task manager.</p>
+<p>In space-constrained contexts where the full <code>name</code> may not fit, such as on a device's home screen or in the application switcher, the value of the <a href="/en-US/docs/Web/Manifest/short_name"><code>short_name</code></a> property (if defined) may be used instead.</p>
+<h3 id="best_practices_for_naming_your_web_app">Best practices for naming your web app</h3>
+<p>Consider the following factors when selecting a name for your web app:</p>
+<ul>
+  <li>Length of the name, especially if you're not providing a separate <code>short_name</code></li>
+  <li>How well it indicates the purpose or nature of your app</li>
+  <li>Whether it is clear and easy to understand and remember</li>
+  <li>How it appears in different contexts, such as in app lists or home screen</li>
+  <li>How easily it can be differentiated from other similar apps</li>
+  <li>Cultural sensitivity and appropriateness for your target audience</li>
+  <li>How well it translates or is perceived in different languages if your app target is a global audience</li>
+  <li>Potential trademark conflicts</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="adding_a_name_for_your_web_app">Adding a name for your web app</h3>
+<p>For a web app that helps users navigate trails and plan their hiking adventures, you might add the following <code>name</code> to the app manifest:</p>
+<pre class="brush: json">"name": "Trail Navigator"
+</pre>
+<p>The app name <code>Trail Navigator</code> effectively describes the app's purpose, is easy to read and remember, and is likely to be understood by a wide audience. It uses familiar terms that outdoor enthusiasts might readily understand.</p>
+<p>If you want, you can also add a <code>short_name</code>:</p>
+<pre class="brush: json">"name": "Trail Navigator",
+"short_name": "TrailNav"
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.name" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.name" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Manifest/short_name"><code>short_name</code></a> manifest member</li>
+  <li><a href="/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#the_web_app_manifest">The web app manifest</a> for making your web app installable</li>
+</ul>
+</body></html>

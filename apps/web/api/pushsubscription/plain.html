@@ -1,0 +1,113 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>
+  The <code>PushSubscription</code> interface of the <a href="/en-US/docs/Web/API/Push_API">Push API</a> provides a subscription's URL endpoint along with the public key and secrets that should be used for encrypting push messages to this subscription.
+  This information must be passed to the application server, using any desired application-specific method.
+</p>
+<p>The interface also provides information about when the subscription will expire, and a method to unsubscribe from the subscription.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="pushsubscription.endpoint"><a href="/en-US/docs/Web/API/PushSubscription/endpoint"><code>PushSubscription.endpoint</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string containing the endpoint associated with the push subscription.</p>
+  </dd>
+  <dt id="pushsubscription.expirationtime"><a href="/en-US/docs/Web/API/PushSubscription/expirationTime"><code>PushSubscription.expirationTime</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> of the subscription expiration time associated with the push subscription, if there is one, or null otherwise.</p>
+  </dd>
+  <dt id="pushsubscription.options"><a href="/en-US/docs/Web/API/PushSubscription/options"><code>PushSubscription.options</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An object containing the options used to create the subscription.</p>
+  </dd>
+  <dt id="pushsubscription.subscriptionid"><a href="/en-US/docs/Web/API/PushSubscription/subscriptionId"><code>PushSubscription.subscriptionId</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>A string containing the subscription ID associated with the push subscription.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="pushsubscription.getkey"><a href="/en-US/docs/Web/API/PushSubscription/getKey"><code>PushSubscription.getKey()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> which contains the client's public key, which can then be sent to a server and used in encrypting push message data.</p>
+  </dd>
+  <dt id="pushsubscription.tojson"><a href="/en-US/docs/Web/API/PushSubscription/toJSON"><code>PushSubscription.toJSON()</code></a></dt>
+  <dd>
+    <p>Standard serializer — returns a JSON representation of the subscription properties.</p>
+  </dd>
+  <dt id="pushsubscription.unsubscribe"><a href="/en-US/docs/Web/API/PushSubscription/unsubscribe"><code>PushSubscription.unsubscribe()</code></a></dt>
+  <dd>
+    <p>Starts the asynchronous process of unsubscribing from the push service, returning a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a boolean value when the current subscription is successfully unregistered.</p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>
+  Each browser uses a particular push service.
+  A service worker can use <a href="/en-US/docs/Web/API/PushManager/subscribe"><code>PushManager.subscribe()</code></a> to subscribe to the supported service, and use the returned <code>PushSubscription</code> to discover the endpoint where push messages should be sent.
+</p>
+<p>
+  The <code>PushSubscription</code> is also used to get the public key and secret that the application server must use to encrypt the messages that it sends to the push service.
+  Note that the private keys used to decrypt push messages are not shared by the browser, and are used to decrypt messages before they are passed to the service worker.
+  This ensures that push messages remain private as they pass through the push server infrastructure.
+</p>
+<p>
+  The service worker doesn't need to know anything about the endpoints or encryption, other than to pass the relevant information onto the application server.
+  Any mechanism may be used to share the information with the application server.
+</p>
+<h2 id="example">Example</h2>
+<h3 id="sending_coding_information_to_the_server">Sending coding information to the server</h3>
+<p>
+  The <a href="/en-US/docs/Web/API/PushSubscription/getKey#p256dh"><code>p256dh</code></a> public key and <a href="/en-US/docs/Web/API/PushSubscription/getKey#auth"><code>auth</code></a> secret used for encrypting the message are provided to the service worker via its push subscription, using the <a href="/en-US/docs/Web/API/PushSubscription/getKey"><code>PushSubscription.getKey()</code></a> method, along with the target endpoint for sending push messages in <a href="/en-US/docs/Web/API/PushSubscription/endpoint"><code>PushSubscription.endpoint</code></a>.
+  The coding that should be used for encryption is provided by the <a href="/en-US/docs/Web/API/PushManager/supportedContentEncodings_static" data-flaw-src="{{domxref(&quot;PushManager.supportedContentEncodings&quot;)}}"><code>PushManager.supportedContentEncodings</code></a> static property.
+</p>
+<p>This example shows how you might put the needed information from <code>PushSubscription</code> and <code>supportedContentEncodings</code> into a JSON object, serialize it using <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a>, and post the result to the application server.</p>
+<pre class="brush: js">// Get a PushSubscription object
+const pushSubscription = await serviceWorkerRegistration.pushManager.subscribe();
+
+// Create an object containing the information needed by the app server
+const subscriptionObject = {
+  endpoint: pushSubscription.endpoint,
+  keys: {
+    p256dh: pushSubscription.getKeys('p256dh'),
+    auth: pushSubscription.getKeys('auth'),
+  },
+  encoding: PushManager.supportedContentEncodings,
+  /* other app-specific data, such as user identity */
+};
+
+// Stringify the object an post to the app server
+fetch(`https://example.com/push/`, {
+  method: "post",
+  body: JSON.stringify(pushSubscription);
+});
+</pre>
+<h3 id="unsubscribing_from_a_push_manager">Unsubscribing from a push manager</h3>
+<pre class="brush: js">navigator.serviceWorker.ready.then((reg) =&gt; {
+  reg.pushManager.getSubscription().then((subscription) =&gt; {
+    subscription
+      .unsubscribe()
+      .then((successful) =&gt; {
+        // You've successfully unsubscribed
+      })
+      .catch((e) =&gt; {
+        // Unsubscribing failed
+      });
+  });
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PushSubscription" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PushSubscription" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Push_API">Push API</a></li>
+  <li><a href="/en-US/docs/Web/API/Service_Worker_API">Service Worker API</a></li>
+</ul>
+</body></html>

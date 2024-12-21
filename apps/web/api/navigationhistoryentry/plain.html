@@ -1,0 +1,107 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>NavigationHistoryEntry</code></strong> interface of the <a href="/en-US/docs/Web/API/Navigation_API" title="Navigation API">Navigation API</a> represents a single navigation history entry.</p>
+<p>These objects are commonly accessed via the <a href="/en-US/docs/Web/API/Navigation/currentEntry"><code>Navigation.currentEntry</code></a> property and <a href="/en-US/docs/Web/API/Navigation/entries"><code>Navigation.entries()</code></a> method.</p>
+<p>The Navigation API only exposes history entries created in the current browsing context that have the same origin as the current page (e.g. not navigations inside embedded <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>s, or cross-origin navigations), providing an accurate list of all previous history entries just for your app. This makes traversing the history a much less fragile proposition than with the older <a href="/en-US/docs/Web/API/History_API" title="History API">History API</a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/NavigationHistoryEntry" aria-current="page">
+    <rect x="118" y="0" width="176" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="206" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      NavigationHistoryEntry
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="id"><a href="/en-US/docs/Web/API/NavigationHistoryEntry/id" title="id"><code>id</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <code>id</code> of the history entry. This is a unique, UA-generated value that always represents a specific history entry, useful to correlate it with an external resource such as a storage cache.</p>
+  </dd>
+  <dt id="index"><a href="/en-US/docs/Web/API/NavigationHistoryEntry/index" title="index"><code>index</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the index of the history entry in the history entries list (that is, the list returned by <a href="/en-US/docs/Web/API/Navigation/entries"><code>Navigation.entries()</code></a>), or <code>-1</code> if the entry does not appear in the list.</p>
+  </dd>
+  <dt id="key"><a href="/en-US/docs/Web/API/NavigationHistoryEntry/key" title="key"><code>key</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <code>key</code> of the history entry. This is a unique, UA-generated value that represents the history entry's slot in the entries list rather than the entry itself. It is used to navigate that particular slot via <a href="/en-US/docs/Web/API/Navigation/traverseTo"><code>Navigation.traverseTo()</code></a>. The <code>key</code> will be reused by other entries that replace the entry in the list (that is, if the <a href="/en-US/docs/Web/API/NavigateEvent/navigationType"><code>NavigateEvent.navigationType</code></a> is <code>replace</code>).</p>
+  </dd>
+  <dt id="samedocument"><a href="/en-US/docs/Web/API/NavigationHistoryEntry/sameDocument" title="sameDocument"><code>sameDocument</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns <code>true</code> if this history entry is for the same <code>document</code> as the current <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> value, or <code>false</code> otherwise.</p>
+  </dd>
+  <dt id="url"><a href="/en-US/docs/Web/API/NavigationHistoryEntry/url" title="url"><code>url</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the absolute URL of this history entry. If the entry corresponds to a different document than the current one (like <code>sameDocument</code> property is <code>false</code>), and that document was fetched with a <a href="/en-US/docs/Web/HTTP/Headers/Referrer-Policy"><code>Referrer-Policy</code></a> header set to <code>no-referrer</code> or <code>origin</code>, the property returns <code>null</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="getstate"><a href="/en-US/docs/Web/API/NavigationHistoryEntry/getState" title="getState()"><code>getState()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a clone of the available state associated with this history entry.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<dl>
+  <dt id="dispose"><a href="/en-US/docs/Web/API/NavigationHistoryEntry/dispose_event" title="dispose"><code>dispose</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fires when the entry is no longer part of the history entry list.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">function initHomeBtn() {
+  // Get the key of the first loaded entry
+  // so the user can always go back to this view.
+  const { key } = navigation.currentEntry;
+  backToHomeButton.onclick = () =&gt; {
+    navigation.traverseTo(key);
+  };
+}
+// Intercept navigate events, such as link clicks, and
+// replace them with single-page navigations
+navigation.addEventListener("navigate", (event) =&gt; {
+  event.intercept({
+    async handler() {
+      // Navigate to a different view,
+      // but the "home" button will always work.
+    },
+  });
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.NavigationHistoryEntry" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.NavigationHistoryEntry" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/web-platform/navigation-api/">Modern client-side routing: the Navigation API</a></li>
+  <li><a href="https://github.com/WICG/navigation-api/blob/main/README.md">Navigation API explainer</a></li>
+  <li>Domenic Denicola's <a href="https://gigantic-honored-octagon.glitch.me/">Navigation API live demo</a></li>
+</ul>
+</body></html>

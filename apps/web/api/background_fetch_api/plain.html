@@ -1,0 +1,126 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong>Background Fetch API</strong> provides a method for managing downloads that may take a significant amount of time such as movies, audio files, and software.</p>
+<h2 id="concepts_and_usage">Concepts and Usage</h2>
+<p>When a web application requires the user to download large files, this often presents a problem in that the user needs to stay connected to the page for the download to complete. If they lose connectivity, close the tab or navigate away from the page the download stops.</p>
+<p>The <a href="/en-US/docs/Web/API/Background_Synchronization_API">Background Synchronization API</a> provides a way for service workers to defer processing until a user is connected; however it can't be used for long running tasks such as downloading a large file. Background Sync requires that the service worker stays alive until the fetch is completed, and to conserve battery life and to prevent unwanted tasks happening in the background the browser will at some point terminate the task.</p>
+<p>The Background Fetch API solves this problem. It creates a way for a web developer to tell the browser to perform some fetches in the background, for example when the user clicks a button to download a video file. The browser then performs the fetches in a user-visible way, displaying progress to the user and giving them a method to cancel the download. Once the download is complete the browser then opens the service worker, at which point your application can do something with the response if required.</p>
+<p>The Background Fetch API will enable the fetch to happen if the user starts the process while offline. Once they are connected it will begin. If the user goes off line, the process pauses until the user is on again.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="backgroundfetchmanager"><a href="/en-US/docs/Web/API/BackgroundFetchManager"><code>BackgroundFetchManager</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A map where the keys are background fetch IDs and the values are <a href="/en-US/docs/Web/API/BackgroundFetchRegistration"><code>BackgroundFetchRegistration</code></a> objects.</p>
+  </dd>
+  <dt id="backgroundfetchregistration"><a href="/en-US/docs/Web/API/BackgroundFetchRegistration"><code>BackgroundFetchRegistration</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Represents a Background Fetch.</p>
+  </dd>
+  <dt id="backgroundfetchrecord"><a href="/en-US/docs/Web/API/BackgroundFetchRecord"><code>BackgroundFetchRecord</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Represents an individual fetch request and response.</p>
+  </dd>
+  <dt id="backgroundfetchevent"><a href="/en-US/docs/Web/API/BackgroundFetchEvent"><code>BackgroundFetchEvent</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>The event type for the <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchabort_event" title="backgroundfetchabort"><code>backgroundfetchabort</code></a> and <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchclick_event" title="backgroundfetchclick"><code>backgroundfetchclick</code></a> event</p>
+  </dd>
+  <dt id="backgroundfetchupdateuievent"><a href="/en-US/docs/Web/API/BackgroundFetchUpdateUIEvent"><code>BackgroundFetchUpdateUIEvent</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>The event type for the <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchsuccess_event" title="backgroundfetchsuccess"><code>backgroundfetchsuccess</code></a> and <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchfail_event" title="backgroundfetchfail"><code>backgroundfetchfail</code></a> event</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<dl>
+  <dt id="serviceworkerregistration.backgroundfetch"><a href="/en-US/docs/Web/API/ServiceWorkerRegistration/backgroundFetch"><code>ServiceWorkerRegistration.backgroundFetch</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a reference to a <a href="/en-US/docs/Web/API/BackgroundFetchManager"><code>BackgroundFetchManager</code></a> object, which manages background fetch operations.</p>
+  </dd>
+  <dt id="backgroundfetchabort"><a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchabort_event" title="backgroundfetchabort"><code>backgroundfetchabort</code></a> event <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when a background fetch operation has been canceled by the user or the app.</p>
+  </dd>
+  <dt id="backgroundfetchclick"><a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchclick_event" title="backgroundfetchclick"><code>backgroundfetchclick</code></a> event <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when the user has clicked on the UI for a background fetch operation.</p>
+  </dd>
+  <dt id="backgroundfetchfail"><a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchfail_event" title="backgroundfetchfail"><code>backgroundfetchfail</code></a> event <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when at least one of the requests in a background fetch operation has failed.</p>
+  </dd>
+  <dt id="backgroundfetchsuccess"><a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/backgroundfetchsuccess_event" title="backgroundfetchsuccess"><code>backgroundfetchsuccess</code></a> event <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when all of the requests in a background fetch operation have succeeded.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>Before using Background Fetch, check for browser support.</p>
+<pre class="brush: js">if (!("BackgroundFetchManager" in self)) {
+  // Provide fallback downloading.
+}
+</pre>
+<p>
+  Using Background Fetch requires a registered service worker. Then call <code>backgroundFetch.fetch()</code> to perform a fetch. This
+  returns a promise that resolves with a <a href="/en-US/docs/Web/API/BackgroundFetchRegistration"><code>BackgroundFetchRegistration</code></a>.
+</p>
+<p>A background fetch may fetch a number of files. In our example the fetch requests an MP3 and a JPEG. This enables a package of files that the user sees as one item (for example a podcast and artwork) to be downloaded at once.</p>
+<pre class="brush: js">navigator.serviceWorker.ready.then(async (swReg) =&gt; {
+  const bgFetch = await swReg.backgroundFetch.fetch(
+    "my-fetch",
+    ["/ep-5.mp3", "ep-5-artwork.jpg"],
+    {
+      title: "Episode 5: Interesting things.",
+      icons: [
+        {
+          sizes: "300x300",
+          src: "/ep-5-icon.png",
+          type: "image/png",
+        },
+      ],
+      downloadTotal: 60 * 1024 * 1024,
+    },
+  );
+});
+</pre>
+<p>You can find a demo application which implements Background Fetch <a href="https://glitch.com/edit/#!/bgfetch-http203?path=public%2Fclient.js%3A191%3A45">here</a>.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BackgroundFetchManager,api.BackgroundFetchRegistration,api.BackgroundFetchRecord" data-spec-urls="https://wicg.github.io/background-fetch/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BackgroundFetchManager" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.BackgroundFetchRegistration" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.BackgroundFetchRecord" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/blog/background-fetch/">Introducing Background Fetch</a></li>
+  <li><a href="https://www.youtube.com/watch?v=cElAoxhQz6w">Background Fetch - HTTP 203</a></li>
+</ul>
+</body></html>

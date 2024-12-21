@@ -1,0 +1,66 @@
+<html><head></head><body>
+<p>In <a href="/en-US/docs/Web/CSS">CSS</a>, a <strong>replaced element</strong> is an element whose representation is outside the scope of CSS; they're external objects whose representation is independent of the CSS formatting model.</p>
+<p>Put in simpler terms, they're elements whose contents are not affected by the current document's styles. The position of the replaced element can be affected using CSS, but not the contents of the replaced element itself. Some replaced elements, such as <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> elements, may have stylesheets of their own, but they don't inherit the styles of the parent document.</p>
+<p>The only other impact CSS can have on a replaced element is that there are properties which support controlling the positioning of the element's content within its box. See <a href="#controlling_object_position_within_the_content_box">Controlling object position within the content box</a> for further information.</p>
+<h2 id="replaced_elements">Replaced elements</h2>
+<p>Typical replaced elements are:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/embed"><code>&lt;embed&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/fencedframe"><code>&lt;fencedframe&gt;</code></a></li>
+</ul>
+<p>Some elements are treated as replaced elements only in specific cases:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Element/option"><code>&lt;option&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/audio"><code>&lt;audio&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/object"><code>&lt;object&gt;</code></a></li>
+</ul>
+<p>HTML spec also says that an <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element can be replaced, because <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> elements of the <code>"image"</code> type are replaced elements similar to <a href="/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a>. However, other form controls, including other types of <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> elements, are explicitly listed as non-replaced elements (the spec describes their default platform-specific rendering with the term "Widgets").</p>
+<p>Objects inserted using the CSS <a href="/en-US/docs/Web/CSS/content"><code>content</code></a> property are <em>anonymous replaced elements</em>. They are "anonymous" because they don't exist in the HTML markup.</p>
+<h2 id="using_css_with_replaced_elements">Using CSS with replaced elements</h2>
+<p>CSS handles replaced elements specifically in some cases, like when calculating margins and some <code>auto</code> values.</p>
+<p>Note that some replaced elements, but not all, have intrinsic dimensions or a defined baseline, which is used by some CSS properties, such as <a href="/en-US/docs/Web/CSS/vertical-align"><code>vertical-align</code></a>. Only replaced elements can ever have intrinsic dimensions.</p>
+<h3 id="controlling_object_position_within_the_content_box">Controlling object position within the content box</h3>
+<p>Certain CSS properties can be used to specify how the object contained within the replaced element should be positioned within the element's box area. These are defined by the <a href="https://drafts.csswg.org/css-images/">CSS Images</a> specification:</p>
+<dl>
+  <dt id="object-fit"><a href="/en-US/docs/Web/CSS/object-fit"><code>object-fit</code></a></dt>
+  <dd>
+    <p>Specifies how the replaced element's content object should be fitted to the containing element's box. The <code>object-fit</code> property has no effect on <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/embed"><code>&lt;embed&gt;</code></a>, and <a href="/en-US/docs/Web/HTML/Element/fencedframe"><code>&lt;fencedframe&gt;</code></a> elements.</p>
+  </dd>
+  <dt id="object-position"><a href="/en-US/docs/Web/CSS/object-position"><code>object-position</code></a></dt>
+  <dd>
+    <p>Specifies the alignment of the replaced element's content object within the element's box.</p>
+  </dd>
+</dl>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://html.spec.whatwg.org/multipage/rendering.html#replaced-elements">HTML Spec</a></li>
+  <li><a href="/en-US/docs/Glossary/Void_element">Void elements</a></li>
+  <li>CSS key concepts:
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/Syntax">CSS syntax</a></li>
+      <li><a href="/en-US/docs/Web/CSS/At-rule">At-rules</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Comments">Comments</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Specificity">Specificity</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Inheritance">Inheritance</a></li>
+      <li><a href="/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model">Box model</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Layout_mode">Layout modes</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Visual_formatting_model">Visual formatting models</a></li>
+      <li><a href="/en-US/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing">Margin collapsing</a></li>
+      <li>Values
+        <ul>
+          <li><a href="/en-US/docs/Web/CSS/initial_value">Initial values</a></li>
+          <li><a href="/en-US/docs/Web/CSS/computed_value">Computed values</a></li>
+          <li><a href="/en-US/docs/Web/CSS/used_value">Used values</a></li>
+          <li><a href="/en-US/docs/Web/CSS/actual_value">Actual values</a></li>
+        </ul>
+      </li>
+      <li><a href="/en-US/docs/Web/CSS/Value_definition_syntax">Value definition syntax</a></li>
+      <li><a href="/en-US/docs/Web/CSS/Shorthand_properties">Shorthand properties</a></li>
+    </ul>
+  </li>
+</ul>
+</body></html>

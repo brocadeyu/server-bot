@@ -1,0 +1,90 @@
+<html><head></head><body>
+<p>The <strong><code>:placeholder-shown</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents any <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> or <a href="/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a> element that is currently displaying <a href="/en-US/docs/Web/HTML/Element/input#placeholder">placeholder text</a>.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-placeholder-shown.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:placeholder-shown {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<p>This example applies special font and border styles when the placeholder is shown.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;input placeholder="Type something here!" /&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">input {
+  border: 1px solid black;
+  padding: 3px;
+}
+
+input:placeholder-shown {
+  border-color: teal;
+  color: purple;
+  font-style: italic;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Basic example sample" id="frame_basic_example" width="200" height="80" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:placeholder-shown" data-live-id="basic_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="overflowing_text">Overflowing text</h3>
+<p>When form fields are too small, placeholder text can get cropped in an undesirable way. You can use the <a href="/en-US/docs/Web/CSS/text-overflow"><code>text-overflow</code></a> property to alter the way overflowing text is displayed.</p>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;input id="input1" placeholder="Name, Rank, and Serial Number" /&gt; &lt;br /&gt;&lt;br /&gt;
+&lt;input id="input2" placeholder="Name, Rank, and Serial Number" /&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">#input2:placeholder-shown {
+  text-overflow: ellipsis;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Overflowing text sample" id="frame_overflowing_text" width="200" height="80" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:placeholder-shown" data-live-id="overflowing_text" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="customized_input_field">Customized input field</h3>
+<p>The following example highlights the Student ID field with a custom style.</p>
+<h4 id="html_3">HTML</h4>
+<pre class="brush: html">&lt;form id="test"&gt;
+  &lt;p&gt;
+    &lt;label for="name"&gt;Enter Student Name:&lt;/label&gt;
+    &lt;input id="name" placeholder="Student Name" /&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="branch"&gt;Enter Student Branch:&lt;/label&gt;
+    &lt;input id="branch" placeholder="Student Branch" /&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="sid"&gt;Enter Student ID:&lt;/label&gt;
+    &lt;input
+      type="number"
+      pattern="[0-9]{8}"
+      title="8 digit ID"
+      id="sid"
+      class="student-id"
+      placeholder="8 digit id" /&gt;
+  &lt;/p&gt;
+  &lt;input type="submit" /&gt;
+&lt;/form&gt;
+</pre>
+<h4 id="css_3">CSS</h4>
+<pre class="brush: css">input {
+  background-color: #e8e8e8;
+  color: black;
+}
+
+input.student-id:placeholder-shown {
+  background-color: yellow;
+  color: red;
+  font-style: italic;
+}
+</pre>
+<h4 id="result_3">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Customized input field sample" id="frame_customized_input_field" width="200" height="180" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:placeholder-shown" data-live-id="customized_input_field" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.placeholder-shown" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.placeholder-shown" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The <a href="/en-US/docs/Web/CSS/::placeholder"><code>::placeholder</code></a> pseudo-element styles the placeholder <em>itself</em>.</li>
+  <li>Related HTML elements: <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a></li>
+  <li><a href="/en-US/docs/Learn_web_development/Extensions/Forms">HTML forms</a></li>
+</ul>
+</body></html>

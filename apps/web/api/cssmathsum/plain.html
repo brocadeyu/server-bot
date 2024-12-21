@@ -1,0 +1,87 @@
+<html><head></head><body>
+<p>The <strong><code>CSSMathSum</code></strong> interface of the <a href="/en-US/docs/Web/API/CSS_Object_Model">CSS Typed Object Model API</a> represents the result obtained by calling <a href="/en-US/docs/Web/API/CSSNumericValue/add" title="add()"><code>add()</code></a>, <a href="/en-US/docs/Web/API/CSSNumericValue/sub" title="sub()"><code>sub()</code></a>, or <a href="/en-US/docs/Web/API/CSSNumericValue/toSum" title="toSum()"><code>toSum()</code></a> on <a href="/en-US/docs/Web/API/CSSNumericValue"><code>CSSNumericValue</code></a>.</p>
+<p>A CSSMathSum is the object type returned when the <a href="/en-US/docs/Web/API/StylePropertyMapReadOnly/get"><code>StylePropertyMapReadOnly.get()</code></a> method is used on a CSS property whose value is created with a <a href="/en-US/docs/Web/CSS/calc"><code>calc()</code></a> function.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSStyleValue">
+    <rect x="0" y="0" width="104" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="52" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSStyleValue
+    </text>
+  </a>
+  <line x1="104" y1="14" x2="134" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="104,14 114,9 114,19 104,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSNumericValue">
+    <rect x="134" y="0" width="120" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="194" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSNumericValue
+    </text>
+  </a>
+  <line x1="254" y1="14" x2="284" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="254,14 264,9 264,19 254,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSMathValue">
+    <rect x="284" y="0" width="96" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="332" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSMathValue
+    </text>
+  </a>
+  <line x1="380" y1="14" x2="410" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="380,14 390,9 390,19 380,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSMathSum" aria-current="page">
+    <rect x="410" y="0" width="80" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="450" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSMathSum
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="cssmathsum"><a href="/en-US/docs/Web/API/CSSMathSum/CSSMathSum" title="CSSMathSum()"><code>CSSMathSum()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Creates a new <code>CSSMathSum</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="cssmathsum.values"><a href="/en-US/docs/Web/API/CSSMathSum/values"><code>CSSMathSum.values</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/CSSNumericArray"><code>CSSNumericArray</code></a> object which contains one or more <a href="/en-US/docs/Web/API/CSSNumericValue"><code>CSSNumericValue</code></a> objects.</p>
+  </dd>
+</dl>
+<h2 id="static_methods">Static methods</h2>
+<p><em>The interface may also inherit methods from its parent interface, <a href="/en-US/docs/Web/API/CSSMathValue"><code>CSSMathValue</code></a>.</em></p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>The interface may also inherit methods from its parent interface, <a href="/en-US/docs/Web/API/CSSMathValue"><code>CSSMathValue</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<p>We create an element with a <a href="/en-US/docs/Web/CSS/width"><code>width</code></a> determined using a <a href="/en-US/docs/Web/CSS/calc"><code>calc()</code></a> function, then <a href="/en-US/docs/Web/API/console/log_static" title="console.log()"><code>console.log()</code></a> the <code>operator</code> and <code>values</code>, and dig into the values a bit.</p>
+<pre class="brush: html">&lt;div&gt;has width&lt;/div&gt;
+</pre>
+<p>We assign a <code>width</code></p>
+<pre class="brush: css">div {
+  width: calc(30% - 20px);
+}
+</pre>
+<p>We add the JavaScript</p>
+<pre class="brush: js">const styleMap = document.querySelector("div").computedStyleMap();
+
+console.log(styleMap.get("width")); // CSSMathSum {values: CSSNumericArray, operator: "sum"}
+console.log(styleMap.get("width").operator); // 'sum'
+console.log(styleMap.get("width").values); // CSSNumericArray {0: CSSUnitValue, 1: CSSUnitValue, length: 2}
+console.log(styleMap.get("width").values[0]); // CSSUnitValue {value: 30, unit: "percent"}
+console.log(styleMap.get("width").values[0].value); // 30
+console.log(styleMap.get("width").values[0].unit); // 'percent'
+console.log(styleMap.get("width").values[1]); // CSSUnitValue {value: -20, unit: "px"}
+console.log(styleMap.get("width").values[1].value); //  -20
+console.log(styleMap.get("width").values[1].unit); // 'px'
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="120" height="300" src="about:blank" data-live-path="/en-US/docs/Web/API/CSSMathSum" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<p>The specification is still evolving. In the future we may write the last three lines as:</p>
+<pre class="brush: js">console.log(styleMap.get("width").values[1]); // CSSMathNegate {value: CSSUnitValue, operator: "negate"}
+console.log(styleMap.get("width").values[1].value); // CSSUnitValue {value: 20, unit: "px"}
+console.log(styleMap.get("width").values[1].value.unit); // 'px'
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSSMathSum" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSSMathSum" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

@@ -1,0 +1,100 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>FontFaceSet</code></strong> interface of the <a href="/en-US/docs/Web/API/CSS_Font_Loading_API">CSS Font Loading API</a> manages the loading of font-faces and querying of their download status.</p>
+<p>A <code>FontFaceSet</code> instance is a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#set-like_browser_apis"><code>Set</code>-like object</a> that can hold an ordered set of <a href="/en-US/docs/Web/API/FontFace"><code>FontFace</code></a> objects.</p>
+<p>This property is available as <a href="/en-US/docs/Web/API/Document/fonts"><code>Document.fonts</code></a>, or <code>self.fonts</code> in <a href="/en-US/docs/Web/API/Web_Workers_API">web workers</a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/FontFaceSet" aria-current="page">
+    <rect x="118" y="0" width="88" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="162" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      FontFaceSet
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="fontfaceset.status"><a href="/en-US/docs/Web/API/FontFaceSet/status"><code>FontFaceSet.status</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Indicates the font-face's loading status. It will be one of <code>'loading'</code> or <code>'loaded'</code>.</p>
+  </dd>
+  <dt id="fontfaceset.ready"><a href="/en-US/docs/Web/API/FontFaceSet/ready"><code>FontFaceSet.ready</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves once font loading and layout operations have completed.</p>
+  </dd>
+  <dt id="fontfaceset.size"><a href="/en-US/docs/Web/API/FontFaceSet/size"><code>FontFaceSet.size</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the number of values in the <code>FontFaceSet</code>.</p>
+  </dd>
+</dl>
+<h3 id="events">Events</h3>
+<dl>
+  <dt id="loading"><a href="/en-US/docs/Web/API/FontFaceSet/loading_event" title="loading"><code>loading</code></a></dt>
+  <dd>
+    <p>Fires when a font-face set has started loading.</p>
+  </dd>
+  <dt id="loadingdone"><a href="/en-US/docs/Web/API/FontFaceSet/loadingdone_event" title="loadingdone"><code>loadingdone</code></a></dt>
+  <dd>
+    <p>Fires when a font face set has finished loading.</p>
+  </dd>
+  <dt id="loadingerror"><a href="/en-US/docs/Web/API/FontFaceSet/loadingerror_event" title="loadingerror"><code>loadingerror</code></a></dt>
+  <dd>
+    <p>Fires when an error occurred whilst loading a font-face set.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="fontfaceset.add"><a href="/en-US/docs/Web/API/FontFaceSet/add" title="FontFaceSet.add()"><code>FontFaceSet.add()</code></a></dt>
+  <dd>
+    <p>Adds a font to the font set.</p>
+  </dd>
+  <dt id="fontfaceset.check"><a href="/en-US/docs/Web/API/FontFaceSet/check" title="FontFaceSet.check()"><code>FontFaceSet.check()</code></a></dt>
+  <dd>
+    <p>A boolean value that indicates whether a font is loaded, but doesn't initiate a load when it isn't.</p>
+  </dd>
+  <dt id="fontfaceset.clear"><a href="/en-US/docs/Web/API/FontFaceSet/clear" title="FontFaceSet.clear()"><code>FontFaceSet.clear()</code></a></dt>
+  <dd>
+    <p>Removes all manually-added fonts from the font set. <a href="https://www.w3.org/TR/css-font-loading-3/#css-connected">CSS-connected</a> fonts are unaffected.</p>
+  </dd>
+  <dt id="fontfaceset.delete"><a href="/en-US/docs/Web/API/FontFaceSet/delete" title="FontFaceSet.delete()"><code>FontFaceSet.delete()</code></a></dt>
+  <dd>
+    <p>Removes a manually-added font from the font set. <a href="https://www.w3.org/TR/css-font-loading-3/#css-connected">CSS-connected</a> fonts are unaffected.</p>
+  </dd>
+  <dt id="fontfaceset.entries"><a href="/en-US/docs/Web/API/FontFaceSet/entries" title="FontFaceSet.entries()"><code>FontFaceSet.entries()</code></a></dt>
+  <dd>
+    <p>Returns a new iterator with the values for each element in the <code>FontFaceSet</code> in insertion order.</p>
+  </dd>
+  <dt id="fontfaceset.foreach"><a href="/en-US/docs/Web/API/FontFaceSet/forEach" title="FontFaceSet.forEach()"><code>FontFaceSet.forEach()</code></a></dt>
+  <dd>
+    <p>Executes a provided function for each value in the <code>FontFaceSet</code> object.</p>
+  </dd>
+  <dt id="fontfaceset.has"><a href="/en-US/docs/Web/API/FontFaceSet/has" title="FontFaceSet.has()"><code>FontFaceSet.has()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> asserting whether an element is present with the given value.</p>
+  </dd>
+  <dt id="fontfaceset.keys"><a href="/en-US/docs/Web/API/FontFaceSet/keys" title="FontFaceSet.keys()"><code>FontFaceSet.keys()</code></a></dt>
+  <dd>
+    <p>An alias for <a href="/en-US/docs/Web/API/FontFaceSet/values"><code>FontFaceSet.values()</code></a>.</p>
+  </dd>
+  <dt id="fontfaceset.load"><a href="/en-US/docs/Web/API/FontFaceSet/load" title="FontFaceSet.load()"><code>FontFaceSet.load()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves to a list of font-faces for a requested font.</p>
+  </dd>
+  <dt id="fontfaceset.values"><a href="/en-US/docs/Web/API/FontFaceSet/values" title="FontFaceSet.values()"><code>FontFaceSet.values()</code></a></dt>
+  <dd>
+    <p>Returns a new iterator object that yields the values for each element in the <code>FontFaceSet</code> object in insertion order.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.FontFaceSet" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.FontFaceSet" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

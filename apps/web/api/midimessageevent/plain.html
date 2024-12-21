@@ -1,0 +1,50 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>MIDIMessageEvent</code></strong> interface of the <a href="/en-US/docs/Web/API/Web_MIDI_API">Web MIDI API</a> represents the event passed to the <a href="/en-US/docs/Web/API/MIDIInput/midimessage_event" title="midimessage"><code>midimessage</code></a> event of the <a href="/en-US/docs/Web/API/MIDIInput"><code>MIDIInput</code></a> interface. A <code>midimessage</code> event is fired every time a MIDI message is sent from a device represented by a <a href="/en-US/docs/Web/API/MIDIInput"><code>MIDIInput</code></a>, for example when a MIDI keyboard key is pressed, a knob is tweaked, or a slider is moved.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/MIDIMessageEvent" aria-current="page">
+    <rect x="105" y="0" width="128" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="169" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      MIDIMessageEvent
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="midimessageevent"><a href="/en-US/docs/Web/API/MIDIMessageEvent/MIDIMessageEvent" title="MIDIMessageEvent()"><code>MIDIMessageEvent()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>MIDIMessageEvent</code> object instance.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface also inherits properties from <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<dl>
+  <dt id="midimessageevent.data"><a href="/en-US/docs/Web/API/MIDIMessageEvent/data"><code>MIDIMessageEvent.data</code></a></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code>Uint8Array</code></a> containing the data bytes of a single MIDI message. See the <a href="https://midi.org/summary-of-midi-1-0-messages">MIDI specification</a> for more information on its form.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface doesn't implement any specific methods, but inherits methods from <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<p>The following example prints all MIDI messages to the console.</p>
+<pre class="brush: js">navigator.requestMIDIAccess().then((midiAccess) =&gt; {
+  Array.from(midiAccess.inputs).forEach((input) =&gt; {
+    input[1].onmidimessage = (msg) =&gt; {
+      console.log(msg);
+    };
+  });
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MIDIMessageEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MIDIMessageEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

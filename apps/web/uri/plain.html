@@ -1,0 +1,76 @@
+<html><head></head><body>
+<p><strong>Uniform Resource Identifiers (URI)</strong> are used to identify "resources" on the web. They are commonly used as targets of <a href="/en-US/docs/Web/HTTP">HTTP</a> requests, in which case the URI represents a location for a physical resource, such as a document, a photo, binary data, etc. URIs can also be used to trigger behaviors other than fetching a resource, including opening the email client, sending text messages, or executing JavaScript, when used in other places such as the <a href="/en-US/docs/Web/HTML/Element/a#href"><code>href</code></a> of an HTML <code>&lt;a&gt;</code> link.</p>
+<h2 id="urls_and_urns">URLs and URNs</h2>
+<h3 id="urls">URLs</h3>
+<p>The most common form of URI is the Uniform Resource Locator (<a href="/en-US/docs/Glossary/URL">URL</a>), which is known as the <em>web address</em>.</p>
+<pre class="brush: url">https://developer.mozilla.org
+https://developer.mozilla.org/en-US/docs/Learn_web_development/
+https://developer.mozilla.org/en-US/search?q=URL
+</pre>
+<p>Any of those URLs can be typed into your browser's address bar to tell it to load the associated page (resource).</p>
+<p>A URL is composed of different parts, some mandatory and others optional. A more complex example might look like this:</p>
+<pre class="brush: url">http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument
+</pre>
+<h3 id="urns">URNs</h3>
+<p>A Uniform Resource Name (URN) is a URI that identifies a resource by name in a particular namespace.</p>
+<pre class="brush: url">urn:isbn:9780141036144
+urn:ietf:rfc:7230
+</pre>
+<p>The two URNs correspond to</p>
+<ul>
+  <li>the book Nineteen Eighty-Four by George Orwell,</li>
+  <li>the IETF specification 7230, Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing.</li>
+</ul>
+<h2 id="syntax_of_uniform_resource_identifiers_uris">Syntax of Uniform Resource Identifiers (URIs)</h2>
+<p>We will break down the following URL into its components:</p>
+<pre class="brush: url">http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument
+</pre>
+<h3 id="scheme">Scheme</h3>
+<p>
+  <img src="/en-US/docs/Web/URI/mdn-url-protocol@x2.png" alt="Protocol" width="880" height="140">
+</p>
+<p><code>http://</code> is the <a href="/en-US/docs/Web/URI/Schemes"><em>scheme</em></a> of the URL, indicating which protocol the browser must use. Usually it is the HTTP protocol or its secured version, HTTPS. The Web requires one of these two, but browsers also know how to handle other protocols such as <code>mailto:</code> (to open a mail client) or <code>ftp:</code> to handle a file transfer, so don't be surprised if you see such protocols. The <a href="/en-US/docs/Web/URI/Schemes">schemes</a> reference provides a list of the most common schemes, and documentation for some of them.</p>
+<p>When using URLs in <a href="/en-US/docs/Glossary/HTML">HTML</a> content, you should generally only use a few of these URL schemes. When referring to subresources — that is, files that are being loaded as part of a larger document — you should only use the HTTP and HTTPS schemes. Increasingly, browsers are removing support for using FTP to load subresources, for security reasons.</p>
+<p>FTP is still acceptable at the top level (such as typed directly into the browser's URL bar, or the target of a link), although some browsers may delegate loading FTP content to another application.</p>
+<h3 id="authority">Authority</h3>
+<p>The URI <a href="/en-US/docs/Web/URI/Authority"><em>authority</em></a> is comprised of user info (optional and usually unspecified), the host name, and the port.</p>
+<p>
+  <img src="/en-US/docs/Web/URI/mdn-url-domain@x2.png" alt="Domain Name" width="880" height="140">
+</p>
+<p><code>www.example.com</code> is the <em>host name</em> of the URI, indicating which Web server is being requested. Here, we use a domain name. It is also possible to directly use an <a href="/en-US/docs/Glossary/IP_Address">IP address</a>, but because it is less convenient, it is rare to do so, unless the server doesn't have a registered domain name.</p>
+<p>
+  <img src="/en-US/docs/Web/URI/mdn-url-port@x2.png" alt="Port" width="880" height="140">
+</p>
+<p><code>:80</code> is the <em>port</em> of the URL, indicating the technical "gate" used to access the resources on the web server. It is usually omitted if the web server uses the standard ports of the HTTP protocol (80 for HTTP and 443 for HTTPS) to grant access to its resources. Otherwise, it is mandatory.</p>
+<h3 id="path">Path</h3>
+<p>
+  <img src="/en-US/docs/Web/URI/mdn-url-path@x2.png" alt="Path to the file" width="880" height="140">
+</p>
+<p><code>/path/to/myfile.html</code> is the <em>path</em> of the URL, indicating the location of the resource on the web server. In the early days of the Web, this was an actual directory path to a physical location on the web server. Nowadays, web servers usually abstract this to an arbitrary location.</p>
+<h3 id="query">Query</h3>
+<p>
+  <img src="/en-US/docs/Web/URI/mdn-url-parameters@x2.png" alt="Parameters" width="880" height="140">
+</p>
+<p><code>?key1=value1&amp;key2=value2</code> is the <em>query</em> of the URL, which are extra parameters provided to the web server. The parameters are a list of key/value pairs prefixed by the <code>?</code> symbol, and separated with the <code>&amp;</code> symbol. These can be used to provide additional context about the resource being requested. Each resource location can have its own rules regarding parameters, and the only reliable way to know how specific parameters are handled is by asking the owner of the server, such as reading its documentation.</p>
+<h3 id="fragment">Fragment</h3>
+<p>
+  <img src="/en-US/docs/Web/URI/mdn-url-anchor@x2.png" alt="Anchor" width="880" height="140">
+</p>
+<p><code>#SomewhereInTheDocument</code> is the <a href="/en-US/docs/Web/URI/Fragment"><em>fragment</em></a> of the URL, which is an anchor to another part of the resource itself. An anchor represents a sort of "bookmark" inside the resource, giving the browser the directions to show the content located at that "bookmarked" spot. On an HTML document, for example, the browser will scroll to the point where the anchor is defined; on a video or audio document, the browser will try to go to the time the anchor represents. It is worth noting that the part after the #, also known as the fragment identifier, is never sent to the server with the request.</p>
+<p>There's a special <a href="/en-US/docs/Web/URI/Fragment/Text_fragments">text fragment</a> feature that allows you to link to a specific part of a web page identified by its text content.</p>
+<h2 id="examples">Examples</h2>
+<pre class="brush: url">https://developer.mozilla.org/en-US/docs/Learn
+tel:+1-816-555-1212
+git@github.com:mdn/browser-compat-data.git
+ftp://example.org/resource.txt
+urn:isbn:9780141036144
+mailto:help@supercyberhelpdesk.info
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://www.rfc-editor.org/rfc/rfc3986.html">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL">What is a URL?</a></li>
+</ul>
+</body></html>

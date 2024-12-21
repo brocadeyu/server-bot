@@ -1,0 +1,134 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <code>share_target</code> manifest member allows installed <a href="/en-US/docs/Glossary/Progressive_web_apps">Progressive Web Apps</a> (PWAs) to be registered as a share target in the system's share dialog.</p>
+<p>Once registered and installed, a PWA that uses the Web Share Target API acts as a content sharing target, along with typical system share targets like email, messengers, and other native apps that can receive shared content.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> If you want to share data using the Web Share API, see <a href="/en-US/docs/Web/API/Web_Share_API">Web Share API</a> and <a href="/en-US/docs/Web/API/Navigator/share"><code>navigator.share()</code></a>.</p>
+</div>
+<h3 id="values">Values</h3>
+<p>The value of the <code>share_target</code> member is an object that defines how an application can receive shared data. This object may contain the following properties (<code>action</code> and <code>params</code> are required):</p>
+<dl>
+  <dt id="action"><a href="#action"><code>action</code></a></dt>
+  <dd>
+    <p>The URL for the web share target.</p>
+  </dd>
+  <dt id="enctype"><a href="#enctype"><code>enctype</code></a> <span class="badge inline optional">Optional</span></dt>
+  <dd>
+    <p>The encoding of the share data when a <a href="/en-US/docs/Web/HTTP/Methods/POST"><code>POST</code></a> request is used. Ignored with <a href="/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code></a> requests.</p>
+  </dd>
+  <dt id="method"><a href="#method"><code>method</code></a> <span class="badge inline optional">Optional</span></dt>
+  <dd>
+    <p>The <a href="/en-US/docs/Web/HTTP/Methods">HTTP request method</a> to use. Either <a href="/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code></a> or <a href="/en-US/docs/Web/HTTP/Methods/POST"><code>POST</code></a>. Use <code>POST</code> if the shared data includes binary data like image(s), or if it changes the target app, for example, if it creates a data point like a bookmark.</p>
+  </dd>
+  <dt id="params"><a href="#params"><code>params</code></a></dt>
+  <dd>
+    <p>An object to configure the share parameters. The object keys correspond to the <a href="/en-US/docs/Web/API/Navigator/share#parameters"><code>data</code> object in <code>navigator.share()</code></a>. The object values can be specified and will be used as query parameters:</p>
+    <ul>
+      <li><code>title</code> <span class="badge inline optional">Optional</span>: Name of the query parameter to use for the title of the document being shared.</li>
+      <li><code>text</code> <span class="badge inline optional">Optional</span>: Name of the query parameter for the text (or body) of the message being shared.</li>
+      <li><code>url</code> <span class="badge inline optional">Optional</span>: Name of the query parameter for the URL to the resource being shared.</li>
+      <li><code>files</code> <span class="badge inline optional">Optional</span>: An object (or an array of objects) defining which files are accepted by the share target. The object requires the following properties:
+        <ul>
+          <li><code>name</code>: Name of the form field used to share files.</li>
+          <li><code>accept</code>: A string (or an array of strings) of accepted MIME types or file extensions.</li>
+        </ul>
+      </li>
+    </ul>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="receiving_share_data_using_get">Receiving share data using GET</h3>
+<p>A share target can be registered using the following <code>share_target</code> manifest member:</p>
+<pre class="brush: json">{
+  "share_target": {
+    "action": "/shared-content-receiver/",
+    "method": "GET",
+    "params": {
+      "title": "name",
+      "text": "description",
+      "url": "link"
+    }
+  }
+}
+</pre>
+<p>When a user selects your app in the system's share dialog, your PWA is launched, and a <code>GET</code> HTTP request is made to the provided URL including the specified query parameters. It will look like this: <code>/shared-content-receiver/?name=a+shared+name&amp;description=a+shared+description&amp;link=https%3A%2F%2Fexample.com%2F</code>.</p>
+<p>The <a href="/en-US/docs/Web/API/URLSearchParams">URLSearchParams</a> interface can be useful to handle the shared data in your application and do something with it.</p>
+<pre class="brush: js">const sharedName = url.searchParams.get("name");
+const sharedDescription = url.searchParams.get("description");
+const sharedLink = url.searchParams.get("link");
+</pre>
+<h3 id="receiving_share_data_using_post">Receiving share data using POST</h3>
+<p>If the share request includes one or multiple files or causes a side effect in your application, the HTTP <a href="/en-US/docs/Web/HTTP/Methods/POST"><code>POST</code></a> method should be used. For example, if your application receives images for further processing or wants to save a shared link as a bookmark in your database.</p>
+<pre class="brush: json">{
+  "share_target": {
+    "action": "/save-bookmark/",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "url": "link"
+    }
+  }
+}
+</pre>
+<p>You can either handle <code>POST</code> share data using server-side code, or, to provide a better experience for offline users, a <code>fetch</code> event listener can be used to intercept the HTTP request which allows to access the data in a <a href="/en-US/docs/Web/API/Service_Worker_API">service worker</a>.</p>
+<pre class="brush: js">self.addEventListener("fetch", (event) =&gt; {
+  // Regular requests not related to Web Share Target.
+  if (event.request.method !== "POST") {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  // Requests related to Web Share Target.
+  event.respondWith(
+    (async () =&gt; {
+      const formData = await event.request.formData();
+      const link = formData.get("link") || "";
+      // Instead of the original URL `/save-bookmark/`, redirect
+      // the user to a URL returned by the `saveBookmark()`
+      // function, for example, `/`.
+      const responseUrl = await saveBookmark(link);
+      return Response.redirect(responseUrl, 303);
+    })(),
+  );
+});
+</pre>
+<p>The <code>POST</code> request is then ideally replied with an HTTP <a href="/en-US/docs/Web/HTTP/Status/303">303 See Other</a> redirect to avoid multiple <code>POST</code> requests from being submitted if a page refresh was initiated by the user, for example.</p>
+<h3 id="receiving_shared_files">Receiving shared files</h3>
+<p>To accept shared files, the HTTP method must be <code>POST</code>, the <code>enctype</code> must be <code>multipart/form-data</code>, and a <code>files</code> entry defining the types of accepted files must be provided.</p>
+<p>Files must have a <code>name</code> property, and the <code>accept</code> property must specify accepted MIME types or file extensions. It's probably a good idea to define both, since operating systems might differ in which they prefer.</p>
+<pre class="brush: json">{
+  "share_target": {
+    "action": "/file-collector",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "name",
+      "text": "description",
+      "url": "link",
+      "files": [
+        {
+          "name": "lists",
+          "accept": ["text/csv", ".csv"]
+        },
+        {
+          "name": "photos",
+          "accept": ["image/svg+xml", ".svg"]
+        }
+      ]
+    }
+  }
+}
+</pre>
+<p>To handle shared file data, see the <code>POST</code> example above and the <a href="/en-US/docs/Web/API/FileReader"><code>FileReader</code></a> API to read the files. In order to get the files from the service worker context over to client contexts, one solution is to temporarily write the files to the <a href="/en-US/docs/Web/API/Cache"><code>Cache</code></a> or <a href="/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a> and then notify its clients using <a href="/en-US/docs/Web/API/Client/postMessage"><code>Client.postMessage()</code></a>.</p>
+<h2 id="security_privacy">Security &amp; Privacy</h2>
+<p>Your PWA can only act as a web share target if it has been installed. See also <a href="/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Installable_PWAs">How to make PWAs installable</a>.</p>
+<p>Similar to HTML form submissions, you should be cautious about data that is sent to your application via the share target. Be sure to validate incoming data before using it.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.share_target" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.share_target" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

@@ -1,0 +1,61 @@
+<html><head></head><body>
+<p>The <strong><code>:read-write</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents an element (such as <code>input</code> or <code>textarea</code>) that is editable by the user.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-read-write.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:read-write {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="confirming_form_information_in_read-onlyread-write_controls">Confirming form information in read-only/read-write controls</h3>
+<p>One use of <code>readonly</code> form controls is to allow the user to check and verify information that they may have entered in an earlier form (for example, shipping details), while still being able to submit the information along with the rest of the form. We do just this in the example below.</p>
+<p>The <code>:read-only</code> pseudo-class is used to remove all the styling that makes the inputs look like clickable fields, making them look more like read-only paragraphs. The <code>:read-write</code> pseudo-class on the other hand is used to provide some nicer styling to the editable <code>&lt;textarea&gt;</code>.</p>
+<pre class="brush: css">input:-moz-read-only,
+textarea:-moz-read-only,
+input:read-only,
+textarea:read-only {
+  border: 0;
+  box-shadow: none;
+  background-color: white;
+}
+
+textarea:-moz-read-write,
+textarea:read-write {
+  box-shadow: inset 1px 1px 3px #ccc;
+  border-radius: 5px;
+}
+</pre>
+<p>You can find the full source code at <a href="https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/readonly-confirmation.html">readonly-confirmation.html</a>; this renders like so:</p><iframe width="100%" height="660" src="https://mdn.github.io/learning-area/html/forms/pseudo-classes/readonly-confirmation.html"></iframe>
+<h3 id="styling_read-write_non-form_controls">Styling read-write non-form controls</h3>
+<p>This selector doesn't just select <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a>/<a href="/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a> elements — it will select <em>any</em> element that can be edited by the user, such as a <a href="/en-US/docs/Web/HTML/Element/p"><code>&lt;p&gt;</code></a> element with <a href="/en-US/docs/Web/HTML/Global_attributes/contenteditable"><code>contenteditable</code></a> set on it.</p>
+<pre class="brush: html">&lt;p contenteditable&gt;This paragraph is editable; it is read-write.&lt;/p&gt;
+
+&lt;p&gt;This paragraph is not editable; it is read-only.&lt;/p&gt;
+</pre>
+<pre class="brush: css">p {
+  font-size: 150%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+p:read-only {
+  background-color: red;
+  color: white;
+}
+
+p:read-write {
+  background-color: lime;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Styling read-write non-form controls sample" id="frame_styling_read-write_non-form_controls" width="100%" height="400" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:read-write" data-live-id="styling_read-write_non-form_controls" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.read-write" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.read-write" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:read-only"><code>:read-only</code></a></li>
+  <li>HTML <a href="/en-US/docs/Web/HTML/Global_attributes/contenteditable"><code>contenteditable</code></a> attribute</li>
+</ul>
+</body></html>

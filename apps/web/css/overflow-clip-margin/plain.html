@@ -1,0 +1,54 @@
+<html><head></head><body>
+<p>The <strong><code>overflow-clip-margin</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property determines how far outside its bounds an element with <a href="/en-US/docs/Web/CSS/overflow"><code>overflow: clip</code></a> may be painted before being clipped. The bound defined by this property is called the <em>overflow clip edge</em> of the box.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;length&gt; values */
+overflow-clip-margin: 20px;
+overflow-clip-margin: 1em;
+
+/* &lt;visual-box&gt; | &lt;length&gt; */
+overflow-clip-margin: content-box 5px;
+
+/* Global values */
+overflow-clip-margin: inherit;
+overflow-clip-margin: initial;
+overflow-clip-margin: revert;
+overflow-clip-margin: revert-layer;
+overflow-clip-margin: unset;
+</pre>
+<p>The <code>&lt;visual-box&gt;</code> value, which defaults to <code>padding-box</code>, specifies the box edge to use as the overflow clip edge origin. The <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> value specified in <code>overflow-clip-margin</code> must be nonnegative.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> If the element does not have <code>overflow: clip</code> then this property will be ignored.</p>
+</div>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>0px</code></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>the computed &lt;length&gt; and a &lt;visual-box&gt; keyword</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="overflow-clip-margin">overflow-clip-margin = </span><br>  <span class="token property">&lt;visual-box&gt;</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length [0,∞]&gt;</span></a>  <br><br><span class="token property" id="<visual-box>">&lt;visual-box&gt; = </span><br>  <span class="token keyword">content-box</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">padding-box</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">border-box</span>   <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;div class="box"&gt;
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur.
+&lt;/div&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">.box {
+  border: 3px solid black;
+  width: 250px;
+  height: 100px;
+  overflow: clip;
+  overflow-clip-margin: 20px;
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="100%" height="280" src="about:blank" data-live-path="/en-US/docs/Web/CSS/overflow-clip-margin" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.overflow-clip-margin" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.overflow-clip-margin" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Related CSS properties: <a href="/en-US/docs/Web/CSS/text-overflow"><code>text-overflow</code></a>, <a href="/en-US/docs/Web/CSS/white-space"><code>white-space</code></a>, <a href="/en-US/docs/Web/CSS/overflow"><code>overflow</code></a>, <a href="/en-US/docs/Web/CSS/overflow-inline"><code>overflow-inline</code></a>, <a href="/en-US/docs/Web/CSS/overflow-x"><code>overflow-x</code></a>, <a href="/en-US/docs/Web/CSS/overflow-y"><code>overflow-y</code></a>, <a href="/en-US/docs/Web/CSS/clip"><code>clip</code></a>, <a href="/en-US/docs/Web/CSS/display"><code>display</code></a></li>
+</ul>
+</body></html>

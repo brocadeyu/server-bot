@@ -1,0 +1,124 @@
+<html><head></head><body>
+<p>The <code>start_url</code> manifest member is used to specify the URL that should be opened when a user launches your web application, such as when tapping the application's icon on their device's home screen or in an application list.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <code>start_url</code> is a hint for browsers. <a href="#description">Browsers have flexibility</a> in how they the handle <code>start_url</code> and may not always use the specified value.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Absolute URLs */
+"start_url": "https://example.com/myapp"
+"start_url": "https://myapp.com/home"
+
+/* Relative URLs */
+"start_url": "/"
+"start_url": "../index.html"
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="start_url"><a href="#start_url"><code>start_url</code></a></dt>
+  <dd>
+    <p>
+      A string that represents the starting URL of a web app.
+      The URL can be absolute or relative.
+      If the value is relative, it is resolved against the manifest file's URL.
+    </p>
+    <p>If <code>start_url</code> is unspecified or the value is invalid (i.e., not a string, not a valid URL, or not <a href="/en-US/docs/Glossary/Origin">same-origin</a> as the page that links to the manifest), the URL of the page that links to the manifest is used.</p>
+    <div class="notecard note">
+      <p><strong>Note:</strong> If <a href="/en-US/docs/Web/Manifest/scope"><code>scope</code></a> is not specified in the manifest it will be inferred from the <code>start_url</code> (or effective <code>start_url</code> if the value is undefined or invalid).</p>
+    </div>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The <code>start_url</code> allows you to recommend an appropriate common entry point for all users.</p>
+<p>
+  When a user installs a web app, the installation happens from the page they're currently viewing.
+  During installation, the browser fetches the manifest file linked from this page.
+  While the manifest file can be served from any origin, the installation process is tied to the page where it begins.
+  Consider a scenario where:
+</p>
+<ul>
+  <li>The installation page is <code>https://myapp.example.com/index.html</code>.</li>
+  <li>The manifest file is hosted at <code>https://assets.cdn.com/manifest.json</code>.</li>
+  <li>The <code>start_url</code> is <code>https://myapp.example.com/home</code>.</li>
+</ul>
+<p>
+  The specified <code>start_url</code> in this example will be used because it is same-origin with the page from which the app is being installed.
+  If the specified <code>start_url</code> were on a different origin (for example, <code>https://differentapp.example.com/home</code>), browsers would fall back to using the installation page URL as the starting point.
+  This ensures that web apps start only on pages within their own origin.
+</p>
+<p>
+  Note, however, that browsers are not required to use the specified URL.
+  They may ignore the specified value or provide users with a choice not to use it.
+  They may also allow users to modify the URL when creating a bookmark for the web app or at a later time.
+  Keep this in mind when designing your app to allow for variations in <code>start_url</code>.
+</p>
+<h3 id="best_practices">Best practices</h3>
+<p>
+  This URL should navigate users to an important page of your app, such as a dashboard.
+  Consider features that users would want to access immediately after launching the app.
+  If your app's main page is at the root of your site, you can set the <code>start_url</code> to <code>/</code>.
+  You can also specify a deep link (e.g., <code>https://myapp.com/product/whatsnew</code>) to direct users to specific content within your app.
+  Avoid specifying a generic starting page.
+</p>
+<p>
+  For security reasons, the <code>start_url</code> must be same-origin with the manifest URL.
+  If a non-same-origin <code>start_url</code> is specified, browsers will fallback to using the page that links to the manifest as the default starting page.
+</p>
+<h2 id="privacy_considerations">Privacy considerations</h2>
+<ul>
+  <li>
+    <p><strong>Fingerprinting</strong>:</p>
+    <p>
+      Encoding strings into <code>start_url</code> to uniquely identify users (e.g., server-assigned identifiers, such as <code>?user=123</code>, <code>/user/123/</code>, or <code>https://user123.foo.bar</code>) creates a persistent fingerprint.
+      Users may not be aware that their privacy-sensitive information can persist even after they've cleared site data.
+      It is bad practice to include any information in <code>start_url</code> that could uniquely identify users.
+    </p>
+    <p>
+      Browsers may offer protection against this type of fingerprinting.
+      For example, when users clear data from an origin, browsers may prompt them to uninstall apps that are within that origin's scope.
+      This removes any potential fingerprint from the app's <code>start_url</code>.
+    </p>
+  </li>
+  <li>
+    <p><strong>Launch tracking</strong>:</p>
+    <p>
+      Adding parameters to a <code>start_url</code> to indicate that the app was launched from outside the browser (e.g., <code>"start_url": "index.html?launcher=homescreen"</code>) can be useful for analytics and customizations.
+      However, this information could be used as part of a user's digital fingerprint.
+      Consider the potential privacy implications when implementing such tracking.
+    </p>
+  </li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="specifying_an_absolute_starting_url">Specifying an absolute starting URL</h3>
+<p>
+  Let's say the manifest file for your hiking web app is at <code>https://hiking-pro.com/resources/manifest.json</code>, and <code>https://hiking-pro.com/index.html</code> links to the manifest file.
+  You want users to land on the <code>trail-hub.html</code> page when they launch the app.
+  You can specify this starting URL in your manifest file like so:
+</p>
+<pre class="brush: json">"start_url": "https://hiking-pro.com/trail-hub.html"
+</pre>
+<p>This <code>start_url</code> value is valid because it is same-origin with the manifest URL (<code>https://hiking-pro.com/resources/manifest.json</code>).</p>
+<p>The following <code>start_url</code> is invalid because it is not the same-origin with the manifest URL:</p>
+<pre class="brush: json example-bad">"start_url": "https://other-domain.com/trail-hub.html"
+</pre>
+<p>In the above case, <code>https://hiking-pro.com/index.html</code> will be used as the default starting page when users launch the app.</p>
+<h3 id="specifying_a_relative_starting_url">Specifying a relative starting URL</h3>
+<p>
+  For your hiking app in the previous scenario, you can specify the same starting point using a relative URL, as shown below.
+  This relative URL will resolve to <code>https://hiking-pro.com/trail-hub.html</code> using the manifest file's URL (<code>https://hiking-pro.com/resources/manifest.json</code>) as the base.
+</p>
+<pre class="brush: json">"start_url": "../trail-hub.html"
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.start_url" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.start_url" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Glossary/Application_context">Application context</a></li>
+  <li><a href="/en-US/docs/Glossary/Same-origin_policy">Same-origin policy</a></li>
+  <li><a href="/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#the_web_app_manifest">The web app manifest</a> for making your web app installable</li>
+  <li><a href="/en-US/docs/Web/Security">Security on the web</a></li>
+</ul>
+</body></html>

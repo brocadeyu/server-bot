@@ -1,0 +1,149 @@
+<html><head></head><body>
+<p>The <strong><code>HTMLAreaElement</code></strong> interface provides special properties and methods (beyond those of the regular object <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> interface it also has available to it by inheritance) for manipulating the layout and presentation of <a href="/en-US/docs/Web/HTML/Element/area"><code>&lt;area&gt;</code></a> elements.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Element">
+    <rect x="223" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Element
+    </text>
+  </a>
+  <line x1="298" y1="14" x2="328" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="298,14 308,9 308,19 298,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLElement">
+    <rect x="328" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="372" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLElement
+    </text>
+  </a>
+  <line x1="416" y1="14" x2="446" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="416,14 426,9 426,19 416,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLAreaElement" aria-current="page">
+    <rect x="446" y="0" width="120" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="506" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLAreaElement
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its parent <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="htmlareaelement.alt"><a href="/en-US/docs/Web/API/HTMLAreaElement/alt"><code>HTMLAreaElement.alt</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/area#alt"><code>alt</code></a> HTML attribute, containing alternative text for the element.</p>
+  </dd>
+  <dt id="htmlareaelement.coords"><a href="/en-US/docs/Web/API/HTMLAreaElement/coords"><code>HTMLAreaElement.coords</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/area#coords"><code>coords</code></a> HTML attribute, containing coordinates to define the hot-spot region.</p>
+  </dd>
+  <dt id="htmlareaelement.download"><a href="/en-US/docs/Web/API/HTMLAreaElement/download"><code>HTMLAreaElement.download</code></a></dt>
+  <dd>
+    <p>A string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value represent the proposed name of the file. If the name is not a valid filename of the underlying OS, browser will adjust it accordingly.</p>
+  </dd>
+  <dt id="htmlareaelement.hash"><a href="/en-US/docs/Web/API/HTMLAreaElement/hash"><code>HTMLAreaElement.hash</code></a></dt>
+  <dd>
+    <p>A string containing the fragment identifier (including the leading hash mark (#)), if any, in the referenced URL.</p>
+  </dd>
+  <dt id="htmlareaelement.host"><a href="/en-US/docs/Web/API/HTMLAreaElement/host"><code>HTMLAreaElement.host</code></a></dt>
+  <dd>
+    <p>A string containing the hostname and port (if it's not the default port) in the referenced URL.</p>
+  </dd>
+  <dt id="htmlareaelement.hostname"><a href="/en-US/docs/Web/API/HTMLAreaElement/hostname"><code>HTMLAreaElement.hostname</code></a></dt>
+  <dd>
+    <p>A string containing the hostname in the referenced URL.</p>
+  </dd>
+  <dt id="htmlareaelement.href"><a href="/en-US/docs/Web/API/HTMLAreaElement/href"><code>HTMLAreaElement.href</code></a></dt>
+  <dd>
+    <p>A string containing that reflects the <a href="/en-US/docs/Web/HTML/Element/area#href"><code>href</code></a> HTML attribute, containing a valid URL of a linked resource.</p>
+  </dd>
+  <dt id="htmlareaelement.nohref"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLAreaElement.noHref&quot;)}}"><code>HTMLAreaElement.noHref</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A boolean flag indicating if the area is inactive (<code>true</code>) or active (<code>false</code>).</p>
+  </dd>
+  <dt id="htmlareaelement.origin"><a href="/en-US/docs/Web/API/HTMLAreaElement/origin"><code>HTMLAreaElement.origin</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string containing the origin of the URL, that is its scheme, its domain and its port.</p>
+  </dd>
+  <dt id="htmlareaelement.password"><a href="/en-US/docs/Web/API/HTMLAreaElement/password"><code>HTMLAreaElement.password</code></a></dt>
+  <dd>
+    <p>A string containing the password specified before the domain name.</p>
+  </dd>
+  <dt id="htmlareaelement.pathname"><a href="/en-US/docs/Web/API/HTMLAreaElement/pathname"><code>HTMLAreaElement.pathname</code></a></dt>
+  <dd>
+    <p>A string containing the path name component, if any, of the referenced URL.</p>
+  </dd>
+  <dt id="htmlareaelement.ping"><a href="/en-US/docs/Web/API/HTMLAreaElement/ping"><code>HTMLAreaElement.ping</code></a></dt>
+  <dd>
+    <p>A space-separated list of URLs. When the link is followed, the browser will send <a href="/en-US/docs/Web/HTTP/Methods/POST"><code>POST</code></a> requests with the body PING to the URLs.</p>
+  </dd>
+  <dt id="htmlareaelement.port"><a href="/en-US/docs/Web/API/HTMLAreaElement/port"><code>HTMLAreaElement.port</code></a></dt>
+  <dd>
+    <p>A string containing the port component, if any, of the referenced URL.</p>
+  </dd>
+  <dt id="htmlareaelement.protocol"><a href="/en-US/docs/Web/API/HTMLAreaElement/protocol"><code>HTMLAreaElement.protocol</code></a></dt>
+  <dd>
+    <p>A string containing the protocol component (including trailing colon <code>':'</code>), of the referenced URL.</p>
+  </dd>
+  <dt id="htmlareaelement.referrerpolicy"><a href="/en-US/docs/Web/API/HTMLAreaElement/referrerPolicy"><code>HTMLAreaElement.referrerPolicy</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/area#referrerpolicy"><code>referrerpolicy</code></a> HTML attribute indicating which referrer to use when fetching the linked resource.</p>
+  </dd>
+  <dt id="htmlareaelement.rel"><a href="/en-US/docs/Web/API/HTMLAreaElement/rel"><code>HTMLAreaElement.rel</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/area#rel"><code>rel</code></a> HTML attribute, indicating relationships of the current document to the linked resource.</p>
+  </dd>
+  <dt id="htmlareaelement.rellist"><a href="/en-US/docs/Web/API/HTMLAreaElement/relList"><code>HTMLAreaElement.relList</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMTokenList"><code>DOMTokenList</code></a> that reflects the <a href="/en-US/docs/Web/HTML/Element/area#rel"><code>rel</code></a> HTML attribute, indicating relationships of the current document to the linked resource, as a list of tokens.</p>
+  </dd>
+  <dt id="htmlareaelement.search"><a href="/en-US/docs/Web/API/HTMLAreaElement/search"><code>HTMLAreaElement.search</code></a></dt>
+  <dd>
+    <p>A string containing the search element (including leading question mark <code>'?'</code>), if any, of the referenced URL.</p>
+  </dd>
+  <dt id="htmlareaelement.shape"><a href="/en-US/docs/Web/API/HTMLAreaElement/shape"><code>HTMLAreaElement.shape</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/area#shape"><code>shape</code></a> HTML attribute, indicating the shape of the hot-spot, limited to known values.</p>
+  </dd>
+  <dt id="htmlareaelement.target"><a href="/en-US/docs/Web/API/HTMLAreaElement/target"><code>HTMLAreaElement.target</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/area#target"><code>target</code></a> HTML attribute, indicating the browsing context in which to open the linked resource.</p>
+  </dd>
+  <dt id="htmlareaelement.username"><a href="/en-US/docs/Web/API/HTMLAreaElement/username"><code>HTMLAreaElement.username</code></a></dt>
+  <dd>
+    <p>A string containing the username specified before the domain name.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="htmlareaelement.tostring"><a href="/en-US/docs/Web/API/HTMLAreaElement/toString"><code>HTMLAreaElement.toString()</code></a></dt>
+  <dd>
+    <p>Returns a string containing the whole URL. It is a synonym for <a href="/en-US/docs/Web/API/HTMLAreaElement/href"><code>HTMLAreaElement.href</code></a>.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLAreaElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLAreaElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>HTML element implementing this interface: <a href="/en-US/docs/Web/HTML/Element/area"><code>&lt;area&gt;</code></a></li>
+</ul>
+</body></html>

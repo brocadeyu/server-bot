@@ -1,0 +1,353 @@
+<html><head></head><body>
+<p>The <strong><code>HTMLInputElement</code></strong> interface provides special properties and methods for manipulating the options, layout, and presentation of <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> elements.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Element">
+    <rect x="223" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Element
+    </text>
+  </a>
+  <line x1="298" y1="14" x2="328" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="298,14 308,9 308,19 298,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLElement">
+    <rect x="328" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="372" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLElement
+    </text>
+  </a>
+  <line x1="416" y1="14" x2="446" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="416,14 426,9 426,19 416,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLInputElement" aria-current="page">
+    <rect x="446" y="0" width="128" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="510" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLInputElement
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Also inherits properties from its parent interface, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<p>Some properties only apply to input element types that support the corresponding attributes.</p>
+<dl>
+  <dt id="align"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLInputElement.align&quot;, &quot;align&quot;)}}"><code>align</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string that represents the alignment of the element. <em>Use CSS instead.</em></p>
+  </dd>
+  <dt id="defaultvalue"><a href="/en-US/docs/Web/API/HTMLInputElement/defaultValue" title="defaultValue"><code>defaultValue</code></a></dt>
+  <dd>
+    <p>A string that represents the default value as originally specified in the HTML that created this object.</p>
+  </dd>
+  <dt id="dirname"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLInputElement.dirName&quot;, &quot;dirName&quot;)}}"><code>dirName</code></a></dt>
+  <dd>
+    <p>A string that represents the directionality of the element.</p>
+  </dd>
+  <dt id="incremental"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLInputElement.incremental&quot;, &quot;incremental&quot;)}}"><code>incremental</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>A boolean that represents the search event fire mode, if <code>true</code>, fires on every keypress, or on clicking the cancel button; otherwise fires when pressing <kbd>Enter</kbd>.</p>
+  </dd>
+  <dt id="labels"><a href="/en-US/docs/Web/API/HTMLInputElement/labels" title="labels"><code>labels</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a list of <a href="/en-US/docs/Web/HTML/Element/label"><code>&lt;label&gt;</code></a> elements that are labels for this element.</p>
+  </dd>
+  <dt id="list"><a href="/en-US/docs/Web/API/HTMLInputElement/list" title="list"><code>list</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the element pointed to by the <a href="/en-US/docs/Web/HTML/Element/input#list"><code>list</code></a> attribute. The property may be <code>null</code> if no HTML element is found in the same tree.</p>
+  </dd>
+  <dt id="multiple"><a href="/en-US/docs/Web/API/HTMLInputElement/multiple" title="multiple"><code>multiple</code></a></dt>
+  <dd>
+    <p>A boolean that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#multiple"><code>multiple</code></a> attribute, indicating whether more than one value is possible (e.g., multiple files).</p>
+  </dd>
+  <dt id="name"><a href="/en-US/docs/Web/API/HTMLInputElement/name" title="name"><code>name</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#name"><code>name</code></a> attribute, containing a name that identifies the element when submitting the form.</p>
+  </dd>
+  <dt id="popovertargetaction"><a href="/en-US/docs/Web/API/HTMLInputElement/popoverTargetAction" title="popoverTargetAction"><code>popoverTargetAction</code></a></dt>
+  <dd>
+    <p>Gets and sets the action to be performed (<code>"hide"</code>, <code>"show"</code>, or <code>"toggle"</code>) on a popover element being controlled by an <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element of <code>type="button"</code>. It reflects the value of the <a href="/en-US/docs/Web/HTML/Element/input#popovertargetaction"><code>popovertargetaction</code></a> HTML attribute.</p>
+  </dd>
+  <dt id="popovertargetelement"><a href="/en-US/docs/Web/API/HTMLInputElement/popoverTargetElement" title="popoverTargetElement"><code>popoverTargetElement</code></a></dt>
+  <dd>
+    <p>Gets and sets the popover element to control via an <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element of <code>type="button"</code>. The JavaScript equivalent of the <a href="/en-US/docs/Web/HTML/Element/input#popovertarget"><code>popovertarget</code></a> HTML attribute.</p>
+  </dd>
+  <dt id="step"><a href="/en-US/docs/Web/API/HTMLInputElement/step" title="step"><code>step</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#step"><code>step</code></a> attribute, which works with <a href="/en-US/docs/Web/HTML/Element/input#min"><code>min</code></a> and <a href="/en-US/docs/Web/HTML/Element/input#max"><code>max</code></a> to limit the increments at which a numeric or date-time value can be set. It can be the string <code>any</code> or a positive floating point number. If this is not set to <code>any</code>, the control accepts only values at multiples of the step value greater than the minimum.</p>
+  </dd>
+  <dt id="type"><a href="/en-US/docs/Web/API/HTMLInputElement/type" title="type"><code>type</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#type"><code>type</code></a> attribute, indicating the type of control to display. For possible values, see the documentation for the <a href="/en-US/docs/Web/HTML/Element/input#type"><code>type</code></a> attribute.</p>
+  </dd>
+  <dt id="usemap"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLInputElement.useMap&quot;, &quot;useMap&quot;)}}"><code>useMap</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string that represents a client-side image map.</p>
+  </dd>
+  <dt id="value"><a href="/en-US/docs/Web/API/HTMLInputElement/value" title="value"><code>value</code></a></dt>
+  <dd>
+    <p>A string that represents the current value of the control. If the user enters a value different from the value expected, this may return an empty string.</p>
+  </dd>
+  <dt id="valueasdate"><a href="/en-US/docs/Web/API/HTMLInputElement/valueAsDate" title="valueAsDate"><code>valueAsDate</code></a></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> that represents the value of the element, interpreted as a date, or <code>null</code> if conversion is not possible.</p>
+  </dd>
+  <dt id="valueasnumber"><a href="/en-US/docs/Web/API/HTMLInputElement/valueAsNumber" title="valueAsNumber"><code>valueAsNumber</code></a></dt>
+  <dd>
+    <p>A number that represents the value of the element, interpreted as one of the following, in order: A time value, a number, or <code>NaN</code> if conversion is impossible.</p>
+  </dd>
+</dl>
+<h3 id="instance_properties_related_to_the_parent_form">Instance properties related to the parent form</h3>
+<dl>
+  <dt id="form"><a href="/en-US/docs/Web/API/HTMLInputElement/form" title="form"><code>form</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a reference to the parent <a href="/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a> element.</p>
+  </dd>
+  <dt id="formaction"><a href="/en-US/docs/Web/API/HTMLInputElement/formAction" title="formAction"><code>formAction</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#formaction"><code>formaction</code></a> attribute, containing the URL of a program that processes information submitted by the element. This overrides the <a href="/en-US/docs/Web/HTML/Element/form#action"><code>action</code></a> attribute of the parent form.</p>
+  </dd>
+  <dt id="formenctype"><a href="/en-US/docs/Web/API/HTMLInputElement/formEnctype" title="formEnctype"><code>formEnctype</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#formenctype"><code>formenctype</code></a> attribute, containing the type of content that is used to submit the form to the server. This overrides the <a href="/en-US/docs/Web/HTML/Element/form#enctype"><code>enctype</code></a> attribute of the parent form.</p>
+  </dd>
+  <dt id="formmethod"><a href="/en-US/docs/Web/API/HTMLInputElement/formMethod" title="formMethod"><code>formMethod</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#formmethod"><code>formmethod</code></a> attribute, containing the HTTP method that the browser uses to submit the form. This overrides the <a href="/en-US/docs/Web/HTML/Element/form#method"><code>method</code></a> attribute of the parent form.</p>
+  </dd>
+  <dt id="formnovalidate"><a href="/en-US/docs/Web/API/HTMLInputElement/formNoValidate" title="formNoValidate"><code>formNoValidate</code></a></dt>
+  <dd>
+    <p>A boolean that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#formnovalidate"><code>formnovalidate</code></a> attribute, indicating that the form is not to be validated when it is submitted. This overrides the <a href="/en-US/docs/Web/HTML/Element/form#novalidate"><code>novalidate</code></a> attribute of the parent form.</p>
+  </dd>
+  <dt id="formtarget"><a href="/en-US/docs/Web/API/HTMLInputElement/formTarget" title="formTarget"><code>formTarget</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#formtarget"><code>formtarget</code></a> attribute, containing a name or keyword indicating where to display the response that is received after submitting the form. This overrides the <a href="/en-US/docs/Web/HTML/Element/form#target"><code>target</code></a> attribute of the parent form.</p>
+  </dd>
+</dl>
+<h3 id="instance_properties_that_apply_to_any_type_of_input_element_that_is_not_hidden">Instance properties that apply to any type of input element that is not hidden</h3>
+<dl>
+  <dt id="disabled"><a href="/en-US/docs/Web/API/HTMLInputElement/disabled" title="disabled"><code>disabled</code></a></dt>
+  <dd>
+    <p>A boolean that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#disabled"><code>disabled</code></a> attribute, indicating that the control is not available for interaction. The input values will not be submitted with the form. See also <a href="/en-US/docs/Web/HTML/Element/input#readonly"><code>readonly</code></a>.</p>
+  </dd>
+  <dt id="required"><a href="/en-US/docs/Web/API/HTMLInputElement/required" title="required"><code>required</code></a></dt>
+  <dd>
+    <p>A boolean that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#required"><code>required</code></a> attribute, indicating that the user must fill in a value before submitting a form.</p>
+  </dd>
+  <dt id="validationmessage"><a href="/en-US/docs/Web/API/HTMLInputElement/validationMessage" title="validationMessage"><code>validationMessage</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (<a href="/en-US/docs/Web/API/HTMLObjectElement/willValidate"><code>willValidate</code></a> is <code>false</code>), or it satisfies its constraints. This value can be set by the <a href="/en-US/docs/Web/API/HTMLInputElement/setCustomValidity" title="setCustomValidity()"><code>setCustomValidity()</code></a> method.</p>
+  </dd>
+  <dt id="validity"><a href="/en-US/docs/Web/API/HTMLInputElement/validity" title="validity"><code>validity</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the element's current validity state.</p>
+  </dd>
+  <dt id="willvalidate"><a href="/en-US/docs/Web/API/HTMLInputElement/willValidate" title="willValidate"><code>willValidate</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns whether the element is a candidate for constraint validation. It is <code>false</code> if any conditions bar it from constraint validation, including: its <code>type</code> is one of <code>hidden</code>, <code>reset</code> or <code>button</code>, it has a <a href="/en-US/docs/Web/HTML/Element/datalist"><code>&lt;datalist&gt;</code></a> ancestor or its <code>disabled</code> property is <code>true</code>.</p>
+  </dd>
+</dl>
+<h3 id="instance_properties_that_apply_only_to_elements_of_type_checkbox_or_radio">Instance properties that apply only to elements of type checkbox or radio</h3>
+<dl>
+  <dt id="checked"><a href="/en-US/docs/Web/API/HTMLInputElement/checked" title="checked"><code>checked</code></a></dt>
+  <dd>
+    <p>A boolean that represents the current state of the element.</p>
+  </dd>
+  <dt id="defaultchecked"><a href="/en-US/docs/Web/API/HTMLInputElement/defaultChecked" title="defaultChecked"><code>defaultChecked</code></a></dt>
+  <dd>
+    <p>A boolean that represents the default state of a radio button or checkbox as originally specified in HTML that created this object.</p>
+  </dd>
+  <dt id="indeterminate"><a href="/en-US/docs/Web/API/HTMLInputElement/indeterminate" title="indeterminate"><code>indeterminate</code></a></dt>
+  <dd>
+    <p>A boolean that represents whether the checkbox or radio button is in indeterminate state. For checkboxes, the effect is that the appearance of the checkbox is obscured/greyed in some way as to indicate its state is indeterminate (not checked but not unchecked). Does not affect the value of the <code>checked</code> attribute, and clicking the checkbox will set the value to false.</p>
+  </dd>
+</dl>
+<h3 id="instance_properties_that_apply_only_to_elements_of_type_image">Instance properties that apply only to elements of type image</h3>
+<dl>
+  <dt id="alt"><a href="/en-US/docs/Web/API/HTMLInputElement/alt" title="alt"><code>alt</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#alt"><code>alt</code></a> attribute, containing alternative text to use.</p>
+  </dd>
+  <dt id="height"><a href="/en-US/docs/Web/API/HTMLInputElement/height" title="height"><code>height</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#height"><code>height</code></a> attribute, which defines the height of the image displayed for the button.</p>
+  </dd>
+  <dt id="src"><a href="/en-US/docs/Web/API/HTMLInputElement/src" title="src"><code>src</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#src"><code>src</code></a> attribute, which specifies a URI for the location of an image to display on the graphical submit button.</p>
+  </dd>
+  <dt id="width"><a href="/en-US/docs/Web/API/HTMLInputElement/width" title="width"><code>width</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#width"><code>width</code></a> attribute, which defines the width of the image displayed for the button.</p>
+  </dd>
+</dl>
+<h3 id="instance_properties_that_apply_only_to_elements_of_type_file">Instance properties that apply only to elements of type file</h3>
+<dl>
+  <dt id="accept"><a href="/en-US/docs/Web/API/HTMLInputElement/accept" title="accept"><code>accept</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#accept"><code>accept</code></a> attribute, containing comma-separated list of file types that can be selected.</p>
+  </dd>
+  <dt id="capture"><a href="/en-US/docs/Web/API/HTMLInputElement/capture" title="capture"><code>capture</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#capture"><code>capture</code></a> attribute, indicating the media capture input method in file upload controls.</p>
+  </dd>
+  <dt id="files"><a href="/en-US/docs/Web/API/HTMLInputElement/files" title="files"><code>files</code></a></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/API/FileList"><code>FileList</code></a> that represents the files selected for upload.</p>
+  </dd>
+  <dt id="webkitdirectory"><a href="/en-US/docs/Web/API/HTMLInputElement/webkitdirectory" title="webkitdirectory"><code>webkitdirectory</code></a></dt>
+  <dd>
+    <p>A boolean that represents the <a href="/en-US/docs/Web/HTML/Element/input#webkitdirectory"><code>webkitdirectory</code></a> attribute. If <code>true</code>, the file-system-picker interface only accepts directories instead of files.</p>
+  </dd>
+  <dt id="webkitentries"><a href="/en-US/docs/Web/API/HTMLInputElement/webkitEntries" title="webkitEntries"><code>webkitEntries</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Describes the currently selected files or directories.</p>
+  </dd>
+</dl>
+<h3 id="instance_properties_that_apply_only_to_visible_elements_containing_text_or_numbers">Instance properties that apply only to visible elements containing text or numbers</h3>
+<dl>
+  <dt id="autocomplete"><a href="/en-US/docs/Web/API/HTMLInputElement/autocomplete" title="autocomplete"><code>autocomplete</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#autocomplete"><code>autocomplete</code></a> attribute, indicating whether the value of the control can be automatically completed by the browser.</p>
+  </dd>
+  <dt id="max"><a href="/en-US/docs/Web/API/HTMLInputElement/max" title="max"><code>max</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#max"><code>max</code></a> attribute, containing the maximum (numeric or date-time) value for this item, which must not be less than its minimum (<a href="/en-US/docs/Web/HTML/Element/input#min"><code>min</code></a> attribute) value.</p>
+  </dd>
+  <dt id="maxlength"><a href="/en-US/docs/Web/API/HTMLInputElement/maxLength" title="maxLength"><code>maxLength</code></a></dt>
+  <dd>
+    <p>A number that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#maxlength"><code>maxlength</code></a> attribute, containing the maximum number of characters (in Unicode code points) that the value can have.</p>
+  </dd>
+  <dt id="min"><a href="/en-US/docs/Web/API/HTMLInputElement/min" title="min"><code>min</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#min"><code>min</code></a> attribute, containing the minimum (numeric or date-time) value for this item, which must not be greater than its maximum (<a href="/en-US/docs/Web/HTML/Element/input#max"><code>max</code></a> attribute) value.</p>
+  </dd>
+  <dt id="minlength"><a href="/en-US/docs/Web/API/HTMLInputElement/minLength" title="minLength"><code>minLength</code></a></dt>
+  <dd>
+    <p>A number that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#minlength"><code>minlength</code></a> attribute, containing the minimum number of characters (in Unicode code points) that the value can have.</p>
+  </dd>
+  <dt id="pattern"><a href="/en-US/docs/Web/API/HTMLInputElement/pattern" title="pattern"><code>pattern</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#pattern"><code>pattern</code></a> attribute, containing a regular expression that the control's value is checked against. Use the <a href="/en-US/docs/Web/HTML/Element/input#title"><code>title</code></a> attribute to describe the pattern to help the user. This attribute only applies when the value of the <a href="/en-US/docs/Web/HTML/Element/input#type"><code>type</code></a> attribute is <code>text</code>, <code>search</code>, <code>tel</code>, <code>url</code> or <code>email</code>.</p>
+  </dd>
+  <dt id="placeholder"><a href="/en-US/docs/Web/API/HTMLInputElement/placeholder" title="placeholder"><code>placeholder</code></a></dt>
+  <dd>
+    <p>A string that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#placeholder"><code>placeholder</code></a> attribute, containing a hint to the user of what can be entered in the control. The placeholder text must not contain carriage returns or line-feeds. This attribute only applies when the value of the <a href="/en-US/docs/Web/HTML/Element/input#type"><code>type</code></a> attribute is <code>text</code>, <code>search</code>, <code>tel</code>, <code>url</code> or <code>email</code>.</p>
+  </dd>
+  <dt id="readonly"><a href="/en-US/docs/Web/API/HTMLInputElement/readOnly" title="readOnly"><code>readOnly</code></a></dt>
+  <dd>
+    <p>A boolean that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#readonly"><code>readonly</code></a> attribute, indicating that the user cannot modify the value of the control. This is ignored if the <a href="/en-US/docs/Web/HTML/Element/input#type"><code>type</code></a> is <code>hidden</code>, <code>range</code>, <code>color</code>, <code>checkbox</code>, <code>radio</code>, <code>file</code>, or a button type.</p>
+  </dd>
+  <dt id="selectiondirection"><a href="/en-US/docs/Web/API/HTMLInputElement/selectionDirection" title="selectionDirection"><code>selectionDirection</code></a></dt>
+  <dd>
+    <p>A string that represents the direction in which selection occurred. Possible values are: <code>forward</code> (the selection was performed in the start-to-end direction of the current locale), <code>backward</code> (the opposite direction) or <code>none</code> (the direction is unknown).</p>
+  </dd>
+  <dt id="selectionend"><a href="/en-US/docs/Web/API/HTMLInputElement/selectionEnd" title="selectionEnd"><code>selectionEnd</code></a></dt>
+  <dd>
+    <p>A number that represents the end index of the selected text. When there's no selection, this returns the offset of the character immediately following the current text input cursor position.</p>
+  </dd>
+  <dt id="selectionstart"><a href="/en-US/docs/Web/API/HTMLInputElement/selectionStart" title="selectionStart"><code>selectionStart</code></a></dt>
+  <dd>
+    <p>A number that represents the beginning index of the selected text. When nothing is selected, this returns the position of the text input cursor (caret) inside of the <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element.</p>
+  </dd>
+  <dt id="size"><a href="/en-US/docs/Web/API/HTMLInputElement/size" title="size"><code>size</code></a></dt>
+  <dd>
+    <p>A number that represents the element's <a href="/en-US/docs/Web/HTML/Element/input#size"><code>size</code></a> attribute, containing visual size of the control. This value is in pixels unless the value of <a href="/en-US/docs/Web/HTML/Element/input#type"><code>type</code></a> is <code>text</code> or <code>password</code>, in which case, it is an integer number of characters. Applies only when <a href="/en-US/docs/Web/HTML/Element/input#type"><code>type</code></a> is set to <code>text</code>, <code>search</code>, <code>tel</code>, <code>url</code>, <code>email</code>, or <code>password</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Also inherits methods from its parent interface, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="checkvalidity"><a href="/en-US/docs/Web/API/HTMLInputElement/checkValidity" title="checkValidity()"><code>checkValidity()</code></a></dt>
+  <dd>
+    <p>Returns a boolean value that is <code>false</code> if the element is a candidate for constraint validation, and it does not satisfy its constraints. In this case, it also fires an <a href="/en-US/docs/Web/API/HTMLInputElement/invalid_event" title="invalid"><code>invalid</code></a> event at the element. It returns <code>true</code> if the element is not a candidate for constraint validation, or if it satisfies its constraints.</p>
+  </dd>
+  <dt id="reportvalidity"><a href="/en-US/docs/Web/API/HTMLInputElement/reportValidity" title="reportValidity()"><code>reportValidity()</code></a></dt>
+  <dd>
+    <p>Runs the <code>checkValidity()</code> method, and if it returns false (for an invalid input or no pattern attribute provided), then it reports to the user that the input is invalid in the same manner as if you submitted a form.</p>
+  </dd>
+  <dt id="select"><a href="/en-US/docs/Web/API/HTMLInputElement/select" title="select()"><code>select()</code></a></dt>
+  <dd>
+    <p>Selects all the text in the input element, and focuses it so the user can subsequently replace all of its content.</p>
+  </dd>
+  <dt id="setcustomvalidity"><a href="/en-US/docs/Web/API/HTMLInputElement/setCustomValidity" title="setCustomValidity()"><code>setCustomValidity()</code></a></dt>
+  <dd>
+    <p>Sets a custom validity message for the element. If this message is not the empty string, then the element is suffering from a custom validity error, and does not validate.</p>
+  </dd>
+  <dt id="setrangetext"><a href="/en-US/docs/Web/API/HTMLInputElement/setRangeText" title="setRangeText()"><code>setRangeText()</code></a></dt>
+  <dd>
+    <p>Replaces a range of text in the input element with new text.</p>
+  </dd>
+  <dt id="setselectionrange"><a href="/en-US/docs/Web/API/HTMLInputElement/setSelectionRange" title="setSelectionRange()"><code>setSelectionRange()</code></a></dt>
+  <dd>
+    <p>Selects a range of text in the input element (but does not focus it).</p>
+  </dd>
+  <dt id="showpicker"><a href="/en-US/docs/Web/API/HTMLInputElement/showPicker" title="showPicker()"><code>showPicker()</code></a></dt>
+  <dd>
+    <p>Shows a browser picker for date, time, color, and files.</p>
+  </dd>
+  <dt id="stepdown"><a href="/en-US/docs/Web/API/HTMLInputElement/stepDown" title="stepDown()"><code>stepDown()</code></a></dt>
+  <dd>
+    <p>Decrements the <a href="/en-US/docs/Web/HTML/Element/input#value"><code>value</code></a> by (<a href="/en-US/docs/Web/HTML/Element/input#step"><code>step</code></a> * n), where n defaults to 1 if not specified.</p>
+  </dd>
+  <dt id="stepup"><a href="/en-US/docs/Web/API/HTMLInputElement/stepUp" title="stepUp()"><code>stepUp()</code></a></dt>
+  <dd>
+    <p>Increments the <a href="/en-US/docs/Web/HTML/Element/input#value"><code>value</code></a> by (<a href="/en-US/docs/Web/HTML/Element/input#step"><code>step</code></a> * n), where n defaults to 1 if not specified.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<p><em>Also inherits events from its parent interface, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<p>Listen to these events using <a href="/en-US/docs/Web/API/EventTarget/addEventListener" title="addEventListener()"><code>addEventListener()</code></a> or by assigning an event listener to the <code>oneventname</code> property of this interface:</p>
+<dl>
+  <dt id="cancel"><a href="/en-US/docs/Web/API/HTMLInputElement/cancel_event" title="cancel"><code>cancel</code></a> event</dt>
+  <dd>
+    <p>Fired when the user cancels the file picker dialog via the <kbd>Esc</kbd> key or the cancel button and when the user re-selects the same files that were previously selected.</p>
+  </dd>
+  <dt id="invalid"><a href="/en-US/docs/Web/API/HTMLInputElement/invalid_event" title="invalid"><code>invalid</code></a> event</dt>
+  <dd>
+    <p>Fired when an element does not satisfy its constraints during constraint validation.</p>
+  </dd>
+  <dt id="search"><a href="/en-US/docs/Web/API/HTMLInputElement/search_event" title="search"><code>search</code></a> event <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when a search is initiated on an <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> of <code>type="search"</code>.</p>
+  </dd>
+  <dt id="select_2"><a href="/en-US/docs/Web/API/HTMLInputElement/select_event" title="select"><code>select</code></a> event</dt>
+  <dd>
+    <p>Fired when some text has been selected.</p>
+  </dd>
+  <dt id="selectionchange"><a href="/en-US/docs/Web/API/HTMLInputElement/selectionchange_event" title="selectionchange"><code>selectionchange</code></a> event <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fires when the text selection in a <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element has been changed.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLInputElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLInputElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>HTML element implementing this interface: <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a></li>
+</ul>
+</body></html>

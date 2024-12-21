@@ -1,0 +1,168 @@
+<html><head></head><body>
+<p>The <code>icons</code> manifest member is used to specify one or more image files that define the icons to represent your web application.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Single icon with the minimum required property */
+"icons": [
+  {
+    "src": "icon/basic-icon.png"
+  }
+]
+
+/* Single icon with multiple purposes */
+"icons": [
+  {
+    "src": "icon/basic-icon.png",
+    "purpose": "monochrome maskable"
+  }
+]
+
+/* Two icons with various properties */
+"icons": [
+  {
+    "src": "icon/low-res.png",
+    "sizes": "48x48"
+  },
+  {
+    "src": "maskable_icon.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }
+]
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="icons"><a href="#icons"><code>icons</code></a></dt>
+  <dd>
+    <p>
+      An array of objects.
+      Each object represents an icon to be used in a specific context.
+      For example, you can add icons to represent your web app on devices with different screen sizes, for integration with various operating systems, for splash screens, or for app notifications.
+    </p>
+    <p>Each icon object can have one or more properties. Of these, only <code>src</code> is required. The possible properties include:</p>
+    <dl>
+      <dt id="src"><a href="#src"><code>src</code></a></dt>
+      <dd>
+        <p>
+          A string that specifies the path to the icon image file.
+          If <code>src</code> is relative, the path is resolved relative to the manifest file's URL.
+          For example, the relative URL <code>images/icon-192x192.png</code> for the manifest file located at <code>https://example.com/manifest.json</code> will be resolved as <code>https://example.com/images/icon-192x192.png</code>.
+        </p>
+      </dd>
+      <dt id="sizes"><a href="#sizes"><code>sizes</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string that specifies one or more sizes at which the icon file can be used.
+          Each size is specified as <code>&lt;width in pixels&gt;x&lt;height in pixels&gt;</code>.
+          If multiple sizes are specified, they are separated by spaces; for example, <code>48x48 96x96</code>.
+          When multiple icons are available, browsers may select the most suitable icon for a particular display context.
+          For raster formats like PNG, specifying the exact available sizes is recommended.
+          For vector formats like SVG, you can use <code>any</code> to indicate scalability.
+          If <code>sizes</code> is not specified, the selection and display of the icon may vary depending on the browser's implementation.
+        </p>
+        <p>Note that the format of <code>sizes</code> is similar to the HTML <code>&lt;link&gt;</code> element's <a href="/en-US/docs/Web/HTML/Element/link#sizes"><code>sizes</code></a> attribute.</p>
+      </dd>
+      <dt id="type"><a href="#type"><code>type</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string that specifies the <a href="/en-US/docs/Glossary/MIME_type">MIME type</a> of the icon.
+          The value should be in the format <code>image/&lt;subtype&gt;</code>, where <code>&lt;subtype&gt;</code> is a specific image format; for example, <code>image/png</code> indicates a PNG image.
+          If omitted, browsers typically infer the image type from the file extension.
+        </p>
+      </dd>
+      <dt id="purpose"><a href="#purpose"><code>purpose</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A case-sensitive keyword string that specifies one or more contexts in which the icon can be used by the browser or operating system.
+          The value can be a single keyword or multiple space-separated keywords.
+          If omitted, the browser can use the icon for any purpose.
+        </p>
+        <p>
+          Browsers use these values as hints to determine where and how an icon is displayed.
+          For example, a <code>monochrome</code> icon might be used as a badge or pinned icon with a solid fill, which is visually distinct from a full-color launch icon.
+          With multiple keywords, say <code>monochrome maskable</code>, the browser can use the icon for any of those purposes.
+          If an unrecognized purpose is included along with valid values (e.g., <code>monochrome fizzbuzz</code>), the icon can still be used for the valid purposes.
+          However, if only unrecognized purposes are specified (e.g., <code>fizzbuzz</code>), then it will be ignored.
+        </p>
+        <p>Valid values include:</p>
+        <dl>
+          <dt id="monochrome"><a href="#monochrome"><code>monochrome</code></a></dt>
+          <dd>
+            <p>
+              Indicates that the icon is intended to be used as a monochrome icon with a solid fill.
+              With this value, a browser discards the color information in the icon and uses only the alpha channel as a mask over any solid fill.
+            </p>
+          </dd>
+          <dt id="maskable"><a href="#maskable"><code>maskable</code></a></dt>
+          <dd>
+            <p>Indicates that the icon is designed with icon masks and safe zone in mind, such that any part of the image outside the safe zone can be ignored and masked away.</p>
+          </dd>
+          <dt id="any"><a href="#any"><code>any</code></a></dt>
+          <dd>
+            <p>Indicates that the icon can be used in any context. This is the default value.</p>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>Icons uniquely identify your web app in different contexts, such as in an operating system's task switcher, system settings, home screen, app listings, and other places when application icons are displayed.</p>
+<p>The context in which an icon can be used is determined by the browser and the operating system, based on the specified sizes and formats.</p>
+<h2 id="security_considerations">Security considerations</h2>
+<p>The browser's ability to fetch an icon image is governed by the Content Security Policy (<a href="/en-US/docs/Glossary/CSP">CSP</a>) of the manifest's owner document, specifically by the <a href="/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/img-src"><code>img-src</code></a> directive. This security aspect is related to the <code>src</code> property.</p>
+<p>For example, if the <code>img-src</code> directive in a CSP header specifies <code>icons.example.com</code>, icons from only that domain would be fetchable. In a manifest with two icons, one from <code>icons.example.com/low-res</code> and another from <code>other.com/hi-res</code>, only the former would be fetched successfully because of CSP restrictions.</p>
+<h2 id="performance_considerations">Performance considerations</h2>
+<p>
+  Specifying the <code>type</code> property can significantly improve performance because it allows browsers to ignore images with unsupported formats more easily.
+  If you don't specify the <code>type</code> property, browsers may need to infer the image format using more resource-intensive methods, such as <a href="/en-US/docs/Web/HTTP/MIME_types#mime_sniffing">MIME sniffing</a> the file for a signature.
+</p>
+<p>At a minimum, if you omit the <code>type</code> property, use appropriate and unambiguous file extensions for your icon images.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="declaring_multiple_icons">Declaring multiple icons</h3>
+<p>This example shows how to declare multiple icons for different scenarios and devices. If an icon for a specific situation is not supported or not available, browsers will fall back to other available formats and sizes.</p>
+<ul>
+  <li>
+    <p>Two icons of the same size (<code>48x48</code>) are provided in different formats. The first is explicitly specified as <a href="/en-US/docs/Web/Media/Formats/Image_types#webp_image">WebP</a> using the <code>type</code> property. If a browser doesn't support WebP, it will fall back to the second icon of the same size. For the second icon, the browser will determine the MIME type either from the HTTP header or by inferring it from the image file's content. Icons at this size are typically used for browser tabs and bookmarks.</p>
+  </li>
+  <li>
+    <p>An <a href="/en-US/docs/Web/Media/Formats/Image_types#ico_microsoft_windows_icon">ICO</a> file is provided with multiple sizes ranging from <code>72x72</code> to <code>256x256</code>. ICO files contain multiple raster icons that are individually optimized for various display sizes. Icons at these sizes are commonly used for desktop shortcuts.</p>
+  </li>
+  <li>
+    <p>For larger icons (<code>257x257</code> and above), an <a href="/en-US/docs/Web/Media/Formats/Image_types#svg_scalable_vector_graphics">SVG</a> file is specified. The <code>sizes</code> value of this icon is set to <code>any</code>, which allows a browser to use this icon at any size. SVG icons maintain their quality at larger sizes. These icons are ideal for high-resolution displays like in <a href="/en-US/docs/Web/Progressive_web_apps">progressive web apps (PWAs)</a>.</p>
+  </li>
+</ul>
+<pre class="brush: json">{
+  "icons": [
+    {
+      "src": "icon/low-res.webp",
+      "sizes": "48x48",
+      "type": "image/webp"
+    },
+    {
+      "src": "icon/low-res",
+      "sizes": "48x48"
+    },
+    {
+      "src": "icon/hd_hi.ico",
+      "sizes": "72x72 96x96 128x128 256x256"
+    },
+    {
+      "src": "icon/hd_hi.svg",
+      "sizes": "any"
+    }
+  ]
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.icons" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.icons" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Media/Formats/Image_types#webp_image">Image file type and format guide</a></li>
+  <li><a href="https://w3c.github.io/manifest/#monochrome-icons-and-solid-fills">Monochrome icons and solid fills</a></li>
+  <li><a href="https://w3c.github.io/manifest/#icon-masks">Icon masks and safe zone</a></li>
+</ul>
+</body></html>

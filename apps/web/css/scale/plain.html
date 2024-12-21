@@ -1,0 +1,92 @@
+<html><head></head><body>
+<p>The <strong><code>scale</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property allows you to specify scale transforms individually and independently of the <a href="/en-US/docs/Web/CSS/transform"><code>transform</code></a> property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the <code>transform</code> value.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/scale.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+scale: none;
+
+/* Single values */
+/* values of more than 1 or 100% make the element grow */
+scale: 2;
+/* values of less than 1 or 100% make the element shrink */
+scale: 50%;
+
+/* Two values */
+scale: 2 0.5;
+
+/* Three values */
+scale: 200% 50% 200%;
+
+/* Global values */
+scale: inherit;
+scale: initial;
+scale: revert;
+scale: revert-layer;
+scale: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="single_value"><a href="#single_value">Single value</a></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> or <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> specifying a scale factor to make the affected element scale by the same factor along both the X and Y axes. Equivalent to a <code>scale()</code> (2D scaling) function with a single value specified.</p>
+  </dd>
+  <dt id="two_values"><a href="#two_values">Two values</a></dt>
+  <dd>
+    <p>Two <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> or <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> values that specify the X and Y axis scaling values (respectively) of a 2D scale. Equivalent to a <code>scale()</code> (2D scaling) function with two values specified.</p>
+  </dd>
+  <dt id="three_values"><a href="#three_values">Three values</a></dt>
+  <dd>
+    <p>Three <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> or <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> values that specify the X, Y, and Z axis scaling values (respectively) of a 3D scale. Equivalent to a <code>scale3d()</code> (3D scaling) function.</p>
+  </dd>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>Specifies that no scaling should be applied.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>none</code></td></tr><tr><th scope="row">Applies to</th><td>transformable elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a transform</td></tr><tr><th scope="row">Creates <a href="/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context">stacking context</a></th><td>yes</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="scale">scale = </span><br>  <span class="token keyword">none</span>                              <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{1,3}</a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="scaling_an_element_on_hover">Scaling an element on hover</h3>
+<p>
+  The following example shows how to scale an element on hover.
+  Two boxes are shown, one with a single <code>scale</code> value which scales the element along both axes.
+  The second box has two <code>scale</code> values which scales the element along the X and Y axes independently.
+</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div class="box" id="box1"&gt;single value&lt;/div&gt;
+&lt;div class="box" id="box2"&gt;two values&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">.box {
+  float: left;
+  margin: 1em;
+  width: 7em;
+  line-height: 7em;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+  border: 3px dotted;
+}
+
+#box1:hover {
+  scale: 1.25;
+}
+
+#box2:hover {
+  scale: 1.25 0.75;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Scaling an element on hover sample" id="frame_scaling_an_element_on_hover" width="100%" height="150" src="about:blank" data-live-path="/en-US/docs/Web/CSS/scale" data-live-id="scaling_an_element_on_hover" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.scale" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.scale" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/translate"><code>translate</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/rotate"><code>rotate</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/transform"><code>transform</code></a></li>
+</ul>
+<p>Note: skew is not an independent transform value</p>
+</body></html>

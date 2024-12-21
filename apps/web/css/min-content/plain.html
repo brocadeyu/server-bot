@@ -1,0 +1,66 @@
+<html><head></head><body>
+<p>The <code>min-content</code> sizing keyword represents the minimum <a href="/en-US/docs/Glossary/Intrinsic_Size">intrinsic size</a> of the content. For text content this means that the content will take all soft-wrapping opportunities, becoming as small as the longest word.</p>
+<p>The <a href="/en-US/docs/Web/CSS/interpolate-size"><code>interpolate-size</code></a> property and <a href="/en-US/docs/Web/CSS/calc-size"><code>calc-size()</code></a> function can be used to enable animations to and from <code>min-content</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Used as a length */
+width: min-content;
+inline-size: min-content;
+height: min-content;
+block-size: min-content;
+
+/* used in grid tracks */
+grid-template-columns: 200px 1fr min-content;
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_min-content_for_box_sizing">Using min-content for box sizing</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div class="item"&gt;Item&lt;/div&gt;
+&lt;div class="item"&gt;Item with more text in it.&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">.item {
+  width: min-content;
+  background-color: #8ca0ff;
+  padding: 5px;
+  margin-bottom: 1em;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Using min-content for box sizing sample" id="frame_using_min-content_for_box_sizing" width="100%" height="200" src="about:blank" data-live-path="/en-US/docs/Web/CSS/min-content" data-live-id="using_min-content_for_box_sizing" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="sizing_grid_columns_with_min-content">Sizing grid columns with min-content</h3>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;div id="container"&gt;
+  &lt;div&gt;Item&lt;/div&gt;
+  &lt;div&gt;Item with more text in it.&lt;/div&gt;
+  &lt;div&gt;Flexible item&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">#container {
+  display: grid;
+  grid-template-columns: min-content min-content 1fr;
+  grid-gap: 5px;
+  box-sizing: border-box;
+  height: 200px;
+  width: 100%;
+  background-color: #8cffa0;
+  padding: 10px;
+}
+
+#container &gt; div {
+  background-color: #8ca0ff;
+  padding: 5px;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Sizing grid columns with min-content sample" id="frame_sizing_grid_columns_with_min-content" width="100%" height="200" src="about:blank" data-live-path="/en-US/docs/Web/CSS/min-content" data-live-id="sizing_grid_columns_with_min-content" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.width.min-content" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.width.min-content" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Related sizing keywords: <a href="/en-US/docs/Web/CSS/max-content"><code>max-content</code></a>, <a href="/en-US/docs/Web/CSS/fit-content"><code>fit-content</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_box_sizing">CSS box sizing</a> module</li>
+</ul>
+</body></html>

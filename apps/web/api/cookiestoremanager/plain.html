@@ -1,0 +1,36 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Service_Worker_API">Service Workers</a>.</p>
+</div>
+<p>The <strong><code>CookieStoreManager</code></strong> interface of the <a href="/en-US/docs/Web/API/Cookie_Store_API">Cookie Store API</a> allows service workers to subscribe to cookie change events. Call <a href="/en-US/docs/Web/API/CookieStoreManager/subscribe" title="subscribe()"><code>subscribe()</code></a> on a particular service worker registration to receive change events.</p>
+<p>A <code>CookieStoreManager</code> has an associated <a href="/en-US/docs/Web/API/ServiceWorkerRegistration"><code>ServiceWorkerRegistration</code></a>. Each service worker registration has a cookie change subscription list, which is a list of cookie change subscriptions each containing a name and URL. The methods in this interface allow the service worker to add and remove subscriptions from this list, and to get a list of all subscriptions.</p>
+<p>To get a <code>CookieStoreManager</code>, call <a href="/en-US/docs/Web/API/ServiceWorkerRegistration/cookies"><code>ServiceWorkerRegistration.cookies</code></a>.</p>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="cookiestoremanager.getsubscriptions"><a href="/en-US/docs/Web/API/CookieStoreManager/getSubscriptions"><code>CookieStoreManager.getSubscriptions()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves to a list of the cookie change subscriptions for this service worker registration.</p>
+  </dd>
+  <dt id="cookiestoremanager.subscribe"><a href="/en-US/docs/Web/API/CookieStoreManager/subscribe"><code>CookieStoreManager.subscribe()</code></a></dt>
+  <dd>
+    <p>Subscribes to changes to cookies. It returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves when the subscription is successful.</p>
+  </dd>
+  <dt id="cookiestoremanager.unsubscribe"><a href="/en-US/docs/Web/API/CookieStoreManager/unsubscribe"><code>CookieStoreManager.unsubscribe()</code></a></dt>
+  <dd>
+    <p>Unsubscribes the registered service worker from changes to cookies. It returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves when the operation is successful.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>In this example, the <a href="/en-US/docs/Web/API/ServiceWorkerRegistration"><code>ServiceWorkerRegistration</code></a> represented by <code>registration</code> is subscribing to change events on the cookie named <code>"cookie1"</code> with a scope of <code>"/path1"</code>.</p>
+<pre class="brush: js">const subscriptions = [{ name: "cookie1", url: `/path1` }];
+await registration.cookies.subscribe(subscriptions);
+</pre>
+<p>If the <a href="/en-US/docs/Web/API/ServiceWorkerRegistration"><code>ServiceWorkerRegistration</code></a> has subscribed to any cookies, then <a href="/en-US/docs/Web/API/CookieStoreManager/getSubscriptions" title="getSubscriptions()"><code>getSubscriptions()</code></a> will return a list of cookies represented by objects in the same format as used for the original subscription.</p>
+<pre class="brush: js">const subscriptions = await self.registration.cookies.getSubscriptions();
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CookieStoreManager" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CookieStoreManager" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

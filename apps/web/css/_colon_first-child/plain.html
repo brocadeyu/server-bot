@@ -1,0 +1,69 @@
+<html><head></head><body>
+<p>The <strong><code>:first-child</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents the first element among a group of sibling elements.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-first-child.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:first-child {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div&gt;
+  &lt;p&gt;This text is selected!&lt;/p&gt;
+  &lt;p&gt;This text isn't selected.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;h2&gt;This text isn't selected: it's not a `p`.&lt;/h2&gt;
+  &lt;p&gt;This text isn't selected.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">p:first-child {
+  color: lime;
+  background-color: black;
+  padding: 5px;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Basic example sample" id="frame_basic_example" width="500" height="200" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:first-child" data-live-id="basic_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="styling_a_list">Styling a list</h3>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;
+    Item 3
+    &lt;ul&gt;
+      &lt;li&gt;Item 3.1&lt;/li&gt;
+      &lt;li&gt;Item 3.2&lt;/li&gt;
+      &lt;li&gt;Item 3.3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">ul li {
+  color: blue;
+}
+
+ul li:first-child {
+  color: red;
+  font-weight: bold;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Styling a list sample" id="frame_styling_a_list" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:first-child" data-live-id="styling_a_list" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.first-child" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.first-child" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:-moz-first-node"><code>:-moz-first-node</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:first-of-type"><code>:first-of-type</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:last-child"><code>:last-child</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:nth-child"><code>:nth-child()</code></a></li>
+</ul>
+</body></html>

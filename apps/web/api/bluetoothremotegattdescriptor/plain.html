@@ -1,0 +1,68 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>
+  The <code>BluetoothRemoteGATTDescriptor</code> interface of the <a href="/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth API</a> provides a GATT Descriptor,
+  which provides further information about a characteristic's value.
+</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="bluetoothremotegattdescriptor.characteristic"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor/characteristic"><code>BluetoothRemoteGATTDescriptor.characteristic</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>
+      Returns the <a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic"><code>BluetoothRemoteGATTCharacteristic</code></a> this descriptor belongs
+      to.
+    </p>
+  </dd>
+  <dt id="bluetoothremotegattdescriptor.uuid"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor/uuid"><code>BluetoothRemoteGATTDescriptor.uuid</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>
+      Returns the UUID of the characteristic descriptor, for
+      example <code>"00002902-0000-1000-8000-00805f9b34fb"</code> for the Client
+      Characteristic Configuration descriptor.
+    </p>
+  </dd>
+  <dt id="bluetoothremotegattdescriptor.value"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor/value"><code>BluetoothRemoteGATTDescriptor.value</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>
+      Returns the currently cached descriptor value. This value gets updated when the
+      value of the descriptor is read.
+    </p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="bluetoothremotegattdescriptor.readvalue"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor/readValue"><code>BluetoothRemoteGATTDescriptor.readValue()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>
+      Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to
+      an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> holding a duplicate of the <code>value</code> property
+      if it is available and supported. Otherwise it throws an error.
+    </p>
+  </dd>
+  <dt id="bluetoothremotegattdescriptor.writevalue"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor/writeValue"><code>BluetoothRemoteGATTDescriptor.writeValue()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>
+      Sets the value property to the bytes contained in an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> and
+      returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.
+    </p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BluetoothRemoteGATTDescriptor" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BluetoothRemoteGATTDescriptor" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

@@ -1,0 +1,80 @@
+<html><head></head><body><div class="notecard deprecated">
+    <h4 id="deprecated">Deprecated</h4>
+    <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p>
+</div>
+<p>The <code>PluginArray</code> interface is used to store a list of <a href="/en-US/docs/Web/API/Plugin"><code>Plugin</code></a> objects; it's returned by the <a href="/en-US/docs/Web/API/Navigator/plugins" title="navigator.plugins"><code>navigator.plugins</code></a> property. The <code>PluginArray</code> is not a JavaScript array, but has the <code>length</code> property and supports accessing individual items using bracket notation (<code>plugins[2]</code>), as well as via <code>item(index)</code> and <code>namedItem("name")</code> methods.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> Own properties of <code>PluginArray</code> objects are no longer enumerable in the latest browser versions.</p>
+</div>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="pluginarray.length"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;PluginArray.length&quot;)}}"><code>PluginArray.length</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>The number of plugins in the array.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="pluginarray.item"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;PluginArray.item&quot;)}}"><code>PluginArray.item</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/Plugin"><code>Plugin</code></a> at the specified index into the array.</p>
+  </dd>
+  <dt id="pluginarray.nameditem"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;PluginArray.namedItem&quot;)}}"><code>PluginArray.namedItem</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/Plugin"><code>Plugin</code></a> with the specified name.</p>
+  </dd>
+  <dt id="pluginarray.refresh"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;PluginArray.refresh&quot;)}}"><code>PluginArray.refresh</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Refreshes all plugins on the current page, optionally reloading documents.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example function returns the version of the Shockwave Flash plugin.</p>
+<pre class="brush: js">const pluginsLength = navigator.plugins.length;
+
+document.body.innerHTML =
+  `${pluginsLength} Plugin(s)&lt;br&gt;` +
+  `&lt;table id="pluginTable"&gt;&lt;thead&gt;` +
+  `&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Filename&lt;/th&gt;&lt;th&gt;description&lt;/th&gt;&lt;th&gt;version&lt;/th&gt;&lt;/tr&gt;` +
+  `&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;`;
+
+const table = document.getElementById("pluginTable");
+
+for (let i = 0; i &lt; pluginsLength; i++) {
+  let newRow = table.insertRow();
+  newRow.insertCell().textContent = navigator.plugins[i].name;
+  newRow.insertCell().textContent = navigator.plugins[i].filename;
+  newRow.insertCell().textContent = navigator.plugins[i].description;
+  newRow.insertCell().textContent = navigator.plugins[i].version ?? "";
+}
+</pre>
+<p>The following example displays information about the installed plugin(s).</p>
+<pre class="brush: js">const pluginsLength = navigator.plugins.length;
+
+document.write(
+  `${pluginsLength.toString()} Plugin(s)&lt;br&gt;` +
+    `Name | Filename | description&lt;br&gt;`,
+);
+
+for (let i = 0; i &lt; pluginsLength; i++) {
+  document.write(
+    `${navigator.plugins[i].name} | ${navigator.plugins[i].filename} | ${navigator.plugins[i].description} | ${navigator.plugins[i].version}&lt;br&gt;`,
+  );
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PluginArray" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PluginArray" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<p>In addition to listing each plugin as a pseudo-array by zero-indexed numeric properties, Firefox provides properties that are the plugin name directly on the PluginArray object.</p>
+</body></html>

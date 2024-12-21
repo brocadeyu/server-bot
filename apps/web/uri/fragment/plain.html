@@ -1,0 +1,40 @@
+<html><head></head><body>
+<p>The <strong>fragment</strong> of a URI is the last part of the URI, starting with the <code>#</code> character. It is used to identify a specific part of the resource, such as a section of a document or a position in a video. The fragment is not sent to the server when the URI is requested, but it is processed by the client (such as the browser) after the resource is retrieved.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: url">#fragment
+</pre>
+<dl>
+  <dt id="fragment"><a href="#fragment">fragment</a></dt>
+  <dd>
+    <p>A sequence of any characters. The exact format of the fragment is defined by the resource itself. Some common examples:</p>
+    <ul>
+      <li>In an HTML document, it can be the <a href="/en-US/docs/Web/HTML/Global_attributes/id"><code>id</code></a> attribute of an element, and the browser will scroll to that element.</li>
+      <li>It can be a <a href="/en-US/docs/Web/URI/Fragment/Text_fragments">text fragment</a> in the form of <code>#:~:text=...</code>, which makes the browser highlight the specified text.</li>
+      <li>It can be a <a href="https://www.w3.org/TR/media-frags/">media fragment</a> in the form of <code>#t=...</code>, which makes the video or audio start playing from that time.</li>
+    </ul>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<dl>
+  <dt id="syntax_2"><a href="#syntax_2"><code>#syntax</code></a></dt>
+  <dd>
+    <p>The browser will scroll to the element with the <code>id="syntax"</code> in the document (which, for this page, is the <a href="#syntax">Syntax</a> heading).</p>
+  </dd>
+  <dt id="textfragment"><a href="#textfragment"><code>#:~:text=fragment</code></a></dt>
+  <dd>
+    <p>The browser will highlight the text <a href="#:~:text=fragment"><code>fragment</code></a> in the document.</p>
+  </dd>
+  <dt id="t1020"><a href="#t1020"><code>#t=10,20</code></a></dt>
+  <dd>
+    <p>The video or audio will start playing from the 10th second.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://www.rfc-editor.org/rfc/rfc3986.html#section-3.5">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/URI">URIs</a></li>
+  <li><a href="/en-US/docs/Web/URI/Fragment/Text_fragments">Text fragments</a></li>
+</ul>
+</body></html>

@@ -1,0 +1,120 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>Performance</code></strong> interface provides access to performance-related information for the current page.</p>
+<p>Performance entries are specific to each execution context. You can access performance information for code running in a window via <a href="/en-US/docs/Web/API/Window/performance"><code>Window.performance</code></a>, and for code running in a worker via <a href="/en-US/docs/Web/API/WorkerGlobalScope/performance"><code>WorkerGlobalScope.performance</code></a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Performance" aria-current="page">
+    <rect x="118" y="0" width="88" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="162" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Performance
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>The <code>Performance</code> interface doesn't inherit any properties.</em></p>
+<dl>
+  <dt id="performance.eventcounts"><a href="/en-US/docs/Web/API/Performance/eventCounts"><code>Performance.eventCounts</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An <a href="/en-US/docs/Web/API/EventCounts"><code>EventCounts</code></a> map containing the number of events which have been dispatched per event type.</p>
+  </dd>
+  <dt id="performance.navigation"><a href="/en-US/docs/Web/API/Performance/navigation"><code>Performance.navigation</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A legacy <a href="/en-US/docs/Web/API/PerformanceNavigation"><code>PerformanceNavigation</code></a> object that provides useful context about the operations included in the times listed in <code>timing</code>, including whether the page was a load or a refresh, how many redirections occurred, and so forth.</p>
+  </dd>
+  <dt id="performance.timing"><a href="/en-US/docs/Web/API/Performance/timing"><code>Performance.timing</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A legacy <a href="/en-US/docs/Web/API/PerformanceTiming"><code>PerformanceTiming</code></a> object containing latency-related performance information.</p>
+  </dd>
+  <dt id="performance.memory"><a href="/en-US/docs/Web/API/Performance/memory"><code>Performance.memory</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A <em>non-standard</em> extension added in Chrome, this property provides an object with basic memory usage information. <em>You <strong>should not use</strong> this non-standard API.</em></p>
+  </dd>
+  <dt id="performance.timeorigin"><a href="/en-US/docs/Web/API/Performance/timeOrigin"><code>Performance.timeOrigin</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the high resolution timestamp of the start time of the performance measurement.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>The <code>Performance</code> interface doesn't inherit any methods.</em></p>
+<dl>
+  <dt id="performance.clearmarks"><a href="/en-US/docs/Web/API/Performance/clearMarks"><code>Performance.clearMarks()</code></a></dt>
+  <dd>
+    <p>Removes the given <em>mark</em> from the browser's performance entry buffer.</p>
+  </dd>
+  <dt id="performance.clearmeasures"><a href="/en-US/docs/Web/API/Performance/clearMeasures"><code>Performance.clearMeasures()</code></a></dt>
+  <dd>
+    <p>Removes the given <em>measure</em> from the browser's performance entry buffer.</p>
+  </dd>
+  <dt id="performance.clearresourcetimings"><a href="/en-US/docs/Web/API/Performance/clearResourceTimings"><code>Performance.clearResourceTimings()</code></a></dt>
+  <dd>
+    <p>Removes all <a href="/en-US/docs/Web/API/PerformanceEntry">performance entries</a> with a <a href="/en-US/docs/Web/API/PerformanceEntry/entryType" title="entryType"><code>entryType</code></a> of <code>"resource"</code> from the browser's performance data buffer.</p>
+  </dd>
+  <dt id="performance.getentries"><a href="/en-US/docs/Web/API/Performance/getEntries"><code>Performance.getEntries()</code></a></dt>
+  <dd>
+    <p>Returns a list of <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a> objects based on the given <em>filter</em>.</p>
+  </dd>
+  <dt id="performance.getentriesbyname"><a href="/en-US/docs/Web/API/Performance/getEntriesByName"><code>Performance.getEntriesByName()</code></a></dt>
+  <dd>
+    <p>Returns a list of <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a> objects based on the given <em>name</em> and <em>entry type</em>.</p>
+  </dd>
+  <dt id="performance.getentriesbytype"><a href="/en-US/docs/Web/API/Performance/getEntriesByType"><code>Performance.getEntriesByType()</code></a></dt>
+  <dd>
+    <p>Returns a list of <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a> objects of the given <em>entry type</em>.</p>
+  </dd>
+  <dt id="performance.mark"><a href="/en-US/docs/Web/API/Performance/mark"><code>Performance.mark()</code></a></dt>
+  <dd>
+    <p>Creates a <a href="/en-US/docs/Web/API/DOMHighResTimeStamp" title="timestamp"><code>timestamp</code></a> in the browser's <em>performance entry buffer</em> with the given name.</p>
+  </dd>
+  <dt id="performance.measure"><a href="/en-US/docs/Web/API/Performance/measure"><code>Performance.measure()</code></a></dt>
+  <dd>
+    <p>Creates a named <a href="/en-US/docs/Web/API/DOMHighResTimeStamp" title="timestamp"><code>timestamp</code></a> in the browser's performance entry buffer between two specified marks (known as the <em>start mark</em> and <em>end mark</em>, respectively).</p>
+  </dd>
+  <dt id="performance.measureuseragentspecificmemory"><a href="/en-US/docs/Web/API/Performance/measureUserAgentSpecificMemory"><code>Performance.measureUserAgentSpecificMemory()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Estimates the memory usage of a web application including all its iframes and workers.</p>
+  </dd>
+  <dt id="performance.now"><a href="/en-US/docs/Web/API/Performance/now"><code>Performance.now()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> representing the number of milliseconds elapsed since a reference instant.</p>
+  </dd>
+  <dt id="performance.setresourcetimingbuffersize"><a href="/en-US/docs/Web/API/Performance/setResourceTimingBufferSize"><code>Performance.setResourceTimingBufferSize()</code></a></dt>
+  <dd>
+    <p>Sets the browser's resource timing buffer size to the specified number of <code>"resource"</code> <a href="/en-US/docs/Web/API/PerformanceEntry/entryType" title="type"><code>type</code></a> <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a> objects.</p>
+  </dd>
+  <dt id="performance.tojson"><a href="/en-US/docs/Web/API/Performance/toJSON"><code>Performance.toJSON()</code></a></dt>
+  <dd>
+    <p>Returns a JSON representation of the <code>Performance</code> object.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <code>addEventListener()</code> or by assigning an event listener to the <code>oneventname</code> property of this interface.</p>
+<dl>
+  <dt id="resourcetimingbufferfull"><a href="/en-US/docs/Web/API/Performance/resourcetimingbufferfull_event" title="resourcetimingbufferfull"><code>resourcetimingbufferfull</code></a></dt>
+  <dd>
+    <p>Fired when the browser's <a href="/en-US/docs/Web/API/Performance/setResourceTimingBufferSize">resource timing buffer</a> is full.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Performance" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Performance" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

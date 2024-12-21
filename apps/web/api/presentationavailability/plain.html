@@ -1,0 +1,48 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>A <strong><code>PresentationAvailability</code></strong> object is associated with available <a href="https://www.w3.org/TR/presentation-api/#dfn-presentation-display">presentation displays</a> and represents the <em>presentation display availability</em> for a presentation request. If the <a href="https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent">controlling user agent</a> can <a href="https://www.w3.org/TR/presentation-api/#dfn-monitor-the-list-of-available-presentation-displays">monitor the list of available presentation displays</a> in the background (without a pending request to <code>start()</code>), the <code>PresentationAvailability</code> object <em>MUST</em> be implemented in a <a href="https://www.w3.org/TR/presentation-api/#dfn-controlling-browsing-context">controlling browsing context</a>.</p>
+<p>The <code>value</code> attribute <em>MUST</em> return the last value it was set to. The value is updated by the <a href="https://www.w3.org/TR/presentation-api/#dfn-monitor-the-list-of-available-presentation-displays">monitor the list of available presentation displays</a> algorithm.</p>
+<p>The <code>onchange</code> attribute is an <a href="https://www.w3.org/TR/presentation-api/#dfn-event-handler">event handler</a> whose corresponding <a href="https://www.w3.org/TR/presentation-api/#dfn-event-handler-event-type">event handler event type</a> is <code>change</code>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PresentationAvailability" aria-current="page">
+    <rect x="118" y="0" width="192" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="214" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PresentationAvailability
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="presentationavailability.value"><a href="/en-US/docs/Web/API/PresentationAvailability/value"><code>PresentationAvailability.value</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A boolean value indicating whether the given presentation display is available. The <code>value</code> attribute <em>MUST</em> return the last value it was set to.</p>
+  </dd>
+</dl>
+<h3 id="event">Event</h3>
+<dl>
+  <dt id="change"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;PresentationAvailability.change_event&quot;, &quot;change&quot;)}}"><code>change</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Indicates that the availability of the presentation display has changed.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p>None.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PresentationAvailability" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PresentationAvailability" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

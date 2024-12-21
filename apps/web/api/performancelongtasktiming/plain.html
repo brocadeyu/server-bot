@@ -1,0 +1,115 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>PerformanceLongTaskTiming</code></strong> interface provides information about tasks that occupy the UI thread for 50 milliseconds or more.</p>
+<h2 id="description">Description</h2>
+<p>Long tasks that block the main thread for 50ms or more cause, among other issues:</p>
+<ul>
+  <li>Delayed <a href="/en-US/docs/Glossary/Time_to_interactive">Time to interactive</a> (TTI).</li>
+  <li>High/variable input latency.</li>
+  <li>High/variable event handling latency.</li>
+  <li>Janky animations and scrolling.</li>
+</ul>
+<p>A long task is any uninterrupted period where the main UI thread is busy for 50ms or longer. Common examples include:</p>
+<ul>
+  <li>Long-running event handlers.</li>
+  <li>Expensive reflows and other re-renders.</li>
+  <li>Work the browser does between different turns of the event loop that exceeds 50 ms.</li>
+</ul>
+<p>Long tasks refer to "culprit browsing context container", or "the container" for short, which is the top-level page, <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/embed"><code>&lt;embed&gt;</code></a> or <a href="/en-US/docs/Web/HTML/Element/object"><code>&lt;object&gt;</code></a> that the task occurred within.</p>
+<p>For tasks that don't occur within the top-level page and for figuring out which container is responsible for the long task, the <a href="/en-US/docs/Web/API/TaskAttributionTiming"><code>TaskAttributionTiming</code></a> interface provides the <code>containerId</code>, <code>containerName</code> and <code>containerSrc</code> properties, which may provide more information about the source of the task.</p>
+<p><code>PerformanceLongTaskTiming</code> inherits from <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PerformanceEntry">
+    <rect x="0" y="0" width="128" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="64" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PerformanceEntry
+    </text>
+  </a>
+  <line x1="128" y1="14" x2="158" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="128,14 138,9 138,19 128,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PerformanceLongTaskTiming" aria-current="page">
+    <rect x="158" y="0" width="200" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="258" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PerformanceLongTaskTiming
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p>This interface extends the following <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a> properties for long task timing performance entry types by qualifying them as follows:</p>
+<dl>
+  <dt id="performanceentry.duration"><a href="/en-US/docs/Web/API/PerformanceEntry/duration"><code>PerformanceEntry.duration</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> representing the elapsed time between the start and end of the task, with a 1ms granularity.</p>
+  </dd>
+  <dt id="performanceentry.entrytype"><a href="/en-US/docs/Web/API/PerformanceEntry/entryType"><code>PerformanceEntry.entryType</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Always returns <code>"longtask"</code></p>
+  </dd>
+  <dt id="performanceentry.name"><a href="/en-US/docs/Web/API/PerformanceEntry/name"><code>PerformanceEntry.name</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns one of the following strings referring to the browsing context or frame that can be attributed to the long task:</p>
+    <ul>
+      <li><code>"cross-origin-ancestor"</code></li>
+      <li><code>"cross-origin-descendant"</code></li>
+      <li><code>"cross-origin-unreachable"</code></li>
+      <li><code>"multiple-contexts"</code></li>
+      <li><code>"same-origin-ancestor"</code></li>
+      <li><code>"same-origin-descendant"</code></li>
+      <li><code>"same-origin"</code></li>
+      <li><code>"self"</code></li>
+      <li><code>"unknown"</code></li>
+    </ul>
+  </dd>
+  <dt id="performanceentry.starttime"><a href="/en-US/docs/Web/API/PerformanceEntry/startTime"><code>PerformanceEntry.startTime</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> representing the time when the task started.</p>
+  </dd>
+</dl>
+<p>This interface also supports the following properties:</p>
+<dl>
+  <dt id="performancelongtasktiming.attribution"><a href="/en-US/docs/Web/API/PerformanceLongTaskTiming/attribution"><code>PerformanceLongTaskTiming.attribution</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a sequence of <a href="/en-US/docs/Web/API/TaskAttributionTiming"><code>TaskAttributionTiming</code></a> instances.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="performancelongtasktiming.tojson"><a href="/en-US/docs/Web/API/PerformanceLongTaskTiming/toJSON"><code>PerformanceLongTaskTiming.toJSON()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a JSON representation of the <code>PerformanceLongTaskTiming</code> object.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="getting_long_tasks">Getting long tasks</h3>
+<p>To get long task timing information, create a <a href="/en-US/docs/Web/API/PerformanceObserver"><code>PerformanceObserver</code></a> instance and then call its <a href="/en-US/docs/Web/API/PerformanceObserver/observe"><code>observe()</code></a> method, passing in <code>"longtask"</code> as the value of the <a href="/en-US/docs/Web/API/PerformanceEntry/entryType"><code>type</code></a> option. You also need to set <code>buffered</code> to <code>true</code> to get access to long tasks the user agent buffered while constructing the document. The <code>PerformanceObserver</code> object's callback will then be called with a list of <code>PerformanceLongTaskTiming</code> objects which you can analyze.</p>
+<pre class="brush: js">const observer = new PerformanceObserver((list) =&gt; {
+  list.getEntries().forEach((entry) =&gt; {
+    console.log(entry);
+  });
+});
+
+observer.observe({ type: "longtask", buffered: true });
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PerformanceLongTaskTiming" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PerformanceLongTaskTiming" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/TaskAttributionTiming"><code>TaskAttributionTiming</code></a></li>
+</ul>
+</body></html>

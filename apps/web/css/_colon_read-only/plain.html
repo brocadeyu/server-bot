@@ -1,0 +1,164 @@
+<html><head></head><body>
+<p>The <strong><code>:read-only</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> selects elements (such as certain <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> types and <a href="/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a>) that are not editable by the user. Elements on which the HTML attribute <a href="/en-US/docs/Web/HTML/Attributes/readonly"><code>readonly</code></a> doesn't have an effect (such as <a href="/en-US/docs/Web/HTML/Element/input/radio"><code>&lt;input type="radio"&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/input/checkbox"><code>&lt;input type="checkbox"&gt;</code></a>, and all other non-form elements) are also selected by the <code>:read-only</code> pseudo-class. In fact, <code>:read-only</code> matches anything that <a href="/en-US/docs/Web/CSS/:read-write"><code>:read-write</code></a> doesn't match, making it equivalent to <code>:not(:read-write)</code>.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-read-only.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:read-only {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="confirming_form_information_using_read-only_or_read-write_controls">Confirming form information using read-only or read-write controls</h3>
+<p>One use of read-only form controls is to allow the user to check and verify information that they may have entered in an earlier form (for example, shipping details), while still being able to submit the information along with the rest of the form. We do just this in the example below.</p>
+<p>The <code>:read-only</code> pseudo-class is used to remove all the styling that makes the inputs look like clickable fields, making them look more like read-only paragraphs. The <code>:read-write</code> pseudo-class on the other hand is used to provide some nicer styling to the editable <code>&lt;textarea&gt;</code>.</p>
+<pre class="brush: html hidden">&lt;form&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Check shipping details&lt;/legend&gt;
+    &lt;div&gt;
+      &lt;label for="name"&gt;Name: &lt;/label&gt;
+      &lt;input id="name" name="name" type="text" value="Mr Soft" readonly /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label for="address"&gt;Address: &lt;/label&gt;
+      &lt;textarea id="address" name="address" readonly&gt;
+23 Elastic Way,
+Viscous,
+Bright Ridge,
+CA
+&lt;/textarea
+      &gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label for="postal-code"&gt;Zip/postal code: &lt;/label&gt;
+      &lt;input
+        id="postal-code"
+        name="postal-code"
+        type="text"
+        value="94708"
+        readonly /&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Final instructions&lt;/legend&gt;
+    &lt;div&gt;
+      &lt;label for="sms-confirm"&gt;Send confirmation by SMS?&lt;/label&gt;
+      &lt;input id="sms-confirm" name="sms-confirm" type="checkbox" /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label for="instructions"&gt;Any special instructions?&lt;/label&gt;
+      &lt;textarea id="instructions" name="instructions"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+
+  &lt;div&gt;&lt;button type="submit"&gt;Amend details and submit&lt;/button&gt;&lt;/div&gt;
+&lt;/form&gt;
+</pre>
+<pre class="brush: css hidden">body {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 20px auto;
+  max-width: 460px;
+}
+
+fieldset {
+  padding: 10px 30px 0;
+  margin-bottom: 20px;
+}
+
+legend {
+  color: white;
+  background: black;
+  padding: 5px 10px;
+}
+
+fieldset &gt; div {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button,
+label,
+input[type="text"],
+textarea {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 30px;
+}
+
+input[type="text"],
+textarea {
+  width: 50%;
+}
+
+textarea {
+  height: 110px;
+  resize: none;
+}
+
+label {
+  width: 40%;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  background-color: #eee;
+}
+
+button {
+  width: 60%;
+  margin: 20px auto;
+}
+</pre>
+<pre class="brush: css">input:read-only,
+textarea:read-only {
+  border: 0;
+  box-shadow: none;
+  background-color: #ddd;
+}
+
+textarea:read-write {
+  outline: 1px dashed red;
+  outline-offset: 2px;
+  border-radius: 5px;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Confirming form information using read-only or read-write controls sample" id="frame_confirming_form_information_using_read-only_or_read-write_controls" width="100%" height="620" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:read-only" data-live-id="confirming_form_information_using_read-only_or_read-write_controls" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="styling_read-only_non-form_controls">Styling read-only non-form controls</h3>
+<p>This selector doesn't just select <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a>/<a href="/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a> elements — it will select <em>any</em> element that cannot be edited by the user.</p>
+<pre class="brush: html">&lt;p contenteditable&gt;This paragraph is editable; it is read-write.&lt;/p&gt;
+
+&lt;p&gt;This paragraph is not editable; it is read-only.&lt;/p&gt;
+</pre>
+<pre class="brush: css">p {
+  font-size: 150%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+p:read-only {
+  background-color: red;
+  color: white;
+}
+
+p:read-write {
+  background-color: lime;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Styling read-only non-form controls sample" id="frame_styling_read-only_non-form_controls" width="100%" height="200" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:read-only" data-live-id="styling_read-only_non-form_controls" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.read-only" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.read-only" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:read-write"><code>:read-write</code></a></li>
+  <li>HTML <a href="/en-US/docs/Web/HTML/Global_attributes/contenteditable"><code>contenteditable</code></a> attribute</li>
+</ul>
+</body></html>

@@ -1,0 +1,92 @@
+<html><head></head><body>
+<p>The <strong>Canvas API</strong> provides a means for drawing graphics via <a href="/en-US/docs/Web/JavaScript">JavaScript</a> and the <a href="/en-US/docs/Web/HTML">HTML</a> <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element. Among other things, it can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing.</p>
+<p>The Canvas API largely focuses on 2D graphics. The <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a>, which also uses the <code>&lt;canvas&gt;</code> element, draws hardware-accelerated 2D and 3D graphics.</p>
+<h2 id="basic_example">Basic example</h2>
+<p>This simple example draws a green rectangle onto a canvas.</p>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;canvas id="canvas"&gt;&lt;/canvas&gt;
+</pre>
+<h3 id="javascript">JavaScript</h3>
+<p>The <a href="/en-US/docs/Web/API/Document/getElementById"><code>Document.getElementById()</code></a> method gets a reference to the HTML <code>&lt;canvas&gt;</code> element. Next, the <a href="/en-US/docs/Web/API/HTMLCanvasElement/getContext"><code>HTMLCanvasElement.getContext()</code></a> method gets that element's context—the thing onto which the drawing will be rendered.</p>
+<p>The actual drawing is done using the <a href="/en-US/docs/Web/API/CanvasRenderingContext2D"><code>CanvasRenderingContext2D</code></a> interface. The <a href="/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle" title="fillStyle"><code>fillStyle</code></a> property makes the rectangle green. The <a href="/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect" title="fillRect()"><code>fillRect()</code></a> method places its top-left corner at (10, 10), and gives it a size of 150 units wide by 100 tall.</p>
+<pre class="brush: js">const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "green";
+ctx.fillRect(10, 10, 150, 100);
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Basic example sample" id="frame_basic_example" width="700" height="180" src="about:blank" data-live-path="/en-US/docs/Web/API/Canvas_API" data-live-id="basic_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTMLCanvasElement"><code>HTMLCanvasElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CanvasRenderingContext2D"><code>CanvasRenderingContext2D</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CanvasGradient"><code>CanvasGradient</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CanvasPattern"><code>CanvasPattern</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ImageBitmap"><code>ImageBitmap</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ImageData"><code>ImageData</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TextMetrics"><code>TextMetrics</code></a></li>
+  <li><a href="/en-US/docs/Web/API/OffscreenCanvas"><code>OffscreenCanvas</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Path2D"><code>Path2D</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></li>
+  <li><a href="/en-US/docs/Web/API/ImageBitmapRenderingContext"><code>ImageBitmapRenderingContext</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> The interfaces related to the <code>WebGLRenderingContext</code> are referenced under <a href="/en-US/docs/Web/API/WebGL_API">WebGL</a>.</p>
+</div>
+<div class="notecard note">
+  <p><strong>Note:</strong> <a href="/en-US/docs/Web/API/OffscreenCanvas"><code>OffscreenCanvas</code></a> is also available in web workers.</p>
+</div>
+<p><a href="/en-US/docs/Web/API/CanvasCaptureMediaStreamTrack"><code>CanvasCaptureMediaStreamTrack</code></a> is a related interface.</p>
+<h2 id="guides_and_tutorials">Guides and tutorials</h2>
+<dl>
+  <dt id="canvas_tutorial"><a href="/en-US/docs/Web/API/Canvas_API/Tutorial">Canvas tutorial</a></dt>
+  <dd>
+    <p>A comprehensive tutorial covering both the basic usage of the Canvas API and its advanced features.</p>
+  </dd>
+  <dt id="html5_canvas_deep_dive"><a href="https://joshondesign.com/p/books/canvasdeepdive/title.html">HTML5 Canvas Deep Dive</a></dt>
+  <dd>
+    <p>A hands-on, book-length introduction to the Canvas API and WebGL.</p>
+  </dd>
+  <dt id="canvas_handbook"><a href="https://bucephalus.org/text/CanvasHandbook/CanvasHandbook.html">Canvas Handbook</a></dt>
+  <dd>
+    <p>A handy reference for the Canvas API.</p>
+  </dd>
+  <dt id="manipulating_video_using_canvas"><a href="/en-US/docs/Web/API/Canvas_API/Manipulating_video_using_canvas">Manipulating video using canvas</a></dt>
+  <dd>
+    <p>Combining <a href="/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> to manipulate video data in real time.</p>
+  </dd>
+</dl>
+<h2 id="libraries">Libraries</h2>
+<p>The Canvas API is extremely powerful, but not always simple to use. The libraries listed below can make the creation of canvas-based projects faster and easier.</p>
+<ul>
+  <li><a href="https://createjs.com/easeljs">EaselJS</a> is an open-source canvas library that makes creating games, generative art, and other highly graphical experiences easy.</li>
+  <li><a href="http://fabricjs.com/">Fabric.js</a> is an open-source canvas library with SVG parsing capabilities.</li>
+  <li><a href="https://www.patrick-wied.at/static/heatmapjs/">heatmap.js</a> is an open-source library for creating canvas-based data heat maps.</li>
+  <li><a href="https://philogb.github.io/jit/">JavaScript InfoVis Toolkit</a> creates interactive data visualizations.</li>
+  <li><a href="https://konvajs.org/">Konva.js</a> is a 2D canvas library for desktop and mobile applications.</li>
+  <li><a href="https://p5js.org/">p5.js</a> has a full set of canvas drawing functionality for artists, designers, educators, and beginners.</li>
+  <li><a href="http://paperjs.org/">Paper.js</a> is an open-source vector graphics scripting framework that runs on top of the HTML Canvas.</li>
+  <li><a href="https://phaser.io/">Phaser</a> is a fast, free and fun open source framework for Canvas and WebGL powered browser games.</li>
+  <li><a href="https://ptsjs.org/">Pts.js</a> is a library for creative coding and visualization in canvas and SVG.</li>
+  <li><a href="https://github.com/jeremyckahn/rekapi">Rekapi</a> is an animation key-framing API for Canvas.</li>
+  <li><a href="https://scrawl.rikweb.org.uk/">Scrawl-canvas</a> is an open-source JavaScript library for creating and manipulating 2D canvas elements.</li>
+  <li>The <a href="https://zimjs.com/">ZIM</a> framework provides conveniences, components, and controls for coding creativity on the canvas — includes accessibility and hundreds of colorful tutorials.</li>
+  <li><a href="https://github.com/hackclub/sprig">Sprig</a> is a beginner-friendly, open-source, tile-based game development library that uses Canvas.</li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> See the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> for 2D and 3D libraries that use WebGL.</p>
+</div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.elements.canvas" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.elements.canvas" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebGL_API">WebGL</a></li>
+</ul>
+</body></html>

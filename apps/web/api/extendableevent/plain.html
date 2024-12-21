@@ -1,0 +1,99 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is only available in <a href="/en-US/docs/Web/API/Service_Worker_API">Service Workers</a>.</p>
+</div>
+<p>The <strong><code>ExtendableEvent</code></strong> interface extends the lifetime of the <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event"><code>install</code></a> and <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/activate_event"><code>activate</code></a> events dispatched on the global scope as part of the service worker lifecycle. This ensures that any functional events (like <a href="/en-US/docs/Web/API/FetchEvent"><code>FetchEvent</code></a>) are not dispatched until it upgrades database schemas and deletes the outdated cache entries.</p>
+<p>If <a href="/en-US/docs/Web/API/ExtendableEvent/waitUntil" title="waitUntil()"><code>waitUntil()</code></a> is called outside of the <code>ExtendableEvent</code> handler, the browser should throw an <code>InvalidStateError</code>; note also that multiple calls will stack up, and the resulting promises will be added to the list of <a href="https://w3c.github.io/ServiceWorker/#extendableevent-extend-lifetime-promises">extend lifetime promises</a>.</p>
+<p>This interface inherits from the <a href="/en-US/docs/Web/API/Event"><code>Event</code></a> interface.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/ExtendableEvent" aria-current="page">
+    <rect x="105" y="0" width="120" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="165" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      ExtendableEvent
+    </text>
+  </a></svg>
+<div class="notecard note">
+  <p><strong>Note:</strong> This interface is only available when the global scope is a <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope"><code>ServiceWorkerGlobalScope</code></a>. It is not available when it is a <a href="/en-US/docs/Web/API/Window"><code>Window</code></a>, or the scope of another kind of worker.</p>
+</div>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="extendableevent"><a href="/en-US/docs/Web/API/ExtendableEvent/ExtendableEvent" title="ExtendableEvent()"><code>ExtendableEvent()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>ExtendableEvent</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Doesn't implement any specific properties, but inherits properties from its parent, <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent, <a href="/en-US/docs/Web/API/Event"><code>Event</code></a></em>.</p>
+<dl>
+  <dt id="extendableevent.waituntil"><a href="/en-US/docs/Web/API/ExtendableEvent/waitUntil" title="ExtendableEvent.waitUntil()"><code>ExtendableEvent.waitUntil()</code></a></dt>
+  <dd>
+    <p>Extends the lifetime of the event. It is intended to be called in the <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event"><code>install</code></a> <a href="/en-US/docs/Web/Events/Event_handlers">event handler</a> for the <a href="/en-US/docs/Web/API/ServiceWorkerRegistration/installing" title="installing"><code>installing</code></a> worker and on the <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/activate_event"><code>activate</code></a> <a href="/en-US/docs/Web/Events/Event_handlers">event handler</a> for the <a href="/en-US/docs/Web/API/ServiceWorkerRegistration/active" title="active"><code>active</code></a> worker.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>This code snippet is from the <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/prefetch/service-worker.js">service worker prefetch sample</a> (see <a href="https://googlechrome.github.io/samples/service-worker/prefetch/">prefetch example live</a>.) The code calls <a href="/en-US/docs/Web/API/ExtendableEvent/waitUntil"><code>ExtendableEvent.waitUntil()</code></a> in <a href="/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event" title="oninstall"><code>oninstall</code></a>, delaying treating the <a href="/en-US/docs/Web/API/ServiceWorkerRegistration/installing"><code>ServiceWorkerRegistration.installing</code></a> worker as installed until the passed promise resolves successfully. The promise resolves when all resources have been fetched and cached, or else when any exception occurs.</p>
+<p>The code snippet also shows a best practice for versioning caches used by the service worker. Though there's only one cache in this example, the same approach can be used for multiple caches. It maps a shorthand identifier for a cache to a specific, versioned cache name.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> In Chrome, logging statements are visible via the "Inspect" interface for the relevant service worker accessed via chrome://serviceworker-internals.</p>
+</div>
+<pre class="brush: js">const CACHE_VERSION = 1;
+const CURRENT_CACHES = {
+  prefetch: `prefetch-cache-v${CACHE_VERSION}`,
+};
+
+self.addEventListener("install", (event) =&gt; {
+  const urlsToPrefetch = [
+    "./static/pre_fetched.txt",
+    "./static/pre_fetched.html",
+    "https://www.chromium.org/_/rsrc/1302286216006/config/customLogo.gif",
+  ];
+
+  console.log(
+    "Handling install event. Resources to pre-fetch:",
+    urlsToPrefetch,
+  );
+
+  event.waitUntil(
+    caches
+      .open(CURRENT_CACHES["prefetch"])
+      .then((cache) =&gt; {
+        return cache
+          .addAll(
+            urlsToPrefetch.map((urlToPrefetch) =&gt; {
+              return new Request(urlToPrefetch, { mode: "no-cors" });
+            }),
+          )
+          .then(() =&gt; {
+            console.log("All resources have been fetched and cached.");
+          });
+      })
+      .catch((error) =&gt; {
+        console.error("Pre-fetching failed:", error);
+      }),
+  );
+});
+</pre>
+<div class="notecard note">
+  <p><strong>Note:</strong> When fetching resources, it's very important to use <code>{mode: 'no-cors'}</code> if there is any chance that the resources are served off of a server that doesn't support <a href="/en-US/docs/Glossary/CORS">CORS</a>. In this example, <a href="https://www.chromium.org/">www.chromium.org</a> doesn't support CORS.</p>
+</div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ExtendableEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ExtendableEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers">Using Service Workers</a></li>
+  <li><a href="https://github.com/mdn/dom-examples/tree/main/service-worker/simple-service-worker">Service workers basic code example</a></li>
+  <li><a href="/en-US/docs/Web/API/Web_Workers_API/Using_web_workers">Using web workers</a></li>
+</ul>
+</body></html>

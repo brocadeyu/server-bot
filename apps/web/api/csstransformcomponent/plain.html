@@ -1,0 +1,30 @@
+<html><head></head><body>
+<p>The <strong><code>CSSTransformComponent</code></strong> interface of the <a href="/en-US/docs/Web/API/CSS_Object_Model">CSS Typed Object Model API</a> is part of the <a href="/en-US/docs/Web/API/CSSTransformValue"><code>CSSTransformValue</code></a> interface.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="csstransformcomponent.is2d"><a href="/en-US/docs/Web/API/CSSTransformComponent/is2D"><code>CSSTransformComponent.is2D</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a boolean indicting whether the transform is 2D or 3D.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="csstransformcomponent.tomatrix"><a href="/en-US/docs/Web/API/CSSTransformComponent/toMatrix"><code>CSSTransformComponent.toMatrix()</code></a></dt>
+  <dd>
+    <p>Returns a new <a href="/en-US/docs/Web/API/DOMMatrix"><code>DOMMatrix</code></a> object.</p>
+  </dd>
+  <dt id="csstransformcomponent.tostring"><a href="/en-US/docs/Web/API/CSSTransformComponent/toString"><code>CSSTransformComponent.toString()</code></a></dt>
+  <dd>
+    <p>A string in the form of a CSS <a href="/en-US/docs/Web/CSS/transform-function">transform function</a>.</p>
+    <p>This will use the value of <code>is2D</code> to return either a 2D or 3D transform. For example if the component represents <a href="/en-US/docs/Web/API/CSSRotate"><code>CSSRotate</code></a> and <code>is2D</code> is false then the string returned will be in the form of the CSS transformation <a href="/en-US/docs/Web/CSS/transform-function/rotate3d"><code>rotate3D()</code></a> function. If true the string returned will be in the form of the 2-dimensional <a href="/en-US/docs/Web/CSS/transform-function/rotate"><code>rotate3D()</code></a> function.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>To do</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSSTransformComponent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSSTransformComponent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

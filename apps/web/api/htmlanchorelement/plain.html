@@ -1,0 +1,182 @@
+<html><head></head><body>
+<p>The <strong><code>HTMLAnchorElement</code></strong> interface represents hyperlink elements and provides special properties and methods (beyond those of the regular <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> object interface that they inherit from) for manipulating the layout and presentation of such elements. This interface corresponds to <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> element; not to be confused with <a href="/en-US/docs/Web/HTML/Element/link"><code>&lt;link&gt;</code></a>, which is represented by <a href="/en-US/docs/Web/API/HTMLLinkElement"><code>HTMLLinkElement</code></a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Element">
+    <rect x="223" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Element
+    </text>
+  </a>
+  <line x1="298" y1="14" x2="328" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="298,14 308,9 308,19 298,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLElement">
+    <rect x="328" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="372" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLElement
+    </text>
+  </a>
+  <line x1="416" y1="14" x2="446" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="416,14 426,9 426,19 416,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLAnchorElement" aria-current="page">
+    <rect x="446" y="0" width="136" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="514" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLAnchorElement
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="htmlanchorelement.attributionsrc"><a href="/en-US/docs/Web/API/HTMLAnchorElement/attributionSrc"><code>HTMLAnchorElement.attributionSrc</code></a> <span class="badge inline secure" title="This feature is available only in secure contexts (HTTPS)">Secure context</span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Gets and sets the <a href="/en-US/docs/Web/HTML/Element/a#attributionsrc"><code>attributionsrc</code></a> attribute on an <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> element programmatically, reflecting the value of that attribute. <code>attributionsrc</code> specifies that you want the browser to send an <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible"><code>Attribution-Reporting-Eligible</code></a> header. On the server-side this is used to trigger sending an <a href="/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Register-Source"><code>Attribution-Reporting-Register-Source</code></a> header in the response, to register a navigation-based attribution source.</p>
+  </dd>
+  <dt id="htmlanchorelement.download"><a href="/en-US/docs/Web/API/HTMLAnchorElement/download"><code>HTMLAnchorElement.download</code></a></dt>
+  <dd>
+    <p>A string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value represents the proposed name of the file. If the name is not a valid filename of the underlying OS, the browser will adapt it.</p>
+  </dd>
+  <dt id="htmlanchorelement.hash"><a href="/en-US/docs/Web/API/HTMLAnchorElement/hash"><code>HTMLAnchorElement.hash</code></a></dt>
+  <dd>
+    <p>A string representing the fragment identifier, including the leading hash mark (<code>#</code>), if any, in the referenced URL.</p>
+  </dd>
+  <dt id="htmlanchorelement.host"><a href="/en-US/docs/Web/API/HTMLAnchorElement/host"><code>HTMLAnchorElement.host</code></a></dt>
+  <dd>
+    <p>A string representing the hostname and port (if it's not the default port) in the referenced URL.</p>
+  </dd>
+  <dt id="htmlanchorelement.hostname"><a href="/en-US/docs/Web/API/HTMLAnchorElement/hostname"><code>HTMLAnchorElement.hostname</code></a></dt>
+  <dd>
+    <p>A string representing the hostname in the referenced URL.</p>
+  </dd>
+  <dt id="htmlanchorelement.href"><a href="/en-US/docs/Web/API/HTMLAnchorElement/href"><code>HTMLAnchorElement.href</code></a></dt>
+  <dd>
+    <p>A string that is the result of parsing the <a href="/en-US/docs/Web/HTML/Element/a#href"><code>href</code></a> HTML attribute relative to the document, containing a valid URL of a linked resource.</p>
+  </dd>
+  <dt id="htmlanchorelement.hreflang"><a href="/en-US/docs/Web/API/HTMLAnchorElement/hreflang"><code>HTMLAnchorElement.hreflang</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/a#hreflang"><code>hreflang</code></a> HTML attribute, indicating the language of the linked resource.</p>
+  </dd>
+  <dt id="htmlanchorelement.origin"><a href="/en-US/docs/Web/API/HTMLAnchorElement/origin"><code>HTMLAnchorElement.origin</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string containing the origin of the URL, that is its scheme, its domain and its port.</p>
+  </dd>
+  <dt id="htmlanchorelement.password"><a href="/en-US/docs/Web/API/HTMLAnchorElement/password"><code>HTMLAnchorElement.password</code></a></dt>
+  <dd>
+    <p>A string containing the password specified before the domain name.</p>
+  </dd>
+  <dt id="htmlanchorelement.pathname"><a href="/en-US/docs/Web/API/HTMLAnchorElement/pathname"><code>HTMLAnchorElement.pathname</code></a></dt>
+  <dd>
+    <p>A string containing an initial <code>/</code> followed by the path of the URL, not including the query string or fragment.</p>
+  </dd>
+  <dt id="htmlanchorelement.ping"><a href="/en-US/docs/Web/API/HTMLAnchorElement/ping"><code>HTMLAnchorElement.ping</code></a></dt>
+  <dd>
+    <p>A space-separated list of URLs. When the link is followed, the browser will send <a href="/en-US/docs/Web/HTTP/Methods/POST"><code>POST</code></a> requests with the body PING to the URLs.</p>
+  </dd>
+  <dt id="htmlanchorelement.port"><a href="/en-US/docs/Web/API/HTMLAnchorElement/port"><code>HTMLAnchorElement.port</code></a></dt>
+  <dd>
+    <p>A string representing the port component, if any, of the referenced URL.</p>
+  </dd>
+  <dt id="htmlanchorelement.protocol"><a href="/en-US/docs/Web/API/HTMLAnchorElement/protocol"><code>HTMLAnchorElement.protocol</code></a></dt>
+  <dd>
+    <p>A string representing the protocol component, including trailing colon (<code>:</code>), of the referenced URL.</p>
+  </dd>
+  <dt id="htmlanchorelement.referrerpolicy"><a href="/en-US/docs/Web/API/HTMLAnchorElement/referrerPolicy"><code>HTMLAnchorElement.referrerPolicy</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/a#referrerpolicy"><code>referrerpolicy</code></a> HTML attribute indicating which referrer to use.</p>
+  </dd>
+  <dt id="htmlanchorelement.rel"><a href="/en-US/docs/Web/API/HTMLAnchorElement/rel"><code>HTMLAnchorElement.rel</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/a#rel"><code>rel</code></a> HTML attribute, specifying the relationship of the target object to the linked object.</p>
+  </dd>
+  <dt id="htmlanchorelement.rellist"><a href="/en-US/docs/Web/API/HTMLAnchorElement/relList"><code>HTMLAnchorElement.relList</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMTokenList"><code>DOMTokenList</code></a> that reflects the <a href="/en-US/docs/Web/HTML/Element/a#rel"><code>rel</code></a> HTML attribute, as a list of tokens.</p>
+  </dd>
+  <dt id="htmlanchorelement.search"><a href="/en-US/docs/Web/API/HTMLAnchorElement/search"><code>HTMLAnchorElement.search</code></a></dt>
+  <dd>
+    <p>A string representing the search element, including leading question mark (<code>?</code>), if any, of the referenced URL.</p>
+  </dd>
+  <dt id="htmlanchorelement.target"><a href="/en-US/docs/Web/API/HTMLAnchorElement/target"><code>HTMLAnchorElement.target</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/a#target"><code>target</code></a> HTML attribute, indicating where to display the linked resource.</p>
+  </dd>
+  <dt id="htmlanchorelement.text"><a href="/en-US/docs/Web/API/HTMLAnchorElement/text"><code>HTMLAnchorElement.text</code></a></dt>
+  <dd>
+    <p>A string being a synonym for the <a href="/en-US/docs/Web/API/Node/textContent"><code>Node.textContent</code></a> property.</p>
+  </dd>
+  <dt id="htmlanchorelement.type"><a href="/en-US/docs/Web/API/HTMLAnchorElement/type"><code>HTMLAnchorElement.type</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/a#type"><code>type</code></a> HTML attribute, indicating the MIME type of the linked resource.</p>
+  </dd>
+  <dt id="htmlanchorelement.username"><a href="/en-US/docs/Web/API/HTMLAnchorElement/username"><code>HTMLAnchorElement.username</code></a></dt>
+  <dd>
+    <p>A string containing the username specified before the domain name.</p>
+  </dd>
+</dl>
+<h3 id="obsolete_properties">Obsolete properties</h3>
+<dl>
+  <dt id="htmlanchorelement.charset"><a href="#htmlanchorelement.charset"><code>HTMLAnchorElement.charset</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the character encoding of the linked resource.</p>
+  </dd>
+  <dt id="htmlanchorelement.coords"><a href="#htmlanchorelement.coords"><code>HTMLAnchorElement.coords</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing a comma-separated list of coordinates.</p>
+  </dd>
+  <dt id="htmlanchorelement.name"><a href="#htmlanchorelement.name"><code>HTMLAnchorElement.name</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the anchor name.</p>
+  </dd>
+  <dt id="htmlanchorelement.rev"><a href="#htmlanchorelement.rev"><code>HTMLAnchorElement.rev</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing that the <a href="/en-US/docs/Web/HTML/Element/a#rev"><code>rev</code></a> HTML attribute, specifying the relationship of the link object to the target object.</p>
+  </dd>
+  <dt id="htmlanchorelement.shape"><a href="#htmlanchorelement.shape"><code>HTMLAnchorElement.shape</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the shape of the active area.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="htmlanchorelement.tostring"><a href="/en-US/docs/Web/API/HTMLAnchorElement/toString"><code>HTMLAnchorElement.toString()</code></a></dt>
+  <dd>
+    <p>Returns a string containing the whole URL. It is a synonym for <a href="/en-US/docs/Web/API/HTMLAnchorElement/href"><code>HTMLAnchorElement.href</code></a>, though it can't be used to modify the value.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLAnchorElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLAnchorElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The HTML element implementing this interface: <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a></li>
+</ul>
+</body></html>

@@ -1,0 +1,94 @@
+<html><head></head><body>
+<p>The <strong><code>:modal</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> matches an element that is in a state in which it excludes all interaction with elements outside it until the interaction has been dismissed. Multiple elements can be selected by the <code>:modal</code> pseudo-class at the same time, but only one of them will be active and able to receive input.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-modal.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:modal {
+  /* ... */
+}
+</pre>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Examples of elements that will prevent user interaction with the rest of the page and will be selected by the <code>:modal</code> pseudo-class include:</p>
+<ul>
+  <li>The <a href="/en-US/docs/Web/HTML/Element/dialog"><code>dialog</code></a> element opened with the <code>showModal()</code> API.</li>
+  <li>The element selected by the <a href="/en-US/docs/Web/CSS/:fullscreen"><code>:fullscreen</code></a> pseudo-class when opened with the <code>requestFullscreen()</code> API.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="styling_a_modal_dialog">Styling a modal dialog</h3>
+<p>This example styles a modal dialog that opens when the "Update details" button is activated. This example has been built on top of the <a href="/en-US/docs/Web/HTML/Element/dialog"><code>&lt;dialog&gt;</code></a> element <a href="/en-US/docs/Web/HTML/Element/dialog#handling_the_return_value_from_the_dialog">example</a>.</p>
+<pre class="brush: html hidden">&lt;!-- Basic modal dialog containing a form --&gt;
+&lt;dialog id="favDialog"&gt;
+  &lt;form method="dialog"&gt;
+    &lt;p&gt;
+      &lt;label
+        &gt;Favorite animal:
+        &lt;select&gt;
+          &lt;option value="default"&gt;Choose…&lt;/option&gt;
+          &lt;option&gt;Brine shrimp&lt;/option&gt;
+          &lt;option&gt;Red panda&lt;/option&gt;
+          &lt;option&gt;Spider monkey&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+    &lt;/p&gt;
+    &lt;div&gt;
+      &lt;button value="cancel"&gt;Cancel&lt;/button&gt;
+      &lt;button id="confirmBtn" value="default"&gt;Confirm&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;
+&lt;p&gt;
+  &lt;button id="updateDetails"&gt;Update details&lt;/button&gt;
+&lt;/p&gt;
+&lt;output&gt;&lt;/output&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">:modal {
+  border: 5px solid red;
+  background-color: yellow;
+  box-shadow: 3px 3px 10px rgb(0 0 0 / 50%);
+}
+</pre>
+<pre class="brush: js hidden">const updateButton = document.getElementById("updateDetails");
+const favDialog = document.getElementById("favDialog");
+const outputBox = document.querySelector("output");
+const selectEl = favDialog.querySelector("select");
+const confirmBtn = favDialog.querySelector("#confirmBtn");
+
+// If a browser doesn't support the dialog, then hide the
+// dialog contents by default.
+if (typeof favDialog.showModal !== "function") {
+  favDialog.hidden = true;
+  // Your fallback script
+}
+// "Update details" button opens the &lt;dialog&gt; modally
+updateButton.addEventListener("click", () =&gt; {
+  if (typeof favDialog.showModal === "function") {
+    favDialog.showModal();
+  } else {
+    outputBox.value = "Sorry, the dialog API is not supported by this browser.";
+  }
+});
+// "Favorite animal" input sets the value of the submit button
+selectEl.addEventListener("change", (e) =&gt; {
+  confirmBtn.value = selectEl.value;
+});
+// "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+favDialog.addEventListener("close", () =&gt; {
+  outputBox.value = `${
+    favDialog.returnValue
+  } button clicked - ${new Date().toString()}`;
+});
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Styling a modal dialog sample" id="frame_styling_a_modal_dialog" width="100%" height="300" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:modal" data-live-id="styling_a_modal_dialog" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.modal" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.modal" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Element/dialog"><code>dialog</code></a> element</li>
+  <li>Other element display state pseudo-classes: <a href="/en-US/docs/Web/CSS/:fullscreen"><code>:fullscreen</code></a> and <a href="/en-US/docs/Web/CSS/:picture-in-picture"><code>:picture-in-picture</code></a></li>
+  <li>Complete list of <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-classes</a></li>
+</ul>
+</body></html>

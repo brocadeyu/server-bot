@@ -1,0 +1,61 @@
+<html><head></head><body><div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div>
+<p><strong>Force Touch Events</strong> are a proprietary, Apple-specific feature which makes possible (where supported by the input hardware) new interactions based on how hard the user clicks or presses down on the touchscreen or trackpad.</p>
+<h2 id="events">Events</h2>
+<dl>
+  <dt id="webkitmouseforcewillbegin"><a href="/en-US/docs/Web/API/Element/webkitmouseforcewillbegin_event" title="webkitmouseforcewillbegin"><code>webkitmouseforcewillbegin</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>This event is fired before the <a href="/en-US/docs/Web/API/Element/mousedown_event" title="mousedown"><code>mousedown</code></a> event. Its main use is that it can be <a href="/en-US/docs/Web/API/Event/preventDefault" title="default-prevented">default-prevented</a>.</p>
+  </dd>
+  <dt id="webkitmouseforcedown"><a href="/en-US/docs/Web/API/Element/webkitmouseforcedown_event" title="webkitmouseforcedown"><code>webkitmouseforcedown</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>This event is fired after the <a href="/en-US/docs/Web/API/Element/mousedown_event" title="mousedown"><code>mousedown</code></a> event as soon as sufficient pressure has been applied for it to qualify as a "force click".</p>
+  </dd>
+  <dt id="webkitmouseforceup"><a href="/en-US/docs/Web/API/Element/webkitmouseforceup_event" title="webkitmouseforceup"><code>webkitmouseforceup</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>This event is fired after the <a href="/en-US/docs/Web/API/Element/webkitmouseforcedown_event" title="webkitmouseforcedown"><code>webkitmouseforcedown</code></a> event as soon as the pressure has been reduced sufficiently to end the "force click".</p>
+  </dd>
+  <dt id="webkitmouseforcechanged"><a href="/en-US/docs/Web/API/Element/webkitmouseforcechanged_event" title="webkitmouseforcechanged"><code>webkitmouseforcechanged</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>This event is fired each time the amount of pressure changes. This event first fires after the <a href="/en-US/docs/Web/API/Element/mousedown_event" title="mousedown"><code>mousedown</code></a> event and stops firing before the <a href="/en-US/docs/Web/API/Element/mouseup_event" title="mouseup"><code>mouseup</code></a> event.</p>
+  </dd>
+</dl>
+<h2 id="event_properties">Event properties</h2>
+<p>The following property is known to be available on the <a href="/en-US/docs/Web/API/Element/webkitmouseforcewillbegin_event" title="webkitmouseforcewillbegin"><code>webkitmouseforcewillbegin</code></a>, <a href="/en-US/docs/Web/API/Element/mousedown_event" title="mousedown"><code>mousedown</code></a>, <a href="/en-US/docs/Web/API/Element/webkitmouseforcechanged_event" title="webkitmouseforcechanged"><code>webkitmouseforcechanged</code></a>, <a href="/en-US/docs/Web/API/Element/webkitmouseforcedown_event" title="webkitmouseforcedown"><code>webkitmouseforcedown</code></a>, <a href="/en-US/docs/Web/API/Element/webkitmouseforceup_event" title="webkitmouseforceup"><code>webkitmouseforceup</code></a>, <a href="/en-US/docs/Web/API/Element/mousemove_event" title="mousemove"><code>mousemove</code></a>, and <a href="/en-US/docs/Web/API/Element/mouseup_event" title="mouseup"><code>mouseup</code></a> event objects:</p>
+<dl>
+  <dt id="mouseevent.webkitforce"><a href="/en-US/docs/Web/API/MouseEvent/webkitForce"><code>MouseEvent.webkitForce</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The amount of pressure currently being applied to the trackpad/touchscreen.</p>
+  </dd>
+</dl>
+<h2 id="constants">Constants</h2>
+<p>These constants are useful for determining the relative intensity of the pressure indicated by <a href="/en-US/docs/Web/API/MouseEvent/webkitForce"><code>MouseEvent.webkitForce</code></a>:</p>
+<dl>
+  <dt id="mouseevent.webkit_force_at_mouse_down"><a href="/en-US/docs/Web/API/MouseEvent/WEBKIT_FORCE_AT_MOUSE_DOWN_static" title="MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN"><code>MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Minimum force necessary for a normal click.</p>
+  </dd>
+  <dt id="mouseevent.webkit_force_at_force_mouse_down"><a href="/en-US/docs/Web/API/MouseEvent/WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN_static" title="MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN"><code>MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Minimum force necessary for a force click.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2>
+<p><em>Not part of any specification.</em> Apple has <a href="https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html">a description at the Mac Developer Library</a>.</p>
+</body></html>

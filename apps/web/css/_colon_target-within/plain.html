@@ -1,0 +1,66 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>:target-within</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents an element that is a target element or <em>contains</em> an element that is a target. A target element is a unique element with an <a href="/en-US/docs/Web/HTML/Global_attributes/id"><code>id</code></a> matching the URL's fragment. In other words, it represents an element that is itself matched by the <a href="/en-US/docs/Web/CSS/:target"><code>:target</code></a> pseudo-class or has a descendant that is matched by <code>:target</code>. (This includes descendants in <a href="/en-US/docs/Web/API/Web_components/Using_shadow_DOM">shadow trees</a>.)</p>
+<pre class="brush: css">/* Selects a &lt;div&gt; when one of its descendants is a target */
+div:target-within {
+  background: cyan;
+}
+</pre>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:target-within {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="highlighting_an_article">Highlighting an article</h3>
+<p>The <code>:target-within</code> pseudo-class can be used to highlight the article if anything inside it has been directly linked to. The <code>:target</code> pseudo-class is also being used to show which item has been targeted.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;h3&gt;Table of Contents&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href="#p1"&gt;Jump to the first paragraph!&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#p2"&gt;Jump to the second paragraph!&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;article&gt;
+  &lt;h3&gt;My Fun Article&lt;/h3&gt;
+  &lt;p id="p1"&gt;
+    You can target &lt;i&gt;this paragraph&lt;/i&gt; using a URL fragment. Click on the link
+    above to try out!
+  &lt;/p&gt;
+  &lt;p id="p2"&gt;
+    This is &lt;i&gt;another paragraph&lt;/i&gt;, also accessible from the links above.
+    Isn't that delightful?
+  &lt;/p&gt;
+&lt;/article&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">article:target-within {
+  background-color: gold;
+}
+
+/* Add a pseudo-element inside the target element */
+p:target::before {
+  font: 70% sans-serif;
+  content: "►";
+  color: limegreen;
+  margin-right: 0.25em;
+}
+
+/* Style italic elements within the target element */
+p:target i {
+  color: red;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="500" height="300" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:target-within" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/selectors/#target-within-pseudo">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<p>Currently, no browsers have implemented this feature.</p>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:target"><code>:target</code></a></li>
+</ul>
+</body></html>

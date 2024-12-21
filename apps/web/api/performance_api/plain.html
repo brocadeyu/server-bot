@@ -1,0 +1,131 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The Performance API is a group of standards used to measure the performance of web applications.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>To ensure web applications are fast, it's important to measure and analyze various performance metrics. The Performance API provides important built-in metrics and the ability to add your own measurements to the browser's performance timeline. The performance timeline contains high precision timestamps and can be displayed in developer tools. You can also send its data to analytics end points to record performance metrics over time.</p>
+<p>Each performance metric is represented by a single <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a>. A performance entry has a <code>name</code>, a <code>duration</code>, a <code>startTime</code>, and a <code>type</code>. All performance metrics extend the <code>PerformanceEntry</code> interface and qualify it further.</p>
+<p>Most of the performance entries are recorded for you without you having to do anything, and are then accessible either through <a href="/en-US/docs/Web/API/Performance/getEntries"><code>Performance.getEntries()</code></a> or (preferably) through <a href="/en-US/docs/Web/API/PerformanceObserver"><code>PerformanceObserver</code></a>. For example, <a href="/en-US/docs/Web/API/PerformanceEventTiming"><code>PerformanceEventTiming</code></a> entries are recorded for events that take longer than a set threshold. But the Performance API also enables you to define and record your own custom events, using the <a href="/en-US/docs/Web/API/PerformanceMark"><code>PerformanceMark</code></a> and <a href="/en-US/docs/Web/API/PerformanceMeasure"><code>PerformanceMeasure</code></a> interfaces.</p>
+<p>The main <a href="/en-US/docs/Web/API/Performance"><code>Performance</code></a> interface is available in both <a href="/en-US/docs/Web/API/Window/performance" title="Window"><code>Window</code></a> and <a href="/en-US/docs/Web/API/WorkerGlobalScope/performance" title="Worker"><code>Worker</code></a> global scopes, and enables you to add custom performance entries, to clear performance entries, and to retrieve performance entries.</p>
+<p>The <a href="/en-US/docs/Web/API/PerformanceObserver"><code>PerformanceObserver</code></a> interface enables you to listen for various types of performance entry as they are recorded.</p>
+<p>For more conceptual information, see the <a href="#guides">Performance API guides</a> below.</p>
+<p>
+  <img src="/en-US/docs/Web/API/Performance_API/diagram.svg" alt="UML diagram of Performance APIs" width="661" height="896">
+</p>
+<h2 id="reference">Reference</h2>
+<p>The following interfaces are present in the Performance API:</p>
+<dl>
+  <dt id="eventcounts"><a href="/en-US/docs/Web/API/EventCounts"><code>EventCounts</code></a></dt>
+  <dd>
+    <p>A read-only map returned by <a href="/en-US/docs/Web/API/Performance/eventCounts"><code>performance.eventCounts</code></a> containing the number of events which have been dispatched per event type.</p>
+  </dd>
+  <dt id="largestcontentfulpaint"><a href="/en-US/docs/Web/API/LargestContentfulPaint"><code>LargestContentfulPaint</code></a></dt>
+  <dd>
+    <p>Measures the render time of the largest image or text block visible within the viewport, recorded from when the page first begins to load.</p>
+  </dd>
+  <dt id="layoutshift"><a href="/en-US/docs/Web/API/LayoutShift"><code>LayoutShift</code></a></dt>
+  <dd>
+    <p>Provides insights into the layout stability of web pages based on movements of the elements on the page.</p>
+  </dd>
+  <dt id="layoutshiftattribution"><a href="/en-US/docs/Web/API/LayoutShiftAttribution"><code>LayoutShiftAttribution</code></a></dt>
+  <dd>
+    <p>Provides debugging information about elements which have shifted.</p>
+  </dd>
+  <dt id="notrestoredreasondetails"><a href="/en-US/docs/Web/API/NotRestoredReasonDetails"><code>NotRestoredReasonDetails</code></a></dt>
+  <dd>
+    <p>Represents a single reason why a navigated page was blocked from using the back/forward cache (<a href="/en-US/docs/Glossary/bfcache">bfcache</a>).</p>
+  </dd>
+  <dt id="notrestoredreasons"><a href="/en-US/docs/Web/API/NotRestoredReasons"><code>NotRestoredReasons</code></a></dt>
+  <dd>
+    <p>Provides report data containing reasons why the current document was blocked from using the back/forward cache (<a href="/en-US/docs/Glossary/bfcache">bfcache</a>) on navigation.</p>
+  </dd>
+  <dt id="performance"><a href="/en-US/docs/Web/API/Performance"><code>Performance</code></a></dt>
+  <dd>
+    <p>Main interface to access performance measurements. Available to window and worker contexts using <a href="/en-US/docs/Web/API/Window/performance"><code>Window.performance</code></a> or <a href="/en-US/docs/Web/API/WorkerGlobalScope/performance"><code>WorkerGlobalScope.performance</code></a>.</p>
+  </dd>
+  <dt id="performanceelementtiming"><a href="/en-US/docs/Web/API/PerformanceElementTiming"><code>PerformanceElementTiming</code></a></dt>
+  <dd>
+    <p>Measures rendering timestamps of specific elements.</p>
+  </dd>
+  <dt id="performanceentry"><a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a></dt>
+  <dd>
+    <p>An entry on the performance timeline encapsulating a single performance metric. All performance metrics inherit from this interface.</p>
+  </dd>
+  <dt id="performanceeventtiming"><a href="/en-US/docs/Web/API/PerformanceEventTiming"><code>PerformanceEventTiming</code></a></dt>
+  <dd>
+    <p>Measures latency of events and <a href="/en-US/docs/Glossary/Interaction_to_next_paint">Interaction to Next Paint</a> (INP).</p>
+  </dd>
+  <dt id="performancelonganimationframetiming"><a href="/en-US/docs/Web/API/PerformanceLongAnimationFrameTiming"><code>PerformanceLongAnimationFrameTiming</code></a></dt>
+  <dd>
+    <p>Provides metrics on <a href="/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing#what_is_a_long_animation_frame">long animation frames (LoAFs)</a> that occupy rendering and block other tasks from being executed.</p>
+  </dd>
+  <dt id="performancelongtasktiming"><a href="/en-US/docs/Web/API/PerformanceLongTaskTiming"><code>PerformanceLongTaskTiming</code></a></dt>
+  <dd>
+    <p>Provides metrics on <a href="/en-US/docs/Glossary/Long_task">long tasks</a> that occupy rendering and block other tasks from being executed.</p>
+  </dd>
+  <dt id="performancemark"><a href="/en-US/docs/Web/API/PerformanceMark"><code>PerformanceMark</code></a></dt>
+  <dd>
+    <p>Custom marker for your own entry on the performance timeline.</p>
+  </dd>
+  <dt id="performancemeasure"><a href="/en-US/docs/Web/API/PerformanceMeasure"><code>PerformanceMeasure</code></a></dt>
+  <dd>
+    <p>Custom time measurement between two performance entries.</p>
+  </dd>
+  <dt id="performancenavigationtiming"><a href="/en-US/docs/Web/API/PerformanceNavigationTiming"><code>PerformanceNavigationTiming</code></a></dt>
+  <dd>
+    <p>Measures document navigation events, like how much time it takes to load a document.</p>
+  </dd>
+  <dt id="performanceobserver"><a href="/en-US/docs/Web/API/PerformanceObserver"><code>PerformanceObserver</code></a></dt>
+  <dd>
+    <p>Listens for new performance entries as they are recorded in the performance timeline.</p>
+  </dd>
+  <dt id="performanceobserverentrylist"><a href="/en-US/docs/Web/API/PerformanceObserverEntryList"><code>PerformanceObserverEntryList</code></a></dt>
+  <dd>
+    <p>List of entries that were observed in a performance observer.</p>
+  </dd>
+  <dt id="performancepainttiming"><a href="/en-US/docs/Web/API/PerformancePaintTiming"><code>PerformancePaintTiming</code></a></dt>
+  <dd>
+    <p>Measures render operations during web page construction.</p>
+  </dd>
+  <dt id="performanceresourcetiming"><a href="/en-US/docs/Web/API/PerformanceResourceTiming"><code>PerformanceResourceTiming</code></a></dt>
+  <dd>
+    <p>Measures network loading metrics such as redirect start and end times, fetch start, DNS lookup start and end times, response start and end times for resources such as images, scripts, fetch calls, etc.</p>
+  </dd>
+  <dt id="performancescripttiming"><a href="/en-US/docs/Web/API/PerformanceScriptTiming"><code>PerformanceScriptTiming</code></a></dt>
+  <dd>
+    <p>Provides metrics on individual scripts causing <a href="/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing#what_is_a_long_animation_frame">long animation frames (LoAFs)</a>.</p>
+  </dd>
+  <dt id="performanceservertiming"><a href="/en-US/docs/Web/API/PerformanceServerTiming"><code>PerformanceServerTiming</code></a></dt>
+  <dd>
+    <p>Surfaces server metrics that are sent with the response in the <a href="/en-US/docs/Web/HTTP/Headers/Server-Timing"><code>Server-Timing</code></a> HTTP header.</p>
+  </dd>
+  <dt id="taskattributiontiming"><a href="/en-US/docs/Web/API/TaskAttributionTiming"><code>TaskAttributionTiming</code></a></dt>
+  <dd>
+    <p>Identifies the type of task and the container that is responsible for the long task.</p>
+  </dd>
+  <dt id="visibilitystateentry"><a href="/en-US/docs/Web/API/VisibilityStateEntry"><code>VisibilityStateEntry</code></a></dt>
+  <dd>
+    <p>Measures the timing of page visibility state changes, i.e., when a tab changes from the foreground to the background or vice versa.</p>
+  </dd>
+</dl>
+<h2 id="guides">Guides</h2>
+<p>The following guides help you to understand key concepts of the Performance API and provide an overview about its abilities:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Performance_API/Performance_data">Performance data</a>: Collecting, accessing, and working with performance data.</li>
+  <li><a href="/en-US/docs/Web/API/Performance_API/High_precision_timing">High precision timing</a>: Measuring with high precision time and monotonic clocks.</li>
+  <li><a href="/en-US/docs/Web/API/Performance_API/Resource_timing">Resource timing</a>: Measuring network timing for fetched resources, such as images, CSS, and JavaScript.</li>
+  <li><a href="/en-US/docs/Web/API/Performance_API/Navigation_timing">Navigation timing</a>: Measuring navigation timing of a document.</li>
+  <li><a href="/en-US/docs/Web/API/Performance_API/User_timing">User timing</a>: Measuring and recording performance data custom to your application.</li>
+  <li><a href="/en-US/docs/Web/API/Performance_API/Server_timing">Server timing</a>: Collecting server-side metrics.</li>
+  <li><a href="/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing">Long animation frame timing</a>: Collecting metrics on long animation frames (LoAFs) and their causes.</li>
+  <li><a href="/en-US/docs/Web/API/Performance_API/Monitoring_bfcache_blocking_reasons">Monitoring bfcache blocking reasons</a>: Reporting on why the current document was blocked from using the back/forward cache (<a href="/en-US/docs/Glossary/bfcache">bfcache</a>).</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://wicg.github.io/element-timing/,https://w3c.github.io/event-timing/,https://w3c.github.io/hr-time/,https://w3c.github.io/largest-contentful-paint/,https://wicg.github.io/layout-instability/,https://w3c.github.io/longtasks/,https://w3c.github.io/navigation-timing/,https://w3c.github.io/paint-timing/,https://w3c.github.io/performance-timeline/,https://w3c.github.io/resource-timing/,https://w3c.github.io/server-timing/,https://w3c.github.io/user-timing/,https://w3c.github.io/long-animation-frames/,https://wicg.github.io/performance-measure-memory/,https://html.spec.whatwg.org/multipage/interaction.html#the-visibilitystateentry-interface,https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-notrestoredreasons-interface">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Performance">Web performance</a></li>
+  <li><a href="/en-US/docs/Learn_web_development/Extensions/Performance">Learn: Web performance</a></li>
+</ul>
+</body></html>

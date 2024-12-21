@@ -1,0 +1,71 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>BatteryManager</code></strong> interface of the <a href="/en-US/docs/Web/API/Battery_Status_API">Battery Status API</a> provides information about the system's battery charge level. The <a href="/en-US/docs/Web/API/Navigator/getBattery"><code>navigator.getBattery()</code></a> method returns a promise that resolves with a <code>BatteryManager</code> interface.</p>
+<p>Since Chrome 103, the <code>BatteryManager</code> interface of <a href="/en-US/docs/Web/API/Battery_Status_API">Battery Status API</a> only expose to secure context.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/BatteryManager" aria-current="page">
+    <rect x="118" y="0" width="112" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="174" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      BatteryManager
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Also inherits properties from its parent interface, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="batterymanager.charging"><a href="/en-US/docs/Web/API/BatteryManager/charging"><code>BatteryManager.charging</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A Boolean value indicating whether the battery is currently being charged.</p>
+  </dd>
+  <dt id="batterymanager.chargingtime"><a href="/en-US/docs/Web/API/BatteryManager/chargingTime"><code>BatteryManager.chargingTime</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A number representing the remaining time in seconds until the battery is fully charged, or 0 if the battery is already fully charged.</p>
+  </dd>
+  <dt id="batterymanager.dischargingtime"><a href="/en-US/docs/Web/API/BatteryManager/dischargingTime"><code>BatteryManager.dischargingTime</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A number representing the remaining time in seconds until the battery is completely discharged and the system suspends.</p>
+  </dd>
+  <dt id="batterymanager.level"><a href="/en-US/docs/Web/API/BatteryManager/level"><code>BatteryManager.level</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A number representing the system's battery charge level scaled to a value between 0.0 and 1.0.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Also inherits methods from its parent interface, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<h2 id="events">Events</h2>
+<p><em>Also inherits events from its parent interface, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="chargingchange"><a href="/en-US/docs/Web/API/BatteryManager/chargingchange_event" title="chargingchange"><code>chargingchange</code></a></dt>
+  <dd>
+    <p>Fired when the battery charging state (the <a href="/en-US/docs/Web/API/BatteryManager/charging" title="charging"><code>charging</code></a> property) is updated.</p>
+  </dd>
+  <dt id="chargingtimechange"><a href="/en-US/docs/Web/API/BatteryManager/chargingtimechange_event" title="chargingtimechange"><code>chargingtimechange</code></a></dt>
+  <dd>
+    <p>Fired when the battery charging time (the <a href="/en-US/docs/Web/API/BatteryManager/chargingTime" title="chargingTime"><code>chargingTime</code></a> property) is updated.</p>
+  </dd>
+  <dt id="dischargingtimechange"><a href="/en-US/docs/Web/API/BatteryManager/dischargingtimechange_event" title="dischargingtimechange"><code>dischargingtimechange</code></a></dt>
+  <dd>
+    <p>Fired when the battery discharging time (the <a href="/en-US/docs/Web/API/BatteryManager/dischargingTime" title="dischargingTime"><code>dischargingTime</code></a> property) is updated.</p>
+  </dd>
+  <dt id="levelchange"><a href="/en-US/docs/Web/API/BatteryManager/levelchange_event" title="levelchange"><code>levelchange</code></a></dt>
+  <dd>
+    <p>Fired when the battery level (the <a href="/en-US/docs/Web/API/BatteryManager/level" title="level"><code>level</code></a> property) is updated.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BatteryManager" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BatteryManager" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The <a href="/en-US/docs/Web/API/Battery_Status_API">Battery Status API</a></li>
+  <li><a href="/en-US/docs/Web/API/Navigator/getBattery"><code>Navigator.getBattery()</code></a></li>
+</ul>
+</body></html>

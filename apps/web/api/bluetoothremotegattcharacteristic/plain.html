@@ -1,0 +1,113 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <code>BluetoothRemoteGattCharacteristic</code> interface of the <a href="/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth API</a> represents a GATT Characteristic, which is a basic data element that provides further information about a peripheral's service.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic" aria-current="page">
+    <rect x="118" y="0" width="264" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="250" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      BluetoothRemoteGATTCharacteristic
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="bluetoothremotegattcharacteristic.service"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/service"><code>BluetoothRemoteGATTCharacteristic.service</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/BluetoothRemoteGATTService"><code>BluetoothRemoteGATTService</code></a> this characteristic belongs to.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.uuid"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/uuid"><code>BluetoothRemoteGATTCharacteristic.uuid</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a string containing the UUID of the characteristic, for example <code>'00002a37-0000-1000-8000-00805f9b34fb'</code> for the Heart Rate Measurement characteristic.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.properties"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/properties"><code>BluetoothRemoteGATTCharacteristic.properties</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the properties of this characteristic.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.value"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/value"><code>BluetoothRemoteGATTCharacteristic.value</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>The currently cached characteristic value. This value gets updated when the value of the characteristic is read or updated via a notification or indication.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="bluetoothremotegattcharacteristic.getdescriptor"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/getDescriptor"><code>BluetoothRemoteGATTCharacteristic.getDescriptor()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to the first <a href="/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor"><code>BluetoothRemoteGATTDescriptor</code></a> for a given descriptor UUID.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.getdescriptors"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/getDescriptors"><code>BluetoothRemoteGATTCharacteristic.getDescriptors()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of all <a href="/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor"><code>BluetoothRemoteGATTDescriptor</code></a> objects for a given descriptor UUID.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.readvalue"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/readValue"><code>BluetoothRemoteGATTCharacteristic.readValue()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a> holding a duplicate of the <code>value</code> property if it is available and supported. Otherwise it throws an error.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.writevalue"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/writeValue"><code>BluetoothRemoteGATTCharacteristic.writeValue()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Sets the <code>value</code> property to the bytes contained in a given <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>, <a href="https://webbluetoothcg.github.io/web-bluetooth/#writecharacteristicvalue">writes the characteristic value with optional response</a>, and returns the resulting <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.writevaluewithresponse"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/writeValueWithResponse"><code>BluetoothRemoteGATTCharacteristic.writeValueWithResponse()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Sets the <code>value</code> property to the bytes contained in a given <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>, <a href="https://webbluetoothcg.github.io/web-bluetooth/#writecharacteristicvalue">writes the characteristic value with required response</a>, and returns the resulting <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.writevaluewithoutresponse"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/writeValueWithoutResponse"><code>BluetoothRemoteGATTCharacteristic.writeValueWithoutResponse()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Sets the <code>value</code> property to the bytes contained in a given <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>, <a href="https://webbluetoothcg.github.io/web-bluetooth/#writecharacteristicvalue">writes the characteristic value without response</a>, and returns the resulting <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.startnotifications"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/startNotifications"><code>BluetoothRemoteGATTCharacteristic.startNotifications()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves when <code>navigator.bluetooth</code> is added to the active notification context.</p>
+  </dd>
+  <dt id="bluetoothremotegattcharacteristic.stopnotifications"><a href="/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/stopNotifications"><code>BluetoothRemoteGATTCharacteristic.stopNotifications()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves when <code>navigator.bluetooth</code> is removed from the active notification context.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<dl>
+  <dt id="characteristicvaluechanged"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;BluetoothRemoteGATTCharacteristic/characteristicvaluechanged_event&quot;, &quot;characteristicvaluechanged&quot;)}}"><code>characteristicvaluechanged</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired on a <code>BluetoothRemoteGATTCharacteristic</code> when its value changes.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.BluetoothRemoteGATTCharacteristic" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.BluetoothRemoteGATTCharacteristic" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

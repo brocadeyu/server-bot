@@ -1,0 +1,61 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>CookieChangeEvent</code></strong> interface of the <a href="/en-US/docs/Web/API/Cookie_Store_API">Cookie Store API</a> is the event type of the <a href="/en-US/docs/Web/API/CookieStore/change_event" title="change"><code>change</code></a> event fired at a <a href="/en-US/docs/Web/API/CookieStore"><code>CookieStore</code></a> when any cookies are created or deleted.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> A cookie that is replaced due to the insertion of another cookie with the same name, domain, and path, is ignored and does not trigger a change event.</p>
+</div><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CookieChangeEvent" aria-current="page">
+    <rect x="105" y="0" width="136" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="173" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CookieChangeEvent
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="cookiechangeevent"><a href="/en-US/docs/Web/API/CookieChangeEvent/CookieChangeEvent" title="CookieChangeEvent()"><code>CookieChangeEvent()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>CookieChangeEvent</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface also inherits properties from <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<dl>
+  <dt id="cookiechangeevent.changed"><a href="/en-US/docs/Web/API/CookieChangeEvent/changed"><code>CookieChangeEvent.changed</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An array listing all newly-created cookies. Note that this will exclude cookies which were created with an expiry date in the past, as these cookies are immediately deleted.</p>
+  </dd>
+  <dt id="cookiechangeevent.deleted"><a href="/en-US/docs/Web/API/CookieChangeEvent/deleted"><code>CookieChangeEvent.deleted</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An array listing all cookies which were removed, either because they expired or because they were explicitly deleted. Note that this will include cookies which were created with an expiry date in the past.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface also inherits methods from <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<p>In this example when the cookie is set, the event listener logs the event to the console. This is a <code>CookieChangeEvent</code> object with the <a href="/en-US/docs/Web/API/CookieChangeEvent/changed" title="changed"><code>changed</code></a> property containing an object representing the cookie that has just been set.</p>
+<pre class="brush: js">cookieStore.addEventListener("change", (event) =&gt; {
+  console.log(event);
+});
+
+const one_day = 24 * 60 * 60 * 1000;
+cookieStore.set({
+  name: "cookie1",
+  value: "cookie1-value",
+  expires: Date.now() + one_day,
+  domain: "example.com",
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CookieChangeEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CookieChangeEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

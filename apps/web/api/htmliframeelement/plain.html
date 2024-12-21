@@ -1,0 +1,184 @@
+<html><head></head><body>
+<p>The <strong><code>HTMLIFrameElement</code></strong> interface provides special properties and methods (beyond those of the <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> interface it also has available to it by inheritance) for manipulating the layout and presentation of inline frame elements.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Element">
+    <rect x="223" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Element
+    </text>
+  </a>
+  <line x1="298" y1="14" x2="328" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="298,14 308,9 308,19 298,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLElement">
+    <rect x="328" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="372" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLElement
+    </text>
+  </a>
+  <line x1="416" y1="14" x2="446" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="416,14 426,9 426,19 416,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLIFrameElement" aria-current="page">
+    <rect x="446" y="0" width="136" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="514" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLIFrameElement
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a></em>.</p>
+<dl>
+  <dt id="htmliframeelement.align"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLIFrameElement.align&quot;)}}"><code>HTMLIFrameElement.align</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string that specifies the alignment of the frame with respect to the surrounding context.</p>
+  </dd>
+  <dt id="htmliframeelement.allow"><a href="/en-US/docs/Web/API/HTMLIFrameElement/allow"><code>HTMLIFrameElement.allow</code></a></dt>
+  <dd>
+    <p>A string that indicates the <a href="/en-US/docs/Web/HTTP/Permissions_Policy">Permissions Policy</a> specified for this <code>&lt;iframe&gt;</code>.</p>
+  </dd>
+  <dt id="htmliframeelement.allowfullscreen"><a href="/en-US/docs/Web/API/HTMLIFrameElement/allowFullscreen"><code>HTMLIFrameElement.allowFullscreen</code></a></dt>
+  <dd>
+    <p>A boolean value indicating whether the inline frame is willing to be placed into full screen mode. See <a href="/en-US/docs/Web/API/Fullscreen_API">Using fullscreen mode</a> for details.</p>
+  </dd>
+  <dt id="htmliframeelement.allowpaymentrequest"><a href="/en-US/docs/Web/API/HTMLIFrameElement/allowPaymentRequest"><code>HTMLIFrameElement.allowPaymentRequest</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>A boolean value indicating whether the <a href="/en-US/docs/Web/API/Payment_Request_API">Payment Request API</a> may be invoked inside a cross-origin iframe.</p>
+  </dd>
+  <dt id="htmliframeelement.browsingtopics"><a href="/en-US/docs/Web/API/HTMLIFrameElement/browsingTopics"><code>HTMLIFrameElement.browsingTopics</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>A boolean property specifying that the selected topics for the current user should be sent with the request for the associated <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>'s source. This reflects the <code>browsingtopics</code> content attribute value.</p>
+  </dd>
+  <dt id="htmliframeelement.contentdocument"><a href="/en-US/docs/Web/API/HTMLIFrameElement/contentDocument"><code>HTMLIFrameElement.contentDocument</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/Document"><code>Document</code></a>, the active document in the inline frame's nested browsing context.</p>
+  </dd>
+  <dt id="htmliframeelement.contentwindow"><a href="/en-US/docs/Web/API/HTMLIFrameElement/contentWindow"><code>HTMLIFrameElement.contentWindow</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Glossary/WindowProxy">WindowProxy</a>, the window proxy for the nested browsing context.</p>
+  </dd>
+  <dt id="htmliframeelement.credentialless"><a href="/en-US/docs/Web/API/HTMLIFrameElement/credentialless"><code>HTMLIFrameElement.credentialless</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A boolean value indicating whether the <code>&lt;iframe&gt;</code> is credentialless, meaning that its content is loaded in a new, ephemeral context. This context does not have access to the parent context's shared storage and credentials. In return, the <a href="/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy"><code>Cross-Origin-Embedder-Policy</code></a> (COEP) embedding rules can be lifted, so documents with COEP set can embed third-party documents that do not. See <a href="/en-US/docs/Web/Security/IFrame_credentialless">IFrame credentialless</a> for a deeper explanation.</p>
+  </dd>
+  <dt id="htmliframeelement.csp"><a href="/en-US/docs/Web/API/HTMLIFrameElement/csp"><code>HTMLIFrameElement.csp</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Specifies the Content Security Policy that an embedded document must agree to enforce upon itself.</p>
+  </dd>
+  <dt id="htmliframeelement.featurepolicy"><a href="/en-US/docs/Web/API/HTMLIFrameElement/featurePolicy"><code>HTMLIFrameElement.featurePolicy</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/FeaturePolicy"><code>FeaturePolicy</code></a> interface which provides a simple API for introspecting the <a href="/en-US/docs/Web/HTTP/Permissions_Policy">Permissions Policies</a> applied to a specific document.</p>
+  </dd>
+  <dt id="htmliframeelement.frameborder"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLIFrameElement.frameBorder&quot;)}}"><code>HTMLIFrameElement.frameBorder</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string that indicates whether to create borders between frames.</p>
+  </dd>
+  <dt id="htmliframeelement.height"><a href="/en-US/docs/Web/API/HTMLIFrameElement/height"><code>HTMLIFrameElement.height</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/iframe#height"><code>height</code></a> HTML attribute, indicating the height of the frame.</p>
+  </dd>
+  <dt id="htmliframeelement.loading"><a href="/en-US/docs/Web/API/HTMLIFrameElement/loading"><code>HTMLIFrameElement.loading</code></a></dt>
+  <dd>
+    <p>
+      A string providing a hint to the browser that the iframe should be loaded immediately (<code>eager</code>) or on an as-needed basis (<code>lazy</code>).
+      This reflects the <a href="/en-US/docs/Web/HTML/Element/iframe#loading"><code>loading</code></a> HTML attribute.
+    </p>
+  </dd>
+  <dt id="htmliframeelement.longdesc"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLIFrameElement.longDesc&quot;)}}"><code>HTMLIFrameElement.longDesc</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string that contains the URI of a long description of the frame.</p>
+  </dd>
+  <dt id="htmliframeelement.marginheight"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLIFrameElement.marginHeight&quot;)}}"><code>HTMLIFrameElement.marginHeight</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string being the height of the frame margin.</p>
+  </dd>
+  <dt id="htmliframeelement.marginwidth"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLIFrameElement.marginWidth&quot;)}}"><code>HTMLIFrameElement.marginWidth</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string being the width of the frame margin.</p>
+  </dd>
+  <dt id="htmliframeelement.name"><a href="/en-US/docs/Web/API/HTMLIFrameElement/name"><code>HTMLIFrameElement.name</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/iframe#name"><code>name</code></a> HTML attribute, containing a name by which to refer to the frame.</p>
+  </dd>
+  <dt id="htmliframeelement.referrerpolicy"><a href="/en-US/docs/Web/API/HTMLIFrameElement/referrerPolicy"><code>HTMLIFrameElement.referrerPolicy</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/iframe#referrerpolicy"><code>referrerPolicy</code></a> HTML attribute indicating which referrer to use when fetching the linked resource.</p>
+  </dd>
+  <dt id="htmliframeelement.sandbox"><a href="/en-US/docs/Web/API/HTMLIFrameElement/sandbox"><code>HTMLIFrameElement.sandbox</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMTokenList"><code>DOMTokenList</code></a> that reflects the <a href="/en-US/docs/Web/HTML/Element/iframe#sandbox"><code>sandbox</code></a> HTML attribute, indicating extra restrictions on the behavior of the nested content.</p>
+  </dd>
+  <dt id="htmliframeelement.scrolling"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;HTMLIFrameElement.scrolling&quot;)}}"><code>HTMLIFrameElement.scrolling</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string that indicates whether the browser should provide scrollbars for the frame.</p>
+  </dd>
+  <dt id="htmliframeelement.src"><a href="/en-US/docs/Web/API/HTMLIFrameElement/src"><code>HTMLIFrameElement.src</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/iframe#src"><code>src</code></a> HTML attribute, containing the address of the content to be embedded. Note that programmatically removing an <code>&lt;iframe&gt;</code>'s src attribute (e.g. via <a href="/en-US/docs/Web/API/Element/removeAttribute"><code>Element.removeAttribute()</code></a>) causes <code>about:blank</code> to be loaded in the frame in Firefox (from version 65), Chromium-based browsers, and Safari/iOS.</p>
+  </dd>
+  <dt id="htmliframeelement.srcdoc"><a href="/en-US/docs/Web/API/HTMLIFrameElement/srcdoc"><code>HTMLIFrameElement.srcdoc</code></a></dt>
+  <dd>
+    <p>A string that represents the content to display in the frame.</p>
+  </dd>
+  <dt id="htmliframeelement.width"><a href="/en-US/docs/Web/API/HTMLIFrameElement/width"><code>HTMLIFrameElement.width</code></a></dt>
+  <dd>
+    <p>A string that reflects the <a href="/en-US/docs/Web/HTML/Element/iframe#width"><code>width</code></a> HTML attribute, indicating the width of the frame.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Also inherits methods from its parent interface, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="htmliframeelement.getsvgdocument"><a href="/en-US/docs/Web/API/HTMLIframeElement/getSVGDocument"><code>HTMLIframeElement.getSVGDocument()</code></a></dt>
+  <dd>
+    <p>Returns the embedded SVG as a <a href="/en-US/docs/Web/API/Document"><code>Document</code></a>.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLIFrameElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLIFrameElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The HTML element implementing this interface: <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a></li>
+</ul>
+</body></html>

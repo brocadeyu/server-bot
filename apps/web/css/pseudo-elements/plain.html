@@ -1,0 +1,92 @@
+<html><head></head><body>
+<p>A CSS <strong>pseudo-element</strong> is a keyword added to a selector that lets you style a specific part of the selected element(s).</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">selector::pseudo-element {
+  property: value;
+}
+</pre>
+<p>For example, <a href="/en-US/docs/Web/CSS/::first-line"><code>::first-line</code></a> can be used to change the font of the first line of a paragraph.</p>
+<pre class="brush: css">/* The first line of every &lt;p&gt; element. */
+p::first-line {
+  color: blue;
+  text-transform: uppercase;
+}
+</pre>
+<p>Double colons (<code>::</code>) are used for pseudo-elements. This distinguishes pseudo-elements from <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-classes</a> that use a single colon (<code>:</code>) in their notation.</p>
+<p>Pseudo-elements do not exist independently. The element of which a pseudo-element is a part is called its <em>originating element</em>. A pseudo-element must appear after all the other components in the <a href="/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#complex_selector">complex</a> or <a href="/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#compound_selector">compound</a> selector. The last element in the selector is the originating element of the pseudo-element. For example, you can select a paragraph's first line using <code>p::first-line</code> but not the first-line's children. So <code>p::first-line &gt; *</code> is invalid.</p>
+<p>A pseudo-element can be selected based on the current state of the originating element. For example, <code>p:hover::first-line</code> selects the first line (pseudo-element) of a paragraph when the paragraph itself is being hovered (pseudo-class).</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> When a <a href="/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#selector_list">selector list</a> contains an invalid selector, the entire style block is ignored.</p>
+</div>
+<h2 id="list_of_pseudo-elements">List of pseudo-elements</h2>
+<p>Pseudo-elements defined by a set of CSS specifications include the following:</p>
+<p>A</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::after"><code>::after</code></a></li>
+</ul>
+<p>B</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::backdrop"><code>::backdrop</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::before"><code>::before</code></a></li>
+</ul>
+<p>C</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::cue"><code>::cue</code></a> (and <a href="/en-US/docs/Web/CSS/::cue"><code>::cue()</code></a>)</li>
+</ul>
+<p>F</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::file-selector-button"><code>::file-selector-button</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::first-line"><code>::first-line</code></a></li>
+</ul>
+<p>G</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::grammar-error"><code>::grammar-error</code></a></li>
+</ul>
+<p>H</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::highlight"><code>::highlight()</code></a></li>
+</ul>
+<p>M</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::marker"><code>::marker</code></a></li>
+</ul>
+<p>P</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::part"><code>::part()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::placeholder"><code>::placeholder</code></a></li>
+</ul>
+<p>S</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::selection"><code>::selection</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::slotted"><code>::slotted()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::spelling-error"><code>::spelling-error</code></a></li>
+</ul>
+<p>T</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::target-text"><code>::target-text</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></li>
+</ul>
+<p>V</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::view-transition"><code>::view-transition</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::view-transition-image-pair"><code>::view-transition-image-pair()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::view-transition-group"><code>::view-transition-group()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::view-transition-new"><code>::view-transition-new()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/::view-transition-old"><code>::view-transition-old()</code></a></li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> Browsers support the single colon syntax only for the original four pseudo-elements: <code>::before</code>, <code>::after</code>, <code>::first-line</code>, and <code>::first-letter</code>.</p>
+</div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-pseudo/,https://drafts.csswg.org/css-position-4/,https://drafts.csswg.org/css-shadow-parts/,https://w3c.github.io/webvtt/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_pseudo-elements">CSS pseudo-element</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/Pseudo-classes">Pseudo-classes</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_selectors">CSS selectors</a> module</li>
+  <li><a href="/en-US/docs/Learn_web_development/Core/Styling_basics/Pseudo_classes_and_elements">Learn: Pseudo-classes and pseudo-elements</a></li>
+</ul>
+</body></html>

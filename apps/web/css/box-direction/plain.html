@@ -1,0 +1,70 @@
+<html><head></head><body><div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div><div class="notecard deprecated">
+    <h4 id="deprecated">Deprecated</h4>
+    <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p>
+</div>
+<div class="notecard warning">
+  <p><strong>Warning:</strong> This is a property of the original CSS flexible box layout Module draft, and has been replaced by a newer standard. The <code>-moz-box-direction</code> will only be used for XUL while the previous standard <code>box-direction</code> has been replaced by <code>flex-direction</code>. See <a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">flexbox</a> for information about the current standard.</p>
+</div>
+<p>The <strong><code>box-direction</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge).</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+box-direction: normal;
+box-direction: reverse;
+
+/* Global values */
+box-direction: inherit;
+box-direction: initial;
+box-direction: revert;
+box-direction: revert-layer;
+box-direction: unset;
+</pre>
+<p>The <code>box-direction</code> property is specified as one of the keyword values listed below.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="normal"><a href="#normal"><code>normal</code></a></dt>
+  <dd>
+    <p>The box lays out its contents from the start (the left or top edge).</p>
+  </dd>
+  <dt id="reverse"><a href="#reverse"><code>reverse</code></a></dt>
+  <dd>
+    <p>The box lays out its contents from the end (the right or bottom edge).</p>
+  </dd>
+</dl>
+<h2 id="notes">Notes</h2>
+<p>The edge of the box designated the <em>start</em> for layout purposes depends on the box's orientation:</p>
+<ul>
+  <li>For horizontal elements, the <em>start</em> is the top edge.</li>
+  <li>For vertical elements, the <em>start</em> is the left edge.</li>
+</ul>
+<p>The edge opposite to the start is designated the <em>end</em>.</p>
+<p>If the direction is set using the element's <code>dir</code> attribute, then the style is ignored.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>normal</code></td></tr><tr><th scope="row">Applies to</th><td>elements with a CSS <a href="/en-US/docs/Web/CSS/display"><code>display</code></a> value of <code>box</code> or <code>inline-box</code></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="brush: plain">box-direction =
+  normal | reverse | inherit
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_box_direction">Setting box direction</h3>
+<pre class="brush: css">.example {
+  /* bottom-to-top layout */
+  -moz-box-direction: reverse; /* Mozilla */
+  -webkit-box-direction: reverse; /* WebKit */
+  box-direction: reverse; /* As specified */
+}
+</pre>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.box-direction" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/box-orient"><code>box-orient</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/box-pack"><code>box-pack</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/box-align"><code>box-align</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-direction"><code>flex-direction</code></a></li>
+</ul>
+</body></html>

@@ -1,0 +1,64 @@
+<html><head></head><body> <div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>FormData</code></strong> interface provides a way to construct a set of key/value pairs representing form fields and their values, which can be sent using the <a href="/en-US/docs/Web/API/Window/fetch" title="fetch()"><code>fetch()</code></a>, <a href="/en-US/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> or <a href="/en-US/docs/Web/API/Navigator/sendBeacon"><code>navigator.sendBeacon()</code></a> methods. It uses the same format a form would use if the encoding type were set to <code>"multipart/form-data"</code>.</p>
+<p>You can also pass it directly to the <a href="/en-US/docs/Web/API/URLSearchParams"><code>URLSearchParams</code></a> constructor if you want to generate query parameters in the way a <a href="/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a> would do if it were using simple <code>GET</code> submission.</p>
+<p>An object implementing <code>FormData</code> can directly be used in a <a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...of"><code>for...of</code></a> structure, instead of <a href="/en-US/docs/Web/API/FormData/entries" title="entries()"><code>entries()</code></a>: <code>for (const p of myFormData)</code> is equivalent to <code>for (const p of myFormData.entries())</code>.</p>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="formdata"><a href="/en-US/docs/Web/API/FormData/FormData" title="FormData()"><code>FormData()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>FormData</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="formdata.append"><a href="/en-US/docs/Web/API/FormData/append"><code>FormData.append()</code></a></dt>
+  <dd>
+    <p>Appends a new value onto an existing key inside a <code>FormData</code> object, or adds the key if it does not already exist.</p>
+  </dd>
+  <dt id="formdata.delete"><a href="/en-US/docs/Web/API/FormData/delete"><code>FormData.delete()</code></a></dt>
+  <dd>
+    <p>Deletes a key/value pair from a <code>FormData</code> object.</p>
+  </dd>
+  <dt id="formdata.entries"><a href="/en-US/docs/Web/API/FormData/entries"><code>FormData.entries()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a> that iterates through all key/value pairs contained in the <code>FormData</code>.</p>
+  </dd>
+  <dt id="formdata.get"><a href="/en-US/docs/Web/API/FormData/get"><code>FormData.get()</code></a></dt>
+  <dd>
+    <p>Returns the first value associated with a given key from within a <code>FormData</code> object.</p>
+  </dd>
+  <dt id="formdata.getall"><a href="/en-US/docs/Web/API/FormData/getAll"><code>FormData.getAll()</code></a></dt>
+  <dd>
+    <p>Returns an array of all the values associated with a given key from within a <code>FormData</code>.</p>
+  </dd>
+  <dt id="formdata.has"><a href="/en-US/docs/Web/API/FormData/has"><code>FormData.has()</code></a></dt>
+  <dd>
+    <p>Returns whether a <code>FormData</code> object contains a certain key.</p>
+  </dd>
+  <dt id="formdata.keys"><a href="/en-US/docs/Web/API/FormData/keys"><code>FormData.keys()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a> iterates through all keys of the key/value pairs contained in the <code>FormData</code>.</p>
+  </dd>
+  <dt id="formdata.set"><a href="/en-US/docs/Web/API/FormData/set"><code>FormData.set()</code></a></dt>
+  <dd>
+    <p>Sets a new value for an existing key inside a <code>FormData</code> object, or adds the key/value if it does not already exist.</p>
+  </dd>
+  <dt id="formdata.values"><a href="/en-US/docs/Web/API/FormData/values"><code>FormData.values()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a> that iterates through all values contained in the <code>FormData</code>.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.FormData" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.FormData" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects">Using FormData objects</a></li>
+  <li><a href="/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a></li>
+</ul>
+</body></html>

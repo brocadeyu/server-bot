@@ -1,0 +1,128 @@
+<html><head></head><body>
+<p>
+  HTTP defines a set of <strong>request methods</strong> to indicate the purpose of the request and what is expected if the request is successful.
+  Although they can also be nouns, these request methods are sometimes referred to as <em>HTTP verbs</em>.
+  Each request method has its own semantics, but some characteristics are shared across multiple methods, specifically request methods can be <a href="/en-US/docs/Glossary/Safe/HTTP">safe</a>, <a href="/en-US/docs/Glossary/Idempotent">idempotent</a>, or <a href="/en-US/docs/Glossary/Cacheable">cacheable</a>.
+</p>
+<dl>
+  <dt id="get"><a href="/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code></a></dt>
+  <dd>
+    <p>
+      The <code>GET</code> method requests a representation of the specified resource.
+      Requests using <code>GET</code> should only retrieve data and should not contain a request <a href="/en-US/docs/Glossary/HTTP_Content">content</a>.
+    </p>
+  </dd>
+  <dt id="head"><a href="/en-US/docs/Web/HTTP/Methods/HEAD"><code>HEAD</code></a></dt>
+  <dd>
+    <p>The <code>HEAD</code> method asks for a response identical to a <code>GET</code> request, but without a response body.</p>
+  </dd>
+  <dt id="post"><a href="/en-US/docs/Web/HTTP/Methods/POST"><code>POST</code></a></dt>
+  <dd>
+    <p>The <code>POST</code> method submits an entity to the specified resource, often causing a change in state or side effects on the server.</p>
+  </dd>
+  <dt id="put"><a href="/en-US/docs/Web/HTTP/Methods/PUT"><code>PUT</code></a></dt>
+  <dd>
+    <p>The <code>PUT</code> method replaces all current representations of the target resource with the request <a href="/en-US/docs/Glossary/HTTP_Content">content</a>.</p>
+  </dd>
+  <dt id="delete"><a href="/en-US/docs/Web/HTTP/Methods/DELETE"><code>DELETE</code></a></dt>
+  <dd>
+    <p>The <code>DELETE</code> method deletes the specified resource.</p>
+  </dd>
+  <dt id="connect"><a href="/en-US/docs/Web/HTTP/Methods/CONNECT"><code>CONNECT</code></a></dt>
+  <dd>
+    <p>The <code>CONNECT</code> method establishes a tunnel to the server identified by the target resource.</p>
+  </dd>
+  <dt id="options"><a href="/en-US/docs/Web/HTTP/Methods/OPTIONS"><code>OPTIONS</code></a></dt>
+  <dd>
+    <p>The <code>OPTIONS</code> method describes the communication options for the target resource.</p>
+  </dd>
+  <dt id="trace"><a href="/en-US/docs/Web/HTTP/Methods/TRACE"><code>TRACE</code></a></dt>
+  <dd>
+    <p>The <code>TRACE</code> method performs a message loop-back test along the path to the target resource.</p>
+  </dd>
+  <dt id="patch"><a href="/en-US/docs/Web/HTTP/Methods/PATCH"><code>PATCH</code></a></dt>
+  <dd>
+    <p>The <code>PATCH</code> method applies partial modifications to a resource.</p>
+  </dd>
+</dl>
+<h2 id="safe_idempotent_and_cacheable_request_methods">Safe, idempotent, and cacheable request methods</h2>
+<p>The following table lists HTTP request methods and their categorization in terms of safety, cacheability, and idempotency.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Safe</th>
+      <th>Idempotent</th>
+      <th>Cacheable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code></a></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/HEAD"><code>HEAD</code></a></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/OPTIONS"><code>OPTIONS</code></a></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/TRACE"><code>TRACE</code></a></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/PUT"><code>PUT</code></a></td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/DELETE"><code>DELETE</code></a></td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/POST"><code>POST</code></a></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Conditional*</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/PATCH"><code>PATCH</code></a></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Conditional*</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/HTTP/Methods/CONNECT"><code>CONNECT</code></a></td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>* <code>POST</code> and <code>PATCH</code> are cacheable when responses explicitly include <a href="/en-US/docs/Web/HTTP/Caching">freshness</a> information and a matching <a href="/en-US/docs/Web/HTTP/Headers/Content-Location"><code>Content-Location</code></a> header.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="http.methods" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="http.methods" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/HTTP/Status">HTTP response status codes</a></li>
+  <li><a href="/en-US/docs/Web/HTTP/Headers">HTTP headers</a></li>
+</ul>
+</body></html>

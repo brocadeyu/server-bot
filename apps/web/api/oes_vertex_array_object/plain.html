@@ -1,0 +1,65 @@
+<html><head></head><body>
+<p>The <strong>OES_vertex_array_object</strong> extension is part of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> and provides vertex array objects (VAOs) which encapsulate vertex array states. These objects keep pointers to vertex data and provide names for different sets of vertex data.</p>
+<p>WebGL extensions are available using the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="/en-US/docs/Web/API/WebGL_API/Using_Extensions">Using Extensions</a> in the <a href="/en-US/docs/Web/API/WebGL_API/Tutorial">WebGL tutorial</a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This extension is only available to <a href="/en-US/docs/Web/API/WebGLRenderingContext" title="WebGL1">WebGL1</a> contexts. In <a href="/en-US/docs/Web/API/WebGL2RenderingContext" title="WebGL2">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default and the constants and methods are available without the <code>OES_</code> suffix.</p>
+</div>
+<h2 id="constants">Constants</h2>
+<p>This extension exposes one new constant, which can be used in the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getParameter" title="gl.getParameter()"><code>gl.getParameter()</code></a> method:</p>
+<dl>
+  <dt id="ext.vertex_array_binding_oes"><a href="#ext.vertex_array_binding_oes"><code>ext.VERTEX_ARRAY_BINDING_OES</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> object when used in the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getParameter" title="gl.getParameter()"><code>gl.getParameter()</code></a> method as the <code>pname</code> parameter.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p>This extension exposes four new methods.</p>
+<dl>
+  <dt id="ext.createvertexarrayoes"><a href="/en-US/docs/Web/API/OES_vertex_array_object/createVertexArrayOES" title="ext.createVertexArrayOES()"><code>ext.createVertexArrayOES()</code></a></dt>
+  <dd>
+    <p>Creates a new <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a>.</p>
+  </dd>
+  <dt id="ext.deletevertexarrayoes"><a href="/en-US/docs/Web/API/OES_vertex_array_object/deleteVertexArrayOES" title="ext.deleteVertexArrayOES()"><code>ext.deleteVertexArrayOES()</code></a></dt>
+  <dd>
+    <p>Deletes a given <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a>.</p>
+  </dd>
+  <dt id="ext.isvertexarrayoes"><a href="/en-US/docs/Web/API/OES_vertex_array_object/isVertexArrayOES" title="ext.isVertexArrayOES()"><code>ext.isVertexArrayOES()</code></a></dt>
+  <dd>
+    <p>Returns <code>true</code> if a given object is a <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a>.</p>
+  </dd>
+  <dt id="ext.bindvertexarrayoes"><a href="/en-US/docs/Web/API/OES_vertex_array_object/bindVertexArrayOES" title="ext.bindVertexArrayOES()"><code>ext.bindVertexArrayOES()</code></a></dt>
+  <dd>
+    <p>Binds a given <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> to the buffer.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const oes_vao_ext = gl.getExtension("OES_vertex_array_object");
+const vao = oes_vao_ext.createVertexArrayOES();
+oes_vao_ext.bindVertexArrayOES(vao);
+
+// …
+// calls to bindBuffer or vertexAttribPointer
+// which will be "recorded" in the VAO
+// …
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.OES_vertex_array_object" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.OES_vertex_array_object" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer"><code>WebGLRenderingContext.vertexAttribPointer()</code></a></li>
+  <li>
+    <p>WebGL2 equivalent methods:</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/API/WebGL2RenderingContext/createVertexArray"><code>WebGL2RenderingContext.createVertexArray()</code></a></li>
+      <li><a href="/en-US/docs/Web/API/WebGL2RenderingContext/deleteVertexArray"><code>WebGL2RenderingContext.deleteVertexArray()</code></a></li>
+      <li><a href="/en-US/docs/Web/API/WebGL2RenderingContext/isVertexArray"><code>WebGL2RenderingContext.isVertexArray()</code></a></li>
+      <li><a href="/en-US/docs/Web/API/WebGL2RenderingContext/bindVertexArray"><code>WebGL2RenderingContext.bindVertexArray()</code></a></li>
+    </ul>
+  </li>
+</ul>
+</body></html>

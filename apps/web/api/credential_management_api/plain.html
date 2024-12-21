@@ -1,0 +1,85 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The Credential Management API enables a website to create, store, and retrieve <a href="/en-US/docs/Glossary/Credential">credentials</a>. A credential is an item which enables a system to make an <a href="/en-US/docs/Glossary/Authentication">authentication</a> decision: for example, to decide whether to sign a user into an account. We can think of it as a piece of evidence that a user presents to a website to demonstrate that they really are the person they are claiming to be.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>The central interface is the <a href="/en-US/docs/Web/API/CredentialsContainer"><code>CredentialsContainer</code></a>, which is accessed through the <a href="/en-US/docs/Web/API/Navigator/credentials"><code>navigator.credentials</code></a> property and provides three main functions:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CredentialsContainer/create" title="create()"><code>create()</code></a>: create a new credential.</li>
+  <li><a href="/en-US/docs/Web/API/CredentialsContainer/store" title="store()"><code>store()</code></a>: store a new credential locally.</li>
+  <li><a href="/en-US/docs/Web/API/CredentialsContainer/get" title="get()"><code>get()</code></a>: retrieve a credential, which can then be used to log a user in.</li>
+</ul>
+<p>The API supports four different types of credential, which are all represented as subclasses of <a href="/en-US/docs/Web/API/Credential"><code>Credential</code></a>:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Interface</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Password</td>
+      <td><a href="/en-US/docs/Web/API/PasswordCredential"><code>PasswordCredential</code></a></td>
+    </tr>
+    <tr>
+      <td>Federated identity</td>
+      <td><a href="/en-US/docs/Web/API/IdentityCredential"><code>IdentityCredential</code></a>, <a href="/en-US/docs/Web/API/FederatedCredential"><code>FederatedCredential</code></a> (deprecated)</td>
+    </tr>
+    <tr>
+      <td>One-time password (OTP)</td>
+      <td><a href="/en-US/docs/Web/API/OTPCredential"><code>OTPCredential</code></a></td>
+    </tr>
+    <tr>
+      <td>Web Authentication</td>
+      <td><a href="/en-US/docs/Web/API/PublicKeyCredential"><code>PublicKeyCredential</code></a></td>
+    </tr>
+  </tbody>
+</table>
+<p>The guide page <a href="/en-US/docs/Web/API/Credential_Management_API/Credential_types">Credential types</a> gives an overview of the different credential types and how they are used.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="credential"><a href="/en-US/docs/Web/API/Credential"><code>Credential</code></a></dt>
+  <dd>
+    <p>Provides information about an entity as a prerequisite to a trust decision.</p>
+  </dd>
+  <dt id="credentialscontainer"><a href="/en-US/docs/Web/API/CredentialsContainer"><code>CredentialsContainer</code></a></dt>
+  <dd>
+    <p>Exposes methods to request credentials and notify the user agent when interesting events occur such as successful sign in or sign out. This interface is accessible from <code>navigator.credentials</code>.</p>
+  </dd>
+  <dt id="federatedcredential"><a href="/en-US/docs/Web/API/FederatedCredential"><code>FederatedCredential</code></a></dt>
+  <dd>
+    <p>Provides information about credentials from a federated identity provider, which is an entity that a website trusts to correctly authenticate a user, and which provides an API for that purpose. <a href="https://openid.net/developers/specs/">OpenID Connect</a> is an example of such a framework.</p>
+  </dd>
+  <dt id="passwordcredential"><a href="/en-US/docs/Web/API/PasswordCredential"><code>PasswordCredential</code></a></dt>
+  <dd>
+    <p>Provides information about a username/password pair.</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_other_interfaces">Extensions to other interfaces</h3>
+<dl>
+  <dt id="navigator.credentials"><a href="/en-US/docs/Web/API/Navigator/credentials"><code>Navigator.credentials</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/CredentialsContainer"><code>CredentialsContainer</code></a> interface which exposes methods to request credentials and notify the user agent when interesting events occur such as successful sign in or sign out.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Credential,api.CredentialsContainer,api.FederatedCredential,api.PasswordCredential" data-spec-urls="https://w3c.github.io/webappsec-credential-management/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Credential" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.CredentialsContainer" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.FederatedCredential" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="api.PasswordCredential" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_Authentication_API">Web Authentication API</a></li>
+  <li><a href="/en-US/docs/Web/API/WebOTP_API">WebOTP API</a></li>
+  <li><a href="/en-US/docs/Web/API/FedCM_API" title="Federated Credential Management (FedCM) API">Federated Credential Management (FedCM) API</a></li>
+</ul>
+</body></html>

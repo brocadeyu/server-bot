@@ -1,0 +1,48 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>GPUExternalTexture</code></strong> interface of the <a href="/en-US/docs/Web/API/WebGPU_API" title="WebGPU API">WebGPU API</a> represents a wrapper object containing an <a href="/en-US/docs/Web/API/HTMLVideoElement"><code>HTMLVideoElement</code></a> snapshot that can be used as a texture in GPU rendering operations.</p>
+<p>A <code>GPUExternalTexture</code> object instance is created using <a href="/en-US/docs/Web/API/GPUDevice/importExternalTexture"><code>GPUDevice.importExternalTexture()</code></a>.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="label"><a href="/en-US/docs/Web/API/GPUExternalTexture/label" title="label"><code>label</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string providing a label that can be used to identify the object, for example in <a href="/en-US/docs/Web/API/GPUError"><code>GPUError</code></a> messages or console warnings.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>In the WebGPU samples <a href="https://webgpu.github.io/webgpu-samples/samples/videoUploading/">Video Uploading sample</a>, a <code>GPUExternalTexture</code> object (created via a <a href="/en-US/docs/Web/API/GPUDevice/importExternalTexture"><code>GPUDevice.importExternalTexture()</code></a> call) is used as the value of a bind group entry <code>resource</code>, specified when creating a <a href="/en-US/docs/Web/API/GPUBindGroup"><code>GPUBindGroup</code></a> via a <a href="/en-US/docs/Web/API/GPUDevice/createBindGroup"><code>GPUDevice.createBindGroup()</code></a> call:</p>
+<pre class="brush: js">//...
+const uniformBindGroup = device.createBindGroup({
+  layout: pipeline.getBindGroupLayout(0),
+  entries: [
+    {
+      binding: 1,
+      resource: sampler,
+    },
+    {
+      binding: 2,
+      resource: device.importExternalTexture({
+        source: video,
+      }),
+    },
+  ],
+});
+//...
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GPUExternalTexture" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GPUExternalTexture" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The <a href="/en-US/docs/Web/API/WebGPU_API">WebGPU API</a></li>
+</ul>
+</body></html>

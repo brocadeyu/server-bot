@@ -1,0 +1,53 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>PaymentManager</code></strong> interface of the <a href="/en-US/docs/Web/API/Payment_Handler_API" title="Payment Handler API">Payment Handler API</a> is used to manage various aspects of payment app functionality.</p>
+<p>It is accessed via the <a href="/en-US/docs/Web/API/ServiceWorkerRegistration/paymentManager"><code>ServiceWorkerRegistration.paymentManager</code></a> property.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="userhint"><a href="/en-US/docs/Web/API/PaymentManager/userHint" title="userHint"><code>userHint</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Provides a hint for the browser to display along with the payment app's name and icon in the Payment Handler UI.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="enabledelegations"><a href="/en-US/docs/Web/API/PaymentManager/enableDelegations" title="enableDelegations()"><code>enableDelegations()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Delegates responsibility for providing various parts of the required payment information to the payment app rather than collecting it from the browser (for example, via autofill).</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">navigator.serviceWorker.register("serviceworker.js").then((registration) =&gt; {
+  registration.paymentManager.userHint = "Card number should be 16 digits";
+
+  registration.paymentManager
+    .enableDelegations(["shippingAddress", "payerName"])
+    .then(() =&gt; {
+      // ...
+    });
+
+  // ...
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PaymentManager" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PaymentManager" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Payment_Handler_API" title="Payment Handler API">Payment Handler API</a></li>
+  <li><a href="https://web.dev/articles/web-based-payment-apps-overview">Web-based payment apps overview</a></li>
+  <li><a href="https://web.dev/articles/setting-up-a-payment-method">Setting up a payment method</a></li>
+  <li><a href="https://web.dev/articles/life-of-a-payment-transaction">Life of a payment transaction</a></li>
+  <li><a href="/en-US/docs/Web/API/Payment_Request_API/Using_the_Payment_Request_API">Using the Payment Request API</a></li>
+  <li><a href="/en-US/docs/Web/API/Payment_Request_API/Concepts">Payment processing concepts</a></li>
+</ul>
+</body></html>

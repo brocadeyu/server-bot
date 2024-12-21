@@ -1,0 +1,29 @@
+<html><head></head><body>
+<p>The <strong><code>HmacKeyGenParams</code></strong> dictionary of the <a href="/en-US/docs/Web/API/Web_Crypto_API">Web Crypto API</a> represents the object that should be passed as the <code>algorithm</code> parameter into <a href="/en-US/docs/Web/API/SubtleCrypto/generateKey"><code>SubtleCrypto.generateKey()</code></a>, when generating a key for the <a href="/en-US/docs/Web/API/SubtleCrypto/sign#hmac">HMAC</a> algorithm.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="name"><a href="#name"><code>name</code></a></dt>
+  <dd>
+    <p>A string. This should be set to <code>HMAC</code>.</p>
+  </dd>
+  <dt id="hash"><a href="#hash"><code>hash</code></a></dt>
+  <dd>
+    <p>A string representing the name of the <a href="/en-US/docs/Web/API/SubtleCrypto/digest#supported_algorithms">digest function</a> to use. You can pass any of <code>SHA-1</code>, <code>SHA-256</code>, <code>SHA-384</code>, or <code>SHA-512</code> here.</p>
+  </dd>
+  <dt id="length"><a href="#length"><code>length</code></a> <span class="badge inline optional">Optional</span></dt>
+  <dd>
+    <p>A <code>Number</code> — the length in bits of the key. If this is omitted, the length of the key is equal to the block size of the hash function you have chosen. Unless you have a good reason to use a different length, omit this property and use the default.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>See the examples for <a href="/en-US/docs/Web/API/SubtleCrypto/generateKey"><code>SubtleCrypto.generateKey()</code></a>.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://w3c.github.io/webcrypto/#dfn-HmacKeyGenParams">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<p>Browsers that support the "HMAC" algorithm for the <a href="/en-US/docs/Web/API/SubtleCrypto/generateKey"><code>SubtleCrypto.generateKey()</code></a> method will support this type.</p>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/SubtleCrypto/generateKey"><code>SubtleCrypto.generateKey()</code></a>.</li>
+</ul>
+</body></html>

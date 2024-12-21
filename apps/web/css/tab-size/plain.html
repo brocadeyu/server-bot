@@ -1,0 +1,82 @@
+<html><head></head><body>
+<p>The <strong><code>tab-size</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property is used to customize the width of tab characters (U+0009).</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/tab-size.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;number&gt; values */
+tab-size: 4;
+tab-size: 0;
+
+/* &lt;length&gt; values */
+tab-size: 10px;
+tab-size: 2em;
+
+/* Global values */
+tab-size: inherit;
+tab-size: initial;
+tab-size: revert;
+tab-size: revert-layer;
+tab-size: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="number"><a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a></dt>
+  <dd>
+    <p>A multiple of the advance width of the space character (U+0020) to be used as the width of tabs. Must be non-negative. The advance width means the distance a cursor or a print head moves before printing the next character.</p>
+  </dd>
+  <dt id="length"><a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a></dt>
+  <dd>
+    <p>The width of tabs. Must be non-negative.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>8</code></td></tr><tr><th scope="row">Applies to</th><td>block containers</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>the specified integer or an absolute length</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="tab-size">tab-size = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number [0,∞]&gt;</span></a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length [0,∞]&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="expanding_by_character_count">Expanding by character count</h3>
+<pre class="brush: css">pre {
+  tab-size: 4; /* Set tab size to 4 characters wide */
+}
+</pre>
+<h3 id="collapse_tabs">Collapse tabs</h3>
+<pre class="brush: css">pre {
+  tab-size: 0; /* Remove indentation */
+}
+</pre>
+<h3 id="default_tab_size_vs_custom_sizes">Default tab size vs custom sizes</h3>
+<p>This example compares a default tab size with a custom tab size. Note that <a href="/en-US/docs/Web/CSS/white-space"><code>white-space</code></a> is set to <code>pre</code> to prevent the tabs from collapsing.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p&gt;no tab&lt;/p&gt;
+&lt;p&gt;&amp;#0009;default tab size of 8 characters wide&lt;/p&gt;
+&lt;p class="custom-number"&gt;&amp;#0009;custom tab size of 3 characters wide&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;3 spaces, equivalent to the custom tab size&lt;/p&gt;
+&lt;p class="custom-length"&gt;&amp;#0009;custom tab size of 50px wide&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css hidden">body {
+  border: 1px solid red;
+  margin: 1rem;
+}
+</pre>
+<pre class="brush: css">p {
+  white-space: pre;
+}
+
+.custom-number {
+  tab-size: 3;
+}
+
+.custom-length {
+  tab-size: 50px;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Comparing to the default size sample" id="frame_comparing_to_the_default_size" width="100%" height="250" src="about:blank" data-live-path="/en-US/docs/Web/CSS/tab-size" data-live-id="comparing_to_the_default_size" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.tab-size" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.tab-size" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/white-space"><code>white-space</code></a></li>
+</ul>
+</body></html>

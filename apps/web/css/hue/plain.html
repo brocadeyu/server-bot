@@ -1,0 +1,175 @@
+<html><head></head><body>
+<p>
+  The <strong><code>&lt;hue&gt;</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Types">data type</a> represents the hue angle of a color.
+  It is used in the color functions that accept hue expressed as a single value, specifically <a href="/en-US/docs/Web/CSS/color_value/hsl"><code>hsl()</code></a>, <a href="/en-US/docs/Web/CSS/color_value/hwb"><code>hwb()</code></a>, <a href="/en-US/docs/Web/CSS/color_value/lch"><code>lch()</code></a>, and <a href="/en-US/docs/Web/CSS/color_value/oklch"><code>oklch()</code></a> functional notations.
+</p>
+<h2 id="syntax">Syntax</h2>
+<p>A <code>&lt;hue&gt;</code> can be either an <code>&lt;angle&gt;</code> or a <code>&lt;number&gt;</code>.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="angle"><a href="/en-US/docs/Web/CSS/angle"><code>&lt;angle&gt;</code></a></dt>
+  <dd>
+    <p>An angle expressed in degrees, gradians, radians, or turns using the <code>deg</code>, <code>grad</code>, <code>rad</code>, or <code>turn</code>, respectively.</p>
+  </dd>
+  <dt id="number"><a href="#number"><code>&lt;number&gt;</code></a></dt>
+  <dd>
+    <p>A real number, representing degrees of the hue angle.</p>
+  </dd>
+</dl>
+<p>As an <code>&lt;angle&gt;</code> is periodic, <code>&lt;hue&gt;</code> is normalized to the range <code>[0deg, 360deg)</code>. It implicitly wraps around such that <code>480deg</code> is the same as <code>120deg</code>, <code>-120deg</code> is the same as <code>240deg</code>, <code>-1turn</code> is the same as <code>1turn</code>, and so on.</p>
+<h2 id="description">Description</h2>
+<p>
+  <img src="/en-US/docs/Web/CSS/hue/color_wheel.svg" alt="An sRGB color wheel" width="400" height="400">
+</p>
+<p>The color wheel above shows hues at all angles in the <a href="https://en.wikipedia.org/wiki/SRGB">sRGB</a> <a href="/en-US/docs/Glossary/Color_space">color space</a>. In particular, <em>red</em> is at <code>0deg</code>, <em>yellow</em> is at <code>60deg</code>, <em>lime</em> is at <code>120deg</code>, <em>cyan</em> is at <code>180deg</code>, <em>blue</em> is at <code>240deg</code>, and <em>magenta</em> is at <code>300deg</code>.</p>
+<p>The angles corresponding to particular hues differ depending on the color space. For example, the hue angle of sRGB green is <code>120deg</code> in the sRGB color space, but <code>134.39deg</code> in the CIELAB color space.</p>
+<p>The following table lists typical colors at various angles in the sRGB (used by <a href="/en-US/docs/Web/CSS/color_value/hsl"><code>hsl()</code></a> and <a href="/en-US/docs/Web/CSS/color_value/hwb"><code>hwb()</code></a>), CIELAB (used by <a href="/en-US/docs/Web/CSS/color_value/lch"><code>lch()</code></a>), and Oklab (used by <a href="/en-US/docs/Web/CSS/color_value/oklch"><code>oklch()</code></a>) color spaces:</p>
+<table>
+  <colgroup>
+    <col>
+    <col span="6" width="15%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">0°</th>
+      <th scope="col">60°</th>
+      <th scope="col">120°</th>
+      <th scope="col">180°</th>
+      <th scope="col">240°</th>
+      <th scope="col">300°</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">sRGB</th>
+      <td style="background: hsl(0 100% 50%);" title="hsl(0 100% 50%)"></td>
+      <td style="background: hsl(60 100% 50%);" title="hsl(60 100% 50%)"></td>
+      <td style="background: hsl(120 100% 50%);" title="hsl(120 100% 50%)"></td>
+      <td style="background: hsl(180 100% 50%);" title="hsl(180 100% 50%)"></td>
+      <td style="background: hsl(240 100% 50%);" title="hsl(240 100% 50%)"></td>
+      <td style="background: hsl(300 100% 50%);" title="hsl(300 100% 50%)"></td>
+    </tr>
+    <tr>
+      <th scope="row">CIELAB</th>
+      <td style="background: lch(50% 50% 0);" title="lch(50% 50% 0)"></td>
+      <td style="background: lch(65% 55% 60);" title="lch(65% 55% 60)"></td>
+      <td style="background: lch(90% 65% 120);" title="lch(90% 65% 120)"></td>
+      <td style="background: lch(90% 35% 180);" title="lch(90% 35% 180)"></td>
+      <td style="background: lch(75% 25% 240);" title="lch(75% 25% 240)"></td>
+      <td style="background: lch(40% 70% 300);" title="lch(40% 70% 300)"></td>
+    </tr>
+    <tr>
+      <th scope="row">Oklab</th>
+      <td style="background: oklch(65% 65% 0);" title="oklch(65% 65% 0)"></td>
+      <td style="background: oklch(75% 40% 60);" title="oklch(75% 40% 60)"></td>
+      <td style="background: oklch(90% 50% 120);" title="oklch(90% 50% 120)"></td>
+      <td style="background: oklch(90% 35% 180);" title="oklch(90% 35% 180)"></td>
+      <td style="background: oklch(70% 40% 240);" title="oklch(70% 40% 240)"></td>
+      <td style="background: oklch(55% 70% 300);" title="oklch(55% 70% 300)"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="interpolation_of_hue_values">Interpolation of <code>&lt;hue&gt;</code> values</h2>
+<p><code>&lt;hue&gt;</code> values are interpolated as <a href="/en-US/docs/Web/CSS/angle"><code>&lt;angle&gt;</code></a> values, and the default interpolation algorithm is <a href="/en-US/docs/Web/CSS/hue-interpolation-method#values"><code>shorter</code></a>. In some color-related CSS functions, this can be overridden by the <a href="/en-US/docs/Web/CSS/hue-interpolation-method"><code>&lt;hue-interpolation-method&gt;</code></a> component.</p>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="<hue>">&lt;hue&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/angle"><span class="token property">&lt;angle&gt;</span></a>   <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="changing_the_hue_of_a_color_using_a_slider">Changing the hue of a color using a slider</h3>
+<p>The following example shows the effect of changing the <code>hue</code> value of the <a href="/en-US/docs/Web/CSS/color_value/hsl"><code>hsl()</code></a> functional notation on a color.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;input type="range" min="0" max="360" value="0" id="hue-slider" /&gt;
+&lt;p&gt;Hue: &lt;span id="hue-value"&gt;0deg&lt;/span&gt;&lt;/p&gt;
+&lt;div id="box"&gt;&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css hidden">div {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid black;
+}
+p {
+  font-family: sans-serif;
+}
+span {
+  font-family: monospace;
+  background: rgb(0 0 0 / 10%);
+  padding: 3px;
+}
+#hue-slider {
+  width: 90%;
+}
+</pre>
+<pre class="brush: css">#box {
+  background-color: hsl(0 100% 50%);
+}
+</pre>
+<h4 id="javascript">JavaScript</h4>
+<pre class="brush: js">const hue = document.querySelector("#hue-slider");
+const box = document.querySelector("#box");
+hue.addEventListener("input", () =&gt; {
+  box.style.backgroundColor = `hsl(${hue.value} 100% 50%)`;
+  document.querySelector("#hue-value").textContent = `${hue.value}deg`;
+});
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="changing the hue of a color using a slider sample" id="frame_changing_the_hue_of_a_color_using_a_slider" width="100%" height="200" src="about:blank" data-live-path="/en-US/docs/Web/CSS/hue" data-live-id="changing_the_hue_of_a_color_using_a_slider" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="approximating_red_hues_in_different_color_spaces">Approximating red hues in different color spaces</h3>
+<p>
+  The following example shows a similar red color in different color spaces.
+  The values in the <code>lch()</code> and <code>oklch()</code> functions are rounded for readability.
+</p>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;div data-color="hsl-red"&gt;hsl()&lt;/div&gt;
+&lt;div data-color="hwb-red"&gt;hwb()&lt;/div&gt;
+&lt;div data-color="lch-red"&gt;lch()&lt;/div&gt;
+&lt;div data-color="oklch-red"&gt;oklch()&lt;/div&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">[data-color="hsl-red"] {
+  /* hsl(&lt;hue&gt; &lt;saturation&gt; &lt;lightness&gt;) */
+  background-color: hsl(0 100% 50%);
+}
+[data-color="hwb-red"] {
+  /* hwb(&lt;hue&gt; &lt;whiteness&gt; &lt;blackness&gt;) */
+  background-color: hwb(0 0% 0%);
+}
+[data-color="lch-red"] {
+  /* lch(&lt;lightness&gt; &lt;chroma&gt; &lt;hue&gt;) */
+  background-color: lch(50 150 40);
+}
+[data-color="oklch-red"] {
+  /* oklch(&lt;lightness&gt; &lt;chroma&gt; &lt;hue&gt;) */
+  background-color: oklch(0.6 0.4 20);
+}
+</pre>
+<pre class="brush: css hidden">div {
+  font-family: monospace;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid black;
+  display: inline-block;
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="approximating red hues in different color spaces sample" id="frame_approximating_red_hues_in_different_color_spaces" width="100%" height="150" src="about:blank" data-live-path="/en-US/docs/Web/CSS/hue" data-live-id="approximating_red_hues_in_different_color_spaces" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.color.hsl,css.types.color.hwb,css.types.color.lch,css.types.color.oklch" data-spec-urls="https://drafts.csswg.org/css-color/#typedef-hue">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.color.hsl" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="css.types.color.hwb" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="css.types.color.lch" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<div class="bc-data" data-query="css.types.color.oklch" data-depth="1" data-multiple="true">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/color_value"><code>&lt;color&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/hue-interpolation-method"><code>&lt;hue-interpolation-method&gt;</code></a></li>
+</ul>
+</body></html>

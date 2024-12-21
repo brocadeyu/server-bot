@@ -1,0 +1,129 @@
+<html><head></head><body>
+<p><strong>At-rules</strong> are <a href="/en-US/docs/Web/CSS/Syntax#css_statements">CSS statements</a> that instruct CSS how to behave. They begin with an at sign, <code>@</code> (U+0040 COMMERCIAL AT), followed by an identifier, and include everything up to the next semicolon, <code>;</code> (U+003B SEMICOLON), or the next <a href="/en-US/docs/Web/CSS/Syntax#css_declaration_blocks">CSS block</a>, whichever comes first.</p>
+<h2 id="syntax">Syntax</h2>
+<h3 id="statement_at-rules">Statement at-rules</h3>
+<pre class="brush: css">/* General structure */
+@identifier (RULE);
+
+/* Example: tells browser to use UTF-8 character set */
+@charset "utf-8";
+</pre>
+<p>Statement at-rules end in a semicolon. There are several statement at-rules, designated by their identifiers, each with a different syntax:</p>
+<dl>
+  <dt id="charset"><a href="/en-US/docs/Web/CSS/@charset"><code>@charset</code></a></dt>
+  <dd>
+    <p>An algorithm (has the syntactic form of an at-rule, but isn't a definition) that determines the fallback character set used by the style sheet (<a href="/en-US/docs/Web/CSS/CSS_syntax">CSS Syntax</a>).</p>
+  </dd>
+  <dt id="import"><a href="/en-US/docs/Web/CSS/@import"><code>@import</code></a></dt>
+  <dd>
+    <p>Tells the CSS engine to include an external style sheet (<a href="/en-US/docs/Web/CSS/CSS_cascade">CSS cascade and inheritance</a>).</p>
+  </dd>
+  <dt id="layer"><a href="/en-US/docs/Web/CSS/@layer"><code>@layer</code></a></dt>
+  <dd>
+    <p>Defines the order of precedence in case of multiple cascade layers (<a href="/en-US/docs/Web/CSS/CSS_cascade">CSS cascade and inheritance</a>). Also used as a <a href="#layer_2">block at-rule</a> to define a layer's styles.</p>
+  </dd>
+  <dt id="namespace"><a href="/en-US/docs/Web/CSS/@namespace"><code>@namespace</code></a></dt>
+  <dd>
+    <p>Defines a default namespace for a style sheet or a namespace prefix that a selector only matches if the namespace and other selector components match (<a href="/en-US/docs/Web/CSS/CSS_namespaces">CSS namespaces</a>).</p>
+  </dd>
+</dl>
+<h3 id="block_at-rules">Block at-rules</h3>
+<pre class="brush: css">@identifier (RULE) {
+}
+</pre>
+<p>Block at-rules end in a <code>{}</code>-block that contain nested rules, other at-rules, or property or descriptor declarations.</p>
+<dl>
+  <dt id="counter-style"><a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a></dt>
+  <dd>
+    <p>Define custom counter styles and extend predefined list styles (<a href="/en-US/docs/Web/CSS/CSS_counter_styles">CSS counter styles</a>).</p>
+  </dd>
+  <dt id="container"><a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a></dt>
+  <dd>
+    <p>A conditional group rule that applies its content if the container meets the <a href="/en-US/docs/Web/CSS/@container#container-condition"><code>&lt;container-condition&gt;</code></a>s (<a href="/en-US/docs/Web/CSS/CSS_containment">CSS containment</a>).</p>
+  </dd>
+  <dt id="font-face"><a href="/en-US/docs/Web/CSS/@font-face"><code>@font-face</code></a></dt>
+  <dd>
+    <p>Defines font resource locations, both local and external, along with the style characteristics for when those resources are used with a declared <a href="/en-US/docs/Web/CSS/font-family"><code>font-family</code></a> (<a href="/en-US/docs/Web/CSS/CSS_fonts">CSS fonts</a>).</p>
+  </dd>
+  <dt id="font-feature-values"><a href="/en-US/docs/Web/CSS/@font-feature-values"><code>@font-feature-values</code></a> (plus <code>@swash</code>, <code>@ornaments</code>, <code>@annotation</code>, <code>@stylistic</code>, <code>@styleset</code> and <code>@character-variant</code>)</dt>
+  <dd>
+    <p>Controls font display per font-family by defining font-specific alternates, or custom names, to feature indexes in <a href="/en-US/docs/Web/CSS/font-variant-alternates"><code>font-variant-alternates</code></a> in OpenType (<a href="/en-US/docs/Web/CSS/CSS_fonts">CSS fonts</a>).</p>
+  </dd>
+  <dt id="keyframes"><a href="/en-US/docs/Web/CSS/@keyframes"><code>@keyframes</code></a> (and the <code>@-webkit-keyframes</code> alias)</dt>
+  <dd>
+    <p>Define a named animation by describing defining CSS styles for intermediate steps (or keyframes) in the animation sequence (<a href="/en-US/docs/Web/CSS/CSS_animations">CSS animations</a>).</p>
+  </dd>
+  <dt id="layer_2"><a href="/en-US/docs/Web/CSS/@layer"><code>@layer</code></a></dt>
+  <dd>
+    <p>Creates a named cascade layer with the CSS rules for that layer inside (<a href="/en-US/docs/Web/CSS/CSS_cascade">CSS cascade and inheritance</a>). Also used as a <a href="#layer">statement at-rule</a> to define the order of precedence in case of multiple cascade layers</p>
+  </dd>
+  <dt id="media"><a href="/en-US/docs/Web/CSS/@media"><code>@media</code></a></dt>
+  <dd>
+    <p>A conditional group rule that applies its content if the device meets the criteria of the condition defined using a <em>media query</em> (<a href="/en-US/docs/Web/CSS/CSS_conditional_rules">CSS conditional rules</a>).</p>
+  </dd>
+  <dt id="page"><a href="/en-US/docs/Web/CSS/@page"><code>@page</code></a></dt>
+  <dd>
+    <p>Specifies aspects of a page to be printed, such as its dimensions, orientation, and margins (<a href="/en-US/docs/Web/CSS/CSS_paged_media">CSS paged media</a>).</p>
+  </dd>
+  <dt id="position-try"><a href="/en-US/docs/Web/CSS/@position-try"><code>@position-try</code></a></dt>
+  <dd>
+    <p>Defines custom position options which can be used to define fallback positioning and alignment options for anchor-positioned elements (<a href="/en-US/docs/Web/CSS/CSS_anchor_positioning">CSS anchor positioning</a>).</p>
+  </dd>
+  <dt id="property"><a href="/en-US/docs/Web/CSS/@property"><code>@property</code></a></dt>
+  <dd>
+    <p>Defines a <a href="/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS custom property</a>, allowing for property type checking and constraining, setting default values, and defining whether a custom property can inherit values or not (<a href="/en-US/docs/Web/CSS/CSS_cascading_variables">CSS custom properties for cascading variables</a>).</p>
+  </dd>
+  <dt id="scope"><a href="/en-US/docs/Web/CSS/@scope"><code>@scope</code></a></dt>
+  <dd>
+    <p>Defines a scope in which to apply them to selected elements and the styles to apply to the elements in that scope (<a href="/en-US/docs/Web/CSS/CSS_cascade">CSS cascade and inheritance</a>).</p>
+  </dd>
+  <dt id="starting-style"><a href="/en-US/docs/Web/CSS/@starting-style"><code>@starting-style</code></a></dt>
+  <dd>
+    <p>Define the starting property values for an element to transition from when the element receives its first style update, such as when transitioning from <code>display: none</code> (<a href="/en-US/docs/Web/CSS/CSS_transitions">CSS transitions</a>).</p>
+  </dd>
+  <dt id="supports"><a href="/en-US/docs/Web/CSS/@supports"><code>@supports</code></a></dt>
+  <dd>
+    <p>A conditional group rule applies its content if the browser supports the CSS features of the given condition (<a href="/en-US/docs/Web/CSS/CSS_conditional_rules">CSS conditional rules</a>).</p>
+  </dd>
+  <dt id="view-transition"><a href="/en-US/docs/Web/CSS/@view-transition"><code>@view-transition</code></a></dt>
+  <dd>
+    <p>Opts the current document into a <a href="/en-US/docs/Web/API/View_Transitions_API">view transition</a>, and the destination document as well in the case of cross-document navigation transitions.</p>
+  </dd>
+</dl>
+<h2 id="index">Index</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@charset"><code>@charset</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@color-profile"><code>@color-profile</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@font-face"><code>@font-face</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@font-feature-values"><code>@font-feature-values</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@font-palette-values"><code>@font-palette-values</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@import"><code>@import</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@keyframes"><code>@keyframes</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@layer"><code>@layer</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@media"><code>@media</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@namespace"><code>@namespace</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@page"><code>@page</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@position-try"><code>@position-try</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@property"><code>@property</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@scope"><code>@scope</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@starting-style"><code>@starting-style</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@supports"><code>@supports</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@view-transition"><code>@view-transition</code></a></li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-conditional/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/At-rule-functions">CSS at-rule functions</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_nesting/Nesting_at-rules">Nesting CSS at-rules</a></li>
+  <li><a href="/en-US/docs/Web/CSS/Syntax#css_statements">CSS statements</a></li>
+  <li><a href="/en-US/docs/Web/API/CSSRule">CSSRule</a> interface</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_conditional_rules">CSS conditional rules</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/Syntax">CSS syntax</a></li>
+  <li><a href="/en-US/docs/Web/CSS/Specificity">Specificity</a></li>
+  <li><a href="/en-US/docs/Web/CSS/Inheritance">Inheritance</a></li>
+</ul>
+</body></html>

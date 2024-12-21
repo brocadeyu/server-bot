@@ -1,0 +1,195 @@
+<html><head></head><body>
+<p>Any WebDriver <a href="/en-US/docs/Web/WebDriver/Commands">command</a> that is sent to might plausibly receive an error <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Response" data-flaw="link1">response</a>. An error is represented by an <a href="/en-US/docs/Web/HTTP">HTTP response</a> with an <a href="/en-US/docs/Web/HTTP/Status">HTTP status code</a> in the 4xx or 5xx range, and a JSON payload holding details of the error.</p>
+<h2 id="payload">Payload</h2>
+<p>The <strong>error object</strong> is a JSON Object that bears three, and sometimes four, fields:</p>
+<dl>
+  <dt id="error"><a href="#error"><code>error</code></a></dt>
+  <dd>
+    <p>Error type.</p>
+  </dd>
+  <dt id="message"><a href="#message"><code>message</code></a></dt>
+  <dd>
+    <p>Human-readable description of the nature of the error.</p>
+  </dd>
+  <dt id="stacktrace"><a href="#stacktrace"><code>stacktrace</code></a></dt>
+  <dd>
+    <p>Stacktrace report of the active stack frames at the time when the error occurred.</p>
+  </dd>
+  <dt id="data"><a href="#data"><code>data</code></a> (optional)</dt>
+  <dd>
+    <p>Arbitrary and implementation-defined data that it can be useful to present the user with.</p>
+    <p>Many drivers include the <a href="/en-US/docs/Web/API/Window/alert">user prompt</a>'s text when encountering an <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/UnexpectedAlertOpen" data-flaw="link2">unexpected alert open</a> error.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<p>For example a <a href="/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code></a> request to <code>/session/1234/url</code>, where <code>1234</code> is a bogus session, would return a response with the <a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a> status and the following body:</p>
+<pre class="brush: json">{
+  "value": {
+    "error": "invalid session id",
+    "message": "No active session with ID 1234",
+    "stacktrace": ""
+  }
+}
+</pre>
+<p>It is optional for the driver to annotate errors with additional error data. Notably, this is common when a user prompt, such as <code>window.alert</code>, has opened a modal dialog after execution of your previous WebDriver command request.</p>
+<p>Because both WebDriver and JavaScript execution is halted by such a dialog, we see an <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/UnexpectedAlertOpen" data-flaw="link3">unexpected alert open</a> error in the subsequent response:</p>
+<pre class="brush: json">{
+  "value": {
+    "error": "unexpected alert open",
+    "message": "",
+    "stacktrace": "",
+    "data": {
+      "text": "Message from window.alert"
+    }
+  }
+}
+</pre>
+<p>In most <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Clients" data-flaw="link4">clients</a> the error would be represented by some sort of error <em>type</em> or <em>object representation</em>. In Python it is represented as a <a href="https://www.selenium.dev/selenium/docs/api/py/common/selenium.common.exceptions.html"><code>WebDriverException</code></a>, in Node.js as a <a href="https://www.selenium.dev/selenium/docs/api/javascript/WebDriverError.html"><code>WebDriverError</code></a>, and in Java also as a <a href="https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/WebDriverException.html"><code>WebDriverException</code></a>.</p>
+<h2 id="table_of_errors">Table of errors</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Error type</th>
+      <th>HTTP status code</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/ElementClickIntercepted" data-flaw="link5">element click intercepted</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/400"><code>400 Bad Request</code></a></td>
+      <td>The <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/ElementClick" data-flaw="link6">Element Click</a> <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link7">command</a> could not be completed because the <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/WebElement" data-flaw="link8">element</a> receiving the events is obscuring the element that was requested clicked.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/ElementNotInteractable" data-flaw="link9">element not interactable</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/400"><code>400 Bad Request</code></a></td>
+      <td>A <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link10">command</a> could not be completed because the element is not pointer- or keyboard interactable.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/InsecureCertificate">insecure certificate</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/400"><code>400 Bad Request</code></a></td>
+      <td>Navigation caused the user agent to hit a certificate warning, which is usually the result of an expired or invalid TLS certificate.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/InvalidArgument">invalid argument</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/400"><code>400 Bad Request</code></a></td>
+      <td>The arguments passed to a <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link11">command</a> are either invalid or malformed.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/InvalidCookieDomain">invalid cookie domain</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/400"><code>400 Bad Request</code></a></td>
+      <td>An illegal attempt was made to set a cookie under a different domain than the current page.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/InvalidElementState" data-flaw="link12">invalid element state</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/400"><code>400 Bad Request</code></a></td>
+      <td>A <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link13">command</a> could not be completed because the element is in an invalid state, e.g. attempting to <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/ElementClear" data-flaw="link14">clear</a> an element that isn't both editable and resettable.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/InvalidSelector">invalid selector</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/400"><code>400 Bad Request</code></a></td>
+      <td>An element retrieval command provided an unknown selector strategy.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/InvalidSessionID">invalid session id</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>Given session ID is not recognized, meaning the session either does not exist of that it's not active. Note that a session that <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/DeleteSession" data-flaw="link15">has been deleted</a> cannot be re-used.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/JavaScriptError">JavaScript error</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>An error occurred while executing JavaScript supplied by the user.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/MoveTargetOutOfBounds" data-flaw="link16">move target out of bounds</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>The target for mouse interaction is not in the browser's viewport and cannot be brought into that viewport.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/NoSuchAlert" data-flaw="link17">no such alert</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>An attempt was made to operate on a user prompt when one was not open.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/NoSuchCookie" data-flaw="link18">no such cookie</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>No cookie matching the given path name was found amongst the <a href="/en-US/docs/Glossary/Cookie">cookies</a> of the current <a href="/en-US/docs/Web/API/Document">document</a>.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/NoSuchElement" data-flaw="link19">no such element</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>An element could not be located on the page using the given search parameters.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/NoSuchFrame" data-flaw="link20">no such frame</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>A <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link21">command</a> to switch to a frame could not be satisfied because the frame could not be found.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/NoSuchWindow" data-flaw="link22">no such window</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>A <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link23">command</a> to switch to a window could not be satisfied because the window could not be found.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/ScriptTimeout">script timeout</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/408"><code>408 Request Timeout</code></a></td>
+      <td>A script did not complete before its timeout expired.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/SessionNotCreated" data-flaw="link24">session not created</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>A new session could not be created, either because the browser could not be started or because the provided <a href="/en-US/docs/Web/WebDriver/Capabilities">capabilities</a> to start the session did not match.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/StaleElementReference">stale element reference</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>A <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link25">command</a> failed because the referenced <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/WebElement" data-flaw="link26">element</a> is no longer attached to the DOM.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/Timeout" data-flaw="link27">timeout</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/408"><code>408 Request Timeout</code></a></td>
+      <td>An operation did not complete before its timeout expired.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/UnableToSetCookie" data-flaw="link28">unable to set cookie</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>A <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link29">command</a> to set a cookie's value could not be satisfied.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/UnableToCaptureScreen" data-flaw="link30">unable to capture screen</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>A screen capture was made impossible.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/UnexpectedAlertOpen" data-flaw="link31">unexpected alert open</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>A modal dialog was open, blocking this operation.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/UnknownCommand">unknown command</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/404"><code>404 Not Found</code></a></td>
+      <td>A <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link32">command</a> could not be executed because the driver was unaware of it.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/UnknownError">unknown error</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>An unknown error occurred in the driver whilst processing the <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link33">command</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/WebDriver/Errors/UnknownMethod">unknown method</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/405"><code>405 Method Not Allowed</code></a></td>
+      <td>The requested <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link34">command</a> matched a known URL but did not match a method for that URL.</td>
+    </tr>
+    <tr>
+      <td><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Errors/UnsupportedOperation" data-flaw="link35">unsupported operation</a></td>
+      <td><a href="/en-US/docs/Web/HTTP/Status/500"><code>500 Internal Server Error</code></a></td>
+      <td>Indicates that a <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Command" data-flaw="link36">command</a> that should have executed properly cannot be supported for some reason.</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/WebDriver/Response" data-flaw="link37">WebDriver responses</a></li>
+  <li><a href="/en-US/docs/Web/WebDriver/Commands">WebDriver commands</a></li>
+</ul>
+</body></html>

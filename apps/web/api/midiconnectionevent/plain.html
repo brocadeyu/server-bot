@@ -1,0 +1,45 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>MIDIConnectionEvent</code></strong> interface of the <a href="/en-US/docs/Web/API/Web_MIDI_API">Web MIDI API</a> is the event passed to the <a href="/en-US/docs/Web/API/MIDIAccess/statechange_event" title="statechange"><code>statechange</code></a> event of the <a href="/en-US/docs/Web/API/MIDIAccess"><code>MIDIAccess</code></a> interface and the <a href="/en-US/docs/Web/API/MIDIPort/statechange_event" title="statechange"><code>statechange</code></a> event of the <a href="/en-US/docs/Web/API/MIDIPort"><code>MIDIPort</code></a> interface. This occurs any time a new port becomes available, or when a previously available port becomes unavailable. For example, this event is fired whenever a MIDI device is either plugged in to or unplugged from a computer.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/MIDIConnectionEvent" aria-current="page">
+    <rect x="105" y="0" width="152" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="181" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      MIDIConnectionEvent
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="midiconnectionevent"><a href="/en-US/docs/Web/API/MIDIConnectionEvent/MIDIConnectionEvent" title="MIDIConnectionEvent()"><code>MIDIConnectionEvent()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>MIDIConnectionEvent</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="midiconnectionevent.port"><a href="/en-US/docs/Web/API/MIDIConnectionEvent/port"><code>MIDIConnectionEvent.port</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a reference to a <a href="/en-US/docs/Web/API/MIDIPort"><code>MIDIPort</code></a> instance for a port that has been connected or disconnected.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The <a href="/en-US/docs/Web/API/Navigator/requestMIDIAccess"><code>Navigator.requestMIDIAccess()</code></a> method returns a promise that resolves with a <a href="/en-US/docs/Web/API/MIDIAccess"><code>MIDIAccess</code></a> object. When a port changes state, a <code>MIDIConnectionEvent</code> is passed to <a href="/en-US/docs/Web/API/MIDIAccess/statechange_event" title="statechange"><code>statechange</code></a> event. Information about the port can then be printed to the console.</p>
+<pre class="brush: js">navigator.requestMIDIAccess().then((access) =&gt; {
+  access.onstatechange = (event) =&gt; {
+    console.log(event.port.name, event.port.manufacturer, event.port.state);
+  };
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MIDIConnectionEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MIDIConnectionEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

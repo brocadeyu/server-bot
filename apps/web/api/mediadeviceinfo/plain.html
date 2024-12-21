@@ -1,0 +1,73 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>MediaDeviceInfo</code></strong> interface of the <a href="/en-US/docs/Web/API/Media_Capture_and_Streams_API">Media Capture and Streams API</a> contains information that describes a single media input or output device.</p>
+<p>The list of devices obtained by calling <a href="/en-US/docs/Web/API/MediaDevices/enumerateDevices" title="navigator.mediaDevices.enumerateDevices()"><code>navigator.mediaDevices.enumerateDevices()</code></a> is an array of <code>MediaDeviceInfo</code> objects, one per media device.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="mediadeviceinfo.deviceid"><a href="/en-US/docs/Web/API/MediaDeviceInfo/deviceId"><code>MediaDeviceInfo.deviceId</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string that is an identifier for the represented device that is persisted across sessions. It is un-guessable by other applications and unique to the origin of the calling application. It is reset when the user clears cookies (for Private Browsing, a different identifier is used that is not persisted across sessions).</p>
+  </dd>
+  <dt id="mediadeviceinfo.groupid"><a href="/en-US/docs/Web/API/MediaDeviceInfo/groupId"><code>MediaDeviceInfo.groupId</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string that is a group identifier. Two devices have the same group identifier if they belong to the same physical device — for example a monitor with both a built-in camera and a microphone.</p>
+  </dd>
+  <dt id="mediadeviceinfo.kind"><a href="/en-US/docs/Web/API/MediaDeviceInfo/kind"><code>MediaDeviceInfo.kind</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an enumerated value that is either <code>"videoinput"</code>, <code>"audioinput"</code> or <code>"audiooutput"</code>.</p>
+  </dd>
+  <dt id="mediadeviceinfo.label"><a href="/en-US/docs/Web/API/MediaDeviceInfo/label"><code>MediaDeviceInfo.label</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string describing this device (for example "External USB Webcam").</p>
+  </dd>
+</dl>
+<div class="notecard note">
+  <p><strong>Note:</strong> For security reasons, the <code>label</code> field is always blank unless an active media stream exists <em>or</em> the user has granted persistent permission for media device access. The set of device labels could otherwise be used as part of a <a href="/en-US/docs/Glossary/Fingerprinting">fingerprinting</a> mechanism to identify a user.</p>
+</div>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="mediadeviceinfo.tojson"><a href="/en-US/docs/Web/API/MediaDeviceInfo/toJSON"><code>MediaDeviceInfo.toJSON()</code></a></dt>
+  <dd>
+    <p>Returns a JSON representation of the <code>MediaDeviceInfo</code> object.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<p>Here's an example that uses <a href="/en-US/docs/Web/API/MediaDevices/enumerateDevices" title="enumerateDevices()"><code>enumerateDevices()</code></a> to get a list of devices.</p>
+<pre class="brush: js">if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+  console.log("enumerateDevices() not supported.");
+} else {
+  // List cameras and microphones.
+  navigator.mediaDevices
+    .enumerateDevices()
+    .then((devices) =&gt; {
+      devices.forEach((device) =&gt; {
+        console.log(`${device.kind}: ${device.label} id = ${device.deviceId}`);
+      });
+    })
+    .catch((err) =&gt; {
+      console.log(`${err.name}: ${err.message}`);
+    });
+}
+</pre>
+<p>This might produce:</p>
+<pre class="brush: bash">videoinput: id = csO9c0YpAf274OuCPUA53CNE0YHlIr2yXCi+SqfBZZ8=
+audioinput: id = RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM=
+audioinput: id = r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0=
+</pre>
+<p>or if one or more media streams are active, or if persistent permissions have been granted:</p>
+<pre class="brush: bash">videoinput: FaceTime HD Camera (Built-in) id=csO9c0YpAf274OuCPUA53CNE0YHlIr2yXCi+SqfBZZ8=
+audioinput: default (Built-in Microphone) id=RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM=
+audioinput: Built-in Microphone id=r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0=
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MediaDeviceInfo" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MediaDeviceInfo" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebRTC_API">WebRTC API</a></li>
+  <li><a href="/en-US/docs/Web/API/MediaDevices/enumerateDevices" title="navigator.mediaDevices.enumerateDevices()"><code>navigator.mediaDevices.enumerateDevices()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MediaDevices/getUserMedia" title="navigator.mediaDevices.getUserMedia()"><code>navigator.mediaDevices.getUserMedia()</code></a></li>
+</ul>
+</body></html>

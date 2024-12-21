@@ -1,0 +1,37 @@
+<html><head></head><body>
+<p>The <strong>Insertable Streams for MediaStreamTrack API</strong> provides a method of adding new components to a <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a>.</p>
+<h2 id="concepts_and_usage">Concepts and Usage</h2>
+<p>When processing video or audio, you sometimes want to insert additional elements or otherwise process the stream. For example, an application might include two tracks that need to be combined, such as a weather map and video of a presenter explaining the map. Or, you may want to do processing on a track to blur backgrounds, remove background noise, or introduce other elements (such as adding funny hats to people, and so on). This API provides a method to do this by giving direct access to the stream, thus allowing it to be manipulated.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="mediastreamtrackgenerator"><a href="/en-US/docs/Web/API/MediaStreamTrackGenerator"><code>MediaStreamTrackGenerator</code></a></dt>
+  <dd>
+    <p>Creates a <a href="/en-US/docs/Web/API/WritableStream"><code>WritableStream</code></a> that acts as a <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> source.</p>
+  </dd>
+  <dt id="mediastreamtrackprocessor"><a href="/en-US/docs/Web/API/MediaStreamTrackProcessor"><code>MediaStreamTrackProcessor</code></a></dt>
+  <dd>
+    <p>Consumes a <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> object's source and generates a stream of media frames.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example is from the article <a href="https://developer.chrome.com/docs/capabilities/web-apis/mediastreamtrack-insertable-media-processing">Insertable streams for MediaStreamTrack</a>, and demonstrates a barcode scanner application that highlights a barcode in a video stream. This transforms the stream accessed via <a href="/en-US/docs/Web/API/MediaStreamTrackProcessor/readable"><code>MediaStreamTrackProcessor.readable</code></a>.</p>
+<pre class="brush: js">const stream = await getUserMedia({ video: true });
+const videoTrack = stream.getVideoTracks()[0];
+
+const trackProcessor = new MediaStreamTrackProcessor({ track: videoTrack });
+const trackGenerator = new MediaStreamTrackGenerator({ kind: "video" });
+
+const transformer = new TransformStream({
+  async transform(videoFrame, controller) {
+    const barcodes = await detectBarcodes(videoFrame);
+    const newFrame = highlightBarcodes(videoFrame, barcodes);
+    videoFrame.close();
+    controller.enqueue(newFrame);
+  },
+});
+
+trackProcessor.readable
+  .pipeThrough(transformer)
+  .pipeTo(trackGenerator.writable);
+</pre>
+</body></html>

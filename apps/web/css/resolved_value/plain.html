@@ -1,0 +1,27 @@
+<html><head></head><body>
+<p>The <strong>resolved value</strong> of a <a href="/en-US/docs/Web/CSS">CSS</a> property is the value after applying active stylesheets and resolving any basic computation those values may contain. The <a href="/en-US/docs/Web/API/Window/getComputedStyle" title="getComputedStyle()"><code>getComputedStyle()</code></a> method returns a live <a href="/en-US/docs/Web/API/CSSStyleDeclaration"><code>CSSStyleDeclaration</code></a> object containing the resolved values of all CSS properties applied to a specified element.</p>
+<p>Historically, <code>getComputedStyle()</code> returned the <a href="/en-US/docs/Web/CSS/computed_value">computed value</a> of an element or pseudo-element. As CSS evolved, so did the concept of "computed value", but the values returned by <code>getComputedStyle()</code> had to remain the same for backward compatibility with deployed scripts. These values are the "resolved values".</p>
+<p>For most properties, the resolved value is the <a href="/en-US/docs/Web/CSS/computed_value">computed value</a>, but for a few legacy properties (including <a href="/en-US/docs/Web/CSS/width"><code>width</code></a> and <a href="/en-US/docs/Web/CSS/height"><code>height</code></a>), it is the <a href="/en-US/docs/Web/CSS/used_value">used value</a>. See the specification link below for some per-property details.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/cssom/#resolved-values">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Window/getComputedStyle"><code>window.getComputedStyle</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSStyleDeclaration/getPropertyValue"><code>CSSStyleDeclaration.getPropertyValue</code></a></li>
+  <li>Values
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/initial_value">Initial values</a></li>
+      <li><a href="/en-US/docs/Web/CSS/computed_value">Computed values</a></li>
+      <li><a href="/en-US/docs/Web/CSS/used_value">Used values</a></li>
+      <li><a href="/en-US/docs/Web/CSS/actual_value">Actual values</a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/Syntax">CSS syntax</a></li>
+  <li><a href="/en-US/docs/Web/CSS/At-rule">At-rules</a></li>
+  <li><a href="/en-US/docs/Web/CSS/Specificity">Specificity</a></li>
+  <li><a href="/en-US/docs/Web/CSS/Inheritance">Inheritance</a></li>
+  <li><a href="/en-US/docs/Web/CSS/Value_definition_syntax">Value definition syntax</a></li>
+  <li><a href="/en-US/docs/Web/CSS/Shorthand_properties">Shorthand properties</a></li>
+</ul>
+</body></html>

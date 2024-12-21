@@ -1,0 +1,328 @@
+<html><head></head><body>
+<p>The <strong>HTML DOM API</strong> is made up of the interfaces that define the functionality of each of the <a href="/en-US/docs/Glossary/Element">elements</a> in <a href="/en-US/docs/Glossary/HTML">HTML</a>, as well as any supporting types and interfaces they rely upon.</p>
+<p>The functional areas included in the HTML DOM API include:</p>
+<ul>
+  <li>Access to and control of HTML elements via the <a href="/en-US/docs/Glossary/DOM">DOM</a>.</li>
+  <li>Access to and manipulation of form data.</li>
+  <li>Interacting with the contents of 2D images and the context of an HTML <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a>, for example to draw on top of them.</li>
+  <li>Management of media connected to the HTML media elements (<a href="/en-US/docs/Web/HTML/Element/audio"><code>&lt;audio&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a>).</li>
+  <li>Dragging and dropping of content on webpages.</li>
+  <li>Access to the browser navigation history</li>
+  <li>Supporting and connective interfaces for other APIs such as <a href="/en-US/docs/Web/API/Web_components">Web Components</a>, <a href="/en-US/docs/Web/API/Web_Storage_API" title="Web Storage">Web Storage</a>, <a href="/en-US/docs/Web/API/Web_Workers_API" title="Web Workers">Web Workers</a>, <a href="/en-US/docs/Web/API/WebSockets_API" title="WebSocket">WebSocket</a>, and <a href="/en-US/docs/Web/API/Server-sent_events" title="Server-sent events">Server-sent events</a>.</li>
+</ul>
+<h2 id="html_dom_concepts_and_usage">HTML DOM concepts and usage</h2>
+<p>In this article, we'll focus on the parts of the HTML DOM that involve engaging with HTML elements. Discussion of other areas, such as <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API" title="Drag and Drop">Drag and Drop</a>, <a href="/en-US/docs/Web/API/WebSockets_API" title="WebSockets">WebSockets</a>, <a href="/en-US/docs/Web/API/Web_Storage_API" title="Web Storage">Web Storage</a>, etc. can be found in the documentation for those APIs.</p>
+<h3 id="structure_of_an_html_document">Structure of an HTML document</h3>
+<p>The Document Object Model (<a href="/en-US/docs/Glossary/DOM">DOM</a>) is an architecture that describes the structure of a <a href="/en-US/docs/Web/API/Document"><code>document</code></a>; each document is represented by an instance of the interface <a href="/en-US/docs/Web/API/Document"><code>Document</code></a>. A document, in turn, consists of a hierarchical tree of <strong>nodes</strong>, in which a node is a fundamental record representing a single object within the document (such as an element or text node).</p>
+<p>Nodes may be strictly organizational, providing a means for grouping other nodes together or for providing a point at which a hierarchy can be constructed; other nodes may represent visible components of a document. Each node is based on the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> interface, which provides properties for getting information about the node as well as methods for creating, deleting, and organizing nodes within the DOM.</p>
+<p>Nodes don't have any concept of including the content that is actually displayed in the document. They're empty vessels. The fundamental notion of a node that can represent visual content is introduced by the <a href="/en-US/docs/Web/API/Element"><code>Element</code></a> interface. An <code>Element</code> object instance represents a single element in a document created using either HTML or an <a href="/en-US/docs/Glossary/XML">XML</a> vocabulary such as <a href="/en-US/docs/Glossary/SVG">SVG</a>.</p>
+<p>For example, consider a document with two elements, one of which has two more elements nested inside it:</p>
+<p>
+  <img src="/en-US/docs/Web/API/HTML_DOM_API/dom-structure.svg" alt="Structure of a document with elements inside a document in a window" width="291" height="379">
+</p>
+<p>While the <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> interface is defined as part of the <a href="/en-US/docs/Web/API/Document_Object_Model" title="DOM">DOM</a> specification, the HTML specification significantly enhances it to add information specific to using the DOM in the context of a web browser, as well as to using it to represent HTML documents specifically.</p>
+<p>Among the things added to <code>Document</code> by the HTML standard are:</p>
+<ul>
+  <li>Support for accessing various information provided by the <a href="/en-US/docs/Glossary/HTTP">HTTP</a> headers when loading the page, such as the <a href="/en-US/docs/Web/API/Document/location" title="location">location</a> from which the document was loaded, <a href="/en-US/docs/Web/API/Document/cookie" title="cookies">cookies</a>, <a href="/en-US/docs/Web/API/Document/lastModified" title="modification date">modification date</a>, <a href="/en-US/docs/Web/API/Document/referrer" title="referring site">referring site</a>, and so forth.</li>
+  <li>Access to lists of elements in the document's <a href="/en-US/docs/Web/HTML/Element/head"><code>&lt;head&gt;</code></a> block and <a href="/en-US/docs/Web/API/Document/body" title="body">body</a>, as well as lists of the <a href="/en-US/docs/Web/API/Document/images" title="images">images</a>, <a href="/en-US/docs/Web/API/Document/links" title="links">links</a>, <a href="/en-US/docs/Web/API/Document/scripts" title="scripts">scripts</a>, etc. contained in the document.</li>
+  <li>Support for interacting with the user by examining <a href="/en-US/docs/Web/API/Document/hasFocus" title="focus">focus</a> and by executing commands on <a href="/en-US/docs/Web/HTML/Global_attributes/contenteditable">editable content</a>.</li>
+  <li>Event handlers for document events defined by the HTML standard to allow access to <a href="/en-US/docs/Web/API/MouseEvent" title="mouse">mouse</a> and <a href="/en-US/docs/Web/API/KeyboardEvent" title="keyboard">keyboard</a> events, <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API" title="drag and drop">drag and drop</a>, <a href="/en-US/docs/Web/API/HTMLMediaElement" title="media control">media control</a>, and more.</li>
+  <li>Event handlers for events that can be delivered to both elements and documents; these presently include only <a href="/en-US/docs/Web/API/HTMLElement/copy_event" title="copy">copy</a>, <a href="/en-US/docs/Web/API/HTMLElement/cut_event" title="cut">cut</a>, and <a href="/en-US/docs/Web/API/HTMLElement/paste_event" title="paste">paste</a> actions.</li>
+</ul>
+<h3 id="html_element_interfaces">HTML element interfaces</h3>
+<p>The <code>Element</code> interface has been further adapted to represent HTML elements specifically by introducing the <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> interface, which all more specific HTML element classes inherit from. This expands the <code>Element</code> class to add HTML-specific general features to the element nodes. Properties added by <code>HTMLElement</code> include for example <a href="/en-US/docs/Web/API/HTMLElement/hidden" title="hidden"><code>hidden</code></a> and <a href="/en-US/docs/Web/API/HTMLElement/innerText" title="innerText"><code>innerText</code></a>.</p>
+<p>An <a href="/en-US/docs/Glossary/HTML">HTML</a> document is a DOM tree in which each of the nodes is an HTML element, represented by the <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> interface. The <code>HTMLElement</code> class, in turn, implements <code>Node</code>, so every element is also a node (but not the other way around). This way, the structural features implemented by the <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> interface are also available to HTML elements, allowing them to be nested within each other, created and deleted, moved around, and so forth.</p>
+<p>The <code>HTMLElement</code> interface is generic, however, providing only the functionality common to all HTML elements such as the element's ID, its coordinates, the HTML making up the element, information about scroll position, and so forth.</p>
+<p>In order to expand upon the functionality of the core <code>HTMLElement</code> interface to provide the features needed by a specific element, the <code>HTMLElement</code> class is subclassed to add the needed properties and methods. For example, the <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element is represented by an object of type <a href="/en-US/docs/Web/API/HTMLCanvasElement"><code>HTMLCanvasElement</code></a>. <code>HTMLCanvasElement</code> augments the <code>HTMLElement</code> type by adding properties such as <a href="/en-US/docs/Web/API/HTMLCanvasElement/height" title="height"><code>height</code></a> and methods like <a href="/en-US/docs/Web/API/HTMLCanvasElement/getContext" title="getContext()"><code>getContext()</code></a> to provide canvas-specific features.</p>
+<p>The overall inheritance for HTML element classes looks like this:</p>
+<p>
+  <img src="/en-US/docs/Web/API/HTML_DOM_API/html-dom-hierarchy.svg" alt="Hierarchy of interfaces for HTML elements" width="661" height="565">
+</p>
+<p>As such, an element inherits the properties and methods of all of its ancestors. For example, consider a <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> element, which is represented in the DOM by an object of type <a href="/en-US/docs/Web/API/HTMLAnchorElement"><code>HTMLAnchorElement</code></a>. The element, then, includes the anchor-specific properties and methods described in that class's documentation, but also those defined by <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> and <a href="/en-US/docs/Web/API/Element"><code>Element</code></a>, as well as from <a href="/en-US/docs/Web/API/Node"><code>Node</code></a> and, finally, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</p>
+<p>Each level defines a key aspect of the utility of the element. From <code>Node</code>, the element inherits concepts surrounding the ability for the element to be contained by another element, and to contain other elements itself. Of special importance is what is gained by inheriting from <code>EventTarget</code>: the ability to receive and handle events such as mouse clicks, play and pause events, and so forth.</p>
+<p>There are elements that share commonalities and thus have an additional intermediary type. For example, the <a href="/en-US/docs/Web/HTML/Element/audio"><code>&lt;audio&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> elements both present audiovisual media. The corresponding types, <a href="/en-US/docs/Web/API/HTMLAudioElement"><code>HTMLAudioElement</code></a> and <a href="/en-US/docs/Web/API/HTMLVideoElement"><code>HTMLVideoElement</code></a>, are both based upon the common type <a href="/en-US/docs/Web/API/HTMLMediaElement"><code>HTMLMediaElement</code></a>, which in turn is based upon <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> and so forth. <code>HTMLMediaElement</code> defines the methods and properties held in common between audio and video elements.</p>
+<p>These element-specific interfaces make up the majority of the HTML DOM API, and are the focus of this article. To learn more about the actual structure of the <a href="/en-US/docs/Web/API/Document_Object_Model" title="DOM">DOM</a>, see <a href="/en-US/docs/Web/API/Document_Object_Model/Introduction" title="Introduction to the DOM">Introduction to the DOM</a>.</p>
+<h2 id="html_dom_target_audience">HTML DOM target audience</h2>
+<p>
+  The features exposed by the HTML DOM are among the most commonly-used APIs in a web developer's toolkit.
+  All but the most simple web applications will use some features of the HTML DOM.
+</p>
+<h2 id="html_dom_api_interfaces">HTML DOM API interfaces</h2>
+<p>The majority of the interfaces that comprise the HTML DOM API map almost one-to-one to individual HTML elements, or to a small group of elements with similar functionality. In addition, the HTML DOM API includes a few interfaces and types to support the HTML element interfaces.</p>
+<h3 id="html_element_interfaces_2">HTML element interfaces</h3>
+<p>These interfaces represent specific HTML elements (or sets of related elements which have the same properties and methods associated with them).</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTMLAnchorElement"><code>HTMLAnchorElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLAreaElement"><code>HTMLAreaElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLAudioElement"><code>HTMLAudioElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLBaseElement"><code>HTMLBaseElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLBodyElement"><code>HTMLBodyElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLBRElement"><code>HTMLBRElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLButtonElement"><code>HTMLButtonElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLCanvasElement"><code>HTMLCanvasElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLDataElement"><code>HTMLDataElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLDataListElement"><code>HTMLDataListElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLDetailsElement"><code>HTMLDetailsElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLDialogElement"><code>HTMLDialogElement</code></a></li>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;HTMLDirectoryElement&quot;)}}"><code>HTMLDirectoryElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLDivElement"><code>HTMLDivElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLDListElement"><code>HTMLDListElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLEmbedElement"><code>HTMLEmbedElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLFieldSetElement"><code>HTMLFieldSetElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLFormElement"><code>HTMLFormElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLHRElement"><code>HTMLHRElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLHeadElement"><code>HTMLHeadElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLHeadingElement"><code>HTMLHeadingElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLHtmlElement"><code>HTMLHtmlElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLIFrameElement"><code>HTMLIFrameElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLImageElement"><code>HTMLImageElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLInputElement"><code>HTMLInputElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLLabelElement"><code>HTMLLabelElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLLegendElement"><code>HTMLLegendElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLLIElement"><code>HTMLLIElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLLinkElement"><code>HTMLLinkElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLMapElement"><code>HTMLMapElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLMediaElement"><code>HTMLMediaElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLMenuElement"><code>HTMLMenuElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLMetaElement"><code>HTMLMetaElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLMeterElement"><code>HTMLMeterElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLModElement"><code>HTMLModElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLObjectElement"><code>HTMLObjectElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLOListElement"><code>HTMLOListElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLOptGroupElement"><code>HTMLOptGroupElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLOptionElement"><code>HTMLOptionElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLOutputElement"><code>HTMLOutputElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLParagraphElement"><code>HTMLParagraphElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLPictureElement"><code>HTMLPictureElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLPreElement"><code>HTMLPreElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLProgressElement"><code>HTMLProgressElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLQuoteElement"><code>HTMLQuoteElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLScriptElement"><code>HTMLScriptElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLSelectElement"><code>HTMLSelectElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLSlotElement"><code>HTMLSlotElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLSourceElement"><code>HTMLSourceElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLSpanElement"><code>HTMLSpanElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLStyleElement"><code>HTMLStyleElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTableCaptionElement"><code>HTMLTableCaptionElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTableCellElement"><code>HTMLTableCellElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTableColElement"><code>HTMLTableColElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTableElement"><code>HTMLTableElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTableRowElement"><code>HTMLTableRowElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTableSectionElement"><code>HTMLTableSectionElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTemplateElement"><code>HTMLTemplateElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTextAreaElement"><code>HTMLTextAreaElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTimeElement"><code>HTMLTimeElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTitleElement"><code>HTMLTitleElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLTrackElement"><code>HTMLTrackElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLUListElement"><code>HTMLUListElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLUnknownElement"><code>HTMLUnknownElement</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLVideoElement"><code>HTMLVideoElement</code></a></li>
+</ul>
+<h4 id="deprecated_html_element_interfaces">Deprecated HTML Element Interfaces</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTMLMarqueeElement"><code>HTMLMarqueeElement</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></li>
+</ul>
+<h4 id="obsolete_html_element_interfaces">Obsolete HTML Element Interfaces</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/API/HTMLFontElement"><code>HTMLFontElement</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></li>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;HTMLFrameElement&quot;)}}"><code>HTMLFrameElement</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></li>
+  <li><a href="/en-US/docs/Web/API/HTMLFrameSetElement"><code>HTMLFrameSetElement</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></li>
+</ul>
+<h3 id="web_app_and_browser_integration_interfaces">Web app and browser integration interfaces</h3>
+<p>These interfaces offer access to the browser window and document that contain the HTML, as well as to the browser's state, available plugins (if any), and various configuration options.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/BarProp"><code>BarProp</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Navigator"><code>Navigator</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Window"><code>Window</code></a></li>
+</ul>
+<h4 id="deprecated_web_app_and_browser_integration_interfaces">Deprecated web app and browser integration interfaces</h4>
+<ul>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{DOMxRef(&quot;External&quot;)}}"><code>External</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></li>
+</ul>
+<h4 id="obsolete_web_app_and_browser_integration_interfaces">Obsolete web app and browser integration interfaces</h4>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Plugin"><code>Plugin</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></li>
+  <li><a href="/en-US/docs/Web/API/PluginArray"><code>PluginArray</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></li>
+</ul>
+<h3 id="form_support_interfaces">Form support interfaces</h3>
+<p>These interfaces provide structure and functionality required by the elements used to create and manage forms, including the <a href="/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> elements.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/FormDataEvent"><code>FormDataEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLFormControlsCollection"><code>HTMLFormControlsCollection</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLOptionsCollection"><code>HTMLOptionsCollection</code></a></li>
+  <li><a href="/en-US/docs/Web/API/RadioNodeList"><code>RadioNodeList</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ValidityState"><code>ValidityState</code></a></li>
+</ul>
+<h3 id="canvas_and_image_interfaces">Canvas and image interfaces</h3>
+<p>These interfaces represent objects used by the Canvas API as well as the <a href="/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> element and <a href="/en-US/docs/Web/HTML/Element/picture"><code>&lt;picture&gt;</code></a> elements.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CanvasGradient"><code>CanvasGradient</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CanvasPattern"><code>CanvasPattern</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CanvasRenderingContext2D"><code>CanvasRenderingContext2D</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ImageBitmap"><code>ImageBitmap</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ImageBitmapRenderingContext"><code>ImageBitmapRenderingContext</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ImageData"><code>ImageData</code></a></li>
+  <li><a href="/en-US/docs/Web/API/OffscreenCanvas"><code>OffscreenCanvas</code></a></li>
+  <li><a href="/en-US/docs/Web/API/OffscreenCanvasRenderingContext2D"><code>OffscreenCanvasRenderingContext2D</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Path2D"><code>Path2D</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TextMetrics"><code>TextMetrics</code></a></li>
+</ul>
+<h3 id="media_interfaces">Media interfaces</h3>
+<p>The media interfaces provide HTML access to the contents of the media elements: <a href="/en-US/docs/Web/HTML/Element/audio"><code>&lt;audio&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a>.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/AudioTrack"><code>AudioTrack</code></a></li>
+  <li><a href="/en-US/docs/Web/API/AudioTrackList"><code>AudioTrackList</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MediaError"><code>MediaError</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TextTrack"><code>TextTrack</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TextTrackCue"><code>TextTrackCue</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TextTrackCueList"><code>TextTrackCueList</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TextTrackList"><code>TextTrackList</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TimeRanges"><code>TimeRanges</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TrackEvent"><code>TrackEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/VideoTrack"><code>VideoTrack</code></a></li>
+  <li><a href="/en-US/docs/Web/API/VideoTrackList"><code>VideoTrackList</code></a></li>
+</ul>
+<h3 id="drag_and_drop_interfaces">Drag and drop interfaces</h3>
+<p>These interfaces are used by the <a href="/en-US/docs/Web/API/HTML_Drag_and_Drop_API">HTML Drag and Drop API</a> to represent individual draggable (or dragged) items, groups of dragged or draggable items, and to handle the drag and drop process.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/DataTransfer"><code>DataTransfer</code></a></li>
+  <li><a href="/en-US/docs/Web/API/DataTransferItem"><code>DataTransferItem</code></a></li>
+  <li><a href="/en-US/docs/Web/API/DataTransferItemList"><code>DataTransferItemList</code></a></li>
+  <li><a href="/en-US/docs/Web/API/DragEvent"><code>DragEvent</code></a></li>
+</ul>
+<h3 id="page_history_interfaces">Page history interfaces</h3>
+<p>The History API interfaces let you access information about the browser's history, as well as to shift the browser's current tab forward and backward through that history.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/BeforeUnloadEvent"><code>BeforeUnloadEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HashChangeEvent"><code>HashChangeEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/History"><code>History</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Location"><code>Location</code></a></li>
+  <li><a href="/en-US/docs/Web/API/PageRevealEvent"><code>PageRevealEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/PageSwapEvent"><code>PageSwapEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/PageTransitionEvent"><code>PageTransitionEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/PopStateEvent"><code>PopStateEvent</code></a></li>
+</ul>
+<h3 id="web_components_interfaces">Web Components interfaces</h3>
+<p>These interfaces are used by the <a href="/en-US/docs/Web/API/Web_components">Web Components API</a> to create and manage the available <a href="/en-US/docs/Web/API/Web_components/Using_custom_elements">custom elements</a>.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CustomElementRegistry"><code>CustomElementRegistry</code></a></li>
+</ul>
+<h3 id="miscellaneous_and_supporting_interfaces">Miscellaneous and supporting interfaces</h3>
+<p>These supporting object types are used in a variety of ways in the HTML DOM API. In addition, <a href="/en-US/docs/Web/API/PromiseRejectionEvent"><code>PromiseRejectionEvent</code></a> represents the event delivered when a <a href="/en-US/docs/Glossary/JavaScript">JavaScript</a> <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> is rejected.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/DOMStringList"><code>DOMStringList</code></a></li>
+  <li><a href="/en-US/docs/Web/API/DOMStringMap"><code>DOMStringMap</code></a></li>
+  <li><a href="/en-US/docs/Web/API/ErrorEvent"><code>ErrorEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/HTMLAllCollection"><code>HTMLAllCollection</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MimeType"><code>MimeType</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MimeTypeArray"><code>MimeTypeArray</code></a></li>
+  <li><a href="/en-US/docs/Web/API/PromiseRejectionEvent"><code>PromiseRejectionEvent</code></a></li>
+</ul>
+<h3 id="interfaces_belonging_to_other_apis">Interfaces belonging to other APIs</h3>
+<p>Several interfaces are technically defined in the HTML specification while actually being part of other APIs.</p>
+<h4 id="web_storage_interfaces">Web storage interfaces</h4>
+<p>The <a href="/en-US/docs/Web/API/Web_Storage_API" title="Web Storage API">Web Storage API</a> provides the ability for websites to store data either temporarily or permanently on the user's device for later re-use.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Storage"><code>Storage</code></a></li>
+  <li><a href="/en-US/docs/Web/API/StorageEvent"><code>StorageEvent</code></a></li>
+</ul>
+<h4 id="web_workers_interfaces">Web Workers interfaces</h4>
+<p>These interfaces are used by the <a href="/en-US/docs/Web/API/Web_Workers_API" title="Web Workers API">Web Workers API</a> both to establish the ability for workers to interact with an app and its content, but also to support messaging between windows or apps.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/BroadcastChannel"><code>BroadcastChannel</code></a></li>
+  <li><a href="/en-US/docs/Web/API/DedicatedWorkerGlobalScope"><code>DedicatedWorkerGlobalScope</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MessageChannel"><code>MessageChannel</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MessageEvent"><code>MessageEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MessagePort"><code>MessagePort</code></a></li>
+  <li><a href="/en-US/docs/Web/API/SharedWorker"><code>SharedWorker</code></a></li>
+  <li><a href="/en-US/docs/Web/API/SharedWorkerGlobalScope"><code>SharedWorkerGlobalScope</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Worker"><code>Worker</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WorkerGlobalScope"><code>WorkerGlobalScope</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WorkerLocation"><code>WorkerLocation</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WorkerNavigator"><code>WorkerNavigator</code></a></li>
+</ul>
+<h4 id="websocket_interfaces">WebSocket interfaces</h4>
+<p>These interfaces, defined by the HTML specification, are used by the <a href="/en-US/docs/Web/API/WebSockets_API" title="WebSockets API">WebSockets API</a>.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CloseEvent"><code>CloseEvent</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebSocket"><code>WebSocket</code></a></li>
+</ul>
+<h4 id="server-sent_events_interfaces">Server-sent events interfaces</h4>
+<p>The <a href="/en-US/docs/Web/API/EventSource"><code>EventSource</code></a> interface represents the source which sent or is sending <a href="/en-US/docs/Web/API/Server-sent_events" title="server-sent events">server-sent events</a>.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/EventSource"><code>EventSource</code></a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<p>In this example, an <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element's <a href="/en-US/docs/Web/API/Element/input_event" title="input"><code>input</code></a> event is monitored in order to update the state of a form's "submit" button based on whether or not a given field currently has a value.</p>
+<h3 id="javascript">JavaScript</h3>
+<pre class="brush: js">const nameField = document.getElementById("userName");
+const sendButton = document.getElementById("sendButton");
+
+sendButton.disabled = true;
+// [note: this is disabled since it causes this article to always load with this example focused and scrolled into view]
+//nameField.focus();
+
+nameField.addEventListener("input", (event) =&gt; {
+  const elem = event.target;
+  const valid = elem.value.length !== 0;
+
+  if (valid &amp;&amp; sendButton.disabled) {
+    sendButton.disabled = false;
+  } else if (!valid &amp;&amp; !sendButton.disabled) {
+    sendButton.disabled = true;
+  }
+});
+</pre>
+<p>This code uses the <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> interface's <a href="/en-US/docs/Web/API/Document/getElementById" title="getElementById()"><code>getElementById()</code></a> method to get the DOM object representing the <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> elements whose IDs are <code>userName</code> and <code>sendButton</code>. With these, we can access the properties and methods that provide information about and grant control over these elements.</p>
+<p>The <a href="/en-US/docs/Web/API/HTMLInputElement"><code>HTMLInputElement</code></a> object for the "Send" button's <a href="/en-US/docs/Web/API/HTMLInputElement/disabled" title="disabled"><code>disabled</code></a> property is set to <code>true</code>, which disables the "Send" button so it can't be clicked. In addition, the user name input field is made the active focus by calling the <a href="/en-US/docs/Web/API/HTMLElement/focus" title="focus()"><code>focus()</code></a> method it inherits from <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</p>
+<p>Then <a href="/en-US/docs/Web/API/EventTarget/addEventListener" title="addEventListener()"><code>addEventListener()</code></a> is called to add a handler for the <code>input</code> event to the user name input. This code looks at the length of the current value of the input; if it's zero, then the "Send" button is disabled if it's not already disabled. Otherwise, the code ensures that the button is enabled.</p>
+<p>With this in place, the "Send" button is always enabled whenever the user name input field has a value, and disabled when it's empty.</p>
+<h3 id="html">HTML</h3>
+<p>The HTML for the form looks like this:</p>
+<pre class="brush: html">&lt;p&gt;Please provide the information below. Items marked with "*" are required.&lt;/p&gt;
+&lt;form action="" method="get"&gt;
+  &lt;p&gt;
+    &lt;label for="userName" required&gt;Your name:&lt;/label&gt;
+    &lt;input type="text" id="userName" /&gt; (*)
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="userEmail"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="userEmail" /&gt;
+  &lt;/p&gt;
+  &lt;input type="submit" value="Send" id="sendButton" /&gt;
+&lt;/form&gt;
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="640" height="300" src="about:blank" data-live-path="/en-US/docs/Web/API/HTML_DOM_API" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<h3 id="references">References</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Element">HTML elements reference</a></li>
+  <li><a href="/en-US/docs/Web/HTML/Attributes">HTML attribute reference</a></li>
+  <li><a href="/en-US/docs/Web/API/Document_Object_Model" title="Document Object Model (DOM)">Document Object Model (DOM)</a> reference</li>
+</ul>
+<h3 id="guides">Guides</h3>
+<ul>
+  <li><a href="/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting">DOM scripting introduction</a></li>
+</ul>
+</body></html>

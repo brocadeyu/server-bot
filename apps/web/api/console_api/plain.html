@@ -1,0 +1,39 @@
+<html><head></head><body> <div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The Console API provides functionality to allow developers to perform debugging tasks, such as logging messages or the values of variables at set points in your code, or timing how long an operation takes to complete.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>The Console API started as a largely proprietary API, with different browsers implementing it, albeit in inconsistent ways. <a href="https://console.spec.whatwg.org/">The Console API spec</a> was created to define consistent behavior, and all modern browsers eventually settled on implementing this behavior — although some implementations still have their own additional proprietary functions. Find out about these at:</p>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/devtools/console/api/">Google Chrome DevTools implementation</a></li>
+  <li><a href="https://webkit.org/web-inspector/console-object-api/">Safari DevTools implementation</a></li>
+</ul>
+<p>Usage is very simple — the <a href="/en-US/docs/Web/API/console"><code>console</code></a> object contains many methods that you can call to perform rudimentary debugging tasks, generally focused around logging various values to the browser's <a href="https://firefox-source-docs.mozilla.org/devtools-user/web_console/index.html">Web Console</a>.</p>
+<p>By far the most commonly-used method is <a href="/en-US/docs/Web/API/console/log_static" title="console.log()"><code>console.log()</code></a>, which is used to log the current value contained inside a specific variable.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl>
+  <dt id="console"><a href="/en-US/docs/Web/API/console"><code>console</code></a></dt>
+  <dd>
+    <p>Provides rudimentary debugging functionality, including logging, stack traces, timers, and counters.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">let myString = "Hello world";
+
+// Output "Hello world" to the console
+console.log(myString);
+</pre>
+<p>See the <a href="/en-US/docs/Web/API/console">console</a> reference page for more examples.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.console" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.console" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/index.html">Tools</a></li>
+  <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/web_console/index.html">Web Console</a> — how the Web Console in Firefox handles console API calls</li>
+  <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html">about:debugging</a> — how to see console output when the debugging target is a mobile device</li>
+</ul>
+</body></html>

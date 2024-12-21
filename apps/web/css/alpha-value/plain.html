@@ -1,0 +1,35 @@
+<html><head></head><body>
+<p>The <strong><code>&lt;alpha-value&gt;</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Types">data type</a> represents a value that can be either a <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> or a <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a>, specifying the <strong><a href="/en-US/docs/Glossary/Alpha">alpha channel</a></strong> or <strong>transparency</strong> of a color.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The value of an <code>&lt;alpha-value&gt;</code> is given as either a <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> or a <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a>.</p>
+<p>If given as a number, the useful range is 0 (fully transparent) to 1.0 (fully opaque), with decimal values in between; that is, 0.5 indicates that half of the foreground color is used and half of the background color is used. Values outside the range of 0 to 1 are permitted, but are <a href="https://en.wikipedia.org/wiki/Clamping_(graphics)">clamped</a> to lie within the range 0 to 1.</p>
+<p>If the alpha value is given as a percentage, 0% corresponds to fully transparent while 100% indicates fully opaque.</p>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="<alpha-value>">&lt;alpha-value&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br></pre>
+<h2 id="interpolation">Interpolation</h2>
+<p>When animated, values of the <code>&lt;alpha-value&gt;</code> CSS data type are <a href="/en-US/docs/Glossary/Interpolation">interpolated</a> as real, floating-point numbers. The speed of the interpolation is determined by the <a href="/en-US/docs/Web/CSS/easing-function">easing function</a> associated with the animation.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_text_color_opacity">Setting text color opacity</h3>
+<p>
+  The <a href="/en-US/docs/Web/CSS/color_value/rgb"><code>rgb()</code></a> function accepts a fourth optional value to specify an alpha value.
+  The following example shows how to apply a color with 60% opacity using the alpha value:
+</p>
+<pre class="brush: css">/* &lt;rgb()&gt; */
+color: rgb(34 12 64 / 60%);
+</pre>
+<h3 id="setting_shape_image_threshold">Setting shape image threshold</h3>
+<p>Here an alpha value is used to determine which parts of an image are considered part of a shape:</p>
+<pre class="brush: css">/* shape-image-threshold */
+shape-image-threshold: 70%;
+shape-image-threshold: 0.7;
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-color/#typedef-color-alpha-value">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Learn_web_development/Core/Text_styling/Fundamentals">Learn: Fundamental text and font styling</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_Types">CSS data types</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_colors">CSS Color</a></li>
+  <li><a href="/en-US/docs/Web/CSS/color_value"><code>&lt;color&gt;</code></a></li>
+</ul>
+</body></html>

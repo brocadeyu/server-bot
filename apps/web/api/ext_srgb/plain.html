@@ -1,0 +1,59 @@
+<html><head></head><body>
+<p>The <strong><code>EXT_sRGB</code></strong> extension is part of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> and adds sRGB support to textures and framebuffer objects.</p>
+<p>WebGL extensions are available using the <a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="/en-US/docs/Web/API/WebGL_API/Using_Extensions">Using Extensions</a> in the <a href="/en-US/docs/Web/API/WebGL_API/Tutorial">WebGL tutorial</a>.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> This extension is only available to <a href="/en-US/docs/Web/API/WebGLRenderingContext" title="WebGL1">WebGL1</a> contexts. In <a href="/en-US/docs/Web/API/WebGL2RenderingContext" title="WebGL2">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default. The constants in WebGL2 are: <code>gl.SRGB</code>, <code>gl.SRGB8</code>, <code>gl.SRGB8_ALPHA8</code> and <code>gl.FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING</code>.</p>
+</div>
+<h2 id="constants">Constants</h2>
+<p>This extension exposes the following constants, which can be used in the <a href="/en-US/docs/Web/API/WebGLRenderingContext/texImage2D" title="texImage2D()"><code>texImage2D()</code></a>, <a href="/en-US/docs/Web/API/WebGLRenderingContext/texSubImage2D" title="texSubImage2D()"><code>texSubImage2D()</code></a>, <a href="/en-US/docs/Web/API/WebGLRenderingContext/renderbufferStorage" title="renderbufferStorage()"><code>renderbufferStorage()</code></a> and <a href="/en-US/docs/Web/API/WebGLRenderingContext/getFramebufferAttachmentParameter" title="getFramebufferAttachmentParameter()"><code>getFramebufferAttachmentParameter()</code></a> methods.</p>
+<dl>
+  <dt id="ext.srgb_ext"><a href="#ext.srgb_ext"><code>ext.SRGB_EXT</code></a></dt>
+  <dd>
+    <p>Unsized sRGB format that leaves the precision up to the driver.</p>
+  </dd>
+  <dt id="ext.srgb_alpha_ext"><a href="#ext.srgb_alpha_ext"><code>ext.SRGB_ALPHA_EXT</code></a></dt>
+  <dd>
+    <p>Unsized sRGB format with unsized alpha component.</p>
+  </dd>
+  <dt id="ext.srgb8_alpha8_ext"><a href="#ext.srgb8_alpha8_ext"><code>ext.SRGB8_ALPHA8_EXT</code></a></dt>
+  <dd>
+    <p>Sized (8-bit) sRGB and alpha formats.</p>
+  </dd>
+  <dt id="ext.framebuffer_attachment_color_encoding_ext"><a href="#ext.framebuffer_attachment_color_encoding_ext"><code>ext.FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING_EXT</code></a></dt>
+  <dd>
+    <p>Returns the framebuffer color encoding (<code>gl.LINEAR</code> or <code>ext.SRGB_EXT</code>).</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const ext = gl.getExtension("EXT_sRGB");
+
+const texture = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, texture);
+
+gl.texImage2D(
+  gl.TEXTURE_2D,
+  0,
+  ext.SRGB_EXT,
+  512,
+  512,
+  0,
+  ext.SRGB_EXT,
+  gl.UNSIGNED_BYTE,
+  image,
+);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.EXT_sRGB" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.EXT_sRGB" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/getExtension"><code>WebGLRenderingContext.getExtension()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/texImage2D"><code>WebGLRenderingContext.texImage2D()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/texSubImage2D"><code>WebGLRenderingContext.texSubImage2D()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/renderbufferStorage"><code>WebGLRenderingContext.renderbufferStorage()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/getFramebufferAttachmentParameter"><code>WebGLRenderingContext.getFramebufferAttachmentParameter()</code></a></li>
+</ul>
+</body></html>

@@ -1,0 +1,65 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <code>LayoutShiftAttribution</code> interface provides debugging information about elements which have shifted.</p>
+<p>Instances of <code>LayoutShiftAttribution</code> are returned in an array by calling <a href="/en-US/docs/Web/API/LayoutShift/sources"><code>LayoutShift.sources</code></a>.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="layoutshiftattribution.node"><a href="/en-US/docs/Web/API/LayoutShiftAttribution/node"><code>LayoutShiftAttribution.node</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the element that has shifted (null if it has been removed).</p>
+  </dd>
+  <dt id="layoutshiftattribution.previousrect"><a href="/en-US/docs/Web/API/LayoutShiftAttribution/previousRect"><code>LayoutShiftAttribution.previousRect</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMRectReadOnly"><code>DOMRectReadOnly</code></a> object representing the position of the element before the shift.</p>
+  </dd>
+  <dt id="layoutshiftattribution.currentrect"><a href="/en-US/docs/Web/API/LayoutShiftAttribution/currentRect"><code>LayoutShiftAttribution.currentRect</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMRectReadOnly"><code>DOMRectReadOnly</code></a> object representing the position of the element after the shift.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="layoutshiftattribution.tojson"><a href="/en-US/docs/Web/API/LayoutShiftAttribution/toJSON"><code>LayoutShiftAttribution.toJSON()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a JSON representation of the <code>LayoutShiftAttribution</code> object.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example finds the element with the highest layout shift score, and returns the element in that entry with the largest size prior to the shift (<code>previousRect</code>). For more detail on this see <a href="https://web.dev/articles/debug-performance-in-the-field">Debug Web Vitals in the field</a>.</p>
+<pre class="brush: js">function getCLSDebugTarget(entries) {
+  const largestEntry = entries.reduce((a, b) =&gt;
+    a &amp;&amp; a.value &gt; b.value ? a : b,
+  );
+  if (largestEntry?.sources?.length) {
+    const largestSource = largestEntry.sources.reduce((a, b) =&gt; {
+      const area = (el) =&gt; el.previousRect.width * el.previousRect.height;
+      return a.node &amp;&amp; area(a) &gt; area(b) ? a : b;
+    });
+    if (largestSource) {
+      return largestSource.node;
+    }
+  }
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.LayoutShiftAttribution" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.LayoutShiftAttribution" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://web.dev/articles/debug-layout-shifts">Debug layout shifts</a></li>
+  <li><a href="https://web.dev/articles/debug-performance-in-the-field">Debug Web Vitals in the field</a></li>
+</ul>
+</body></html>

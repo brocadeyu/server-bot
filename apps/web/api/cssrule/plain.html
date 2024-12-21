@@ -1,0 +1,59 @@
+<html><head></head><body>
+<p>The <strong><code>CSSRule</code></strong> interface represents a single CSS rule. There are several types of rules which inherit properties from <code>CSSRule</code>.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSSGroupingRule"><code>CSSGroupingRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSStyleRule"><code>CSSStyleRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSImportRule"><code>CSSImportRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSMediaRule"><code>CSSMediaRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSFontFaceRule"><code>CSSFontFaceRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSPageRule"><code>CSSPageRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSNamespaceRule"><code>CSSNamespaceRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSKeyframesRule"><code>CSSKeyframesRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSKeyframeRule"><code>CSSKeyframeRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSCounterStyleRule"><code>CSSCounterStyleRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSSupportsRule"><code>CSSSupportsRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSFontFeatureValuesRule"><code>CSSFontFeatureValuesRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSFontPaletteValuesRule"><code>CSSFontPaletteValuesRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSLayerBlockRule"><code>CSSLayerBlockRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSLayerStatementRule"><code>CSSLayerStatementRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSPropertyRule"><code>CSSPropertyRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSNestedDeclarations"><code>CSSNestedDeclarations</code></a></li>
+</ul>
+<h2 id="instance_properties">Instance properties</h2>
+<p>The <code>CSSRule</code> interface specifies the properties common to all rules, while properties unique to specific rule types are specified in the more specialized interfaces for those rules' respective types.</p>
+<dl>
+  <dt id="cssrule.csstext"><a href="/en-US/docs/Web/API/CSSRule/cssText"><code>CSSRule.cssText</code></a></dt>
+  <dd>
+    <p>Represents the textual representation of the rule, e.g. <code>"h1,h2 { font-size: 16pt }"</code> or <code>"@import 'url'"</code>. To access or modify parts of the rule (e.g. the value of "font-size" in the example) use the properties on the specialized interface for the rule's type (see above).</p>
+  </dd>
+  <dt id="cssrule.parentrule"><a href="/en-US/docs/Web/API/CSSRule/parentRule"><code>CSSRule.parentRule</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the containing rule, otherwise <code>null</code>. E.g. if this rule is a style rule inside an <a href="/en-US/docs/Web/CSS/@media"><code>@media</code></a> block, the parent rule would be that <a href="/en-US/docs/Web/API/CSSMediaRule"><code>CSSMediaRule</code></a>.</p>
+  </dd>
+  <dt id="cssrule.parentstylesheet"><a href="/en-US/docs/Web/API/CSSRule/parentStyleSheet"><code>CSSRule.parentStyleSheet</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/CSSStyleSheet"><code>CSSStyleSheet</code></a> object for the style sheet that contains this rule</p>
+  </dd>
+  <dt id="cssrule.type"><a href="/en-US/docs/Web/API/CSSRule/type"><code>CSSRule.type</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Returns one of the Type constants to determine which type of rule is represented.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>References to a <code>CSSRule</code> may be obtained by looking at a <a href="/en-US/docs/Web/API/CSSStyleSheet"><code>CSSStyleSheet</code></a>'s <code>cssRules</code> list.</p>
+<pre class="brush: js">let myRules = document.styleSheets[0].cssRules; // Returns a CSSRuleList
+console.log(myRules);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSSRule" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSSRule" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSS_Object_Model/Using_dynamic_styling_information">Using dynamic styling information</a></li>
+</ul>
+</body></html>

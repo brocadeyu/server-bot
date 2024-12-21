@@ -1,0 +1,49 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>Fence</code></strong> interface of the <a href="/en-US/docs/Web/API/Fenced_frame_API" title="Fenced Frame API">Fenced Frame API</a> contains several functions relevant to <a href="/en-US/docs/Web/HTML/Element/fencedframe"><code>&lt;fencedframe&gt;</code></a> functionality.</p>
+<p><code>Fence</code> objects are accessed through the <a href="/en-US/docs/Web/API/Window/fence"><code>Window.fence</code></a> property, but they are only available to documents embedded inside <a href="/en-US/docs/Web/HTML/Element/fencedframe"><code>&lt;fencedframe&gt;</code></a>s (loaded via <a href="/en-US/docs/Web/API/FencedFrameConfig"><code>FencedFrameConfig</code></a>s) or <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>s (loaded via opaque URNs).</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> See <a href="/en-US/docs/Web/API/Fenced_frame_API#how_do_fencedframes_work">How do <code>&lt;fencedframe&gt;</code>s work?</a> for some description around <code>FencedFrameConfig</code>s and opaque URNs.</p>
+</div>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="getnestedconfigs"><a href="/en-US/docs/Web/API/Fence/getNestedConfigs" title="getNestedConfigs()"><code>getNestedConfigs()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/FencedFrameConfig"><code>FencedFrameConfig</code></a>s loaded into <code>&lt;fencedframe&gt;</code>s embedded inside the current <code>&lt;fencedframe&gt;</code>.</p>
+  </dd>
+  <dt id="reportevent"><a href="/en-US/docs/Web/API/Fence/reportEvent" title="reportEvent()"><code>reportEvent()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Triggers the submission of report data via a <a href="/en-US/docs/Web/API/Beacon_API">beacon</a> to one ore more specific URLs registered via the <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;InterestGroupReportingScriptRunnerGlobalScope.registerAdBeacon&quot;, &quot;registerAdBeacon()&quot;)}}"><code>registerAdBeacon()</code></a> method of the <a href="https://developers.google.com/privacy-sandbox/private-advertising/protected-audience">Protected Audience API</a>, for the purpose of collecting ad auction results.</p>
+  </dd>
+  <dt id="setreporteventdataforautomaticbeacons"><a href="/en-US/docs/Web/API/Fence/setReportEventDataForAutomaticBeacons" title="setReportEventDataForAutomaticBeacons()"><code>setReportEventDataForAutomaticBeacons()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Specifies event data that will be sent when a navigation occurs inside a <code>&lt;fencedframe&gt;</code>. This data will be sent via an automatic beacon to one or more specific URLs registered via the <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;InterestGroupReportingScriptRunnerGlobalScope.registerAdBeacon&quot;, &quot;registerAdBeacon()&quot;)}}"><code>registerAdBeacon()</code></a> method of the <a href="https://developers.google.com/privacy-sandbox/private-advertising/protected-audience">Protected Audience API</a>, for the purpose of collecting reporting data for ad auction results.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">window.fence.reportEvent({
+  eventType: "click",
+  eventData: JSON.stringify({ clickX: "123", clickY: "456" }),
+  destination: ["buyer", "seller"],
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Fence" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Fence" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developers.google.com/privacy-sandbox/private-advertising/fenced-frame">Fenced frames</a> on developers.google.com</li>
+  <li><a href="https://developers.google.com/privacy-sandbox">The Privacy Sandbox</a> on developers.google.com</li>
+</ul>
+</body></html>

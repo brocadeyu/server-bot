@@ -1,0 +1,70 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>FederatedCredential</code></strong> interface of the <a href="/en-US/docs/Web/API/Credential_Management_API">Credential Management API</a> provides information about credentials from a federated identity provider. A federated identity provider is an entity that a website trusts to correctly authenticate a user, and that provides an API for that purpose. <a href="https://openid.net/developers/specs/">OpenID Connect</a> is an example of a federated identity provider framework.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <a href="/en-US/docs/Web/API/FedCM_API">Federated Credential Management API (FedCM)</a> provides a more complete solution for handling identity federation in the browser, and uses the <a href="/en-US/docs/Web/API/IdentityCredential"><code>IdentityCredential</code></a> type.</p>
+</div>
+<p>In browsers that support it, an instance of this interface may be passed in the <code>credential</code> member of the <code>init</code> object for global <a href="/en-US/docs/Web/API/Window/fetch" title="fetch()"><code>fetch()</code></a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Credential">
+    <rect x="0" y="0" width="80" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="40" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Credential
+    </text>
+  </a>
+  <line x1="80" y1="14" x2="110" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="80,14 90,9 90,19 80,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/FederatedCredential" aria-current="page">
+    <rect x="110" y="0" width="152" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="186" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      FederatedCredential
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="federatedcredential"><a href="/en-US/docs/Web/API/FederatedCredential/FederatedCredential" title="FederatedCredential()"><code>FederatedCredential()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Creates a new <code>FederatedCredential</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its ancestor, <a href="/en-US/docs/Web/API/Credential"><code>Credential</code></a>.</em></p>
+<dl>
+  <dt id="federatedcredential.provider"><a href="/en-US/docs/Web/API/FederatedCredential/provider"><code>FederatedCredential.provider</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a string containing a credential's federated identity provider.</p>
+  </dd>
+  <dt id="federatedcredential.protocol"><a href="/en-US/docs/Web/API/FederatedCredential/protocol"><code>FederatedCredential.protocol</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a string containing a credential's federated identity protocol.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p>None.</p>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const cred = new FederatedCredential({
+  id,
+  name,
+  provider: "https://account.google.com",
+  iconURL,
+});
+
+// Store it
+navigator.credentials.store(cred).then(() =&gt; {
+  // Do something else.
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.FederatedCredential" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.FederatedCredential" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

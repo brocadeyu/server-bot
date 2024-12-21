@@ -1,0 +1,298 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>CSSPositionTryDescriptors</code></strong> interface defines properties that represent the list of CSS descriptors that can be set in the body of a <a href="/en-US/docs/Web/CSS/@position-try"><code>@position-try</code></a> <a href="/en-US/docs/Web/CSS/At-rule">at-rule</a>.</p>
+<p>
+  Each descriptor in the body of the corresponding <a href="/en-US/docs/Web/CSS/@position-try"><code>@position-try</code></a> at-rule can be accessed using either its property name in <a href="/en-US/docs/Learn_web_development/Core/Scripting/Object_basics#bracket_notation">bracket notation</a> or the camel-case version of the property name "propertyName" in <a href="/en-US/docs/Learn_web_development/Core/Scripting/Object_basics#dot_notation">dot notation</a>.
+  For example, you can access the CSS property "property-name" as <code>style["property-name"]</code> or <code>style.propertyName</code>, where <code>style</code> is a <code>CSSPositionTryDescriptors</code> instance.
+  A property with a single-word name like <a href="/en-US/docs/Web/CSS/height"><code>height</code></a> can be accessed using either notation: <code>style["height"]</code> or <code>style.height</code>.
+</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <a href="/en-US/docs/Web/API/CSSPositionTryRule"><code>CSSPositionTryRule</code></a> interface represents a <a href="/en-US/docs/Web/CSS/@position-try"><code>@position-try</code></a> at-rule, and the <a href="/en-US/docs/Web/API/CSSPositionTryRule/style"><code>CSSPositionTryRule.style</code></a> property is an instance of this object.</p>
+</div><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSStyleDeclaration">
+    <rect x="0" y="0" width="152" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="76" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSStyleDeclaration
+    </text>
+  </a>
+  <line x1="152" y1="14" x2="182" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="152,14 162,9 162,19 152,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSPositionTryDescriptors" aria-current="page">
+    <rect x="182" y="0" width="200" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="282" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSPositionTryDescriptors
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its ancestor <a href="/en-US/docs/Web/API/CSSStyleDeclaration"><code>CSSStyleDeclaration</code></a>.</em></p>
+<p>The following property names, in snake-case (accessed using bracket notation) and camel-case (accessed using dot notation), each represent the value of a descriptor in the corresponding <code>@position-try</code> at-rule:</p>
+<dl>
+  <dt id="align-self"><a href="#align-self"><code>align-self</code></a> or <code>alignSelf</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/align-self"><code>align-self</code></a> descriptor.</p>
+  </dd>
+  <dt id="block-size"><a href="#block-size"><code>block-size</code></a> or <code>blockSize</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/block-size"><code>block-size</code></a> descriptor.</p>
+  </dd>
+  <dt id="bottom"><a href="#bottom"><code>bottom</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/bottom"><code>bottom</code></a> descriptor.</p>
+  </dd>
+  <dt id="height"><a href="#height"><code>height</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/height"><code>height</code></a> descriptor.</p>
+  </dd>
+  <dt id="inline-size"><a href="#inline-size"><code>inline-size</code></a> or <code>inlineSize</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inline-size"><code>inline-size</code></a> descriptor.</p>
+  </dd>
+  <dt id="inset"><a href="#inset"><code>inset</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inset"><code>inset</code></a> descriptor.</p>
+  </dd>
+  <dt id="position-area"><a href="#position-area"><code>position-area</code></a> or <code>positionArea</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/position-area"><code>position-area</code></a> descriptor.</p>
+  </dd>
+  <dt id="inset-block"><a href="#inset-block"><code>inset-block</code></a> or <code>insetBlock</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inset-block"><code>inset-block</code></a> descriptor.</p>
+  </dd>
+  <dt id="inset-block-end"><a href="#inset-block-end"><code>inset-block-end</code></a> or <code>insetBlockEnd</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inset-block-end"><code>inset-block-end</code></a> descriptor.</p>
+  </dd>
+  <dt id="inset-block-start"><a href="#inset-block-start"><code>inset-block-start</code></a> or <code>insetBlockStart</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inset-block-start"><code>inset-block-start</code></a> descriptor.</p>
+  </dd>
+  <dt id="inset-inline"><a href="#inset-inline"><code>inset-inline</code></a> or <code>insetInline</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inset-inline"><code>inset-inline</code></a> descriptor.</p>
+  </dd>
+  <dt id="inset-inline-end"><a href="#inset-inline-end"><code>inset-inline-end</code></a> or <code>insetInlineEnd</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inset-inline-end"><code>inset-inline-end</code></a> descriptor.</p>
+  </dd>
+  <dt id="inset-inline-start"><a href="#inset-inline-start"><code>inset-inline-start</code></a> or <code>insetInlineStart</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of an <a href="/en-US/docs/Web/CSS/inset-inline-start"><code>inset-inline-start</code></a> descriptor.</p>
+  </dd>
+  <dt id="justify-self"><a href="#justify-self"><code>justify-self</code></a> or <code>justifySelf</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/justify-self"><code>justify-self</code></a> descriptor.</p>
+  </dd>
+  <dt id="left"><a href="#left"><code>left</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/left"><code>left</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin"><a href="#margin"><code>margin</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin"><code>margin</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-block"><a href="#margin-block"><code>margin-block</code></a> or <code>marginBlock</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-block"><code>margin-block</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-block-end"><a href="#margin-block-end"><code>margin-block-end</code></a> or <code>marginBlockEnd</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-block-end"><code>margin-block-end</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-block-start"><a href="#margin-block-start"><code>margin-block-start</code></a> or <code>marginBlockStart</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-block-start"><code>margin-block-start</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-bottom"><a href="#margin-bottom"><code>margin-bottom</code></a> or <code>marginBottom</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-bottom"><code>margin-bottom</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-inline"><a href="#margin-inline"><code>margin-inline</code></a> or <code>marginInline</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-inline"><code>margin-inline</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-inline-end"><a href="#margin-inline-end"><code>margin-inline-end</code></a> or <code>marginInlineEnd</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-inline-end"><code>margin-inline-end</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-inline-start"><a href="#margin-inline-start"><code>margin-inline-start</code></a> or <code>marginInlineStart</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-inline-start"><code>margin-inline-start</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-left"><a href="#margin-left"><code>margin-left</code></a> or <code>marginLeft</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-left"><code>margin-left</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-right"><a href="#margin-right"><code>margin-right</code></a> or <code>marginRight</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-right"><code>margin-right</code></a> descriptor.</p>
+  </dd>
+  <dt id="margin-top"><a href="#margin-top"><code>margin-top</code></a> or <code>marginTop</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/margin-top"><code>margin-top</code></a> descriptor.</p>
+  </dd>
+  <dt id="max-block-size"><a href="#max-block-size"><code>max-block-size</code></a> or <code>maxBlockSize</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/max-block-size"><code>max-block-size</code></a> descriptor.</p>
+  </dd>
+  <dt id="max-height"><a href="#max-height"><code>max-height</code></a> or <code>maxHeight</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/max-height"><code>max-height</code></a> descriptor.</p>
+  </dd>
+  <dt id="max-inline-size"><a href="#max-inline-size"><code>max-inline-size</code></a> or <code>maxInlineSize</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/max-inline-size"><code>max-inline-size</code></a> descriptor.</p>
+  </dd>
+  <dt id="max-width"><a href="#max-width"><code>max-width</code></a> or <code>maxWidth</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/max-width"><code>max-width</code></a> descriptor.</p>
+  </dd>
+  <dt id="min-block-size"><a href="#min-block-size"><code>min-block-size</code></a> or <code>minBlockSize</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/min-block-size"><code>min-block-size</code></a> descriptor.</p>
+  </dd>
+  <dt id="min-height"><a href="#min-height"><code>min-height</code></a> or <code>minHeight</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/min-height"><code>min-height</code></a> descriptor.</p>
+  </dd>
+  <dt id="min-inline-size"><a href="#min-inline-size"><code>min-inline-size</code></a> or <code>minInlineSize</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/min-inline-size"><code>min-inline-size</code></a> descriptor.</p>
+  </dd>
+  <dt id="min-width"><a href="#min-width"><code>min-width</code></a> or <code>minWidth</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/min-width"><code>min-width</code></a> descriptor.</p>
+  </dd>
+  <dt id="place-self"><a href="#place-self"><code>place-self</code></a> or <code>placeSelf</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/place-self"><code>place-self</code></a> descriptor.</p>
+  </dd>
+  <dt id="position-anchor"><a href="#position-anchor"><code>position-anchor</code></a> or <code>positionAnchor</code> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/position-anchor"><code>position-anchor</code></a> descriptor.</p>
+  </dd>
+  <dt id="right"><a href="#right"><code>right</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/right"><code>right</code></a> descriptor.</p>
+  </dd>
+  <dt id="top"><a href="#top"><code>top</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/top"><code>top</code></a> descriptor.</p>
+  </dd>
+  <dt id="width"><a href="#width"><code>width</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing the value of a <a href="/en-US/docs/Web/CSS/width"><code>width</code></a> descriptor.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>No specific methods; inherits methods from its ancestor <a href="/en-US/docs/Web/API/CSSStyleDeclaration"><code>CSSStyleDeclaration</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<p>The CSS includes a <code>@position-try</code> at-rule with a name of <code>--custom-right</code> and three descriptors.</p>
+<pre class="brush: css">@position-try --custom-right {
+  position-area: right;
+  width: 100px;
+  margin: 0 0 0 10px;
+}
+</pre>
+<pre class="brush: js">const myRules = document.styleSheets[0].cssRules;
+const tryOption = myRules[0]; // a CSSPositionTryRule
+console.log(tryOption.style); // "[object CSSPositionTryDescriptors]"
+console.log(tryOption.style.margin); // "0 0 0 10px"
+console.log(tryOption.style["position-area"]); // "right"
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSSPositionTryDescriptors" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSSPositionTryDescriptors" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSSPositionTryRule"><code>CSSPositionTryRule</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@position-try"><code>@position-try</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/position-try-fallbacks"><code>position-try-fallbacks</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_anchor_positioning">CSS anchor positioning</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_anchor_positioning/Using">Using CSS anchor positioning</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_anchor_positioning/Try_options_hiding">Handling overflow: try options and conditional hiding</a></li>
+</ul>
+</body></html>

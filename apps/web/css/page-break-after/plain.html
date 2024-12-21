@@ -1,0 +1,110 @@
+<html><head></head><body>
+<div class="notecard warning">
+  <p><strong>Warning:</strong> This property has been replaced by the <a href="/en-US/docs/Web/CSS/break-after"><code>break-after</code></a> property.</p>
+</div>
+<p>The <strong><code>page-break-after</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property adjusts page breaks <em>after</em> the current element.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/page-break-after.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+page-break-after: auto;
+page-break-after: always;
+page-break-after: avoid;
+page-break-after: left;
+page-break-after: right;
+page-break-after: recto;
+page-break-after: verso;
+
+/* Global values */
+page-break-after: inherit;
+page-break-after: initial;
+page-break-after: revert;
+page-break-after: revert-layer;
+page-break-after: unset;
+</pre>
+<p>This property applies to block elements that generate a box. It won't apply on an empty <a href="/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> that won't generate a box.</p>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="auto"><a href="#auto"><code>auto</code></a></dt>
+  <dd>
+    <p>Initial value. Automatic page breaks (neither forced nor forbidden).</p>
+  </dd>
+  <dt id="always"><a href="#always"><code>always</code></a></dt>
+  <dd>
+    <p>Always force page breaks after the element.</p>
+  </dd>
+  <dt id="avoid"><a href="#avoid"><code>avoid</code></a></dt>
+  <dd>
+    <p>Avoid page breaks after the element.</p>
+  </dd>
+  <dt id="left"><a href="#left"><code>left</code></a></dt>
+  <dd>
+    <p>Force page breaks after the element so that the next page is formatted as a left page. It's the page placed on the left side of the spine of the book or the back side of the page in duplex printing.</p>
+  </dd>
+  <dt id="right"><a href="#right"><code>right</code></a></dt>
+  <dd>
+    <p>Force page breaks after the element so that the next page is formatted as a right page. It's the page placed on the right side of the spine of the book or the front side of the page in duplex printing.</p>
+  </dd>
+  <dt id="recto"><a href="#recto"><code>recto</code></a></dt>
+  <dd>
+    <p>If pages progress left-to-right, then this acts like <code>right</code>. If pages progress right-to-left, then this acts like <code>left</code>.</p>
+  </dd>
+  <dt id="verso"><a href="#verso"><code>verso</code></a></dt>
+  <dd>
+    <p>If pages progress left-to-right, then this acts like <code>left</code>. If pages progress right-to-left, then this acts like <code>right</code>.</p>
+  </dd>
+</dl>
+<h2 id="page_break_aliases">Page break aliases</h2>
+<p>The <code>page-break-after</code> property is now a legacy property, replaced by <a href="/en-US/docs/Web/CSS/break-after"><code>break-after</code></a>.</p>
+<p>For compatibility reasons, <code>page-break-after</code> should be treated by browsers as an alias of <code>break-after</code>. This ensures that sites using <code>page-break-after</code> continue to work as designed. A subset of values should be aliased as follows:</p>
+<table>
+  <thead>
+    <tr>
+      <th>page-break-after</th>
+      <th>break-after</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>auto</code></td>
+      <td><code>auto</code></td>
+    </tr>
+    <tr>
+      <td><code>left</code></td>
+      <td><code>left</code></td>
+    </tr>
+    <tr>
+      <td><code>right</code></td>
+      <td><code>right</code></td>
+    </tr>
+    <tr>
+      <td><code>avoid</code></td>
+      <td><code>avoid</code></td>
+    </tr>
+    <tr>
+      <td><code>always</code></td>
+      <td><code>page</code></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>block-level elements in the normal flow of the root element. User agents may also apply it to other elements like <code>table-row</code> elements.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="page-break-after">page-break-after = </span><br>  <span class="token keyword">auto</span>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">always</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">avoid</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">left</span>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">right</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">inherit</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_a_page_break_after_footnotes">Setting a page break after footnotes</h3>
+<pre class="brush: css">/* move to a new page after footnotes */
+div.footnotes {
+  page-break-after: always;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.page-break-after" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.page-break-after" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/break-before"><code>break-before</code></a>, <a href="/en-US/docs/Web/CSS/break-after"><code>break-after</code></a>, <a href="/en-US/docs/Web/CSS/break-inside"><code>break-inside</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/page-break-before"><code>page-break-before</code></a>, <a href="/en-US/docs/Web/CSS/page-break-inside"><code>page-break-inside</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/orphans"><code>orphans</code></a>, <a href="/en-US/docs/Web/CSS/widows"><code>widows</code></a></li>
+</ul>
+</body></html>

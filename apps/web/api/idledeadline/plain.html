@@ -1,0 +1,32 @@
+<html><head></head><body>
+<p>The <code>IdleDeadline</code> interface is used as the data type of the input parameter to idle callbacks established by calling <a href="/en-US/docs/Web/API/Window/requestIdleCallback"><code>Window.requestIdleCallback()</code></a>. It offers a method, <a href="/en-US/docs/Web/API/IdleDeadline/timeRemaining" title="timeRemaining()"><code>timeRemaining()</code></a>, which lets you determine how much longer the user agent estimates it will remain idle and a property, <a href="/en-US/docs/Web/API/IdleDeadline/didTimeout" title="didTimeout"><code>didTimeout</code></a>, which lets you determine if your callback is executing because its timeout duration expired.</p>
+<p>To learn more about how request callbacks work, see <a href="/en-US/docs/Web/API/Background_Tasks_API">Collaborative Scheduling of Background Tasks</a>.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="idledeadline.didtimeout"><a href="/en-US/docs/Web/API/IdleDeadline/didTimeout"><code>IdleDeadline.didTimeout</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A Boolean whose value is <code>true</code> if the callback is being executed because the timeout specified when the idle callback was installed has expired.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="idledeadline.timeremaining"><a href="/en-US/docs/Web/API/IdleDeadline/timeRemaining"><code>IdleDeadline.timeRemaining()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>, which is a floating-point value providing an estimate of the number of milliseconds remaining in the current idle period. If the idle period is over, the value is 0. Your callback can call this repeatedly to see if there's enough time left to do more work before returning.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<p>See our <a href="/en-US/docs/Web/API/Background_Tasks_API#example">complete example</a> in the article <a href="/en-US/docs/Web/API/Background_Tasks_API">Cooperative Scheduling of Background Tasks API</a>.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.IdleDeadline" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.IdleDeadline" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Background_Tasks_API">Cooperative Scheduling of Background Tasks API</a></li>
+  <li><a href="/en-US/docs/Web/API/Window/requestIdleCallback"><code>Window.requestIdleCallback()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/Window/cancelIdleCallback"><code>Window.cancelIdleCallback()</code></a></li>
+</ul>
+</body></html>

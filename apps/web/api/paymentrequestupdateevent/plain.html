@@ -1,0 +1,54 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>PaymentRequestUpdateEvent</code></strong> interface is used for events sent to a <a href="/en-US/docs/Web/API/PaymentRequest"><code>PaymentRequest</code></a> instance when changes are made to shipping-related information for a pending <a href="/en-US/docs/Web/API/PaymentRequest"><code>PaymentRequest</code></a>. Those events are:</p>
+<dl>
+  <dt id="shippingaddresschange"><a href="/en-US/docs/Web/API/PaymentRequest/shippingaddresschange_event" title="shippingaddresschange"><code>shippingaddresschange</code></a></dt>
+  <dd>
+    <p>Dispatched whenever the user changes their shipping address.</p>
+  </dd>
+  <dt id="shippingoptionchange"><a href="/en-US/docs/Web/API/PaymentRequest/shippingoptionchange_event" title="shippingoptionchange"><code>shippingoptionchange</code></a></dt>
+  <dd>
+    <p>Dispatched whenever the user changes a shipping option.</p>
+  </dd>
+</dl><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PaymentRequestUpdateEvent" aria-current="page">
+    <rect x="105" y="0" width="200" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="205" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PaymentRequestUpdateEvent
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="paymentrequestupdateevent"><a href="/en-US/docs/Web/API/PaymentRequestUpdateEvent/PaymentRequestUpdateEvent" title="PaymentRequestUpdateEvent()"><code>PaymentRequestUpdateEvent()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>PaymentRequestUpdateEvent</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Provides only the properties inherited from its parent interface, <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>In addition to methods inherited from the parent interface, <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>, <code>PaymentRequestUpdateEvent</code> offers the following methods:</em></p>
+<dl>
+  <dt id="paymentrequestupdateevent.updatewith"><a href="/en-US/docs/Web/API/PaymentRequestUpdateEvent/updateWith"><code>PaymentRequestUpdateEvent.updateWith()</code></a></dt>
+  <dd>
+    <p>If the event handler determines that information included in the payment request needs to be changed, or that new information needs to be added, it calls <code>updateWith()</code> with the information that needs to be replaced or added.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PaymentRequestUpdateEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PaymentRequestUpdateEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Payment_Request_API/Using_the_Payment_Request_API">Using the Payment Request API</a></li>
+</ul>
+</body></html>

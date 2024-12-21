@@ -1,0 +1,100 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>ContactAddress</code></strong> interface of the <a href="/en-US/docs/Web/API/Contact_Picker_API">Contact Picker API</a> represents a physical address. Instances of this interface are retrieved from the <code>address</code> property of the objects returned by <a href="/en-US/docs/Web/API/ContactsManager/getProperties"><code>ContactsManager.getProperties()</code></a>.</p>
+<p>It may be useful to refer to the Universal Postal Union website's <a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions#addressing-s42-standard">Addressing S42 standard</a> materials, which provide information about international standards for postal addresses.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="contactaddress.addressline"><a href="/en-US/docs/Web/API/ContactAddress/addressLine"><code>ContactAddress.addressLine</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>An array of strings providing each line of the address not included among the other properties. The exact size and content varies by country or location and can include, for example, a street name, house number, apartment number, rural delivery route, descriptive instructions, or post office box number.</p>
+  </dd>
+  <dt id="contactaddress.country"><a href="/en-US/docs/Web/API/ContactAddress/country"><code>ContactAddress.country</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string specifying the country in which the address is located, using the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO-3166-1 alpha-2</a> standard. The string is always given in its canonical upper-case form. Some examples of valid <code>country</code> values: <code>"US"</code>, <code>"GB"</code>, <code>"CN"</code>, or <code>"JP"</code>.</p>
+  </dd>
+  <dt id="contactaddress.city"><a href="/en-US/docs/Web/API/ContactAddress/city"><code>ContactAddress.city</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string which contains the city or town portion of the address.</p>
+  </dd>
+  <dt id="contactaddress.dependentlocality"><a href="/en-US/docs/Web/API/ContactAddress/dependentLocality"><code>ContactAddress.dependentLocality</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string giving the dependent locality or sublocality within a city, for example, a neighborhood, borough, district, or UK dependent locality.</p>
+  </dd>
+  <dt id="contactaddress.organization"><a href="/en-US/docs/Web/API/ContactAddress/organization"><code>ContactAddress.organization</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string specifying the name of the organization, firm, company, or institution at the address.</p>
+  </dd>
+  <dt id="contactaddress.phone"><a href="/en-US/docs/Web/API/ContactAddress/phone"><code>ContactAddress.phone</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string specifying the telephone number of the recipient or contact person.</p>
+  </dd>
+  <dt id="contactaddress.postalcode"><a href="/en-US/docs/Web/API/ContactAddress/postalCode"><code>ContactAddress.postalCode</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string specifying a code used by a jurisdiction for mail routing, for example, the ZIP code in the United States or the PIN code in India.</p>
+  </dd>
+  <dt id="contactaddress.recipient"><a href="/en-US/docs/Web/API/ContactAddress/recipient"><code>ContactAddress.recipient</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string giving the name of the recipient, purchaser, or contact person at the address.</p>
+  </dd>
+  <dt id="contactaddress.region"><a href="/en-US/docs/Web/API/ContactAddress/region"><code>ContactAddress.region</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string containing the top level administrative subdivision of the country, for example a state, province, oblast, or prefecture.</p>
+  </dd>
+  <dt id="contactaddress.sortingcode"><a href="/en-US/docs/Web/API/ContactAddress/sortingCode"><code>ContactAddress.sortingCode</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string providing a postal sorting code such as is used in France.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="contactaddress.tojson"><a href="/en-US/docs/Web/API/ContactAddress/toJSON"><code>ContactAddress.toJSON()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A standard serializer that returns a JSON representation of the <code>ContactAddress</code> object's properties.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example prompts the user to select contacts, then prints the first returned address to the console.</p>
+<pre class="brush: js">const props = ["address"];
+const opts = { multiple: true };
+
+async function getContacts() {
+  try {
+    const contacts = await navigator.contacts.select(props, opts);
+    const contactAddress = contacts[0].address[0];
+    console.log(contactAddress);
+  } catch (ex) {
+    // Handle any errors here.
+  }
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ContactAddress" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ContactAddress" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

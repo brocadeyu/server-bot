@@ -1,0 +1,38 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>ImageBitmap</code></strong> interface represents a bitmap image which can be drawn to a <a href="/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> without undue latency. It can be created from a variety of source objects using the <a href="/en-US/docs/Web/API/Window/createImageBitmap"><code>Window.createImageBitmap()</code></a> or <a href="/en-US/docs/Web/API/WorkerGlobalScope/createImageBitmap"><code>WorkerGlobalScope.createImageBitmap()</code></a> factory method. <code>ImageBitmap</code> provides an asynchronous and resource efficient pathway to prepare textures for rendering in WebGL.</p>
+<p><code>ImageBitmap</code> is a <a href="/en-US/docs/Web/API/Web_Workers_API/Transferable_objects">transferable object</a>.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="imagebitmap.height"><a href="/en-US/docs/Web/API/ImageBitmap/height"><code>ImageBitmap.height</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An <code>unsigned long</code> representing the height, in CSS pixels, of the <code>ImageData</code>.</p>
+  </dd>
+  <dt id="imagebitmap.width"><a href="/en-US/docs/Web/API/ImageBitmap/width"><code>ImageBitmap.width</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>An <code>unsigned long</code> representing the width, in CSS pixels, of the <code>ImageData</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="imagebitmap.close"><a href="/en-US/docs/Web/API/ImageBitmap/close"><code>ImageBitmap.close()</code></a></dt>
+  <dd>
+    <p>Disposes of all graphical resources associated with an <code>ImageBitmap</code>.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ImageBitmap" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ImageBitmap" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Window/createImageBitmap"><code>Window.createImageBitmap</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WorkerGlobalScope/createImageBitmap"><code>WorkerGlobalScope.createImageBitmap</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage"><code>CanvasRenderingContext2D.drawImage()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/WebGLRenderingContext/texImage2D"><code>WebGLRenderingContext.texImage2D()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/OffscreenCanvas/transferToImageBitmap"><code>OffscreenCanvas.transferToImageBitmap()</code></a></li>
+</ul>
+</body></html>

@@ -1,0 +1,128 @@
+<html><head></head><body>
+<p>The <strong>CSS conditional rules</strong> module defines CSS media and support queries, enabling you to define styles that are only applied if specific conditions are met. The conditional rules defined in this module are based on device, user-agent, and viewport capabilities. With conditional rules, you can target CSS styles based on query values or browser and device features, independent of the document being rendered.</p>
+<p>The first CSS conditional rules were <a href="/en-US/docs/Web/CSS/@media#media_types">media types</a> specifying the intended destination medium for the linked styles, for example <code>screen</code> or <code>print</code>. These were set as the value of the HTML <a href="/en-US/docs/Web/HTML/Element/link"><code>&lt;link&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/style"><code>&lt;style&gt;</code></a> elements' <code>media</code> attributes or as a comma-separated list of media types within an <a href="/en-US/docs/Web/CSS/@import"><code>@import</code></a> statement or at-rule. The ability to conditionally apply CSS rules has been greatly expanded since the CSS 2.1 and HTML 4.01 implementations that limited conditional queries to a few media types.</p>
+<p>CSS conditional rules now include feature queries; the <code>@supports</code> at-rule enables targeting CSS styles based on a user-agent's CSS capabilities. Additional conditions include which selector, font-formats, and font-techs are supported.</p>
+<p>The CSS conditional rules module also expands <code>@media</code> to enable nesting at-rules, with the related <a href="/en-US/docs/Web/CSS/CSS_media_queries">CSS media queries</a> module removing unused media types and adding many media features and conditions that can be targeted.</p>
+<p>The <a href="/en-US/docs/Web/CSS/CSS_containment/Container_queries">CSS container queries module</a> defines similar conditional rules, but based on an element's parent rather than the viewport.</p>
+<p>There are plans to further extend possible queries by adding the generalized conditional rule <code>@when</code> and the chained conditional rule <code>@else</code>. These two at-rules are not yet supported.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="at-rules">At-rules</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@media"><code>@media</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@supports"><code>@supports</code></a></li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> The CSS conditional rules module introduces two at-rules that have not been implemented: <code>@else</code> and <code>@when</code>.</p>
+</div>
+<h3 id="functions">Functions</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@supports#font-tech"><code>font-tech()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@supports#font-format"><code>font-format()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@supports#function_syntax"><code>selector()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@import#supports-condition"><code>supports()</code></a></li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> The CSS conditional rules module introduces a CSS function that has not been implemented: <code>media()</code>.</p>
+</div>
+<h3 id="data_types">data types</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries#syntax"><code>&lt;media-query&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@import#importing_css_rules_conditional_on_feature_support"><code>&lt;supports-condition&gt;</code></a></li>
+  <li><code>&lt;supports-feature&gt;</code> (see <a href="/en-US/docs/Web/CSS/@import#supports-condition"><code>supports()</code></a>)</li>
+</ul>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/CSSConditionRule"><code>CSSConditionRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSMediaRule"><code>CSSMediaRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSSSupportsRule"><code>CSSSupportsRule</code></a></li>
+  <li><a href="/en-US/docs/Web/API/CSS/supports_static" title="supports()"><code>supports()</code></a> method</li>
+</ul>
+<h3 id="terms_and_glossary_definitions">Terms and glossary definitions</h3>
+<ul>
+  <li><a href="/en-US/docs/Glossary/Media/CSS">Media</a></li>
+  <li>Supports query (See <a href="/en-US/docs/Web/CSS/CSS_conditional_rules/Using_feature_queries">feature query</a>)</li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="using_css_feature_queries"><a href="/en-US/docs/Web/CSS/CSS_conditional_rules/Using_feature_queries">Using CSS feature queries</a></dt>
+  <dd>
+    <p>Selectively applying CSS rules after checking browser support for the specified properties and values via feature queries.</p>
+  </dd>
+  <dt id="using_css_media_queries"><a href="/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries">Using CSS media queries</a></dt>
+  <dd>
+    <p>Introduces media queries, their syntax, and the operators and media features that are used to construct media query expressions.</p>
+  </dd>
+  <dt id="supporting_older_browsers_feature_queries"><a href="/en-US/docs/Learn_web_development/Core/CSS_layout/Supporting_Older_Browsers#feature_queries">Supporting older browsers: feature queries</a></dt>
+  <dd>
+    <p>How to use feature queries to target CSS based on the browser's level of support for web features.</p>
+  </dd>
+  <dt id="browser_feature_detection_css_supports"><a href="/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection#supports">Browser feature detection: CSS <code>@supports</code></a></dt>
+  <dd>
+    <p>A look at JavaScript and CSS feature detection, including CSS <code>@supports</code>.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_cascade">CSS cascade and inheritance</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@import"><code>@import</code></a> at-rule</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_media_queries">CSS media queries</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@media#media_features"><code>&lt;media-feature&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@media#media_types"><code>&lt;media-type&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@media#logical_operators"><code>&lt;media-condition&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/SVG/Attribute/media"><code>&lt;media-query-list&gt;</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/@media#logical_operators">CSS logical operators</a> (<code>not</code>, <code>or</code>, and <code>and</code>)</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_containment">CSS containment</a></p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> at-rule</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSSOM_view">CSSOM view</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/API/CSS"><code>CSS</code></a> API</li>
+      <li><a href="/en-US/docs/Web/API/CSSGroupingRule"><code>CSSGroupingRule</code></a> API</li>
+      <li><a href="/en-US/docs/Web/API/MediaQueryList"><code>MediaQueryList</code></a> API</li>
+      <li><a href="/en-US/docs/Web/API/CSSRule"><code>CSSRule</code></a> API</li>
+      <li><a href="/en-US/docs/Web/API/MediaList"><code>MediaList</code></a> interface
+        <ul>
+          <li><a href="/en-US/docs/Web/API/MediaList/mediaText"><code>MediaList.mediaText</code></a> property</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_syntax">CSS syntax</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@charset"><code>@charset</code></a> declaration</li>
+      <li><a href="/en-US/docs/Web/CSS/At-rule"><code>at-rule</code></a> term</li>
+      <li><a href="/en-US/docs/Web/CSS/CSS_syntax/Error_handling"><code>invalid</code></a> term</li>
+      <li><a href="/en-US/docs/Glossary/Parse">parse</a> term</li>
+      <li><a href="/en-US/docs/Web/API/CSSStyleRule">style rule</a> term</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_namespaces">CSS namespaces</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@namespace"><code>@namespace</code></a> at-rule</li>
+    </ul>
+  </li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://www.w3.org/TR/css-conditional-5/,https://www.w3.org/TR/css-conditional-4/,https://www.w3.org/TR/css-conditional-3/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_containment/Container_queries">CSS container queries</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_media_queries">CSS media queries</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_cascade">CSS cascade and inheritance</a> module</li>
+</ul>
+</body></html>

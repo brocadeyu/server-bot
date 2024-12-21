@@ -1,0 +1,253 @@
+<html><head></head><body>
+<p>The <strong><code>transition-timing-function</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets how intermediate values are calculated for CSS properties being affected by a <a href="/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions">transition effect</a>.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/transition-timing-function.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p>This, in essence, lets you establish an acceleration curve so that the speed of the transition can vary over its duration.</p>
+<p>This acceleration curve is defined using one <a href="/en-US/docs/Web/CSS/easing-function"><code>&lt;easing-function&gt;</code></a> for each property to be transitioned.</p>
+<p>You may specify multiple easing functions; each one will be applied to the corresponding property as specified by the <a href="/en-US/docs/Web/CSS/transition-property"><code>transition-property</code></a> property, which acts as a <code>transition-property</code> list. If there are fewer easing functions specified than in the <code>transition-property</code> list, the user agent must calculate which value is used by repeating the list of values until there is one for each transition property. If there are more easing functions, the list is truncated to the right size. In both cases, the CSS declaration stays valid.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+transition-timing-function: ease;
+transition-timing-function: ease-in;
+transition-timing-function: ease-out;
+transition-timing-function: ease-in-out;
+transition-timing-function: linear;
+transition-timing-function: step-start;
+transition-timing-function: step-end;
+
+/* Function values */
+transition-timing-function: steps(4, jump-end);
+transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
+
+/* Steps Function keywords */
+transition-timing-function: steps(4, jump-start);
+transition-timing-function: steps(10, jump-end);
+transition-timing-function: steps(20, jump-none);
+transition-timing-function: steps(5, jump-both);
+transition-timing-function: steps(6, start);
+transition-timing-function: steps(8, end);
+
+/* Multiple easing functions */
+transition-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1, 0.1);
+
+/* Global values */
+transition-timing-function: inherit;
+transition-timing-function: initial;
+transition-timing-function: revert;
+transition-timing-function: revert-layer;
+transition-timing-function: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="easing-function"><a href="#easing-function"><code>&lt;easing-function&gt;</code></a></dt>
+  <dd>
+    <p>Each <a href="/en-US/docs/Web/CSS/easing-function"><code>&lt;easing-function&gt;</code></a> represents the easing function to link to the corresponding property to transition, as defined in <a href="/en-US/docs/Web/CSS/transition-property"><code>transition-property</code></a>.</p>
+    <p>The non-step keyword values (ease, linear, ease-in-out, etc.) each represent cubic Bézier curve with fixed four point values, with the cubic-bezier() function value allowing for a non-predefined value. The step easing functions divide the input time into a specified number of intervals that are equal in length. It is defined by a number of steps and a step position.</p>
+    <dl>
+      <dt id="ease"><a href="#ease"><code>ease</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.25, 0.1, 0.25, 1.0)</code>, the default value, increases in velocity towards the middle of the transition, slowing back down at the end.</p>
+      </dd>
+      <dt id="linear"><a href="#linear"><code>linear</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.0, 0.0, 1.0, 1.0)</code>, transitions at an even speed.</p>
+      </dd>
+      <dt id="ease-in"><a href="#ease-in"><code>ease-in</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.42, 0, 1.0, 1.0)</code>, starts off slowly, with the transition speed increasing until complete.</p>
+      </dd>
+      <dt id="ease-out"><a href="#ease-out"><code>ease-out</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0, 0, 0.58, 1.0)</code>, starts transitioning quickly, slowing down as the transition continues.</p>
+      </dd>
+      <dt id="ease-in-out"><a href="#ease-in-out"><code>ease-in-out</code></a></dt>
+      <dd>
+        <p>Equal to <code>cubic-bezier(0.42, 0, 0.58, 1.0)</code>, starts transitioning slowly, speeds up, and then slows down again.</p>
+      </dd>
+      <dt id="cubic-bezierp1_p2_p3_p4"><a href="#cubic-bezierp1_p2_p3_p4"><code>cubic-bezier(p1, p2, p3, p4)</code></a></dt>
+      <dd>
+        <p>An author-defined cubic-Bezier curve, where the p1 and p3 values must be in the range of 0 to 1.</p>
+      </dd>
+      <dt id="stepsn_jump-term"><a href="#stepsn_jump-term"><code>steps(n, &lt;jump-term&gt;)</code></a></dt>
+      <dd>
+        <p>Displays the transition along <em>n stops along the transition, displaying each stop for</em> equal lengths of time. For example, if <em>n</em> is 5, there are 5 steps. Whether the transition holds temporarily at 0%, 20%, 40%, 60% and 80%, on the 20%, 40%, 60%, 80% and 100%, or makes 5 stops between the 0% and 100% along the transition, or makes 5 stops including the 0% and 100% marks (on the 0%, 25%, 50%, 75%, and 100%) depends on which of the following jump terms is used:</p>
+        <dl>
+          <dt id="jump-start"><a href="#jump-start"><code>jump-start</code></a></dt>
+          <dd>
+            <p>Denotes a left-continuous function, so that the first jump happens when the transition begins;</p>
+          </dd>
+          <dt id="jump-end"><a href="#jump-end"><code>jump-end</code></a></dt>
+          <dd>
+            <p>Denotes a right-continuous function, so that the last jump happens when the animation ends;</p>
+          </dd>
+          <dt id="jump-none"><a href="#jump-none"><code>jump-none</code></a></dt>
+          <dd>
+            <p>There is no jump on either end. Instead, holding at both the 0% mark and the 100% mark, each for 1/n of the duration</p>
+          </dd>
+          <dt id="jump-both"><a href="#jump-both"><code>jump-both</code></a></dt>
+          <dd>
+            <p>Includes pauses at both the 0% and 100% marks, effectively adding a step during the transition time.</p>
+          </dd>
+          <dt id="start"><a href="#start"><code>start</code></a></dt>
+          <dd>
+            <p>Same as <code>jump-start</code>.</p>
+          </dd>
+          <dt id="end"><a href="#end"><code>end</code></a></dt>
+          <dd>
+            <p>Same as <code>jump-end</code>.</p>
+          </dd>
+        </dl>
+      </dd>
+      <dt id="step-start"><a href="#step-start"><code>step-start</code></a></dt>
+      <dd>
+        <p>Equal to <code>steps(1, jump-start)</code></p>
+      </dd>
+      <dt id="step-end"><a href="#step-end"><code>step-end</code></a></dt>
+      <dd>
+        <p>Equal to <code>steps(1, jump-end)</code></p>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+<h2 id="accessibility">Accessibility</h2>
+<p>Some animations can be helpful such as to guide users to understand what actions are expected, to show relationships within the user interface, and to inform users as to what actions have occurred. Animations can help reduce cognitive load, prevent change blindness, and establish better recall in spatial relationships. However, some animations can be problematic for people with cognitive concerns such as Attention Deficit Hyperactivity Disorder (ADHD) and certain kinds of motion can be a trigger for Vestibular disorders, epilepsy, and migraine and Scotopic sensitivity.</p>
+<p>Consider providing a mechanism for pausing or disabling animation, as well as using the <a href="/en-US/docs/Web/CSS/@media/prefers-reduced-motion">Reduced Motion Media Query</a> (or equivalent <a href="/en-US/docs/Web/HTTP/Client_hints#user-agent_client_hints">User Agent client hint</a> <a href="/en-US/docs/Web/HTTP/Headers/Sec-CH-Prefers-Reduced-Motion"><code>Sec-CH-Prefers-Reduced-Motion</code></a>) to create a complimentary experience for users who have expressed a preference for less animation.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>ease</code></td></tr><tr><th scope="row">Applies to</th><td>all elements, <a href="/en-US/docs/Web/CSS/::before"><code>::before</code></a> and <a href="/en-US/docs/Web/CSS/::after"><code>::after</code></a> <a href="/en-US/docs/Web/CSS/Pseudo-elements">pseudo-elements</a></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>Not animatable</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="transition-timing-function">transition-timing-function = </span><br>  <span class="token property">&lt;easing-function&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#hash_mark" title="Hash mark: the entity is repeated one or several times, each occurence separated by a comma">#</a>  <br><br><span class="token property" id="<easing-function>">&lt;easing-function&gt; = </span><br>  <span class="token property">&lt;linear-easing-function&gt;</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;cubic-bezier-easing-function&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;step-easing-function&gt;</span>          <br><br><span class="token property" id="<linear-easing-function>">&lt;linear-easing-function&gt; = </span><br>  <span class="token keyword">linear</span>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;linear()&gt;</span>  <br><br><span class="token property" id="<cubic-bezier-easing-function>">&lt;cubic-bezier-easing-function&gt; = </span><br>  <span class="token keyword">ease</span>              <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">ease-in</span>           <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">ease-out</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">ease-in-out</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;cubic-bezier()&gt;</span>  <br><br><span class="token property" id="<step-easing-function>">&lt;step-easing-function&gt; = </span><br>  <span class="token keyword">step-start</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">step-end</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;steps()&gt;</span>   <br><br><span class="token property" id="<linear()>">&lt;linear()&gt; = </span><br>  <span class="token function">linear(</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_ampersand" title="Double ampersand: all of the entities must be present, in any order">&amp;&amp;</a> <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{0,2}</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#hash_mark" title="Hash mark: the entity is repeated one or several times, each occurence separated by a comma">#</a> <span class="token function">)</span>  <br><br><span class="token property" id="<cubic-bezier()>">&lt;cubic-bezier()&gt; = </span><br>  <span class="token function">cubic-bezier(</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number [0,1]&gt;</span></a> , <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#hash_mark" title="Hash mark: the entity is repeated one or several times, each occurence separated by a comma">#</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{2}</a> <span class="token function">)</span>  <br><br><span class="token property" id="<steps()>">&lt;steps()&gt; = </span><br>  <span class="token function">steps(</span> <a href="/en-US/docs/Web/CSS/integer"><span class="token property">&lt;integer&gt;</span></a> , <span class="token property">&lt;step-position&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <span class="token function">)</span>  <br><br><span class="token property" id="<step-position>">&lt;step-position&gt; = </span><br>  <span class="token keyword">jump-start</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jump-end</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jump-none</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">jump-both</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">start</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">end</span>         <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="cubic-bezier_examples">Cubic-Bezier examples</h3>
+<pre class="brush: html hidden">&lt;div class="parent"&gt;
+  &lt;div class="ease"&gt;ease&lt;/div&gt;
+  &lt;div class="ease-in"&gt;ease-in&lt;/div&gt;
+  &lt;div class="ease-out"&gt;ease-out&lt;/div&gt;
+  &lt;div class="ease-in-out"&gt;ease-in-out&lt;/div&gt;
+  &lt;div class="linear"&gt;linear&lt;/div&gt;
+  &lt;div class="cb"&gt;cubic-bezier(0.2,-2,0.8,2)&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<pre class="brush: css hidden">.parent {
+}
+.parent &gt; div[class] {
+  width: 12em;
+  min-width: 12em;
+  margin-bottom: 4px;
+  background-color: black;
+  border: 1px solid red;
+  color: white;
+  transition-property: all;
+  transition-duration: 7s;
+}
+.parent &gt; div.box1 {
+  width: 90vw;
+  min-width: 24em;
+  background-color: magenta;
+  color: yellow;
+  border: 1px solid orange;
+  transition-property: all;
+  transition-duration: 2s;
+}
+</pre>
+<pre class="brush: js hidden">function updateTransition() {
+  const els = document.querySelectorAll(".parent &gt; div[class]");
+  for (let i = 0; i &lt; els.length; i++) {
+    els[i].classList.toggle("box1");
+  }
+}
+
+const intervalID = setInterval(updateTransition, 10000);
+</pre>
+<pre class="brush: css">.ease {
+  transition-timing-function: ease;
+}
+.ease-in {
+  transition-timing-function: ease-in;
+}
+.ease-out {
+  transition-timing-function: ease-out;
+}
+.ease-in-out {
+  transition-timing-function: ease-in-out;
+}
+.linear {
+  transition-timing-function: linear;
+}
+.cb {
+  transition-timing-function: cubic-bezier(0.2, -2, 0.8, 2);
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Cubic-Bezier examples sample" id="frame_cubic-bezier_examples" src="about:blank" data-live-path="/en-US/docs/Web/CSS/transition-timing-function" data-live-id="cubic-bezier_examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="step_examples">Step examples</h3>
+<pre class="brush: html hidden">&lt;div class="parent"&gt;
+  &lt;div class="jump-start"&gt;jump-start&lt;/div&gt;
+  &lt;div class="jump-end"&gt;jump-end&lt;/div&gt;
+  &lt;div class="jump-both"&gt;jump-both&lt;/div&gt;
+  &lt;div class="jump-none"&gt;jump-none&lt;/div&gt;
+  &lt;div class="step-start"&gt;step-start&lt;/div&gt;
+  &lt;div class="step-end"&gt;step-end&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<pre class="brush: css hidden">.parent {
+}
+.parent &gt; div[class] {
+  width: 12em;
+  min-width: 12em;
+  margin-bottom: 4px;
+  background-color: black;
+  border: 1px solid red;
+  color: white;
+  transition-property: all;
+  transition-duration: 7s;
+}
+.parent &gt; div.box1 {
+  width: 90vw;
+  min-width: 24em;
+  background-color: magenta;
+  color: yellow;
+  border: 1px solid orange;
+  transition-property: all;
+  transition-duration: 2s;
+}
+</pre>
+<pre class="brush: js hidden">function updateTransition() {
+  const els = document.querySelectorAll(".parent &gt; div[class]");
+  for (let i = 0; i &lt; els.length; i++) {
+    els[i].classList.toggle("box1");
+  }
+}
+
+const intervalID = setInterval(updateTransition, 10000);
+</pre>
+<pre class="brush: css">.jump-start {
+  transition-timing-function: steps(5, jump-start);
+}
+.jump-end {
+  transition-timing-function: steps(5, jump-end);
+}
+.jump-none {
+  transition-timing-function: steps(5, jump-none);
+}
+.jump-both {
+  transition-timing-function: steps(5, jump-both);
+}
+.step-start {
+  transition-timing-function: step-start;
+}
+.step-end {
+  transition-timing-function: step-end;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Step examples sample" id="frame_step_examples" src="about:blank" data-live-path="/en-US/docs/Web/CSS/transition-timing-function" data-live-id="step_examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.transition-timing-function" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.transition-timing-function" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions">Using CSS transitions</a></li>
+  <li><a href="/en-US/docs/Web/CSS/easing-function"><code>&lt;easing-function&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/transition"><code>transition</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/transition-property"><code>transition-property</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/transition-duration"><code>transition-duration</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/transition-delay"><code>transition-delay</code></a></li>
+  <li><a href="/en-US/docs/Web/API/TransitionEvent"><code>TransitionEvent</code></a></li>
+</ul>
+</body></html>

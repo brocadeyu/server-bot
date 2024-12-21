@@ -1,0 +1,150 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>PerformanceElementTiming</code></strong> interface contains render timing information for image and text node elements the developer annotated with an <a href="/en-US/docs/Web/HTML/Attributes/elementtiming"><code>elementtiming</code></a> attribute for observation.</p>
+<h2 id="description">Description</h2>
+<p>The aim of the Element Timing API is to give web developers or analytics tools the ability to measure rendering timestamps of critical elements on a page.</p>
+<p>The API supports timing information on the following elements:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> elements,</li>
+  <li><a href="/en-US/docs/Web/SVG/Element/image"><code>&lt;image&gt;</code></a> elements inside an <a href="/en-US/docs/Web/SVG/Element/svg"><code>&lt;svg&gt;</code></a>,</li>
+  <li><a href="/en-US/docs/Web/HTML/Element/video#poster">poster</a> images of <a href="/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> elements,</li>
+  <li>elements which have a contentful <a href="/en-US/docs/Web/CSS/background-image"><code>background-image</code></a> property with a URL value for a resource that is actually available, and</li>
+  <li>groups of text nodes, such as a <a href="/en-US/docs/Web/HTML/Element/p"><code>&lt;p&gt;</code></a>.</li>
+</ul>
+<p>The author flags an element for observation by adding the <a href="/en-US/docs/Web/HTML/Attributes/elementtiming"><code>elementtiming</code></a> attribute on the element.</p>
+<p><code>PerformanceElementTiming</code> inherits from <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PerformanceEntry">
+    <rect x="0" y="0" width="128" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="64" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PerformanceEntry
+    </text>
+  </a>
+  <line x1="128" y1="14" x2="158" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="128,14 138,9 138,19 128,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PerformanceElementTiming" aria-current="page">
+    <rect x="158" y="0" width="192" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="254" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PerformanceElementTiming
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p>This interface extends the following <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a> properties for event timing performance entry types by qualifying them as follows:</p>
+<dl>
+  <dt id="performanceentry.duration"><a href="/en-US/docs/Web/API/PerformanceEntry/duration"><code>PerformanceEntry.duration</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Always returns <code>0</code> as <code>duration</code> does not apply to this interface.</p>
+  </dd>
+  <dt id="performanceentry.entrytype"><a href="/en-US/docs/Web/API/PerformanceEntry/entryType"><code>PerformanceEntry.entryType</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Always returns <code>"element"</code>.</p>
+  </dd>
+  <dt id="performanceentry.name"><a href="/en-US/docs/Web/API/PerformanceEntry/name"><code>PerformanceEntry.name</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns <code>"image-paint"</code> for images and <code>"text-paint"</code> for text.</p>
+  </dd>
+  <dt id="performanceentry.starttime"><a href="/en-US/docs/Web/API/PerformanceEntry/startTime"><code>PerformanceEntry.startTime</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the value of this entry's <a href="/en-US/docs/Web/API/PerformanceElementTiming/renderTime" title="renderTime"><code>renderTime</code></a> if it is not <code>0</code>, otherwise the value of this entry's <a href="/en-US/docs/Web/API/PerformanceElementTiming/loadTime" title="loadTime"><code>loadTime</code></a>.</p>
+  </dd>
+</dl>
+<p>This interface also supports the following properties:</p>
+<dl>
+  <dt id="performanceelementtiming.element"><a href="/en-US/docs/Web/API/PerformanceElementTiming/element"><code>PerformanceElementTiming.element</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>An <a href="/en-US/docs/Web/API/Element"><code>Element</code></a> representing the element we are returning information about.</p>
+  </dd>
+  <dt id="performanceelementtiming.id"><a href="/en-US/docs/Web/API/PerformanceElementTiming/id"><code>PerformanceElementTiming.id</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string which is the <a href="/en-US/docs/Web/HTML/Global_attributes/id"><code>id</code></a> of the element.</p>
+  </dd>
+  <dt id="performanceelementtiming.identifier"><a href="/en-US/docs/Web/API/PerformanceElementTiming/identifier"><code>PerformanceElementTiming.identifier</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string which is the value of the <a href="/en-US/docs/Web/HTML/Attributes/for"><code>elementtiming</code></a> attribute on the element.</p>
+  </dd>
+  <dt id="performanceelementtiming.intersectionrect"><a href="/en-US/docs/Web/API/PerformanceElementTiming/intersectionRect"><code>PerformanceElementTiming.intersectionRect</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/API/DOMRectReadOnly"><code>DOMRectReadOnly</code></a> which is the rectangle of the element within the viewport.</p>
+  </dd>
+  <dt id="performanceelementtiming.loadtime"><a href="/en-US/docs/Web/API/PerformanceElementTiming/loadTime"><code>PerformanceElementTiming.loadTime</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> with the loadTime of the element.</p>
+  </dd>
+  <dt id="performanceelementtiming.naturalheight"><a href="/en-US/docs/Web/API/PerformanceElementTiming/naturalHeight"><code>PerformanceElementTiming.naturalHeight</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>An unsigned 32-bit integer (unsigned long) which is the intrinsic height of the image if this is applied to an image, 0 for text.</p>
+  </dd>
+  <dt id="performanceelementtiming.naturalwidth"><a href="/en-US/docs/Web/API/PerformanceElementTiming/naturalWidth"><code>PerformanceElementTiming.naturalWidth</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>An unsigned 32-bit integer (unsigned long) which is the intrinsic width of the image if this is applied to an image, 0 for text.</p>
+  </dd>
+  <dt id="performanceelementtiming.rendertime"><a href="/en-US/docs/Web/API/PerformanceElementTiming/renderTime"><code>PerformanceElementTiming.renderTime</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> with the renderTime of the element.</p>
+  </dd>
+  <dt id="performanceelementtiming.url"><a href="/en-US/docs/Web/API/PerformanceElementTiming/url"><code>PerformanceElementTiming.url</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>A string which is the initial URL of the resources request for images, 0 for text.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="performanceelementtiming.tojson"><a href="/en-US/docs/Web/API/PerformanceElementTiming/toJSON"><code>PerformanceElementTiming.toJSON()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a JSON representation of the <code>PerformanceElementTiming</code> object.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="observing_render_time_of_specific_elements">Observing render time of specific elements</h3>
+<p>In this example two elements are being observed by adding the <a href="/en-US/docs/Web/HTML/Attributes/elementtiming"><code>elementtiming</code></a> attribute. A <a href="/en-US/docs/Web/API/PerformanceObserver"><code>PerformanceObserver</code></a> is registered to get all performance entries of type <code>"element"</code> and the <code>buffered</code> flag is used to access data from before observer creation.</p>
+<pre class="brush: html">&lt;img src="image.jpg" elementtiming="big-image" /&gt;
+&lt;p elementtiming="text" id="text-id"&gt;text here&lt;/p&gt;
+</pre>
+<pre class="brush: js">const observer = new PerformanceObserver((list) =&gt; {
+  list.getEntries().forEach((entry) =&gt; {
+    console.log(entry);
+  });
+});
+observer.observe({ type: "element", buffered: true });
+</pre>
+<p>Two entries will be output to the console. The first containing details of the image, the second with details of the text node.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PerformanceElementTiming" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PerformanceElementTiming" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/HTML/Attributes/elementtiming"><code>elementtiming</code></a> HTML attribute</li>
+</ul>
+</body></html>

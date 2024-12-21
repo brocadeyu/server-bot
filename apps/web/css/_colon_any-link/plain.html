@@ -1,0 +1,50 @@
+<html><head></head><body>
+<p>The <strong><code>:any-link</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> selector represents an element that acts as the source anchor of a hyperlink, independent of whether it has been visited. In other words, it matches every <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> or <a href="/en-US/docs/Web/HTML/Element/area"><code>&lt;area&gt;</code></a> element that has an <code>href</code> attribute. Thus, it matches all elements that match <a href="/en-US/docs/Web/CSS/:link"><code>:link</code></a> or <a href="/en-US/docs/Web/CSS/:visited"><code>:visited</code></a>.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-any-link.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:any-link {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;a href="https://example.com"&gt;External link&lt;/a&gt;&lt;br /&gt;
+&lt;a href="#"&gt;Internal target link&lt;/a&gt;&lt;br /&gt;
+&lt;a&gt;Placeholder link (won't get styled)&lt;/a&gt;
+</pre>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">a:any-link {
+  border: 1px solid blue;
+  color: orange;
+}
+
+/* WebKit browsers */
+a:-webkit-any-link {
+  border: 1px solid blue;
+  color: orange;
+}
+</pre>
+<h3 id="result">Result</h3><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:any-link" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.any-link" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.any-link" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>
+    <p><a href="/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links">Creating links</a></p>
+  </li>
+  <li>
+    <p>Matches HTML elements: <a href="/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> and <a href="/en-US/docs/Web/HTML/Element/area"><code>&lt;area&gt;</code></a> with an <a href="/en-US/docs/Web/HTML/Element/a#href"><code>href</code></a> attribute</p>
+  </li>
+  <li>
+    <p>Related CSS selectors:</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/:visited"><code>:visited</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/:link"><code>:link</code></a></li>
+    </ul>
+  </li>
+</ul>
+</body></html>

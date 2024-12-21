@@ -1,0 +1,64 @@
+<html><head></head><body>
+<p>The <strong><code>:optional</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents any <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a>, <a href="/en-US/docs/Web/HTML/Element/select"><code>&lt;select&gt;</code></a>, or <a href="/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a> element that does not have the <a href="/en-US/docs/Web/HTML/Element/input#required"><code>required</code></a> attribute set on it.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-standard-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/pseudo-class-optional.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<p>This pseudo-class is useful for styling fields that are not required to submit a form.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> The <a href="/en-US/docs/Web/CSS/:required"><code>:required</code></a> pseudo-class selects <em>required</em> form fields.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:optional {
+  /* ... */
+}
+</pre>
+<h2 id="accessibility">Accessibility</h2>
+<p>If a <a href="/en-US/docs/Web/HTML/Element/form">form</a> contains optional <a href="/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a>s, required inputs should be indicated using the <a href="/en-US/docs/Web/HTML/Element/input#required"><code>required</code></a> attribute. This will ensure that people navigating with the aid of assistive technology such as a screen reader will be able to understand which inputs need valid content to ensure a successful form submission.</p>
+<p>Required inputs should also be indicated visually, using a treatment that does not rely solely on color to convey meaning. Typically, descriptive text and/or an icon are used.</p>
+<ul>
+  <li><a href="/en-US/docs/Web/Accessibility/Understanding_WCAG/Understandable#guideline_3.3_%e2%80%94_input_assistance_help_users_avoid_and_correct_mistakes">MDN Understanding WCAG, Guideline 3.3 explanations</a></li>
+  <li><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-cues.html">Understanding Success Criterion 3.3.2 | W3C Understanding WCAG 2.0</a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="the_optional_field_has_a_purple_border">The optional field has a purple border</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;form&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="url_input"&gt;Enter a URL:&lt;/label&gt;
+    &lt;input type="url" id="url_input" /&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="email_input"&gt;Enter an email address:&lt;/label&gt;
+    &lt;input type="email" id="email_input" required /&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">label {
+  display: block;
+  margin: 1px;
+  padding: 1px;
+}
+
+.field {
+  margin: 1px;
+  padding: 1px;
+}
+
+input:optional {
+  border-color: rebeccapurple;
+  border-width: 3px;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="600" height="120" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:optional" data-live-id="examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.optional" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.optional" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>Other validation-related pseudo-classes: <a href="/en-US/docs/Web/CSS/:required"><code>:required</code></a>, <a href="/en-US/docs/Web/CSS/:invalid"><code>:invalid</code></a>, <a href="/en-US/docs/Web/CSS/:valid"><code>:valid</code></a></li>
+  <li><a href="/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation">Form data validation</a></li>
+</ul>
+</body></html>

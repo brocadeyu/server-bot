@@ -1,0 +1,105 @@
+<html><head></head><body>
+<p>The <strong><code>MediaStream</code></strong> interface of the <a href="/en-US/docs/Web/API/Media_Capture_and_Streams_API">Media Capture and Streams API</a> represents a stream of media content. A stream consists of several <strong>tracks</strong>, such as video or audio tracks. Each track is specified as an instance of <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a>.</p>
+<p>You can obtain a <code>MediaStream</code> object either by using the constructor or by calling functions such as <a href="/en-US/docs/Web/API/MediaDevices/getUserMedia"><code>MediaDevices.getUserMedia()</code></a>, <a href="/en-US/docs/Web/API/MediaDevices/getDisplayMedia"><code>MediaDevices.getDisplayMedia()</code></a>, or <a href="/en-US/docs/Web/API/HTMLCanvasElement/captureStream"><code>HTMLCanvasElement.captureStream()</code></a> and <a href="/en-US/docs/Web/API/HTMLMediaElement/captureStream"><code>HTMLMediaElement.captureStream()</code></a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/MediaStream" aria-current="page">
+    <rect x="118" y="0" width="88" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="162" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      MediaStream
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="mediastream"><a href="/en-US/docs/Web/API/MediaStream/MediaStream" title="MediaStream()"><code>MediaStream()</code></a></dt>
+  <dd>
+    <p>Creates and returns a new <code>MediaStream</code> object. You can create an empty stream, a stream which is based upon an existing stream, or a stream that contains a specified list of tracks (specified as an array of <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> objects).</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface inherits properties from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="mediastream.active"><a href="/en-US/docs/Web/API/MediaStream/active"><code>MediaStream.active</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A Boolean value that returns <code>true</code> if the <code>MediaStream</code> is active, or <code>false</code> otherwise.</p>
+  </dd>
+  <dt id="mediastream.id"><a href="/en-US/docs/Web/API/MediaStream/id"><code>MediaStream.id</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string containing a 36-character universally unique identifier (<a href="/en-US/docs/Glossary/UUID">UUID</a>) for the object.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface inherits methods from its parent, <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<dl>
+  <dt id="mediastream.addtrack"><a href="/en-US/docs/Web/API/MediaStream/addTrack"><code>MediaStream.addTrack()</code></a></dt>
+  <dd>
+    <p>Stores a copy of the <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> given as argument. If the track has already been added to the <code>MediaStream</code> object, nothing happens.</p>
+  </dd>
+  <dt id="mediastream.clone"><a href="/en-US/docs/Web/API/MediaStream/clone"><code>MediaStream.clone()</code></a></dt>
+  <dd>
+    <p>Returns a clone of the <code>MediaStream</code> object. The clone will, however, have a unique value for <a href="/en-US/docs/Web/API/MediaStream/id" title="id"><code>id</code></a>.</p>
+  </dd>
+  <dt id="mediastream.getaudiotracks"><a href="/en-US/docs/Web/API/MediaStream/getAudioTracks"><code>MediaStream.getAudioTracks()</code></a></dt>
+  <dd>
+    <p>Returns a list of the <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> objects stored in the <code>MediaStream</code> object that have their <code>kind</code> attribute set to <code>audio</code>. The order is not defined, and may not only vary from one browser to another, but also from one call to another.</p>
+  </dd>
+  <dt id="mediastream.gettrackbyid"><a href="/en-US/docs/Web/API/MediaStream/getTrackById"><code>MediaStream.getTrackById()</code></a></dt>
+  <dd>
+    <p>Returns the track whose ID corresponds to the one given in parameters, <code>trackId</code>. If no parameter is given, or if no track with that ID does exist, it returns <code>null</code>. If several tracks have the same ID, it returns the first one.</p>
+  </dd>
+  <dt id="mediastream.gettracks"><a href="/en-US/docs/Web/API/MediaStream/getTracks"><code>MediaStream.getTracks()</code></a></dt>
+  <dd>
+    <p>Returns a list of all <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> objects stored in the <code>MediaStream</code> object, regardless of the value of the <code>kind</code> attribute. The order is not defined, and may not only vary from one browser to another, but also from one call to another.</p>
+  </dd>
+  <dt id="mediastream.getvideotracks"><a href="/en-US/docs/Web/API/MediaStream/getVideoTracks"><code>MediaStream.getVideoTracks()</code></a></dt>
+  <dd>
+    <p>Returns a list of the <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> objects stored in the <code>MediaStream</code> object that have their <code>kind</code> attribute set to <code>"video"</code>. The order is not defined, and may not only vary from one browser to another, but also from one call to another.</p>
+  </dd>
+  <dt id="mediastream.removetrack"><a href="/en-US/docs/Web/API/MediaStream/removeTrack"><code>MediaStream.removeTrack()</code></a></dt>
+  <dd>
+    <p>Removes the <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> given as argument. If the track is not part of the <code>MediaStream</code> object, nothing happens.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<dl>
+  <dt id="addtrack"><a href="/en-US/docs/Web/API/MediaStream/addtrack_event" title="addtrack"><code>addtrack</code></a></dt>
+  <dd>
+    <p>Fired when a new <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> object is added.</p>
+  </dd>
+  <dt id="removetrack"><a href="/en-US/docs/Web/API/MediaStream/removetrack_event" title="removetrack"><code>removetrack</code></a></dt>
+  <dd>
+    <p>Fired when a <a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a> object has been removed.</p>
+  </dd>
+  <dt id="active"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;MediaStream/active_event&quot;, &quot;active&quot;)}}"><code>active</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when the MediaStream is activated.</p>
+  </dd>
+  <dt id="inactive"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;MediaStream/inactive_event&quot;, &quot;inactive&quot;)}}"><code>inactive</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when the MediaStream is inactivated.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MediaStream" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MediaStream" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API">Using the MediaStream Recording API</a></li>
+  <li><a href="/en-US/docs/Web/API/WebRTC_API">WebRTC API</a></li>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a></li>
+  <li><a href="/en-US/docs/Web/API/MediaStreamTrack"><code>MediaStreamTrack</code></a></li>
+</ul>
+</body></html>

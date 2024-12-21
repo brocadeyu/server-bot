@@ -1,0 +1,64 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>LinearAccelerationSensor</code></strong> interface of the <a href="/en-US/docs/Web/API/Sensor_APIs">Sensor APIs</a> provides on each reading the acceleration applied to the device along all three axes, but without the contribution of gravity.</p>
+<p>To use this sensor, the user must grant permission to the <code>'accelerometer'</code> device sensor through the <a href="/en-US/docs/Web/API/Permissions_API">Permissions API</a>. In addition, this feature may be blocked by a <a href="/en-US/docs/Web/HTTP/Permissions_Policy">Permissions Policy</a> set on your server.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Sensor">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Sensor
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Accelerometer">
+    <rect x="223" y="0" width="104" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="275" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Accelerometer
+    </text>
+  </a>
+  <line x1="327" y1="14" x2="357" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="327,14 337,9 337,19 327,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/LinearAccelerationSensor" aria-current="page">
+    <rect x="357" y="0" width="192" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="453" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      LinearAccelerationSensor
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="linearaccelerationsensor"><a href="/en-US/docs/Web/API/LinearAccelerationSensor/LinearAccelerationSensor" title="LinearAccelerationSensor()"><code>LinearAccelerationSensor()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>LinearAccelerationSensor</code> object.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its ancestors, <a href="/en-US/docs/Web/API/Accelerometer"><code>Accelerometer</code></a>, <a href="/en-US/docs/Web/API/Sensor"><code>Sensor</code></a>, and <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em><code>LinearAccelerationSensor</code> doesn't have own methods. However, it inherits methods from its parent interfaces, <a href="/en-US/docs/Web/API/Sensor"><code>Sensor</code></a> and <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a>.</em></p>
+<h2 id="events">Events</h2>
+<p><em><code>LinearAccelerationSensor</code> doesn't have own events. However, it inherits events from its parent interface, <a href="/en-US/docs/Web/API/Sensor"><code>Sensor</code></a>.</em></p>
+<h2 id="example">Example</h2>
+<p>Linear acceleration is typically read in the <a href="/en-US/docs/Web/API/Sensor/reading_event" title="reading"><code>reading</code></a> event callback. In the example below this occurs sixty times a second.</p>
+<pre class="brush: js">let laSensor = new LinearAccelerationSensor({ frequency: 60 });
+
+laSensor.addEventListener("reading", (e) =&gt; {
+  console.log(`Linear acceleration along the X-axis ${laSensor.x}`);
+  console.log(`Linear acceleration along the Y-axis ${laSensor.y}`);
+  console.log(`Linear acceleration along the Z-axis ${laSensor.z}`);
+});
+laSensor.start();
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.LinearAccelerationSensor" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.LinearAccelerationSensor" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

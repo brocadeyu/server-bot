@@ -1,0 +1,114 @@
+<html><head></head><body>
+<p>The <code>color-interpolation</code> CSS property is used in SVG to specify which color space to use for <a href="/en-US/docs/Web/SVG/Element/linearGradient"><code>&lt;linearGradient&gt;</code></a> and <a href="/en-US/docs/Web/SVG/Element/radialGradient"><code>&lt;radialGradient&gt;</code></a> SVG elements.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+color-interpolation: auto;
+color-interpolation: sRGB;
+color-interpolation: linearRGB;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="auto"><a href="#auto"><code>auto</code></a></dt>
+  <dd>
+    <p>Indicates that the user agent can choose either the <code>sRGB</code> or <code>linearRGB</code> spaces for color interpolation. This option indicates that the author doesn't require that color interpolation occur in a particular color space.</p>
+  </dd>
+  <dt id="srgb"><a href="#srgb"><code>sRGB</code></a></dt>
+  <dd>
+    <p>
+      Indicates that color interpolation should occur in the sRGB color space.
+      Defaults to this initial value if no <code>color-interpolation</code> property is set.
+    </p>
+  </dd>
+  <dt id="linearrgb"><a href="#linearrgb"><code>linearRGB</code></a></dt>
+  <dd>
+    <p>Indicates that color interpolation should occur in the linearized RGB color space as described in <a href="https://webstore.iec.ch/en/publication/6169">the sRGB specification</a>.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2>
+<table class="properties">
+  <tbody>
+    <tr>
+      <th scope="row">Value</th>
+      <td><code>auto</code> | <code>sRGB</code> | <code>linearRGB</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Applies to</th>
+      <td><a href="/en-US/docs/Web/SVG/Element/linearGradient"><code>&lt;linearGradient&gt;</code></a> and <a href="/en-US/docs/Web/SVG/Element/radialGradient"><code>&lt;radialGradient&gt;</code></a></td>
+    </tr>
+    <tr>
+      <th scope="row">Default value</th>
+      <td><code>auto</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Animatable</th>
+      <td>discrete</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="color-interpolation">color-interpolation = </span><br>  <span class="token keyword">auto</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">sRGB</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">linearRGB</span>  <br><br></pre>
+<h2 id="example">Example</h2>
+<p>
+  In the first SVG, the <code>color-interpolation</code> property is not included on the <code>&lt;linearGradient&gt;</code> element and color interpolation defaults to <code>sRGB</code>.
+  The second example shows color interpolation using the <code>linearRGB</code> value.
+</p>
+<pre class="brush: html">&lt;svg width="450" height="70"&gt;
+  &lt;title&gt;Example of using the color-interpolation CSS Property&lt;/title&gt;
+  &lt;defs&gt;
+    &lt;linearGradient id="sRGB"&gt;
+      &lt;stop offset="0%" stop-color="white" /&gt;
+      &lt;stop offset="25%" stop-color="blue" /&gt;
+      &lt;stop offset="50%" stop-color="white" /&gt;
+      &lt;stop offset="75%" stop-color="red" /&gt;
+      &lt;stop offset="100%" stop-color="white" /&gt;
+    &lt;/linearGradient&gt;
+  &lt;/defs&gt;
+  &lt;rect x="0" y="0" width="400" height="40" fill="url(#sRGB)" stroke="black" /&gt;
+  &lt;text x="0" y="60" font-family="courier" font-size="16"&gt;
+    no color-interpolation (CSS property)
+  &lt;/text&gt;
+&lt;/svg&gt;
+</pre>
+<pre class="brush: html">&lt;svg width="450" height="70"&gt;
+  &lt;title&gt;Example of using the color-interpolation CSS Property&lt;/title&gt;
+  &lt;defs&gt;
+    &lt;linearGradient id="linearRGB"&gt;
+      &lt;stop offset="0%" stop-color="white" /&gt;
+      &lt;stop offset="25%" stop-color="blue" /&gt;
+      &lt;stop offset="50%" stop-color="white" /&gt;
+      &lt;stop offset="75%" stop-color="red" /&gt;
+      &lt;stop offset="100%" stop-color="white" /&gt;
+    &lt;/linearGradient&gt;
+  &lt;/defs&gt;
+  &lt;rect
+    x="0"
+    y="0"
+    width="400"
+    height="40"
+    fill="url(#linearRGB)"
+    stroke="black" /&gt;
+  &lt;text x="0" y="60" font-family="courier" font-size="16"&gt;
+    color-interpolation: linearRGB; (CSS property)
+  &lt;/text&gt;
+&lt;/svg&gt;
+</pre>
+<pre class="brush: css">svg {
+  display: block;
+}
+
+#linearRGB {
+  color-interpolation: linearRGB;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Example sample" id="frame_example" width="100%" height="140" src="about:blank" data-live-path="/en-US/docs/Web/CSS/color-interpolation" data-live-id="example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.color-interpolation" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.color-interpolation" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/SVG/Element/linearGradient"><code>&lt;linearGradient&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/SVG/Element/radialGradient"><code>&lt;radialGradient&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/SVG/Attribute/color-interpolation"><code>color-interpolation</code></a></li>
+</ul>
+</body></html>

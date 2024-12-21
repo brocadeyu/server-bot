@@ -1,0 +1,51 @@
+<html><head></head><body>
+<p>The <strong><code>&lt;length-percentage&gt;</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Types">data type</a> represents a value that can be either a <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> or a <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<p>Refer to the documentation for <a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a> and <a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a> for details of the individual syntaxes allowed by this type.</p>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="<length-percentage>">&lt;length-percentage&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="length-percentage_examples">length-percentage examples</h3>
+<p>The following simple example demonstrates several properties that use <code>&lt;length-percentage&gt;</code> values.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p&gt;You can use percentages and lengths in so many places.&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">p {
+  /* length-percentage examples */
+  width: 75%;
+  height: 200px;
+  margin: 3rem;
+  padding: 1%;
+  border-radius: 10px 10%;
+  font-size: 250%;
+  line-height: 1.5em;
+
+  /* length examples */
+  text-shadow: 1px 1px 1px red;
+  border: 5px solid red;
+  letter-spacing: 3px;
+
+  /* percentage example */
+  text-size-adjust: 20%;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="length-percentage examples sample" id="frame_length-percentage_examples" width="100%" height="320" src="about:blank" data-live-path="/en-US/docs/Web/CSS/length-percentage" data-live-id="length-percentage_examples" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="use_in_calc">Use in calc()</h3>
+<p>Where a <code>&lt;length-percentage&gt;</code> is specified as an allowable type, this means that the percentage resolves to a length and therefore can be used in a <a href="/en-US/docs/Web/CSS/calc"><code>calc()</code></a> expression. Therefore, all of the following values are acceptable for <a href="/en-US/docs/Web/CSS/width"><code>width</code></a>:</p>
+<pre class="brush: css example-good">width: 200px;
+width: 20%;
+width: calc(100% - 200px);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.length-percentage" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.length-percentage" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/percentage"><code>&lt;percentage&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_Values_and_Units">CSS Values and Units</a></li>
+</ul>
+</body></html>

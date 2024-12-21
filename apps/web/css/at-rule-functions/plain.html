@@ -1,0 +1,57 @@
+<html><head></head><body>
+<p><strong><a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/At-rule">at-rule</a> functions</strong> are at-rule statements that represent complex rules or can invoke special data processing or calculations.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">@identifier function([argument]? [, argument]!) {
+}
+</pre>
+<p>The syntax begins with the at symbol <code>@</code> and an at-rule identifier, such as <code>import</code>. This is followed by the <strong>name of the at-rule function</strong>, such as <code>url</code>, followed by a pair of opening and closing parentheses. One or more arguments are specified inside the parentheses.</p>
+<p>Some at-rule functions can take multiple arguments, which are formatted similar to CSS property values. White space is allowed, but it is optional inside the parentheses. Multiple arguments can be separated using a comma or a space.</p>
+<h2 id="import_functions">@import functions</h2>
+<p>The <a href="/en-US/docs/Web/CSS/@import"><code>@import</code></a> at-rule is used to import styles from other stylesheets.</p>
+<dl>
+  <dt id="import_url"><a href="/en-US/docs/Web/CSS/@import"><code>@import url()</code></a></dt>
+  <dd>
+    <p>Imports a stylesheet file from the specified URL.</p>
+  </dd>
+  <dt id="import_supports"><a href="/en-US/docs/Web/CSS/@import"><code>@import supports()</code></a></dt>
+  <dd>
+    <p>Imports a stylesheet file based on browser support.</p>
+  </dd>
+  <dt id="import_layer"><a href="/en-US/docs/Web/CSS/@import"><code>@import layer()</code></a></dt>
+  <dd>
+    <p>Imports a stylesheet file into the specified cascade layer.</p>
+  </dd>
+</dl>
+<h2 id="supports_functions">@supports functions</h2>
+<p>The <a href="/en-US/docs/Web/CSS/@supports"><code>@supports</code></a> at-rule checks for a browser's support for the specified CSS feature and then applies the CSS styling.</p>
+<dl>
+  <dt id="supports_selector"><a href="/en-US/docs/Web/CSS/@supports"><code>@supports selector()</code></a></dt>
+  <dd>
+    <p>Applies CSS rules after checking browser's support for the specified selector syntax.</p>
+  </dd>
+  <dt id="supports_font-tech"><a href="/en-US/docs/Web/CSS/@supports"><code>@supports font-tech()</code></a></dt>
+  <dd>
+    <p>Applies CSS rules after checking browser's support for the specified font technology.</p>
+  </dd>
+  <dt id="supports_font-format"><a href="/en-US/docs/Web/CSS/@supports"><code>@supports font-format()</code></a></dt>
+  <dd>
+    <p>Applies CSS rules after checking browser's support for the specified font format.</p>
+  </dd>
+</dl>
+<h2 id="namespace_functions">@namespace functions</h2>
+<p>The <a href="/en-US/docs/Web/CSS/@namespace"><code>@namespace</code></a> at-rule is used to specify XML namespaces to be used in a CSS stylesheet.</p>
+<dl>
+  <dt id="namespace_url"><a href="/en-US/docs/Web/CSS/@namespace"><code>@namespace url()</code></a></dt>
+  <dd>
+    <p>Defines XML namespace from the specified URL.</p>
+  </dd>
+</dl>
+<h2 id="container_functions">@container functions</h2>
+<p>The <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> at-rule is used to specify styles for a containment context.</p>
+<dl>
+  <dt id="container_style"><a href="/en-US/docs/Web/CSS/@container"><code>@container style()</code></a></dt>
+  <dd>
+    <p>Defines the containment context style.</p>
+  </dd>
+</dl>
+</body></html>

@@ -1,0 +1,101 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>PresentationConnection</code></strong> interface of the <a href="/en-US/docs/Web/API/Presentation_API">Presentation API</a> provides methods and properties for managing a single presentation. Each <a href="https://www.w3.org/TR/presentation-api/#dfn-presentation-connection">presentation connection</a> is represented by a <code>PresentationConnection</code> object. Both the <a href="https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent">controlling user agent</a> and <a href="https://www.w3.org/TR/presentation-api/#dfn-receiving-user-agent">receiving user agent</a> <em>MUST</em> implement <code>PresentationConnection</code>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PresentationConnection" aria-current="page">
+    <rect x="118" y="0" width="176" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="206" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PresentationConnection
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="presentationconnection.binarytype"><a href="/en-US/docs/Web/API/PresentationConnection/binaryType"><code>PresentationConnection.binaryType</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns either blob or arrayBuffer. When a <code>PresentationConnection</code> object is created, its <a href="https://www.w3.org/TR/presentation-api/#idl-def-presentationconnection-binarytype"><code>binaryType</code></a> IDL attribute <em>MUST</em> be set to the string <a href="https://www.w3.org/TR/presentation-api/#dom-binarytype-arraybuffer"><code>"arraybuffer"</code></a>.</p>
+  </dd>
+  <dt id="presentationconnection.id"><a href="/en-US/docs/Web/API/PresentationConnection/id"><code>PresentationConnection.id</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Provides the presentation connection identifier.</p>
+  </dd>
+  <dt id="presentationconnection.state"><a href="/en-US/docs/Web/API/PresentationConnection/state"><code>PresentationConnection.state</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="https://www.w3.org/TR/presentation-api/#dfn-presentation-connection">presentation connection</a>'s current state.</p>
+  </dd>
+  <dt id="presentationconnection.url"><a href="/en-US/docs/Web/API/PresentationConnection/url"><code>PresentationConnection.url</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the URL used to create or reconnect to the presentation.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="presentationconnection.close"><a href="/en-US/docs/Web/API/PresentationConnection/close"><code>PresentationConnection.close()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Closes the current connection and sends a <a href="/en-US/docs/Web/API/PresentationConnectionCloseEvent"><code>PresentationConnectionCloseEvent</code></a> to <a href="/en-US/docs/Web/API/PresentationConnection/close" title="close"><code>close</code></a> event.</p>
+  </dd>
+  <dt id="presentationconnection.send"><a href="/en-US/docs/Web/API/PresentationConnection/send"><code>PresentationConnection.send()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Sends either binary or text data between a controlling browsing context and a presenting browsing context.</p>
+  </dd>
+  <dt id="presentationconnection.terminate"><a href="/en-US/docs/Web/API/PresentationConnection/terminate"><code>PresentationConnection.terminate()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Terminates the current connection and fires <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;PresentationConnection/terminate_event&quot;, &quot;terminate&quot;)}}"><code>terminate</code></a> event.</p>
+  </dd>
+</dl>
+<h2 id="events">Events</h2>
+<dl>
+  <dt id="close"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;PresentationConnection/close_event&quot;, &quot;close&quot;)}}"><code>close</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when there is a call to <a href="/en-US/docs/Web/API/PresentationConnection/close" title="PresentationConnection.close()"><code>PresentationConnection.close()</code></a>.</p>
+  </dd>
+  <dt id="connect"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;PresentationConnection/connect_event&quot;, &quot;connect&quot;)}}"><code>connect</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when a presentation connection is established.</p>
+  </dd>
+  <dt id="message"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;PresentationConnection/message_event&quot;, &quot;message&quot;)}}"><code>message</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when there is a call to <a href="/en-US/docs/Web/API/PresentationConnection/send" title="PresentationConnection.send()"><code>PresentationConnection.send()</code></a>.</p>
+  </dd>
+  <dt id="terminate"><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{domxref(&quot;PresentationConnection/terminate_event&quot;, &quot;terminate&quot;)}}"><code>terminate</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Fired when there is a call to <a href="/en-US/docs/Web/API/PresentationConnection/terminate" title="PresentationConnection.terminate()"><code>PresentationConnection.terminate()</code></a>.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PresentationConnection" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PresentationConnection" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

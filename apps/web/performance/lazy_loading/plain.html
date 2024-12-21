@@ -1,0 +1,64 @@
+<html><head></head><body>
+<p><strong>Lazy loading</strong> is a strategy to identify resources as non-blocking (non-critical) and load these only when needed. It's a way to shorten the length of the <a href="/en-US/docs/Web/Performance/Critical_rendering_path">critical rendering path</a>, which translates into reduced page load times.</p>
+<p>Lazy loading can occur on different moments in the application, but it typically happens on some user interactions such as scrolling and navigation.</p>
+<h2 id="overview">Overview</h2>
+<p>
+  As the web has evolved, we have come to see huge increases in the number and size of assets sent to users.
+  Between 2011 and 2019, the median resource weight increased from <strong>~100KB</strong> to <strong>~400KB</strong> for desktop and <strong>~50KB</strong> to <strong>~350KB</strong> for mobile. While Image size has increased from <strong>~250KB</strong> to <strong>~900KB</strong> on desktop and <strong>~100KB</strong> to <strong>~850KB</strong> on mobile.
+</p>
+<p>
+  One of the methods we can use to tackle this problem is to shorten the <a href="/en-US/docs/Web/Performance/Critical_rendering_path">Critical Rendering Path</a> length by lazy loading resources that are not critical for the first render to happen.
+  A practical example would be when you land on the home page of an e-commerce site with a link to a cart page/section, and none of the cart page's resources (such as JavaScript, CSS, and images) are downloaded <strong>until</strong> you navigate there.
+</p>
+<h2 id="strategies">Strategies</h2>
+<p>Lazy loading can be applied to multiple resources and through multiple strategies.</p>
+<h3 id="general">General</h3>
+<h4 id="code_splitting">Code splitting</h4>
+<p>JavaScript, CSS and HTML can be split into smaller chunks. This enables sending the minimal code required to provide value upfront, improving page-load times. The rest can be loaded on demand.</p>
+<ul>
+  <li>Entry point splitting: separates code by entry point(s) in the app</li>
+  <li>Dynamic splitting: separates code where <a href="/en-US/docs/Web/JavaScript/Reference/Operators/import">dynamic import()</a> expressions are used</li>
+</ul>
+<h3 id="javascript">JavaScript</h3>
+<h4 id="script_type_module">Script type module</h4>
+<p>Any script tag with <code>type="module"</code> is treated as a <a href="/en-US/docs/Web/JavaScript/Guide/Modules">JavaScript module</a> and is deferred by default.</p>
+<h3 id="css">CSS</h3>
+<p>By default, CSS is treated as a <a href="/en-US/docs/Web/Performance/Critical_rendering_path">render blocking</a> resource, so the browser won't render any processed content until the <a href="/en-US/docs/Web/API/CSS_Object_Model">CSSOM</a> is constructed. CSS must be thin, delivered as quickly as possible, and the usage media types and queries are advised to unblock rendering.</p>
+<pre class="brush: html">&lt;link href="style.css" rel="stylesheet" media="all" /&gt;
+&lt;link href="portrait.css" rel="stylesheet" media="(orientation:portrait)" /&gt;
+&lt;link href="print.css" rel="stylesheet" media="print" /&gt;
+</pre>
+<p>It is possible to perform some <a href="/en-US/docs/Learn_web_development/Extensions/Performance/CSS">CSS optimizations</a> to achieve that.</p>
+<h3 id="fonts">Fonts</h3>
+<p>By default, font requests are delayed until the render tree is constructed, which can result in delayed text rendering.</p>
+<p>It is possible to override the default behavior and preload web font resources using <code>&lt;link rel="preload"&gt;</code>, the <a href="/en-US/docs/Web/CSS/@font-face/font-display">CSS <code>font-display</code> descriptor</a>, and the <a href="/en-US/docs/Web/API/CSS_Font_Loading_API">Font Loading API</a>.</p>
+<p>See also: <a href="/en-US/docs/Web/HTML/Element/link">Element Link</a>.</p>
+<h3 id="images_and_iframes">Images and iframes</h3>
+<p>Very often, webpages contain many images that contribute to data-usage and how fast a page can load. Most of those images are off-screen (<a href="/en-US/docs/Web/Performance/Critical_rendering_path">non-critical</a>), requiring a user interaction, like scrolling, in order to view them.</p>
+<h4 id="loading_attribute">Loading attribute</h4>
+<p>
+  The <a href="/en-US/docs/Web/HTML/Element/img#loading"><code>loading</code></a> attribute on an <a href="/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> element, or the <a href="/en-US/docs/Web/HTML/Element/iframe#loading"><code>loading</code></a> attribute on an <a href="/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>, can be used to instruct the browser to defer loading of images/iframes that are off-screen until the user scrolls near them.
+  This allows non-critical resources to load only if needed, potentially speeding up initial page loads and reducing network usage.
+</p>
+<pre class="brush: html">&lt;img loading="lazy" src="image.jpg" alt="..." /&gt;
+&lt;iframe loading="lazy" src="video-player.html" title="..."&gt;&lt;/iframe&gt;
+</pre>
+<p>The <code>load</code> event fires when the eagerly-loaded content has all been loaded. At that time, it's entirely possible (or even likely) that there may be lazily-loaded images or iframes within the <a href="/en-US/docs/Glossary/Visual_Viewport">visual viewport</a> that haven't yet loaded.</p>
+<p>You can determine if a given image has finished loading by examining the value of its Boolean <a href="/en-US/docs/Web/API/HTMLImageElement/complete" title="complete"><code>complete</code></a> property.</p>
+<h4 id="intersection_observer_api">Intersection Observer API</h4>
+<p><a href="/en-US/docs/Web/API/IntersectionObserver">Intersection Observers</a> allow the user to know when an observed element enters or exits the browser's viewport.</p>
+<h4 id="event_handlers">Event handlers</h4>
+<p>When browser compatibility is crucial, there are a few options:</p>
+<ul>
+  <li><a href="https://github.com/w3c/IntersectionObserver">polyfill intersection observer</a></li>
+  <li>fallback to scroll, resize or orientation change event handlers to determine if a specific element is in viewport</li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://html.spec.whatwg.org/multipage/#lazy-loading-attributes">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://web.dev/articles/critical-rendering-path/render-blocking-css">Render blocking CSS</a></li>
+  <li><a href="https://web.dev/articles/browser-level-image-lazy-loading">Browser-level image lazy loading for the web</a></li>
+</ul>
+</body></html>

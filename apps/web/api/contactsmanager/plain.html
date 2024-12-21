@@ -1,0 +1,75 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>ContactsManager</code></strong> interface of the <a href="/en-US/docs/Web/API/Contact_Picker_API">Contact Picker API</a> allows users to select entries from their contact list and share limited details of the selected entries with a website or application.</p>
+<p>The <code>ContactsManager</code> is available through the global <a href="/en-US/docs/Web/API/Navigator/contacts"><code>navigator.contacts</code></a> property.</p>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="select"><a href="/en-US/docs/Web/API/ContactsManager/select" title="select()"><code>select()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which, when resolved, presents the user with a contact picker which allows them to select contact(s) they wish to share.</p>
+  </dd>
+  <dt id="getproperties"><a href="/en-US/docs/Web/API/ContactsManager/getProperties" title="getProperties()"><code>getProperties()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves with an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>strings</code></a> indicating which contact properties are available.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="feature_detection">Feature Detection</h3>
+<p>The following code checks whether the Contact Picker API is supported.</p>
+<pre class="brush: js">const supported = "contacts" in navigator &amp;&amp; "ContactsManager" in window;
+</pre>
+<h3 id="checking_for_supported_properties">Checking for Supported Properties</h3>
+<p>The following asynchronous function uses the <code>getProperties</code> method to check for supported properties.</p>
+<pre class="brush: js">async function checkProperties() {
+  const supportedProperties = await navigator.contacts.getProperties();
+  if (supportedProperties.includes("name")) {
+    // run code for name support
+  }
+  if (supportedProperties.includes("email")) {
+    // run code for email support
+  }
+  if (supportedProperties.includes("tel")) {
+    // run code for telephone number support
+  }
+  if (supportedProperties.includes("address")) {
+    // run code for address support
+  }
+  if (supportedProperties.includes("icon")) {
+    // run code for avatar support
+  }
+}
+</pre>
+<h3 id="selecting_contacts">Selecting Contacts</h3>
+<p>The following example sets an array of properties to be retrieved for each contact, as well as setting an options object to allow for multiple contacts to be selected.</p>
+<p>An asynchronous function is then defined which uses the <code>select()</code> method to present the user with a contact picker interface and handle the chosen results.</p>
+<pre class="brush: js">const props = ["name", "email", "tel", "address", "icon"];
+const opts = { multiple: true };
+
+async function getContacts() {
+  try {
+    const contacts = await navigator.contacts.select(props, opts);
+    handleResults(contacts);
+  } catch (ex) {
+    // Handle any errors here.
+  }
+}
+</pre>
+<p><code>handleResults()</code> is a developer defined function.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ContactsManager" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ContactsManager" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/capabilities/web-apis/contact-picker">A Contact Picker for the Web</a></li>
+  <li><a href="https://contact-picker.glitch.me/">A Contact Picker demo on glitch</a></li>
+</ul>
+</body></html>

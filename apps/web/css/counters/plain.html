@@ -1,0 +1,145 @@
+<html><head></head><body>
+<p>The <strong><code>counters()</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Functions">function</a> enables combining markers when nesting counters. The function returns a string that concatenates the current values of the named and nested counters, if any are present, with the string provided. The third, optional parameter enables defining the list style.</p>
+<p>The <code>counters()</code> function is generally used within <a href="/en-US/docs/Web/CSS/Pseudo-elements">pseudo-element</a> through the <a href="/en-US/docs/Web/CSS/content"><code>content</code></a> property, but theoretically, it can be used wherever a <a href="/en-US/docs/Web/CSS/string"><code>&lt;string&gt;</code></a> value is supported.</p>
+<p>The <code>counters()</code> function has two forms: <code>counters(&lt;name&gt;, &lt;string&gt;)</code> and <code>counters(&lt;name&gt;, &lt;string&gt;, &lt;style&gt;)</code>. The generated text is the value of all counters with the given <code>&lt;name&gt;</code>, arranged from the outermost to the innermost, and separated by the specified <code>&lt;string&gt;</code>. The counters are rendered in the <code>&lt;style&gt;</code> indicated, defaulting to <code>decimal</code> if no <code>&lt;style&gt;</code> is specified.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-tabbed-standard-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/function-counters.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Simple usage  - style defaults to decimal */
+counters(counter-name, '.');
+
+/* changing the counter display */
+counters(counter-name, '-', upper-roman)
+</pre>
+<p>A <a href="/en-US/docs/Web/CSS/CSS_counter_styles/Using_CSS_counters">counter</a> has no visible effect by itself. The <code>counters()</code> function (and <a href="/en-US/docs/Web/CSS/counter"><code>counter()</code></a> function) is what makes it useful by returning developer-defined content.</p>
+<h3 id="values">Values</h3>
+<p>The <code>counters()</code> function accepts two or three parameters. The first parameter is the <code>&lt;counter-name&gt;</code>. The second parameter is the concatenator <code>&lt;string&gt;</code>. The optional third parameter is the <code>&lt;counter-style&gt;</code>.</p>
+<dl>
+  <dt id="counter-name"><a href="#counter-name"><code>&lt;counter-name&gt;</code></a></dt>
+  <dd>
+    <p>A <a href="/en-US/docs/Web/CSS/custom-ident"><code>&lt;custom-ident&gt;</code></a> identifying the counters, which is the same case-sensitive name used for the <a href="/en-US/docs/Web/CSS/counter-reset"><code>counter-reset</code></a> and <a href="/en-US/docs/Web/CSS/counter-increment"><code>counter-increment</code></a> properties. The name cannot start with two dashes and can't be <code>none</code>, <code>unset</code>, <code>initial</code>, or <code>inherit</code>. Alternatively, for inline, single-use counters, the <a href="/en-US/docs/Web/CSS/symbols"><code>symbols()</code></a> function can be used instead of a named counter in <a href="/en-US/docs/Web/CSS/symbols#browser_compatibility">browsers that support <code>symbols()</code></a>.</p>
+  </dd>
+  <dt id="string"><a href="/en-US/docs/Web/CSS/string"><code>&lt;string&gt;</code></a></dt>
+  <dd>
+    <p>Any number of text characters. Non-Latin characters must be encoded using their Unicode escape sequences: for example, <code>\000A9</code> represents the copyright symbol.</p>
+  </dd>
+  <dt id="counter-style"><a href="#counter-style"><code>&lt;counter-style&gt;</code></a></dt>
+  <dd>
+    <p>A counter style name or a <a href="/en-US/docs/Web/CSS/symbols"><code>symbols()</code></a> function. The counter style name can be a simple predefined style such as numeric, alphabetic, or symbolic, a complex longhand predefined style such as East Asian or Ethiopic, or another <a href="/en-US/docs/Web/CSS/CSS_counter_styles">predefined counter style</a>. If omitted, the counter-style defaults to decimal.</p>
+  </dd>
+</dl>
+<p>The return value is a string containing all the values of all the counters in the element's CSS counters set named <code>&lt;counter-name&gt;</code> in the counter style defined by <code>&lt;counter-style&gt;</code> (or decimal, if omitted). The return string is sorted in outermost-first to innermost-last order, joined by the <code>&lt;string&gt;</code> specified.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> For information about non-concatenated counters, see the <a href="/en-US/docs/Web/CSS/counter"><code>counter()</code></a> function, which omits the <code>&lt;string&gt;</code> as a parameter.</p>
+</div>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="<counters()>">&lt;counters()&gt; = </span><br>  <span class="token function">counters(</span> <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/counter-name"><span class="token property">&lt;counter-name&gt;</span></a> , <a href="/en-US/docs/Web/CSS/string"><span class="token property">&lt;string&gt;</span></a> , <span class="token property">&lt;counter-style&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <span class="token function">)</span>  <br><br><span class="token property" id="<counter-style>">&lt;counter-style&gt; = </span><br>  <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/counter-style-name"><span class="token property">&lt;counter-style-name&gt;</span></a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;symbols()&gt;</span>           <br><br><span class="token property" id="<symbols()>">&lt;symbols()&gt; = </span><br>  <span class="token function">symbols(</span> <span class="token property">&lt;symbols-type&gt;</span><a href="/en-US/docs/Web/CSS/Value_definition_syntax#question_mark" title="Question mark: the entity is optional">?</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/string"><span class="token property">&lt;string&gt;</span></a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token property">&lt;image&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#plus" title="Plus: the entity may occur one or several times">+</a> <span class="token function">)</span>  <br><br><span class="token property" id="<symbols-type>">&lt;symbols-type&gt; = </span><br>  <span class="token keyword">cyclic</span>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">numeric</span>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">alphabetic</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">symbolic</span>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">fixed</span>       <br><br><span class="token property" id="<image>">&lt;image&gt; = </span><br>  <span class="token property">&lt;url&gt;</span>       <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/gradient"><span class="token property">&lt;gradient&gt;</span></a>  <br><br><span class="token property" id="<url>">&lt;url&gt; = </span><br>  <span class="token property">&lt;url()&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;src()&gt;</span>  <br><br><span class="token property" id="<url()>">&lt;url()&gt; = </span><br>  <span class="token function">url(</span> <a href="/en-US/docs/Web/CSS/string"><span class="token property">&lt;string&gt;</span></a> <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/url-modifier"><span class="token property">&lt;url-modifier&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a> <span class="token function">)</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/url-token"><span class="token property">&lt;url-token&gt;</span></a>                      <br><br><span class="token property" id="<src()>">&lt;src()&gt; = </span><br>  <span class="token function">src(</span> <a href="/en-US/docs/Web/CSS/string"><span class="token property">&lt;string&gt;</span></a> <a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-href="/en-US/docs/Web/CSS/url-modifier"><span class="token property">&lt;url-modifier&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a> <span class="token function">)</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="comparing_default_counter_value_to_uppercase_roman_numerals">Comparing default counter value to uppercase roman numerals</h3>
+<p>This example includes two <code>counters()</code> functions: one with <code>&lt;counter-style&gt;</code> set and the other defaulting to <code>decimal</code>.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;ol&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;/li&gt;
+      &lt;li&gt;
+        &lt;ol&gt;
+          &lt;li&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">ol {
+  counter-reset: listCounter;
+}
+li {
+  counter-increment: listCounter;
+}
+li::marker {
+  content:
+    counters(listCounter, ".", upper-roman) ") ";
+}
+li::before {
+  content:
+    counters(listCounter, ".") " == "
+    counters(listCounter, ".", lower-roman);
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Comparing default counter value to uppercase roman numerals sample" id="frame_comparing_default_counter_value_to_uppercase_roman_numerals" width="100%" height="270" src="about:blank" data-live-path="/en-US/docs/Web/CSS/counters" data-live-id="comparing_default_counter_value_to_uppercase_roman_numerals" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="comparing_decimal-leading-zero_counter_value_to_lowercase_letters">Comparing decimal-leading-zero counter value to lowercase letters</h3>
+<p>This example includes three <code>counters()</code> functions, each with different <code>&lt;string&gt;</code> and <code>&lt;counter-style&gt;</code> values.</p>
+<h4 id="html_2">HTML</h4>
+<pre class="brush: html">&lt;ol&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;/li&gt;
+      &lt;li&gt;
+        &lt;ol&gt;
+          &lt;li&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+<h4 id="css_2">CSS</h4>
+<pre class="brush: css">ol {
+  counter-reset: count;
+}
+li {
+  counter-increment: count;
+}
+li::marker {
+  content:
+    counters(count, "-", decimal-leading-zero) ") ";
+}
+li::before {
+  content:
+    counters(count, "~", upper-alpha) " == "
+    counters(count,  "*", lower-alpha);
+}
+</pre>
+<h4 id="result_2">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Comparing decimal-leading-zero counter value to lowercase letters sample" id="frame_comparing_decimal-leading-zero_counter_value_to_lowercase_letters" width="100%" height="270" src="about:blank" data-live-path="/en-US/docs/Web/CSS/counters" data-live-id="comparing_decimal-leading-zero_counter_value_to_lowercase_letters" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.counters" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.counters" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_counter_styles/Using_CSS_counters">Using CSS Counters</a></li>
+  <li><a href="/en-US/docs/Web/CSS/counter-set"><code>counter-set</code></a> property</li>
+  <li><a href="/en-US/docs/Web/CSS/counter-reset"><code>counter-reset</code></a> property</li>
+  <li><a href="/en-US/docs/Web/CSS/counter-increment"><code>counter-increment</code></a> property</li>
+  <li><a href="/en-US/docs/Web/CSS/@counter-style"><code>@counter-style</code></a> at-rule</li>
+  <li>CSS <a href="/en-US/docs/Web/CSS/counter"><code>counter()</code></a> function</li>
+  <li><a href="/en-US/docs/Web/CSS/::marker"><code>::marker</code></a> pseudo-element</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_lists">CSS lists and counters</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_counter_styles">CSS counter styles</a> module</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_generated_content">CSS generated content</a> module</li>
+</ul>
+</body></html>

@@ -1,0 +1,67 @@
+<html><head></head><body>
+<p>The <code>MediaQueryListEvent</code> object stores information on the changes that have happened to a <a href="/en-US/docs/Web/API/MediaQueryList"><code>MediaQueryList</code></a> object — instances are available as the event object on a function referenced by a <a href="/en-US/docs/Web/API/MediaQueryList/change_event" title="change"><code>change</code></a> event.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Event">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Event
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/MediaQueryListEvent" aria-current="page">
+    <rect x="105" y="0" width="152" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="181" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      MediaQueryListEvent
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="mediaquerylistevent"><a href="/en-US/docs/Web/API/MediaQueryListEvent/MediaQueryListEvent" title="MediaQueryListEvent()"><code>MediaQueryListEvent()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>MediaQueryListEvent</code> instance.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>The <code>MediaQueryListEvent</code> interface inherits properties from its parent interface, <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<dl>
+  <dt id="mediaquerylistevent.matches"><a href="/en-US/docs/Web/API/MediaQueryListEvent/matches"><code>MediaQueryListEvent.matches</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A boolean value that is <code>true</code> if the <a href="/en-US/docs/Web/API/Document"><code>document</code></a> currently matches the media query list, or <code>false</code> if not.</p>
+  </dd>
+  <dt id="mediaquerylistevent.media"><a href="/en-US/docs/Web/API/MediaQueryListEvent/media"><code>MediaQueryListEvent.media</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string representing a serialized media query.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>The <code>MediaQueryListEvent</code> interface inherits methods from its parent interface, <a href="/en-US/docs/Web/API/Event"><code>Event</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const para = document.querySelector("p"); // This is the UI element where to display the text
+const mql = window.matchMedia("(max-width: 600px)");
+
+mql.addEventListener("change", (event) =&gt; {
+  if (event.matches) {
+    // The viewport is 600 pixels wide or less
+    para.textContent = "This is a narrow screen — less than 600px wide.";
+    document.body.style.backgroundColor = "red";
+  } else {
+    // The viewport is more than 600 pixels wide
+    para.textContent = "This is a wide screen — more than 600px wide.";
+    document.body.style.backgroundColor = "blue";
+  }
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.MediaQueryListEvent" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.MediaQueryListEvent" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries">Media queries</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_media_queries/Testing_media_queries">Using media queries from code</a></li>
+  <li><a href="/en-US/docs/Web/API/Window/matchMedia"><code>window.matchMedia()</code></a></li>
+  <li><a href="/en-US/docs/Web/API/MediaQueryList"><code>MediaQueryList</code></a></li>
+</ul>
+</body></html>

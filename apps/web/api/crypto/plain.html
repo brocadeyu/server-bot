@@ -1,0 +1,43 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>
+  The <strong><code>Crypto</code></strong> interface represents basic cryptography features available in the current context.
+  It allows access to a cryptographically strong random number generator and to cryptographic primitives.
+</p>
+<p>The <code>Crypto</code> is available in windows using the <a href="/en-US/docs/Web/API/Window/crypto"><code>Window.crypto</code></a> property and in workers using the <a href="/en-US/docs/Web/API/WorkerGlobalScope/crypto"><code>WorkerGlobalScope.crypto</code></a> property.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface implements properties defined on <a href="/en-US/docs/Web/API/Crypto/getRandomValues" title="RandomSource"><code>RandomSource</code></a>.</em></p>
+<dl>
+  <dt id="crypto.subtle"><a href="/en-US/docs/Web/API/Crypto/subtle"><code>Crypto.subtle</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <span class="badge inline secure" title="This feature is available only in secure contexts (HTTPS)">Secure context</span></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/API/SubtleCrypto"><code>SubtleCrypto</code></a> object providing access to common cryptographic primitives, like hashing, signing, encryption, or decryption.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface implements methods defined on <a href="/en-US/docs/Web/API/Crypto/getRandomValues" title="RandomSource"><code>RandomSource</code></a>.</em></p>
+<dl>
+  <dt id="crypto.getrandomvalues"><a href="/en-US/docs/Web/API/Crypto/getRandomValues"><code>Crypto.getRandomValues()</code></a></dt>
+  <dd>
+    <p>Fills the passed <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>TypedArray</code></a> with cryptographically sound random values.</p>
+  </dd>
+  <dt id="crypto.randomuuid"><a href="/en-US/docs/Web/API/Crypto/randomUUID"><code>Crypto.randomUUID()</code></a> <span class="badge inline secure" title="This feature is available only in secure contexts (HTTPS)">Secure context</span></dt>
+  <dd>
+    <p>Returns a randomly generated, 36 character long v4 UUID.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Crypto" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Crypto" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Security">Web security</a></li>
+  <li><a href="/en-US/docs/Web/Security/Secure_Contexts">Secure contexts</a></li>
+  <li><a href="/en-US/docs/Web/Security/Secure_Contexts/features_restricted_to_secure_contexts">Features restricted to secure contexts</a></li>
+  <li><a href="/en-US/docs/Web/Security/Transport_Layer_Security">Transport Layer Security</a></li>
+  <li><a href="/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security">Strict-Transport-Security</a></li>
+</ul>
+</body></html>

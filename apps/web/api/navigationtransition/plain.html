@@ -1,0 +1,47 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>NavigationTransition</code></strong> interface of the <a href="/en-US/docs/Web/API/Navigation_API" title="Navigation API">Navigation API</a> represents an ongoing navigation, that is, a navigation that hasn't yet reached the <a href="/en-US/docs/Web/API/Navigation/navigatesuccess_event" title="navigatesuccess"><code>navigatesuccess</code></a> or <a href="/en-US/docs/Web/API/Navigation/navigateerror_event" title="navigateerror"><code>navigateerror</code></a> stage.</p>
+<p>It is accessed via the <a href="/en-US/docs/Web/API/Navigation/transition"><code>Navigation.transition</code></a> property.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="finished"><a href="/en-US/docs/Web/API/NavigationTransition/finished" title="finished"><code>finished</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that fulfills at the same time the <a href="/en-US/docs/Web/API/Navigation/navigatesuccess_event" title="navigatesuccess"><code>navigatesuccess</code></a> event fires, or rejects at the same time the <a href="/en-US/docs/Web/API/Navigation/navigateerror_event" title="navigateerror"><code>navigateerror</code></a> event fires.</p>
+  </dd>
+  <dt id="from"><a href="/en-US/docs/Web/API/NavigationTransition/from" title="from"><code>from</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/NavigationHistoryEntry"><code>NavigationHistoryEntry</code></a> that the transition is coming from.</p>
+  </dd>
+  <dt id="navigationtype"><a href="/en-US/docs/Web/API/NavigationTransition/navigationType" title="navigationType"><code>navigationType</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the type of the ongoing navigation.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">async function cleanupNavigation() {
+  await navigation.transition.finished;
+  // Navigation has completed successfully
+  // Cleanup any ongoing monitoring
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.NavigationTransition" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.NavigationTransition" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/web-platform/navigation-api/">Modern client-side routing: the Navigation API</a></li>
+  <li><a href="https://github.com/WICG/navigation-api/blob/main/README.md">Navigation API explainer</a></li>
+  <li>Domenic Denicola's <a href="https://gigantic-honored-octagon.glitch.me/">Navigation API live demo</a></li>
+</ul>
+</body></html>

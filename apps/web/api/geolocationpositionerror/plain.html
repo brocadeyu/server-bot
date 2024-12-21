@@ -1,0 +1,54 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>GeolocationPositionError</code></strong> interface represents the reason of an error occurring when using the geolocating device.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>The <code>GeolocationPositionError</code> interface doesn't inherit any property.</em></p>
+<dl>
+  <dt id="geolocationpositionerror.code"><a href="/en-US/docs/Web/API/GeolocationPositionError/code"><code>GeolocationPositionError.code</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <code>unsigned short</code> representing the error code. The following values are possible:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Value</th>
+          <th>Associated constant</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>1</code></td>
+          <td><code>PERMISSION_DENIED</code></td>
+          <td>The acquisition of the geolocation information failed because the page didn't have the necessary permissions, for example because it is blocked by a <a href="/en-US/docs/Web/HTTP/Permissions_Policy">Permissions Policy</a></td>
+        </tr>
+        <tr>
+          <td><code>2</code></td>
+          <td><code>POSITION_UNAVAILABLE</code></td>
+          <td>The acquisition of the geolocation failed because at least one internal source of position returned an internal error.</td>
+        </tr>
+        <tr>
+          <td><code>3</code></td>
+          <td><code>TIMEOUT</code></td>
+          <td>The time allowed to acquire the geolocation was reached before the information was obtained.</td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+  <dt id="geolocationpositionerror.message"><a href="/en-US/docs/Web/API/GeolocationPositionError/message"><code>GeolocationPositionError.message</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a human-readable string describing the details of the error. Specifications note that this is primarily intended for debugging use and not to be shown directly in a user interface.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>The <code>GeolocationPositionError</code> interface neither implements nor inherits any method.</em></p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GeolocationPositionError" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GeolocationPositionError" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API">Using the Geolocation API</a></li>
+  <li><a href="/en-US/docs/Web/API/Geolocation"><code>Geolocation</code></a></li>
+</ul>
+</body></html>

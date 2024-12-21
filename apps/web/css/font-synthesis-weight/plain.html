@@ -1,0 +1,65 @@
+<html><head></head><body>
+<p>The <strong><code>font-synthesis-weight</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property lets you specify whether or not the browser may synthesize the bold typeface when it is missing in a font family.</p>
+<p>It is often convenient to use the shorthand property <a href="/en-US/docs/Web/CSS/font-synthesis"><code>font-synthesis</code></a> to control all typeface synthesis values.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+font-synthesis-weight: auto;
+font-synthesis-weight: none;
+
+/* Global values */
+font-synthesis-weight: inherit;
+font-synthesis-weight: initial;
+font-synthesis-weight: revert;
+font-synthesis-weight: revert-layer;
+font-synthesis-weight: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="auto"><a href="#auto"><code>auto</code></a></dt>
+  <dd>
+    <p>Indicates that the missing bold typeface may be synthesized by the browser if needed.</p>
+  </dd>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>Indicates that the synthesis of the missing bold typeface by the browser is not allowed.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>all elements and text. It also applies to <a href="/en-US/docs/Web/CSS/::first-letter"><code>::first-letter</code></a> and <a href="/en-US/docs/Web/CSS/::first-line"><code>::first-line</code></a>.</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="font-synthesis-weight">font-synthesis-weight = </span><br>  <span class="token keyword">auto</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">none</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="disabling_synthesis_of_bold_typeface">Disabling synthesis of bold typeface</h3>
+<p>This example shows turning off synthesis of the bold typeface by the browser in the <code>Montserrat</code> font.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p class="english"&gt;
+  This is the default &lt;strong&gt;bold typeface&lt;/strong&gt; and
+  &lt;em&gt;oblique typeface&lt;/em&gt;.
+&lt;/p&gt;
+
+&lt;p class="english no-syn"&gt;
+  The &lt;strong&gt;bold typeface&lt;/strong&gt; is turned off here but not the
+  &lt;em&gt;oblique typeface&lt;/em&gt;.
+&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">@import url("https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap");
+
+.english {
+  font-family: "Montserrat", sans-serif;
+}
+.no-syn {
+  font-synthesis-weight: none;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Disabling synthesis of bold typeface sample" id="frame_disabling_synthesis_of_bold_typeface" height="100" src="about:blank" data-live-path="/en-US/docs/Web/CSS/font-synthesis-weight" data-live-id="disabling_synthesis_of_bold_typeface" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.font-synthesis-weight" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.font-synthesis-weight" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/font-synthesis">font-synthesis</a> shorthand, <a href="/en-US/docs/Web/CSS/font-synthesis-small-caps">font-synthesis-small-caps</a>, <a href="/en-US/docs/Web/CSS/font-synthesis-style">font-synthesis-style</a></li>
+  <li><a href="/en-US/docs/Web/CSS/font-style"><code>font-style</code></a>, <a href="/en-US/docs/Web/CSS/font-variant"><code>font-variant</code></a>, <a href="/en-US/docs/Web/CSS/font-weight"><code>font-weight</code></a></li>
+</ul>
+</body></html>

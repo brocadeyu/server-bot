@@ -1,0 +1,76 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong>Badging API</strong> gives web developers a method of setting a badge on a document or application, to act as a notification that state has changed without displaying a more distracting notification. A common use case for this would be an application with a messaging feature displaying a badge on the app icon to show that new messages have arrived.</p>
+<h2 id="concepts_and_usage">Concepts and Usage</h2>
+<p>Web developers frequently update document favicons or titles in order to indicate status. The Badging API provides a more elegant way to show status, by providing a method which has meaning to the user agent and can therefore be displayed in a way that matches the rest of the UI.</p>
+<h3 id="types_of_badges">Types of badges</h3>
+<p>There are two types of badges:</p>
+<ul>
+  <li>Document badges, which are typically shown in the browser tab near or on the page icon.</li>
+  <li>App badges, which are associated with the icon of an installed web app. These may display on the app icon in the dock, shelf, or home screen depending on the device in use.</li>
+</ul>
+<h3 id="badge_states">Badge states</h3>
+<p>A badge can have one of three possible values, which are set internally:</p>
+<dl>
+  <dt id="nothing"><a href="#nothing"><code>nothing</code></a></dt>
+  <dd>
+    <p>Indicating that no badge is currently set. A badge can be in this state due to it being cleared by the application, or being reset by the user agent.</p>
+  </dd>
+  <dt id="flag"><a href="#flag"><code>flag</code></a></dt>
+  <dd>
+    <p>Indicating that the badge is set, but has no specific data to display. A badge will be in this state if the application has set a badge, but has not passed any value to the method.</p>
+  </dd>
+  <dt id="an_integer"><a href="#an_integer">an integer</a></dt>
+  <dd>
+    <p>A value passed when setting the badge. This value will never be <code>0</code>, passing a value of <code>0</code> when setting a badge will cause the user agent to clear the badge by setting it to <code>nothing</code>.</p>
+  </dd>
+</dl>
+<h3 id="setting_badges">Setting badges</h3>
+<p>A badge is set with the methods <code>setAppBadge()</code> (for installed apps). If no parameters are passed to these methods then the badge value is flag. The user agent will display its notification badge, for example, a colored circle on the icon.</p>
+<p>These methods can also be passed a parameter <code>contents</code>, which should be a number. This will then be displayed as part of the badge. User agents may change this value in some way. For example, if you pass a very large number such as 4000, the user agent may display this as 99+ in the badge. User agents may also ignore this data and display a marker instead.</p>
+<h3 id="clearing_badges">Clearing badges</h3>
+<p>Badges are cleared with the <code>clearAppBadge()</code> methods. These do not take any parameters and set the badge to the value <code>nothing</code>. Additionally, passing a value of <code>0</code> to <code>setAppBadge()</code> will set the badge to <code>nothing</code> and clear the badge.</p>
+<h2 id="interfaces">Interfaces</h2>
+<p>None.</p>
+<h3 id="extensions_to_the_navigator_interface">Extensions to the Navigator interface</h3>
+<dl>
+  <dt id="navigator.setappbadge"><a href="/en-US/docs/Web/API/Navigator/setAppBadge"><code>Navigator.setAppBadge()</code></a></dt>
+  <dd>
+    <p>Sets a badge on the icon associated with this app.</p>
+  </dd>
+  <dt id="navigator.clearappbadge"><a href="/en-US/docs/Web/API/Navigator/clearAppBadge"><code>Navigator.clearAppBadge()</code></a></dt>
+  <dd>
+    <p>Clears the badge on the icon associated with this app.</p>
+  </dd>
+</dl>
+<h3 id="extensions_to_the_workernavigator_interface">Extensions to the WorkerNavigator interface</h3>
+<dl>
+  <dt id="workernavigator.setappbadge"><a href="/en-US/docs/Web/API/WorkerNavigator/setAppBadge"><code>WorkerNavigator.setAppBadge()</code></a></dt>
+  <dd>
+    <p>Sets a badge on the icon associated with this app.</p>
+  </dd>
+  <dt id="workernavigator.clearappbadge"><a href="/en-US/docs/Web/API/WorkerNavigator/clearAppBadge"><code>WorkerNavigator.clearAppBadge()</code></a></dt>
+  <dd>
+    <p>Clears the badge on the icon associated with this app.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>To set a notification badge on the current app with a value of 12:</p>
+<pre class="brush: js">navigator.setAppBadge(12);
+</pre>
+<p>To clear a notification badge on the current app:</p>
+<pre class="brush: js">navigator.clearAppBadge();
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Navigator.setAppBadge" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Navigator.setAppBadge" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/capabilities/web-apis/badging-api">Badging for app icons</a></li>
+  <li><a href="https://github.com/w3c/badging/blob/main/explainer.md">Badging API Explainer</a></li>
+</ul>
+</body></html>

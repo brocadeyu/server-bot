@@ -1,0 +1,42 @@
+<html><head></head><body>
+<p>The <strong><code>FragmentDirective</code></strong> interface is an object exposed to allow code to check whether or not a browser supports <a href="/en-US/docs/Web/URI/Fragment/Text_fragments">text fragments</a>.</p>
+<p>It is accessed via the <a href="/en-US/docs/Web/API/Document/fragmentDirective"><code>Document.fragmentDirective</code></a> property.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<p>None.</p>
+<h2 id="instance_methods">Instance methods</h2>
+<p>None.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="checking_if_text_fragments_are_supported">Checking if text fragments are supported</h3>
+<p>
+  The code below logs whether or not text fragments are supported in your browser by checking that <a href="/en-US/docs/Web/API/Document/fragmentDirective"><code>Document.fragmentDirective</code></a> is defined.
+  Note that the object is empty, and at present is mainly intended for feature detection.
+  In the future, it might include other information.
+</p>
+<pre class="brush: html hidden">&lt;pre id="log"&gt;&lt;/pre&gt;
+</pre>
+<pre class="brush: js hidden">const logElement = document.querySelector("#log");
+function log(text) {
+  logElement.innerText = text;
+}
+</pre>
+<pre class="brush: css hidden">#log {
+  height: 20px;
+}
+</pre>
+<pre class="brush: js">if (document.fragmentDirective) {
+  log("Your browser supports text fragments.");
+} else {
+  log("Text fragments are not supported in your browser.");
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Checking if text fragments are supported sample" id="frame_checking_if_text_fragments_are_supported" width="100%" height="60" src="about:blank" data-live-path="/en-US/docs/Web/API/FragmentDirective" data-live-id="checking_if_text_fragments_are_supported" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.FragmentDirective" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.FragmentDirective" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/::target-text"><code>::target-text</code></a></li>
+</ul>
+</body></html>

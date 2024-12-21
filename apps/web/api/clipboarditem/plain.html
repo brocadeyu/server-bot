@@ -1,0 +1,99 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>The <strong><code>ClipboardItem</code></strong> interface of the <a href="/en-US/docs/Web/API/Clipboard_API">Clipboard API</a> represents a single item format, used when reading or writing clipboard data using <a href="/en-US/docs/Web/API/Clipboard/read"><code>clipboard.read()</code></a> and <a href="/en-US/docs/Web/API/Clipboard/write"><code>clipboard.write()</code></a> respectively.</p>
+<p>The benefit of having the <strong><code>ClipboardItem</code></strong> interface to represent data, is that it enables developers to cope with the varying scope of file types and data.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> To work with text see the <a href="/en-US/docs/Web/API/Clipboard/readText"><code>Clipboard.readText()</code></a> and <a href="/en-US/docs/Web/API/Clipboard/writeText"><code>Clipboard.writeText()</code></a> methods of the <a href="/en-US/docs/Web/API/Clipboard"><code>Clipboard</code></a> interface.</p>
+</div>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="clipboarditem"><a href="/en-US/docs/Web/API/ClipboardItem/ClipboardItem" title="ClipboardItem()"><code>ClipboardItem()</code></a></dt>
+  <dd>
+    <p>Creates a new <strong><code>ClipboardItem</code></strong> object, with the <a href="/en-US/docs/Glossary/MIME_type">MIME type</a> as the key and <a href="/en-US/docs/Web/API/Blob"><code>Blob</code></a> as the value.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface provides the following properties.</em></p>
+<dl>
+  <dt id="types"><a href="/en-US/docs/Web/API/ClipboardItem/types" title="types"><code>types</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of MIME types available within the <strong><code>ClipboardItem</code></strong>.</p>
+  </dd>
+  <dt id="presentationstyle"><a href="/en-US/docs/Web/API/ClipboardItem/presentationStyle" title="presentationStyle"><code>presentationStyle</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns one of the following: <code>"unspecified"</code>, <code>"inline"</code> or <code>"attachment"</code>.</p>
+  </dd>
+</dl>
+<h2 id="static_methods">Static methods</h2>
+<p><em>This interface defines the following methods.</em></p>
+<dl>
+  <dt id="clipboarditem.supports"><a href="/en-US/docs/Web/API/ClipboardItem/supports_static" title="ClipboardItem.supports()"><code>ClipboardItem.supports()</code></a></dt>
+  <dd>
+    <p>Checks whether a given <a href="/en-US/docs/Glossary/MIME_type">MIME type</a> is supported by the clipboard. This enables a website to detect whether a MIME type is supported by the clipboard before attempting to write data.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface defines the following methods.</em></p>
+<dl>
+  <dt id="gettype"><a href="/en-US/docs/Web/API/ClipboardItem/getType" title="getType()"><code>getType()</code></a></dt>
+  <dd>
+    <p>Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a <a href="/en-US/docs/Web/API/Blob"><code>Blob</code></a> of the requested <a href="/en-US/docs/Glossary/MIME_type">MIME type</a>, or an error if the MIME type is not found.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="writing_to_the_clipboard">Writing to the clipboard</h3>
+<p>
+  Here we use <a href="/en-US/docs/Web/API/ClipboardItem/supports_static" title="supports()"><code>supports()</code></a> to check whether the <code>image/svg+xml</code> MIME data type is supported.
+  If it is, we fetch the image with the <a href="/en-US/docs/Web/API/Fetch_API">"Fetch API"</a>, and then read it into a <a href="/en-US/docs/Web/API/Blob"><code>Blob</code></a>, which we can use to create a <code>ClipboardItem</code> that is written to the clipboard.
+</p>
+<pre class="brush: js">async function writeClipImg() {
+  try {
+    if (ClipboardItem.supports("image/svg+xml")) {
+      const imgURL = "/my-image.svg";
+      const data = await fetch(imgURL);
+      const blob = await data.blob();
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          [blob.type]: blob,
+        }),
+      ]);
+      console.log("Fetched image copied.");
+    } else {
+      console.log("SVG images are not supported by the clipboard.");
+    }
+  } catch (err) {
+    console.error(err.name, err.message);
+  }
+}
+</pre>
+<h3 id="reading_from_the_clipboard">Reading from the clipboard</h3>
+<p>
+  Here we're returning all items on the clipboard via the <a href="/en-US/docs/Web/API/Clipboard/read"><code>clipboard.read()</code></a> method.
+  Then utilizing the <a href="/en-US/docs/Web/API/ClipboardItem/types"><code>ClipboardItem.types</code></a> property to set the <a href="/en-US/docs/Web/API/ClipboardItem/getType" title="getType()"><code>getType()</code></a> argument and return the corresponding blob object.
+</p>
+<pre class="brush: js">async function getClipboardContents() {
+  try {
+    const clipboardItems = await navigator.clipboard.read();
+
+    for (const clipboardItem of clipboardItems) {
+      for (const type of clipboardItem.types) {
+        const blob = await clipboardItem.getType(type);
+        // we can now use blob here
+      }
+    }
+  } catch (err) {
+    console.error(err.name, err.message);
+  }
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ClipboardItem" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ClipboardItem" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Clipboard_API">Clipboard API</a></li>
+  <li><a href="https://web.dev/articles/async-clipboard">Image support for Async Clipboard article</a></li>
+</ul>
+</body></html>

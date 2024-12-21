@@ -1,0 +1,56 @@
+<html><head></head><body>
+<p>The <strong><code>flex-flow</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Shorthand_properties">shorthand property</a> specifies the direction of a flex container, as well as its wrapping behavior.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/flex-flow.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="constituent_properties">Constituent properties</h2>
+<p>This property is a shorthand for the following CSS properties:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/flex-direction"><code>flex-direction</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/flex-wrap"><code>flex-wrap</code></a></li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* flex-flow: &lt;'flex-direction'&gt; */
+flex-flow: row;
+flex-flow: row-reverse;
+flex-flow: column;
+flex-flow: column-reverse;
+
+/* flex-flow: &lt;'flex-wrap'&gt; */
+flex-flow: nowrap;
+flex-flow: wrap;
+flex-flow: wrap-reverse;
+
+/* flex-flow: &lt;'flex-direction'&gt; and &lt;'flex-wrap'&gt; */
+flex-flow: row nowrap;
+flex-flow: column wrap;
+flex-flow: column-reverse wrap-reverse;
+
+/* Global values */
+flex-flow: inherit;
+flex-flow: initial;
+flex-flow: revert;
+flex-flow: revert-layer;
+flex-flow: unset;
+</pre>
+<h3 id="values">Values</h3>
+<p>See <a href="/en-US/docs/Web/CSS/flex-direction"><code>flex-direction</code></a> and <a href="/en-US/docs/Web/CSS/flex-wrap"><code>flex-wrap</code></a> for details on the values.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/flex-direction"><code>flex-direction</code></a>: <code>row</code></li><li><a href="/en-US/docs/Web/CSS/flex-wrap"><code>flex-wrap</code></a>: <code>nowrap</code></li></ul></td></tr><tr><th scope="row">Applies to</th><td>flex containers</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/flex-direction"><code>flex-direction</code></a>: as specified</li><li><a href="/en-US/docs/Web/CSS/flex-wrap"><code>flex-wrap</code></a>: as specified</li></ul></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/flex-direction"><code>flex-direction</code></a>: discrete</li><li><a href="/en-US/docs/Web/CSS/flex-wrap"><code>flex-wrap</code></a>: discrete</li></ul></td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="flex-flow">flex-flow = </span><br>  <a href="/en-US/docs/Web/CSS/flex-direction"><span class="token property">&lt;'flex-direction'&gt;</span></a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a><br>  <a href="/en-US/docs/Web/CSS/flex-wrap"><span class="token property">&lt;'flex-wrap'&gt;</span></a>       <br><br><span class="token property" id="<flex-direction>">&lt;flex-direction&gt; = </span><br>  <span class="token keyword">row</span>             <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">row-reverse</span>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">column</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">column-reverse</span>  <br><br><span class="token property" id="<flex-wrap>">&lt;flex-wrap&gt; = </span><br>  <span class="token keyword">nowrap</span>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">wrap</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">wrap-reverse</span>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_column-reverse_and_wrap">Setting column-reverse and wrap</h3>
+<p>In this example, the main-axis is the block direction with a reversed main-start and main-end. The flex items are allowed to wrap, creating new lines if needed.</p>
+<pre class="brush: css">element {
+  flex-flow: column-reverse wrap;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.flex-flow" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.flex-flow" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">Basic concepts of flexbox</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_flexible_box_layout/Ordering_flex_items">Ordering flex items</a></li>
+</ul>
+</body></html>

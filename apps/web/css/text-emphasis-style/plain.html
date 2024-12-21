@@ -1,0 +1,89 @@
+<html><head></head><body>
+<p>The <strong><code>text-emphasis-style</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property sets the appearance of emphasis marks. It can also be set, and reset, using the <a href="/en-US/docs/Web/CSS/text-emphasis"><code>text-emphasis</code></a> shorthand.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/text-emphasis-style.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Initial value */
+text-emphasis-style: none; /* No emphasis marks */
+
+/* &lt;string&gt; values */
+text-emphasis-style: "x";
+text-emphasis-style: "\25B2";
+text-emphasis-style: "*";
+
+/* Keyword values */
+text-emphasis-style: filled;
+text-emphasis-style: open;
+text-emphasis-style: dot;
+text-emphasis-style: circle;
+text-emphasis-style: double-circle;
+text-emphasis-style: triangle;
+text-emphasis-style: filled sesame;
+text-emphasis-style: open sesame;
+
+/* Global values */
+text-emphasis-style: inherit;
+text-emphasis-style: initial;
+text-emphasis-style: revert;
+text-emphasis-style: revert-layer;
+text-emphasis-style: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="none"><a href="#none"><code>none</code></a></dt>
+  <dd>
+    <p>No emphasis marks.</p>
+  </dd>
+  <dt id="filled"><a href="#filled"><code>filled</code></a></dt>
+  <dd>
+    <p>The shape is filled with solid color. If neither <code>filled</code> nor <code>open</code> is present, this is the default.</p>
+  </dd>
+  <dt id="open"><a href="#open"><code>open</code></a></dt>
+  <dd>
+    <p>The shape is hollow.</p>
+  </dd>
+  <dt id="dot"><a href="#dot"><code>dot</code></a></dt>
+  <dd>
+    <p>Display small circles as marks. The filled dot is <code>'•'</code> (<code>U+2022</code>), and the open dot is <code>'◦'</code> (<code>U+25E6</code>).</p>
+  </dd>
+  <dt id="circle"><a href="#circle"><code>circle</code></a></dt>
+  <dd>
+    <p>Display large circles as marks. The filled circle is <code>'●'</code> (<code>U+25CF</code>), and the open circle is <code>'○'</code> (<code>U+25CB</code>).</p>
+  </dd>
+  <dt id="double-circle"><a href="#double-circle"><code>double-circle</code></a></dt>
+  <dd>
+    <p>Display double circles as marks. The filled double-circle is <code>'◉'</code> (<code>U+25C9</code>), and the open double-circle is <code>'◎'</code> (<code>U+25CE</code>).</p>
+  </dd>
+  <dt id="triangle"><a href="#triangle"><code>triangle</code></a></dt>
+  <dd>
+    <p>Display triangles as marks. The filled triangle is <code>'▲'</code> (<code>U+25B2</code>), and the open triangle is <code>'△'</code> (<code>U+25B3</code>).</p>
+  </dd>
+  <dt id="sesame"><a href="#sesame"><code>sesame</code></a></dt>
+  <dd>
+    <p>Display sesames as marks. The filled sesame is <code>'﹅'</code> (<code>U+FE45</code>), and the open sesame is <code>'﹆'</code> (<code>U+FE46</code>).</p>
+  </dd>
+  <dt id="string"><a href="#string"><code>&lt;string&gt;</code></a></dt>
+  <dd>
+    <p>Display the given string as marks. Authors should not specify more than one <em>character</em> in <code>&lt;string&gt;</code>. The UA may truncate or ignore strings consisting of more than one grapheme cluster.</p>
+  </dd>
+</dl>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>none</code></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="text-emphasis-style">text-emphasis-style = </span><br>  <span class="token keyword">none</span>                                                <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">filled</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">open</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#double_bar" title="Double bar: one or several of the entities must be present, in any order">||</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <span class="token keyword">dot</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">circle</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">double-circle</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">triangle</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> <span class="token keyword">sesame</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/string"><span class="token property">&lt;string&gt;</span></a>                                            <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<pre class="brush: css">h2 {
+  -webkit-text-emphasis-style: sesame;
+  text-emphasis-style: sesame;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.text-emphasis-style" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.text-emphasis-style" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The related properties <a href="/en-US/docs/Web/CSS/text-emphasis-color"><code>text-emphasis-color</code></a>, <a href="/en-US/docs/Web/CSS/text-emphasis"><code>text-emphasis</code></a>.</li>
+  <li>The <a href="/en-US/docs/Web/CSS/text-emphasis-position"><code>text-emphasis-position</code></a> property allowing to define the position of the emphasis marks.</li>
+</ul>
+</body></html>

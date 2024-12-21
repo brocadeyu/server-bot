@@ -1,0 +1,73 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>GPUValidationError</code></strong> interface of the <a href="/en-US/docs/Web/API/WebGPU_API" title="WebGPU API">WebGPU API</a> describes an application error indicating that an operation did not pass the WebGPU API's validation constraints.</p>
+<p>It represents one of the types of errors surfaced by <a href="/en-US/docs/Web/API/GPUDevice/popErrorScope"><code>GPUDevice.popErrorScope</code></a> and the <a href="/en-US/docs/Web/API/GPUDevice/uncapturederror_event" title="uncapturederror"><code>uncapturederror</code></a> event.</p>
+<p>Validation errors occur whenever invalid inputs are given to a WebGPU call. These are consistent, predictable, and should not occur provided your app is well-formed. They will occur in the same way on every device your code runs on, so once you've fixed any errors that show up during development you probably don't need to observe them directly most of the time. An exception to that rule is if you're consuming user-supplied assets, shaders, etc., in which case watching for validation errors while loading could be helpful.</p>
+<div class="notecard note">
+  <p><strong>Note:</strong> We have attempted to provide useful information to help you understand why validation errors are occurring in your WebGPU code in "Validation" sections where appropriate, which list criteria to meet to avoid validation errors. See for example the <a href="/en-US/docs/Web/API/GPUDevice/createBindGroup#validation"><code>GPUDevice.createBindGroup()</code> Validation section</a>.</p>
+</div><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/GPUError">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      GPUError
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/GPUValidationError" aria-current="page">
+    <rect x="105" y="0" width="144" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="177" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      GPUValidationError
+    </text>
+  </a></svg>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="gpuvalidationerror"><a href="/en-US/docs/Web/API/GPUValidationError/GPUValidationError" title="GPUValidationError()"><code>GPUValidationError()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Creates a new <code>GPUValidationError</code> object instance.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p>The <code>message</code> property is inherited from its parent, <a href="/en-US/docs/Web/API/GPUError"><code>GPUError</code></a>:</p>
+<dl>
+  <dt id="message"><a href="/en-US/docs/Web/API/GPUError/message" title="message"><code>message</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A string providing a human-readable message that explains why the error occurred.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>The following example uses an error scope to capture a suspected validation error, logging it to the console.</p>
+<pre class="brush: js">device.pushErrorScope("validation");
+
+let sampler = device.createSampler({
+  maxAnisotropy: 0, // Invalid, maxAnisotropy must be at least 1.
+});
+
+device.popErrorScope().then((error) =&gt; {
+  if (error) {
+    // error is a GPUValidationError object instance
+    sampler = null;
+    console.error(`An error occurred while creating sampler: ${error.message}`);
+  }
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.GPUValidationError" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.GPUValidationError" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The <a href="/en-US/docs/Web/API/WebGPU_API">WebGPU API</a></li>
+  <li><a href="https://toji.dev/webgpu-best-practices/error-handling">WebGPU Error Handling best practices</a></li>
+</ul>
+</body></html>

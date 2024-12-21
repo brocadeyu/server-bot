@@ -1,0 +1,83 @@
+<html><head></head><body>
+<p>The <code>ChannelSplitterNode</code> interface, often used in conjunction with its opposite, <a href="/en-US/docs/Web/API/ChannelMergerNode"><code>ChannelMergerNode</code></a>, separates the different channels of an audio source into a set of mono outputs. This is useful for accessing each channel separately, e.g. for performing channel mixing where gain must be separately controlled on each channel.</p>
+<p>
+  <img src="/en-US/docs/Web/API/ChannelSplitterNode/webaudiosplitter.png" alt="Default channel splitter node with a single input splitting to form 6 mono outputs." width="286" height="216">
+</p>
+<p>If your <code>ChannelSplitterNode</code> always has one single input, the amount of outputs is defined by a parameter on its constructor and the call to <a href="/en-US/docs/Web/API/BaseAudioContext/createChannelSplitter" title="AudioContext.createChannelSplitter()"><code>AudioContext.createChannelSplitter()</code></a>. In the case that no value is given, it will default to <code>6</code>. If there are fewer channels in the input than there are outputs, supernumerary outputs are silent.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/AudioNode">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      AudioNode
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/ChannelSplitterNode" aria-current="page">
+    <rect x="223" y="0" width="152" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="299" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      ChannelSplitterNode
+    </text>
+  </a></svg>
+<table class="properties">
+  <tbody>
+    <tr>
+      <th scope="row">Number of inputs</th>
+      <td><code>1</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Number of outputs</th>
+      <td>variable; default to <code>6</code>.</td>
+    </tr>
+    <tr>
+      <th scope="row">Channel count mode</th>
+      <td>
+        <code>"explicit"</code> Older implementations, as per earlier versions
+        of the spec use <code>"max"</code>.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Channel count</th>
+      <td>
+        Fixed to the number of outputs. Older implementations, as per earlier
+        versions of the spec use <code>2</code> (not used in the default count
+        mode).
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Channel interpretation</th>
+      <td><code>"discrete"</code></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="channelsplitternode"><a href="/en-US/docs/Web/API/ChannelSplitterNode/ChannelSplitterNode" title="ChannelSplitterNode()"><code>ChannelSplitterNode()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>ChannelSplitterNode</code> object instance.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>No specific property; inherits properties from its parent, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a></em>.</p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>No specific method; inherits methods from its parent, <a href="/en-US/docs/Web/API/AudioNode"><code>AudioNode</code></a></em>.</p>
+<h2 id="example">Example</h2>
+<p>See <a href="/en-US/docs/Web/API/BaseAudioContext/createChannelSplitter#examples"><code>BaseAudioContext.createChannelSplitter()</code></a> for example code.</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ChannelSplitterNode" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ChannelSplitterNode" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API">Using the Web Audio API</a></li>
+</ul>
+</body></html>

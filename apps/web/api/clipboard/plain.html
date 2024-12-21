@@ -1,0 +1,59 @@
+<html><head></head><body><div class="notecard secure"><h4 id="secure_context">Secure context</h4><p>This feature is available only in <a href="/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div>
+<p>
+  The <strong><code>Clipboard</code></strong> interface of the <a href="/en-US/docs/Web/API/Clipboard_API">Clipboard API</a> provides read and write access to the contents of the system clipboard.
+  This allows a web application to implement cut, copy, and paste features.
+</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Clipboard" aria-current="page">
+    <rect x="118" y="0" width="75" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Clipboard
+    </text>
+  </a></svg>
+<p>The system clipboard is exposed through the global <a href="/en-US/docs/Web/API/Navigator/clipboard"><code>Navigator.clipboard</code></a> property.</p>
+<p>
+  All of the Clipboard API methods operate asynchronously; they return a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is resolved once the clipboard access has been completed.
+  The promise is rejected if clipboard access is denied.
+</p>
+<p>
+  All the methods require a <a href="/en-US/docs/Web/Security/Secure_Contexts">secure context</a>.
+  Additional requirements for using the API are discussed in the <a href="/en-US/docs/Web/API/Clipboard_API#security_considerations">Security consideration</a> section of the API overview topic.
+</p>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em><code>Clipboard</code> is based on the <a href="/en-US/docs/Web/API/EventTarget"><code>EventTarget</code></a> interface, and includes its methods.</em></p>
+<dl>
+  <dt id="read"><a href="/en-US/docs/Web/API/Clipboard/read" title="read()"><code>read()</code></a></dt>
+  <dd>
+    <p>Requests arbitrary data (such as images) from the clipboard, returning a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with an array of <a href="/en-US/docs/Web/API/ClipboardItem"><code>ClipboardItem</code></a> objects containing the clipboard's contents.</p>
+  </dd>
+  <dt id="readtext"><a href="/en-US/docs/Web/API/Clipboard/readText" title="readText()"><code>readText()</code></a></dt>
+  <dd>
+    <p>Requests text from the system clipboard, returning a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that is fulfilled with a string containing the clipboard's text once it's available.</p>
+  </dd>
+  <dt id="write"><a href="/en-US/docs/Web/API/Clipboard/write" title="write()"><code>write()</code></a></dt>
+  <dd>
+    <p>Writes arbitrary data to the system clipboard, returning a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves when the operation completes.</p>
+  </dd>
+  <dt id="writetext"><a href="/en-US/docs/Web/API/Clipboard/writeText" title="writeText()"><code>writeText()</code></a></dt>
+  <dd>
+    <p>Writes text to the system clipboard, returning a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that is resolved once the text is fully copied into the clipboard.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Clipboard" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Clipboard" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Document/execCommand"><code>Document.execCommand()</code></a></li>
+</ul>
+</body></html>

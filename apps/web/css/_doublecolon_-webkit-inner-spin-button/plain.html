@@ -1,0 +1,34 @@
+<html><head></head><body><div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div>
+<p>The <strong><code>::-webkit-inner-spin-button</code></strong> CSS pseudo-element is used to style the inner part of the spinner button of number picker input elements.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">::-webkit-inner-spin-button {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<p>These examples work only in browsers based on WebKit and Blink.</p>
+<h3 id="changing_the_cursor_in_the_spin_controls">Changing the cursor in the spin controls</h3>
+<p>In this example, the CSS <a href="/en-US/docs/Web/CSS/cursor"><code>cursor</code></a> is changed to <code>pointer</code> whenever the cursor is positioned over the inner part of the input's spin controls.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;input type="number" /&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">input[type="number"]::-webkit-inner-spin-button {
+  cursor: pointer;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Changing the cursor in the spin controls sample" id="frame_changing_the_cursor_in_the_spin_controls" width="200" height="60" src="about:blank" data-live-path="/en-US/docs/Web/CSS/::-webkit-inner-spin-button" data-live-id="changing_the_cursor_in_the_spin_controls" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.-webkit-inner-spin-button" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a class="page-not-created" title="The documentation about this has not yet been written; please consider contributing!" data-flaw-src="{{cssxref(&quot;::-webkit-textfield-decoration-container&quot;)}}"><code>::-webkit-textfield-decoration-container</code></a></li>
+  <li><a href="https://trac.webkit.org/wiki/Styling%20Form%20Controls#inputelement">Styling Form Controls – WebKit</a></li>
+</ul>
+</body></html>

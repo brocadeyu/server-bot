@@ -1,0 +1,115 @@
+<html><head></head><body>
+<p>The <strong><code>HTMLTableRowElement</code></strong> interface provides special properties and methods (beyond the <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a> interface it also has available to it by inheritance) for manipulating the layout and presentation of rows in an HTML table.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Element">
+    <rect x="223" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Element
+    </text>
+  </a>
+  <line x1="298" y1="14" x2="328" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="298,14 308,9 308,19 298,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLElement">
+    <rect x="328" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="372" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLElement
+    </text>
+  </a>
+  <line x1="416" y1="14" x2="446" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="416,14 426,9 426,19 416,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLTableRowElement" aria-current="page">
+    <rect x="446" y="0" width="152" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="522" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLTableRowElement
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="htmltablerowelement.cells"><a href="/en-US/docs/Web/API/HTMLTableRowElement/cells"><code>HTMLTableRowElement.cells</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a live <a href="/en-US/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a> containing the cells in the row. The <code>HTMLCollection</code> is live and is automatically updated when cells are added or removed.</p>
+  </dd>
+  <dt id="htmltablerowelement.rowindex"><a href="/en-US/docs/Web/API/HTMLTableRowElement/rowIndex"><code>HTMLTableRowElement.rowIndex</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a number that gives the logical position of the row within the entire table. If the row is not part of a table, returns <code>-1</code>.</p>
+  </dd>
+  <dt id="htmltablerowelement.sectionrowindex"><a href="/en-US/docs/Web/API/HTMLTableRowElement/sectionRowIndex"><code>HTMLTableRowElement.sectionRowIndex</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a number that gives the logical position of the row within the table section it belongs to. If the row is not part of a section, returns <code>-1</code>.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>Inherits methods from its parent, <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a></em>.</p>
+<dl>
+  <dt id="htmltablerowelement.deletecell"><a href="/en-US/docs/Web/API/HTMLTableRowElement/deleteCell"><code>HTMLTableRowElement.deleteCell()</code></a></dt>
+  <dd>
+    <p>Removes the cell corresponding to <code>index</code>. If <code>index</code> is <code>-1</code>, the last cell of the row is removed. If <code>index</code> is less than <code>-1</code> or greater than the amount of cells in the collection, a <a href="/en-US/docs/Web/API/DOMException"><code>DOMException</code></a> with the value <code>IndexSizeError</code> is raised.</p>
+  </dd>
+  <dt id="htmltablerowelement.insertcell"><a href="/en-US/docs/Web/API/HTMLTableRowElement/insertCell"><code>HTMLTableRowElement.insertCell()</code></a></dt>
+  <dd>
+    <p>Returns an <a href="/en-US/docs/Web/API/HTMLTableCellElement"><code>HTMLTableCellElement</code></a> representing a new cell of the row. The cell is inserted in the collection of cells immediately before the given <code>index</code> position in the row. If <code>index</code> is <code>-1</code>, the new cell is appended to the collection. If <code>index</code> is less than <code>-1</code> or greater than the number of cells in the collection, a <a href="/en-US/docs/Web/API/DOMException"><code>DOMException</code></a> with the value <code>IndexSizeError</code> is raised.</p>
+  </dd>
+</dl>
+<h2 id="deprecated_properties">Deprecated properties</h2>
+<div class="notecard warning">
+  <p><strong>Warning:</strong> These properties have been deprecated and should no longer be used. They are documented primarily to help understand older code bases.</p>
+</div>
+<dl>
+  <dt id="htmltablerowelement.align"><a href="/en-US/docs/Web/API/HTMLTableRowElement/align"><code>HTMLTableRowElement.align</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string containing an enumerated value reflecting the <a href="/en-US/docs/Web/HTML/Element/tr#align"><code>align</code></a> attribute. It indicates the alignment of the element's contents to the surrounding context. The possible values are <code>"left"</code>, <code>"right"</code>, and <code>"center"</code>.</p>
+  </dd>
+  <dt id="htmltablerowelement.bgcolor"><a href="/en-US/docs/Web/API/HTMLTableRowElement/bgColor"><code>HTMLTableRowElement.bgColor</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string containing the background color of the cells. It reflects the obsolete <a href="/en-US/docs/Web/HTML/Element/tr#bgcolor"><code>bgColor</code></a> attribute.</p>
+  </dd>
+  <dt id="htmltablerowelement.ch"><a href="/en-US/docs/Web/API/HTMLTableRowElement/ch"><code>HTMLTableRowElement.ch</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string containing one single character. This character is the one to align all the cell of a column on. It reflects the <a href="/en-US/docs/Web/HTML/Element/tr#char"><code>char</code></a> and defaults to the decimal points associated with the language, e.g. <code>'.'</code> for English, or <code>','</code> for French. This property was optional and was not very well supported.</p>
+  </dd>
+  <dt id="htmltablerowelement.choff"><a href="/en-US/docs/Web/API/HTMLTableRowElement/chOff"><code>HTMLTableRowElement.chOff</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string containing an integer indicating how many characters must be left at the right (for left-to-right scripts; or at the left for right-to-left scripts) of the character defined by <code>HTMLTableRowElement.ch</code>. This property was optional and was not very well supported.</p>
+  </dd>
+  <dt id="htmltablerowelement.valign"><a href="/en-US/docs/Web/API/HTMLTableRowElement/vAlign"><code>HTMLTableRowElement.vAlign</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>A string representing an enumerated value indicating how the content of the cell must be vertically aligned. It reflects the <a href="/en-US/docs/Web/HTML/Element/tr#valign"><code>valign</code></a> attribute and can have one of the following values: <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>, or <code>"baseline"</code>.</p>
+  </dd>
+</dl>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLTableRowElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLTableRowElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The HTML element implementing this interface: <a href="/en-US/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>.</li>
+</ul>
+</body></html>

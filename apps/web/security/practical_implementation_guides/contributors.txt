@@ -1,0 +1,5 @@
+# Contributors by commit history
+https://github.com/mdn/content/commits/main/files/en-us/web/security/practical_implementation_guides/index.md
+
+# Original Wiki contributors
+

@@ -1,0 +1,57 @@
+<html><head></head><body>
+<p>The <strong><code>:future</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> selector is a time-dimensional pseudo-class that will match for any element which appears entirely after an element that matches <a href="/en-US/docs/Web/CSS/:current"><code>:current</code></a>. For example in a video with captions which are being displayed by <a href="/en-US/docs/Web/API/WebVTT_API">WebVTT</a>.</p>
+<pre class="brush: css">:future(p, span) {
+  display: none;
+}
+</pre>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:future {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="css">CSS</h3>
+<pre class="brush: css">:future(p, span) {
+  display: none;
+}
+</pre>
+<h3 id="html">HTML</h3>
+<pre class="brush: html">&lt;video controls preload="metadata"&gt;
+  &lt;source src="video.mp4" type="video/mp4" /&gt;
+  &lt;source src="video.webm" type="video/webm" /&gt;
+  &lt;track
+    label="English"
+    kind="subtitles"
+    srclang="en"
+    src="subtitles.vtt"
+    default /&gt;
+&lt;/video&gt;
+</pre>
+<h3 id="webvtt">WebVTT</h3>
+<pre class="brush: plain">WEBVTT FILE
+
+1
+00:00:03.500 --&gt; 00:00:05.000
+This is the first caption
+
+2
+00:00:06.000 --&gt; 00:00:09.000
+This is the second caption
+
+3
+00:00:11.000 --&gt; 00:00:19.000
+This is the third caption
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.future" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.future" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/WebVTT_API">Web Video Text Tracks Format (WebVTT)</a></li>
+  <li><a href="/en-US/docs/Web/CSS/:current"><code>:current</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:past"><code>:past</code></a></li>
+</ul>
+</body></html>

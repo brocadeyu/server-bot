@@ -1,0 +1,207 @@
+<html><head></head><body>
+<p>The <strong><code>CSSContainerRule</code></strong> interface represents a single CSS <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> rule.</p>
+<p>
+  An object of this type can be used to get the query conditions for the <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a>, along with the container name if one is defined.
+  Note that the container name and query together define the "condition text", which can be obtained using <a href="/en-US/docs/Web/API/CSSConditionRule/conditionText"><code>CSSConditionRule.conditionText</code></a>.
+</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSRule">
+    <rect x="0" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSRule
+    </text>
+  </a>
+  <line x1="75" y1="14" x2="105" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="75,14 85,9 85,19 75,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSGroupingRule">
+    <rect x="105" y="0" width="120" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="165" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSGroupingRule
+    </text>
+  </a>
+  <line x1="225" y1="14" x2="255" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="225,14 235,9 235,19 225,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSConditionRule">
+    <rect x="255" y="0" width="128" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="319" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSConditionRule
+    </text>
+  </a>
+  <line x1="383" y1="14" x2="413" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="383,14 393,9 393,19 383,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/CSSContainerRule" aria-current="page">
+    <rect x="413" y="0" width="128" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="477" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      CSSContainerRule
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>Inherits properties from its ancestors <a href="/en-US/docs/Web/API/CSSConditionRule"><code>CSSConditionRule</code></a>, <a href="/en-US/docs/Web/API/CSSGroupingRule"><code>CSSGroupingRule</code></a>, and <a href="/en-US/docs/Web/API/CSSRule"><code>CSSRule</code></a>.</em></p>
+<dl>
+  <dt id="csscontainerrule.containername"><a href="/en-US/docs/Web/API/CSSContainerRule/containerName"><code>CSSContainerRule.containerName</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string representing the name of an <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a>, or an empty string.</p>
+  </dd>
+  <dt id="csscontainerrule.containerquery"><a href="/en-US/docs/Web/API/CSSContainerRule/containerQuery"><code>CSSContainerRule.containerQuery</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>Returns a string representing the set of features or "container conditions" that are evaluated to determine if the styles in the associated <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> are applied.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>No specific methods; inherits methods from its ancestors <a href="/en-US/docs/Web/API/CSSConditionRule"><code>CSSConditionRule</code></a>, <a href="/en-US/docs/Web/API/CSSGroupingRule"><code>CSSGroupingRule</code></a>, and <a href="/en-US/docs/Web/API/CSSRule"><code>CSSRule</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<h3 id="unnamed_container_rule">Unnamed container rule</h3>
+<p>
+  The example below defines an unnamed <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> rule, and displays the properties of the associated <code>CSSContainerRule</code>.
+  The CSS is the same as in the <code>@container</code> example <a href="/en-US/docs/Web/CSS/@container#setting_styles_based_on_a_containers_size">Setting styles based on a container's size</a>.
+</p>
+<p>The first part of the code simply creates a list for logging the container rule properties, along with a JavaScript <code>log()</code> method to simplify adding the properties.</p>
+<pre class="brush: html">&lt;div id="log"&gt;
+  &lt;h2&gt;Log&lt;/h2&gt;
+  &lt;ul&gt;&lt;/ul&gt;
+  &lt;hr /&gt;
+&lt;/div&gt;
+</pre>
+<pre class="brush: js">// Store reference to log list
+const logList = document.querySelector("#log ul");
+// Function to log data from underlying source
+function log(result) {
+  const listItem = document.createElement("li");
+  listItem.textContent = result;
+  logList.appendChild(listItem);
+}
+</pre>
+<p>Then we define the HTML for a <code>card</code> (<code>&lt;div&gt;</code>) contained within a <code>post</code>.</p>
+<pre class="brush: html">&lt;div class="post"&gt;
+  &lt;div class="card"&gt;
+    &lt;h2&gt;Card title&lt;/h2&gt;
+    &lt;p&gt;Card content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>
+  The CSS for the example is shown below.
+  As described in the corresponding <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> example, the CSS for the container element specifies the type of the container.
+  The <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> then applies a new width, font-size and background color to the card if the width is less than 650px.
+</p>
+<pre class="brush: html">&lt;style id="example-styles"&gt;
+  /* A container context based on inline size */
+  .post {
+    container-type: inline-size;
+  }
+
+  /* Apply styles if the container is narrower than 650px */
+  @container (width &lt; 650px) {
+    .card {
+      width: 50%;
+      background-color: gray;
+      font-size: 1em;
+    }
+  }
+&lt;/style&gt;
+</pre>
+<p>
+  The code below gets the <a href="/en-US/docs/Web/API/HTMLStyleElement"><code>HTMLStyleElement</code></a> associated with the example using its id, and then uses its <code>sheet</code> property to get the <a href="/en-US/docs/Web/API/StyleSheet"><code>StyleSheet</code></a>.
+  From the <code>StyleSheet</code> we get the set of <code>cssRules</code> added to the sheet.
+  Since we added the <code>@container</code> as the second rule above, we can access the associated <code>CSSContainerRule</code> using the second entry, with index "1", in the <code>cssRules</code>.
+  Last of all, we log the <code>containerName</code>, <code>containerQuery</code> and <code>conditionText</code> (inherited) properties.
+</p>
+<pre class="brush: js">const exampleStylesheet = document.getElementById("example-styles").sheet;
+const exampleRules = exampleStylesheet.cssRules;
+const containerRule = exampleRules[1]; // a CSSContainerRule representing the container rule.
+log(`CSSContainerRule.containerName: "${containerRule.containerName}"`);
+log(`CSSContainerRule.containerQuery: "${containerRule.containerQuery}"`);
+log(`CSSContainerRule.conditionText: "${containerRule.conditionText}"`);
+</pre>
+<div class="notecard note">
+  <p>
+    <strong>Note:</strong> The styles for this example are defined in an inline HTML <code>style</code> element with an id in order to make it easy for the code to find the correct sheet.
+    You might also locate the correct sheets for each example from the document by indexing against the length (e.g. <code>document.styleSheets[document.styleSheets.length-1]</code> but that makes working out correct sheet for each example more complicated).
+  </p>
+</div>
+<p>
+  The example output is shown below.
+  The log section lists the <code>containerName</code>, which is an empty string as no name has been defined.
+  The <code>containerQuery</code> and <code>conditionText</code> strings are also logged, and have the same value because there is no name defined.
+  The card should change background and as the width of the page transitions through 650px.
+</p><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Unnamed container rule sample" id="frame_unnamed_container_rule" width="100%" height="300px" src="about:blank" data-live-path="/en-US/docs/Web/API/CSSContainerRule" data-live-id="unnamed_container_rule" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h3 id="named_container_rule">Named container rule</h3>
+<p>
+  The example below defines a named <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a> rule, and displays the properties of the associated <code>CSSContainerRule</code>.
+  The CSS is very similar to that in the <code>@container</code> example <a href="/en-US/docs/Web/CSS/@container#creating_named_container_contexts">Creating named container contexts</a>.
+</p>
+<pre class="brush: html hidden">&lt;div id="log"&gt;
+  &lt;h2&gt;Log&lt;/h2&gt;
+  &lt;ul&gt;&lt;/ul&gt;
+  &lt;hr /&gt;
+&lt;/div&gt;
+</pre>
+<pre class="brush: js hidden">// Store reference to log list
+const logList = document.querySelector("#log ul");
+// Function to log data from underlying source
+function log(result) {
+  const listItem = document.createElement("li");
+  listItem.textContent = result;
+  logList.appendChild(listItem);
+}
+</pre>
+<p>First we define the HTML for a <code>card</code> (<code>&lt;div&gt;</code>) contained within a <code>post</code> (the example does not show the logging code, as this is the same as in the previous example).</p>
+<pre class="brush: html">&lt;div class="post"&gt;
+  &lt;div class="card"&gt;
+    &lt;h2&gt;Card title&lt;/h2&gt;
+    &lt;p&gt;Card content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>
+  As described in <a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a>, the CSS for the container element specifies the type of the container, and may also specify a name for the container.
+  The card has a default font size, which is overridden for the <code>@container</code> named <code>sidebar</code> if the minimum width is greater than 700px.
+</p>
+<pre class="brush: html">&lt;style id="example-styles"&gt;
+  .post {
+    container-type: inline-size;
+    container-name: sidebar;
+  }
+
+  /* Default heading styles for the card title */
+  .card h2 {
+    font-size: 1em;
+  }
+
+  @container sidebar (min-width: 700px) {
+    .card {
+      font-size: 2em;
+    }
+  }
+&lt;/style&gt;
+</pre>
+<p>
+  The code for getting the sheet and rules is almost identical to the previous example.
+  The only difference is that in this example we have three CSS rules, so to get the associated <code>CSSContainerRule</code> we get the third entry in the <code>cssRules</code>.
+</p>
+<pre class="brush: js">const exampleStylesheet = document.getElementById("example-styles").sheet;
+const exampleRules = exampleStylesheet.cssRules;
+const containerRule = exampleRules[2]; // a CSSContainerRule representing the container rule.
+log(`CSSContainerRule.containerName: "${containerRule.containerName}"`);
+log(`CSSContainerRule.containerQuery: "${containerRule.containerQuery}"`);
+log(`CSSContainerRule.conditionText: "${containerRule.conditionText}"`);
+</pre>
+<p>
+  The example output is shown below.
+  The log section lists the <code>containerName</code> and <code>containerQuery</code> strings.
+  The <code>conditionText</code> is also logged, and shows the combination of these two strings.
+  The title in the card section should double in size as the width of the page goes over 700px.
+</p><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Named container rule sample" id="frame_named_container_rule" width="100%" height="300px" src="about:blank" data-live-path="/en-US/docs/Web/API/CSSContainerRule" data-live-id="named_container_rule" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.CSSContainerRule" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.CSSContainerRule" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>CSS <a href="/en-US/docs/Web/CSS/container-name"><code>container-name</code></a>, <a href="/en-US/docs/Web/CSS/container-type"><code>container-type</code></a>, and <a href="/en-US/docs/Web/CSS/container"><code>container</code></a> shorthand properties</li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_containment">CSS containment module</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_containment/Container_queries">Container queries</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries">Using container size and style queries</a></li>
+</ul>
+</body></html>

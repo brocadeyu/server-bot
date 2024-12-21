@@ -1,0 +1,83 @@
+<html><head></head><body>
+<p>The <strong><code>PerformancePaintTiming</code></strong> interface provides timing information about "paint" (also called "render") operations during web page construction. "Paint" refers to conversion of the render tree to on-screen pixels.</p>
+<p>There are two key paint moments this API provides:</p>
+<ul>
+  <li><a href="/en-US/docs/Glossary/First_paint">First Paint</a> (FP): Time when anything is rendered. Note that the marking of the first paint is optional, not all user agents report it.</li>
+  <li><a href="/en-US/docs/Glossary/First_contentful_paint">First Contentful Paint</a> (FCP): Time when the first bit of DOM text or image content is rendered.</li>
+</ul>
+<p>A third key paint moment is provided by the <a href="/en-US/docs/Web/API/LargestContentfulPaint"><code>LargestContentfulPaint</code></a> API:</p>
+<ul>
+  <li><a href="/en-US/docs/Glossary/Largest_contentful_paint">Largest Contentful Paint</a> (LCP): Render time of the largest image or text block visible within the viewport, recorded from when the page first begins to load.</li>
+</ul>
+<p>The data this API provides helps you minimize the time that users have to wait before they can see the site's content start to appear. Decreasing the time until these key paint moments make sites feel more responsive, performant, and engaging for your users.</p>
+<p>Like other Performance APIs, this API extends <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a>.</p><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PerformanceEntry">
+    <rect x="0" y="0" width="128" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="64" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PerformanceEntry
+    </text>
+  </a>
+  <line x1="128" y1="14" x2="158" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="128,14 138,9 138,19 128,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/PerformancePaintTiming" aria-current="page">
+    <rect x="158" y="0" width="176" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="246" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      PerformancePaintTiming
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p>This interface has no properties but it extends the following <a href="/en-US/docs/Web/API/PerformanceEntry"><code>PerformanceEntry</code></a> properties by qualifying and constraining the properties as follows:</p>
+<dl>
+  <dt id="performanceentry.entrytype"><a href="/en-US/docs/Web/API/PerformanceEntry/entryType"><code>PerformanceEntry.entryType</code></a></dt>
+  <dd>
+    <p>Returns <code>"paint"</code>.</p>
+  </dd>
+  <dt id="performanceentry.name"><a href="/en-US/docs/Web/API/PerformanceEntry/name"><code>PerformanceEntry.name</code></a></dt>
+  <dd>
+    <p>Returns either <code>"first-paint"</code> or <code>"first-contentful-paint"</code>.</p>
+  </dd>
+  <dt id="performanceentry.starttime"><a href="/en-US/docs/Web/API/PerformanceEntry/startTime"><code>PerformanceEntry.startTime</code></a></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/DOMHighResTimeStamp" title="timestamp"><code>timestamp</code></a> when the paint occurred.</p>
+  </dd>
+  <dt id="performanceentry.duration"><a href="/en-US/docs/Web/API/PerformanceEntry/duration"><code>PerformanceEntry.duration</code></a></dt>
+  <dd>
+    <p>Returns 0.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p>This interface has no methods.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="getting_paint_timings">Getting paint timings</h3>
+<p>Example using a <a href="/en-US/docs/Web/API/PerformanceObserver"><code>PerformanceObserver</code></a>, which notifies of new <code>paint</code> performance entries as they are recorded in the browser's performance timeline. Use the <code>buffered</code> option to access entries from before the observer creation.</p>
+<pre class="brush: js">const observer = new PerformanceObserver((list) =&gt; {
+  list.getEntries().forEach((entry) =&gt; {
+    console.log(
+      `The time to ${entry.name} was ${entry.startTime} milliseconds.`,
+    );
+    // Logs "The time to first-paint was 386.7999999523163 milliseconds."
+    // Logs "The time to first-contentful-paint was 400.6999999284744 milliseconds."
+  });
+});
+
+observer.observe({ type: "paint", buffered: true });
+</pre>
+<p>Example using <a href="/en-US/docs/Web/API/Performance/getEntriesByType"><code>Performance.getEntriesByType()</code></a>, which only shows <code>paint</code> performance entries present in the browser's performance timeline at the time you call this method:</p>
+<pre class="brush: js">const entries = performance.getEntriesByType("paint");
+entries.forEach((entry) =&gt; {
+  console.log(`The time to ${entry.name} was ${entry.startTime} milliseconds.`);
+  // Logs "The time to first-paint was 386.7999999523163 milliseconds."
+  // Logs "The time to first-contentful-paint was 400.6999999284744 milliseconds."
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.PerformancePaintTiming" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.PerformancePaintTiming" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h3 id="see_also">See also</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/LargestContentfulPaint"><code>LargestContentfulPaint</code></a></li>
+</ul>
+</body></html>

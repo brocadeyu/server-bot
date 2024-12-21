@@ -1,0 +1,44 @@
+<html><head></head><body>
+<p>The <code>scroll-margin-block</code> <a href="/en-US/docs/Web/CSS/Shorthand_properties">shorthand property</a> sets the scroll margins of an element in the block dimension.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/scroll-margin-block.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="constituent_properties">Constituent properties</h2>
+<p>This property is a shorthand for the following CSS properties:</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/scroll-margin-block-end"><code>scroll-margin-block-end</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/scroll-margin-block-start"><code>scroll-margin-block-start</code></a></li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;length&gt; values */
+scroll-margin-block: 10px;
+scroll-margin-block: 1em 0.5em;
+
+/* Global values */
+scroll-margin-block: inherit;
+scroll-margin-block: initial;
+scroll-margin-block: revert;
+scroll-margin-block: revert-layer;
+scroll-margin-block: unset;
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="length"><a href="/en-US/docs/Web/CSS/length"><code>&lt;length&gt;</code></a></dt>
+  <dd>
+    <p>An outset from the corresponding edge of the scroll container.</p>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The scroll-margin values represent outsets defining the scroll snap area that is used for snapping this box to the <a href="/en-US/docs/Glossary/Scroll_snap#snapport">snapport</a>. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container's coordinate space), then adding the specified outsets.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/scroll-margin-block-start"><code>scroll-margin-block-start</code></a>: <code>0</code></li><li><a href="/en-US/docs/Web/CSS/scroll-margin-block-end"><code>scroll-margin-block-end</code></a>: <code>0</code></li></ul></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as each of the properties of the shorthand:<br><ul><li><a href="/en-US/docs/Web/CSS/scroll-margin-block-start"><code>scroll-margin-block-start</code></a>: as specified</li><li><a href="/en-US/docs/Web/CSS/scroll-margin-block-end"><code>scroll-margin-block-end</code></a>: as specified</li></ul></td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>by computed value type</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="scroll-margin-block">scroll-margin-block = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#curly_braces" title="Curly braces: encloses two integers defining the minimal and maximal numbers of occurrences of the entity, or a single integer defining the exact number required">{1,2}</a>  <br><br></pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.scroll-margin-block" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.scroll-margin-block" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_scroll_snap">CSS scroll snap</a></li>
+  <li><a href="https://web.dev/articles/css-scroll-snap">Well-controlled scrolling with CSS scroll snap</a></li>
+</ul>
+</body></html>

@@ -1,0 +1,88 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>The <strong><code>NavigationDestination</code></strong> interface of the <a href="/en-US/docs/Web/API/Navigation_API" title="Navigation API">Navigation API</a> represents the destination being navigated to in the current navigation.</p>
+<p>It is accessed via the <a href="/en-US/docs/Web/API/NavigateEvent/destination"><code>NavigateEvent.destination</code></a> property.</p>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="id"><a href="/en-US/docs/Web/API/NavigationDestination/id" title="id"><code>id</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/NavigationHistoryEntry/id" title="id"><code>id</code></a> value of the destination <a href="/en-US/docs/Web/API/NavigationHistoryEntry"><code>NavigationHistoryEntry</code></a> if the <a href="/en-US/docs/Web/API/NavigateEvent/navigationType"><code>NavigateEvent.navigationType</code></a> is <code>traverse</code>, or an empty string otherwise.</p>
+  </dd>
+  <dt id="index"><a href="/en-US/docs/Web/API/NavigationDestination/index" title="index"><code>index</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/NavigationHistoryEntry/index" title="index"><code>index</code></a> value of the destination <a href="/en-US/docs/Web/API/NavigationHistoryEntry"><code>NavigationHistoryEntry</code></a> if the <a href="/en-US/docs/Web/API/NavigateEvent/navigationType"><code>NavigateEvent.navigationType</code></a> is <code>traverse</code>, or <code>-1</code> otherwise.</p>
+  </dd>
+  <dt id="key"><a href="/en-US/docs/Web/API/NavigationDestination/key" title="key"><code>key</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the <a href="/en-US/docs/Web/API/NavigationHistoryEntry/key" title="key"><code>key</code></a> value of the destination <a href="/en-US/docs/Web/API/NavigationHistoryEntry"><code>NavigationHistoryEntry</code></a> if the <a href="/en-US/docs/Web/API/NavigateEvent/navigationType"><code>NavigateEvent.navigationType</code></a> is <code>traverse</code>, or an empty string otherwise.</p>
+  </dd>
+  <dt id="samedocument"><a href="/en-US/docs/Web/API/NavigationDestination/sameDocument" title="sameDocument"><code>sameDocument</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns <code>true</code> if the navigation is to the same <code>document</code> as the current <a href="/en-US/docs/Web/API/Document"><code>Document</code></a> value, or <code>false</code> otherwise.</p>
+  </dd>
+  <dt id="url"><a href="/en-US/docs/Web/API/NavigationDestination/url" title="url"><code>url</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns the URL being navigated to.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="getstate"><a href="/en-US/docs/Web/API/NavigationDestination/getState" title="getState()"><code>getState()</code></a> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future.">
+    <span class="visually-hidden">Experimental</span>
+</abbr></dt>
+  <dd>
+    <p>Returns a clone of the available state associated with the destination <a href="/en-US/docs/Web/API/NavigationHistoryEntry"><code>NavigationHistoryEntry</code></a>, or navigation operation (e.g. <a href="/en-US/docs/Web/API/Navigation/navigate" title="navigate()"><code>navigate()</code></a>) as appropriate.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">navigation.addEventListener("navigate", (event) =&gt; {
+  // Exit early if this navigation shouldn't be intercepted,
+  // e.g. if the navigation is cross-origin, or a download request
+  if (shouldNotIntercept(event)) {
+    return;
+  }
+
+  // Returns a URL() object constructed from the
+  // NavigationDestination.url value
+  const url = new URL(event.destination.url);
+
+  if (url.pathname.startsWith("/articles/")) {
+    event.intercept({
+      async handler() {
+        // The URL has already changed, so show a placeholder while
+        // fetching the new content, such as a spinner or loading page
+        renderArticlePagePlaceholder();
+
+        // Fetch the new content and display when ready
+        const articleContent = await getArticleContent(url.pathname);
+        renderArticlePage(articleContent);
+      },
+    });
+  }
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.NavigationDestination" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.NavigationDestination" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://developer.chrome.com/docs/web-platform/navigation-api/">Modern client-side routing: the Navigation API</a></li>
+  <li><a href="https://github.com/WICG/navigation-api/blob/main/README.md">Navigation API explainer</a></li>
+  <li>Domenic Denicola's <a href="https://gigantic-honored-octagon.glitch.me/">Navigation API live demo</a></li>
+</ul>
+</body></html>

@@ -1,0 +1,64 @@
+<html><head></head><body>
+<p>The <strong><code>inset-inline-end</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property defines the logical inline end inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the <a href="/en-US/docs/Web/CSS/top"><code>top</code></a>, <a href="/en-US/docs/Web/CSS/right"><code>right</code></a>, <a href="/en-US/docs/Web/CSS/bottom"><code>bottom</code></a>, or <a href="/en-US/docs/Web/CSS/left"><code>left</code></a> property depending on the values defined for <a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a>, <a href="/en-US/docs/Web/CSS/direction"><code>direction</code></a>, and <a href="/en-US/docs/Web/CSS/text-orientation"><code>text-orientation</code></a>.</p>
+<p>This <a href="/en-US/docs/Glossary/Inset_properties">inset property</a> has no effect on non-positioned elements.</p><h2 id="try_it">Try it</h2>
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/inset-inline-end.html" title="MDN Web Docs Interactive Example" allow="clipboard-write"></iframe>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* &lt;length&gt; values */
+inset-inline-end: 3px;
+inset-inline-end: 2.4em;
+inset-inline-end: calc(anchor(self-start) + 5px);
+inset-inline-end: anchor(--myAnchor 50%);
+
+/* &lt;percentage&gt;s of the width or height of the containing block */
+inset-inline-end: 10%;
+
+/* Keyword value */
+inset-inline-end: auto;
+
+/* Global values */
+inset-inline-end: inherit;
+inset-inline-end: initial;
+inset-inline-end: revert;
+inset-inline-end: revert-layer;
+inset-inline-end: unset;
+</pre>
+<p>The shorthand for <a href="/en-US/docs/Web/CSS/inset-inline-start"><code>inset-inline-start</code></a> and <code>inset-inline-end</code> is <a href="/en-US/docs/Web/CSS/inset-inline"><code>inset-inline</code></a>.</p>
+<h3 id="values">Values</h3>
+<p>The <code>inset-inline-end</code> property takes the same values as the <a href="/en-US/docs/Web/CSS/left"><code>left</code></a> property.</p>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>positioned elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>no</td></tr><tr><th scope="row">Percentages</th><td>logical-width of containing block</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>same as box offsets: <a href="/en-US/docs/Web/CSS/top"><code>top</code></a>, <a href="/en-US/docs/Web/CSS/right"><code>right</code></a>, <a href="/en-US/docs/Web/CSS/bottom"><code>bottom</code></a>, <a href="/en-US/docs/Web/CSS/left"><code>left</code></a> properties except that directions are logical</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>a <a href="/en-US/docs/Web/CSS/length#interpolation" title="Values of the <length> CSS data type are interpolated as real, floating-point numbers.">length</a>, <a href="/en-US/docs/Web/CSS/percentage#interpolation" title="Values of the <percentage> CSS data type are interpolated as real, floating-point numbers.">percentage</a> or calc();</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2><pre><span class="token property" id="inset-inline-end">inset-inline-end = </span><br>  <span class="token keyword">auto</span>                 <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;length-percentage&gt;</span>  <br><br><span class="token property" id="<length-percentage>">&lt;length-percentage&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/length"><span class="token property">&lt;length&gt;</span></a>      <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_inline_end_offset">Setting inline end offset</h3>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div&gt;
+  &lt;p class="exampleText"&gt;Example text&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-rl;
+  position: relative;
+  inset-inline-end: 20px;
+  background-color: #c8c800;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Setting inline end offset sample" id="frame_setting_inline_end_offset" width="140" height="140" src="about:blank" data-live-path="/en-US/docs/Web/CSS/inset-inline-end" data-live-id="setting_inline_end_offset" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.properties.inset-inline-end" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.inset-inline-end" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li>The properties which defines other insets: <a href="/en-US/docs/Web/CSS/inset-block-start"><code>inset-block-start</code></a>, <a href="/en-US/docs/Web/CSS/inset-block-end"><code>inset-block-end</code></a>, and <a href="/en-US/docs/Web/CSS/inset-inline-start"><code>inset-inline-start</code></a></li>
+  <li>The mapped physical properties: <a href="/en-US/docs/Web/CSS/top"><code>top</code></a>, <a href="/en-US/docs/Web/CSS/right"><code>right</code></a>, <a href="/en-US/docs/Web/CSS/bottom"><code>bottom</code></a>, and <a href="/en-US/docs/Web/CSS/left"><code>left</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a>, <a href="/en-US/docs/Web/CSS/direction"><code>direction</code></a>, <a href="/en-US/docs/Web/CSS/text-orientation"><code>text-orientation</code></a></li>
+</ul>
+</body></html>

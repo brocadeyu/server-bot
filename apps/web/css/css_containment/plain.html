@@ -1,0 +1,130 @@
+<html><head></head><body>
+<p>The <strong>CSS containment</strong> module defines containment and container queries.</p>
+<p>Containment enables the isolation of page subtrees from the rest of the DOM. The browser can then improve performance by optimizing the rendering of these independent parts.</p>
+<p>Container queries are similar to dimension <a href="/en-US/docs/Web/CSS/CSS_media_queries">media queries</a>, except that the queries are based on the dimensions of a specific container element defined as a <em>containment context</em>, rather than on the dimensions of the viewport. Container queries enable querying a container's size, properties, and property values to conditionally apply CSS styles. When applying these conditional styles, you can use container query length units, which specify lengths relative to the dimensions of the query container. Additional properties are defined to enable establishing a specific element as a query container and giving it a specific name.</p>
+<h2 id="reference">Reference</h2>
+<h3 id="properties">Properties</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/contain"><code>contain</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/container"><code>container</code></a> shorthand
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/container-name"><code>container-name</code></a></li>
+      <li><a href="/en-US/docs/Web/CSS/container-type"><code>container-type</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/CSS/content-visibility"><code>content-visibility</code></a></li>
+</ul>
+<h3 id="at-rules_and_descriptors">At-rules and descriptors</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@container"><code>@container</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@container#descriptors"><code>@container</code> descriptors</a>:
+    <ul>
+      <li><code>aspect-ratio</code></li>
+      <li><code>block-size</code></li>
+      <li><code>height</code></li>
+      <li><code>inline-size</code></li>
+      <li><code>orientation</code></li>
+      <li><code>width</code></li>
+    </ul>
+  </li>
+</ul>
+<h3 id="functions">Functions</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@container#container_style_queries"><code>style()</code></a></li>
+</ul>
+<h3 id="data_types">Data types</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/@container#values"><code>&lt;container-name&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/@container#container_style_queries"><code>&lt;style-feature&gt;</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/length#container_query_length_units">Container relative <code>&lt;length&gt;</code> units</a></li>
+</ul>
+<h3 id="events">Events</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Element/contentvisibilityautostatechange_event" title="contentvisibilityautostatechange"><code>contentvisibilityautostatechange</code></a></li>
+</ul>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+  <li><a href="/en-US/docs/Web/API/ContentVisibilityAutoStateChangeEvent"><code>ContentVisibilityAutoStateChangeEvent</code></a>
+    <ul>
+      <li><a href="/en-US/docs/Web/API/ContentVisibilityAutoStateChangeEvent/skipped" title="skipped"><code>skipped</code></a> property</li>
+    </ul>
+  </li>
+  <li><a href="/en-US/docs/Web/API/CSSContainerRule"><code>CSSContainerRule</code></a>
+    <ul>
+      <li><a href="/en-US/docs/Web/API/CSSContainerRule/containerName"><code>CSSContainerRule.containerName</code></a></li>
+      <li><a href="/en-US/docs/Web/API/CSSContainerRule/containerQuery"><code>CSSContainerRule.containerQuery</code></a></li>
+    </ul>
+  </li>
+</ul>
+<h2 id="guides">Guides</h2>
+<dl>
+  <dt id="css_container_queries"><a href="/en-US/docs/Web/CSS/CSS_containment/Container_queries">CSS container queries</a></dt>
+  <dd>
+    <p>A guide to using container queries with <code>@container</code>, including naming containment contexts.</p>
+  </dd>
+  <dt id="using_css_containment"><a href="/en-US/docs/Web/CSS/CSS_containment/Using_CSS_containment">Using CSS containment</a></dt>
+  <dd>
+    <p>Describes the basic aims of CSS containment and how to leverage <code>contain</code> and <code>content-visibility</code> for a better user experience.</p>
+  </dd>
+  <dt id="using_container_size_and_style_queries"><a href="/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries">Using container size and style queries</a></dt>
+  <dd>
+    <p>A guide to writing container size and style queries with <code>@container</code>, including style queries for custom properties, query syntax and names, and nesting container queries.</p>
+  </dd>
+</dl>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/Containing_block">Layout and the containing block</a></p>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_display/Block_formatting_context">Block formatting context</a></p>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_media_queries">CSS media queries</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@media"><code>@media</code></a> at-rule</li>
+      <li><a href="/en-US/docs/Web/CSS/@media#logical_operators">CSS logical operators</a> (<code>not</code>, <code>or</code>, and <code>and</code>)</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_transitions">CSS transitions</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/@starting-style"><code>@starting-style</code></a> at-rule</li>
+      <li><a href="/en-US/docs/Web/CSS/transition-behavior"><code>transition-behavior</code></a> property</li>
+    </ul>
+  </li>
+  <li>
+    <p>CSS box sizing module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/aspect-ratio"><code>aspect-ratio</code></a> property</li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-size"><code>contain-intrinsic-size</code></a> shorthand property</li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-inline-size"><code>contain-intrinsic-inline-size</code></a> property</li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-size"><code>contain-intrinsic-size</code></a> property</li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-width"><code>contain-intrinsic-width</code></a> property</li>
+      <li><a href="/en-US/docs/Web/CSS/contain-intrinsic-height"><code>contain-intrinsic-height</code></a> property</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_counter_styles">CSS counter styles</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/CSS_counter_styles/Using_CSS_counters">Using CSS counters</a> guide</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="/en-US/docs/Web/CSS/CSS_nesting">CSS nesting</a> module</p>
+    <ul>
+      <li><a href="/en-US/docs/Web/CSS/CSS_nesting/Nesting_at-rules">CSS nesting at-rules</a> guide</li>
+    </ul>
+  </li>
+</ul>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="undefined" data-spec-urls="https://drafts.csswg.org/css-contain-2/,https://drafts.csswg.org/css-contain-3/">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/CSS_conditional_rules/Using_feature_queries">Using feature queries</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries">Using CSS media queries</a></li>
+  <li><a href="/en-US/docs/Web/CSS/CSS_box_sizing/Understanding_aspect-ratio">Understanding aspect ratios</a></li>
+  <li><a href="/en-US/docs/Web/CSS/@supports"><code>@supports</code></a> at-rule</li>
+</ul>
+</body></html>

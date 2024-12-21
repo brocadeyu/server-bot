@@ -1,0 +1,96 @@
+<html><head></head><body> <div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div><div class="notecard deprecated">
+    <h4 id="deprecated">Deprecated</h4>
+    <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p>
+</div>
+<p>The <code>FileEntrySync</code> interface represents a file in a file system. It lets you write content to a file.</p>
+<div class="notecard warning">
+  <p>
+    <strong>Warning:</strong> This interface is deprecated and is no more on the standard track.
+    <em>Do not use it anymore.</em> Use the <a href="/en-US/docs/Web/API/File_and_Directory_Entries_API">File and Directory Entries API</a> instead.
+  </p>
+</div>
+<h2 id="basic_concepts">Basic concepts</h2>
+<p>To write content to file, create a FileWriter object by calling <a href="#createwriter"><code>createWriter()</code></a>.</p>
+<h2 id="method_overview">Method overview</h2>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td><code>FileWriterSync
+<a href="#createreader" title="#createWriter">createWriter</a> ());</code></td>
+    </tr>
+    <tr>
+      <td><code>File <a href="#file">file</a> ());</code></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="instance_methods">Instance methods</h2>
+<h3 id="createwriter">createWriter()</h3>
+<p>Creates a new <code>FileWriter</code> associated with the file that the <code>FileEntry</code> represents.</p>
+<pre class="brush: js">createWriter()
+</pre>
+<h4 id="parameters">Parameters</h4>
+<p>None.</p>
+<h4 id="return_value">Return value</h4>
+<p>A <code>FileWriterSync</code> object.</p>
+<h4 id="exceptions">Exceptions</h4>
+<p>This method can raise a <a href="/en-US/docs/Web/API/DOMException">DOMException</a> with the following codes:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Exception</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>NOT_FOUND_ERR</code></td>
+      <td>The file does not exist.</td>
+    </tr>
+    <tr>
+      <td><code>INVALID_STATE_ERR</code></td>
+      <td>The file is no longer valid for some reason other than it having been deleted.</td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="file">file()</h3>
+<p>Returns a File that represents the current state of the file that this <code>FileEntry</code> represents.</p>
+<pre class="brush: js">file()
+</pre>
+<h4 id="parameters_2">Parameters</h4>
+<p>None.</p>
+<h4 id="return_value_2">Return value</h4>
+<p>A <code>File</code> object.</p>
+<h4 id="exceptions_2">Exceptions</h4>
+<p>This method can raise a <a href="/en-US/docs/Web/API/DOMException">DOMException</a> with the following codes:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Exception</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>NOT_FOUND_ERR</code></td>
+      <td>The file does not exist.</td>
+    </tr>
+    <tr>
+      <td><code>INVALID_STATE_ERR</code></td>
+      <td>The file is no longer valid for some reason other than it having been deleted.</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="specifications">Specifications</h2>
+<p>This feature is not part of any specification anymore. It is no longer on track to become a standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.FileEntrySync" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/File_and_Directory_Entries_API/Introduction">File and Directory Entries API</a></li>
+  <li><a href="/en-US/docs/Web/API/File_and_Directory_Entries_API/Introduction">Basic Concepts About the File and Directory Entries API</a></li>
+</ul>
+</body></html>

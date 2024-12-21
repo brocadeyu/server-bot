@@ -1,0 +1,44 @@
+<html><head></head><body>
+<p>The <strong><code>:user-invalid</code></strong> CSS <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents any validated form element whose value isn't valid based on their <a href="/en-US/docs/Web/HTML/Constraint_validation">validation constraints</a>, after the user has interacted with it.</p>
+<p>The <code>:user-invalid</code> pseudo-class must match an <a href="/en-US/docs/Web/CSS/:invalid"><code>:invalid</code></a>, <a href="/en-US/docs/Web/CSS/:out-of-range"><code>:out-of-range</code></a>, or blank-but <a href="/en-US/docs/Web/CSS/:required"><code>:required</code></a> element between the time the user has attempted to submit the form and before the user has interacted again with the form element.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:user-invalid {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_a_color_and_symbol_on_user-invalid">Setting a color and symbol on :user-invalid</h3>
+<p>
+  In the following example, the red border and ❌ only display once the user has interacted with the field.
+  Try typing something other than an email address to see it in action.
+</p>
+<pre class="brush: html">&lt;form&gt;
+  &lt;label for="email"&gt;Email *: &lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required /&gt;
+  &lt;span&gt;&lt;/span&gt;
+&lt;/form&gt;
+</pre>
+<pre class="brush: css">input:user-invalid {
+  border: 2px solid red;
+}
+
+input:user-invalid + span::before {
+  content: "✖";
+  color: red;
+}
+</pre><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Setting a color and symbol on user-invalid sample" id="frame_setting_a_color_and_symbol_on_user-invalid" width="140" height="100" src="about:blank" data-live-path="/en-US/docs/Web/CSS/:user-invalid" data-live-id="setting_a_color_and_symbol_on_user-invalid" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.user-invalid" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.user-invalid" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/:valid"><code>:valid</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:invalid"><code>:invalid</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:required"><code>:required</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:optional"><code>:optional</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/:user-valid"><code>:user-valid</code></a></li>
+</ul>
+</body></html>

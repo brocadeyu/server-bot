@@ -1,0 +1,80 @@
+<html><head></head><body>
+<p>The <strong><code>HTMLTemplateElement</code></strong> interface enables access to the contents of an HTML <a href="/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a> element.</p>
+<div class="notecard note">
+  <p>
+    <strong>Note:</strong> An HTML parser can create either an <code>HTMLTemplateElement</code> or a <a href="/en-US/docs/Web/API/ShadowRoot"><code>ShadowRoot</code></a> when it parses a <a href="/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a> element, depending on the <code>&lt;template&gt;</code> attributes.
+    If an <code>HTMLTemplateElement</code> is created the "shadow" attributes are reflected from the template.
+    However these are not useful, because an <code>HTMLTemplateElement</code> is not a shadow root and cannot subsequently be changed to a shadow root.
+  </p>
+</div><svg viewBox="-1 -1 650 42" preserveAspectRatio="xMinYMin meet">
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/EventTarget">
+    <rect x="0" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      EventTarget
+    </text>
+  </a>
+  <line x1="88" y1="14" x2="118" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="88,14 98,9 98,19 88,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Node">
+    <rect x="118" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Node
+    </text>
+  </a>
+  <line x1="193" y1="14" x2="223" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="193,14 203,9 203,19 193,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/Element">
+    <rect x="223" y="0" width="75" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="260.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      Element
+    </text>
+  </a>
+  <line x1="298" y1="14" x2="328" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="298,14 308,9 308,19 298,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLElement">
+    <rect x="328" y="0" width="88" height="25" fill="#fff" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="372" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLElement
+    </text>
+  </a>
+  <line x1="416" y1="14" x2="446" y2="14" stroke="#D4DDE4"></line>
+  <polyline points="416,14 426,9 426,19 416,14" stroke="#D4DDE4" fill="#fff"></polyline>
+  <a style="text-decoration: none;" href="/en-US/docs/Web/API/HTMLTemplateElement" aria-current="page">
+    <rect x="446" y="0" width="152" height="25" fill="#F4F7F8" stroke="#D4DDE4" stroke-width="2px"></rect>
+    <text x="522" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle">
+      HTMLTemplateElement
+    </text>
+  </a></svg>
+<h2 id="instance_properties">Instance properties</h2>
+<p><em>This interface inherits the properties of <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<dl>
+  <dt id="content"><a href="/en-US/docs/Web/API/HTMLTemplateElement/content" title="content"><code>content</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>A read-only <a href="/en-US/docs/Web/API/DocumentFragment"><code>DocumentFragment</code></a> which contains the DOM subtree representing the <a href="/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a> element's template contents.</p>
+  </dd>
+  <dt id="shadowrootmode"><a href="/en-US/docs/Web/API/HTMLTemplateElement/shadowRootMode" title="shadowRootMode"><code>shadowRootMode</code></a></dt>
+  <dd>
+    <p>A string that reflects the value of the <a href="/en-US/docs/Web/HTML/Element/template#shadowrootmode"><code>shadowrootmode</code></a> attribute of the associated <code>&lt;template&gt;</code> element.</p>
+  </dd>
+  <dt id="shadowrootdelegatesfocus"><a href="/en-US/docs/Web/API/HTMLTemplateElement/shadowRootDelegatesFocus" title="shadowRootDelegatesFocus"><code>shadowRootDelegatesFocus</code></a></dt>
+  <dd>
+    <p>A boolean that reflects the value of the <a href="/en-US/docs/Web/HTML/Element/template#shadowrootdelegatesfocus"><code>shadowrootdelegatesfocus</code></a> attribute of the associated <code>&lt;template&gt;</code> element.</p>
+  </dd>
+  <dt id="shadowrootclonable"><a href="/en-US/docs/Web/API/HTMLTemplateElement/shadowRootClonable" title="shadowRootClonable"><code>shadowRootClonable</code></a></dt>
+  <dd>
+    <p>A boolean that reflects the value of the <a href="/en-US/docs/Web/HTML/Element/template#shadowrootclonable"><code>shadowrootclonable</code></a> attribute of the associated <code>&lt;template&gt;</code> element.</p>
+  </dd>
+  <dt id="shadowrootserializable"><a href="/en-US/docs/Web/API/HTMLTemplateElement/shadowRootSerializable" title="shadowRootSerializable"><code>shadowRootSerializable</code></a></dt>
+  <dd>
+    <p>A boolean that reflects the value of the <a href="/en-US/docs/Web/HTML/Element/template#shadowrootserializable"><code>shadowrootserializable</code></a> attribute of the associated <code>&lt;template&gt;</code> element.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<p><em>This interface inherits the methods of <a href="/en-US/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</em></p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.HTMLTemplateElement" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.HTMLTemplateElement" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

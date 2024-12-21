@@ -1,0 +1,95 @@
+<html><head></head><body>
+<p>The <strong><code>sqrt()</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/CSS_Functions">function</a> is an exponential function that returns the <a href="https://en.wikipedia.org/wiki/Square_root">square root</a> of a number.</p>
+<p>The function <code>pow(x, 0.5)</code> is equivalent to <code>sqrt(x)</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* A &lt;number&gt; value */
+width: calc(100px * sqrt(9)); /*  300px */
+width: calc(100px * sqrt(25)); /*  500px */
+width: calc(100px * sqrt(100)); /* 1000px */
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p>The <code>sqrt(x)</code> function accepts only one value as its parameter.</p>
+<dl>
+  <dt id="x"><a href="#x"><code>x</code></a></dt>
+  <dd>
+    <p>A calculation which resolves to a <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> greater than or equal to 0.</p>
+  </dd>
+</dl>
+<h3 id="return_value">Return value</h3>
+<p>Returns a <a href="/en-US/docs/Web/CSS/number"><code>&lt;number&gt;</code></a> which is the square root of <code>x</code>.</p>
+<ul>
+  <li>if <code>x</code> is <code>+∞</code>, the result is <code>+∞</code>.</li>
+  <li>If <code>x</code> is <code>0⁻</code>, the result is <code>0⁻</code>.</li>
+  <li>If <code>x</code> is less than <code>0</code>, the result is <code>NaN</code>.</li>
+</ul>
+<h3 id="formal_syntax">Formal syntax</h3><pre><span class="token property" id="<sqrt()>">&lt;sqrt()&gt; = </span><br>  <span class="token function">sqrt(</span> <span class="token property">&lt;calc-sum&gt;</span> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-sum>">&lt;calc-sum&gt; = </span><br>  <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '+' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '-' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-product&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<calc-product>">&lt;calc-product&gt; = </span><br>  <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[</a> '*' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a> '/' <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a> <span class="token property">&lt;calc-value&gt;</span> <a href="/en-US/docs/Web/CSS/Value_definition_syntax#brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">]</a><a href="/en-US/docs/Web/CSS/Value_definition_syntax#asterisk" title="Asterisk: the entity may occur zero, one or several times">*</a>  <br><br><span class="token property" id="<calc-value>">&lt;calc-value&gt; = </span><br>  <a href="/en-US/docs/Web/CSS/number"><span class="token property">&lt;number&gt;</span></a>        <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/dimension"><span class="token property">&lt;dimension&gt;</span></a>     <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <a href="/en-US/docs/Web/CSS/percentage"><span class="token property">&lt;percentage&gt;</span></a>    <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token property">&lt;calc-keyword&gt;</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  ( <span class="token property">&lt;calc-sum&gt;</span> <span class="token function">)</span>  <br><br><span class="token property" id="<calc-keyword>">&lt;calc-keyword&gt; = </span><br>  <span class="token keyword">e</span>          <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">pi</span>         <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">infinity</span>   <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">-infinity</span>  <a href="/en-US/docs/Web/CSS/Value_definition_syntax#single_bar" title="Single bar: exactly one of the entities must be present">|</a><br>  <span class="token keyword">NaN</span>        <br><br></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="scale_sizes_based_on_square_root">Scale sizes based on square root</h3>
+<p>This example shows how you can use the <code>sqrt()</code> function to calculate sizes.</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;div class="boxes"&gt;
+  &lt;div class="box"&gt;50px&lt;/div&gt;
+  &lt;div class="box one"&gt;100px&lt;/div&gt;
+  &lt;div class="box two"&gt;150px&lt;/div&gt;
+  &lt;div class="box three"&gt;200px&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<p>Here we are using <a href="/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS custom properties</a> to define the sizes to be used. First, we declare the first size (<code>--size-0</code>), which is then used to calculate the other sizes.</p>
+<ul>
+  <li><code>--size-1</code> is calculated by multiplying the value of <code>--size-0</code> (50px) by the square root of 4 (2), which results in 100px.</li>
+  <li><code>--size-2</code> is calculated by multiplying the value of <code>--size-0</code> (50px) by the square root of 9 (3), which results in 150px.</li>
+  <li><code>--size-3</code> is calculated by multiplying the value of <code>--size-0</code> (50px) by the square root of 16 (4), which results in 200px.</li>
+</ul>
+<pre class="brush: css">:root {
+  --size-0: 50px;
+  --size-1: calc(var(--size-0) * sqrt(4)); /*  100px */
+  --size-2: calc(var(--size-0) * sqrt(9)); /*  150px */
+  --size-3: calc(var(--size-0) * sqrt(16)); /*  200px */
+}
+</pre>
+<pre class="brush: css hidden">.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.box {
+  width: var(--size-0);
+  height: var(--size-0);
+  background-color: tomato;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</pre>
+<p>The sizes are then applied as the <code>width</code> and <code>height</code> values of the selectors.</p>
+<pre class="brush: css">.one {
+  width: var(--size-1);
+  height: var(--size-1);
+}
+.two {
+  width: var(--size-2);
+  height: var(--size-2);
+}
+.three {
+  width: var(--size-3);
+  height: var(--size-3);
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Scale sizes based on square root sample" id="frame_scale_sizes_based_on_square_root" width="100%" height="220px" src="about:blank" data-live-path="/en-US/docs/Web/CSS/sqrt" data-live-id="scale_sizes_based_on_square_root" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.types.sqrt" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.types.sqrt" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/pow"><code>pow()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/hypot"><code>hypot()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/log"><code>log()</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/exp"><code>exp()</code></a></li>
+</ul>
+</body></html>

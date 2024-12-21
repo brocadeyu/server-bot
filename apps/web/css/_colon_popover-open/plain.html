@@ -1,0 +1,45 @@
+<html><head></head><body>
+<p>The <strong><code>:popover-open</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/Pseudo-classes">pseudo-class</a> represents a <a href="/en-US/docs/Web/API/Popover_API" title="popover">popover</a> element (i.e. one with a <a href="/en-US/docs/Web/HTML/Global_attributes/popover"><code>popover</code> attribute</a>) that is in the showing state. You can use this to apply style to popover elements only when they are shown.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">:popover-open {
+  /* ... */
+}
+</pre>
+<h2 id="examples">Examples</h2>
+<p>By default, popovers appear in the middle of the viewport. The default styling is achieved like this in the UA stylesheet:</p>
+<pre class="brush: css">[popover] {
+  position: fixed;
+  inset: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  border: solid;
+  padding: 0.25em;
+  overflow: auto;
+  color: CanvasText;
+  background-color: Canvas;
+}
+</pre>
+<p>To override the default styles and get the popover to appear somewhere else on your viewport, you could need to override the above styles with something like this:</p>
+<pre class="brush: css">:popover-open {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  inset: unset;
+  bottom: 5px;
+  right: 5px;
+  margin: 0;
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="css.selectors.popover-open" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.selectors.popover-open" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Popover_API">Popover API</a></li>
+  <li><a href="/en-US/docs/Web/HTML/Global_attributes/popover"><code>popover</code></a> HTML global attribute</li>
+</ul>
+</body></html>

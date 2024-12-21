@@ -1,0 +1,58 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>ByteLengthQueuingStrategy</code></strong> interface of the <a href="/en-US/docs/Web/API/Streams_API">Streams API</a> provides a built-in byte length queuing strategy that can be used when constructing streams.</p>
+<h2 id="constructor">Constructor</h2>
+<dl>
+  <dt id="bytelengthqueuingstrategy"><a href="/en-US/docs/Web/API/ByteLengthQueuingStrategy/ByteLengthQueuingStrategy" title="ByteLengthQueuingStrategy()"><code>ByteLengthQueuingStrategy()</code></a></dt>
+  <dd>
+    <p>Creates a new <code>ByteLengthQueuingStrategy</code> object instance.</p>
+  </dd>
+</dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl>
+  <dt id="bytelengthqueuingstrategy.highwatermark"><a href="/en-US/docs/Web/API/ByteLengthQueuingStrategy/highWaterMark"><code>ByteLengthQueuingStrategy.highWaterMark</code></a> <span class="badge inline readonly" title="This value may not be changed.">Read only </span></dt>
+  <dd>
+    <p>The total number of bytes that can be contained in the internal queue before <a href="/en-US/docs/Web/API/Streams_API/Concepts#backpressure">backpressure</a> is applied.</p>
+  </dd>
+</dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="bytelengthqueuingstrategy.size"><a href="/en-US/docs/Web/API/ByteLengthQueuingStrategy/size"><code>ByteLengthQueuingStrategy.size()</code></a></dt>
+  <dd>
+    <p>Returns the given chunk's <code>byteLength</code> property.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre class="brush: js">const queueingStrategy = new ByteLengthQueuingStrategy({ highWaterMark: 1024 });
+
+const readableStream = new ReadableStream(
+  {
+    start(controller) {
+      // …
+    },
+    pull(controller) {
+      // …
+    },
+    cancel(err) {
+      console.log("stream error:", err);
+    },
+  },
+  queueingStrategy,
+);
+
+const size = queueingStrategy.size(chunk);
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.ByteLengthQueuingStrategy" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.ByteLengthQueuingStrategy" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/API/Streams_API" title="Streams API">Streams API</a></li>
+  <li><a href="/en-US/docs/Web/API/Streams_API/Concepts#internal_queues_and_queuing_strategies">Internal queues and queuing strategies</a></li>
+  <li><a href="/en-US/docs/Web/API/ByteLengthQueuingStrategy/ByteLengthQueuingStrategy" title="ByteLengthQueuingStrategy()"><code>ByteLengthQueuingStrategy()</code></a> constructor</li>
+</ul>
+</body></html>

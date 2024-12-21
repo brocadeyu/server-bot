@@ -1,0 +1,82 @@
+<html><head></head><body> <div class="notecard nonstandard">
+  <h4 id="non-standard">Non-standard</h4>
+  <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+</div>
+<p>The <strong><code>font-smooth</code></strong> <a href="/en-US/docs/Web/CSS">CSS</a> property controls the application of anti-aliasing when fonts are rendered.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: css">/* Keyword values */
+font-smooth: auto;
+font-smooth: never;
+font-smooth: always;
+
+/* &lt;length&gt; value */
+font-smooth: 2em;
+
+/* Global values */
+font-smooth: inherit;
+font-smooth: initial;
+font-smooth: revert;
+font-smooth: revert-layer;
+font-smooth: unset;
+</pre>
+<div class="notecard note">
+  <p><strong>Note:</strong> WebKit implements a similar property, but with different values: <strong><code>-webkit-font-smoothing</code></strong>. It only works on macOS.</p>
+  <ul>
+    <li><code>auto</code> - Let the browser decide (Uses subpixel anti-aliasing when available; this is the default)</li>
+    <li><code>none</code> - Turn font smoothing off; display text with jagged sharp edges.</li>
+    <li><code>antialiased</code> - Smooth the font on the level of the pixel, as opposed to the subpixel. Switching from subpixel rendering to anti-aliasing for light text on dark backgrounds makes it look lighter.</li>
+    <li><code>subpixel-antialiased</code> - On most non-retina displays, this will give the sharpest text.</li>
+  </ul>
+</div>
+<div class="notecard note">
+  <p><strong>Note:</strong> Firefox implements a similar property, but with different values: <strong><code>-moz-osx-font-smoothing</code></strong>. It only works on macOS.</p>
+  <ul>
+    <li><code>auto</code> - Allow the browser to select an optimization for font smoothing, typically <code>grayscale</code>.</li>
+    <li><code>grayscale</code> - Render text with grayscale anti-aliasing, as opposed to the subpixel. Switching from subpixel rendering to anti-aliasing for light text on dark backgrounds makes it look lighter.</li>
+  </ul>
+</div>
+<h2 id="formal_definition">Formal definition</h2><table class="properties"><tbody><tr><th scope="row"><a href="/en-US/docs/Web/CSS/initial_value">Initial value</a></th><td><code>auto</code></td></tr><tr><th scope="row">Applies to</th><td>all elements</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/Inheritance">Inherited</a></th><td>yes</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/computed_value">Computed value</a></th><td>as specified</td></tr><tr><th scope="row"><a href="/en-US/docs/Web/CSS/CSS_animated_properties">Animation type</a></th><td>discrete</td></tr></tbody></table>
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="brush: plain">font-smooth =
+  auto | never | always | &lt;absolute-size&gt; | &lt;length&gt;
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_usage_example">Basic usage example</h3>
+<p>The following example shows the Safari/Chromium and Firefox equivalents that turn on font-smoothing on macOS. In both cases the smoothed font should look slightly lighter in weight.</p>
+<p>For those of you not on a macOS system, here is a screenshot (the live version appears later on):</p>
+<p>
+  <img src="/en-US/docs/Web/CSS/font-smooth/smoothing.png" alt="Two texts examples one with the font-smooth property and another one without" width="1254" height="518">
+</p>
+<h4 id="html">HTML</h4>
+<pre class="brush: html">&lt;p&gt;Without font smoothing&lt;/p&gt;
+
+&lt;p class="smoothed"&gt;With font smoothing&lt;/p&gt;
+</pre>
+<h4 id="css">CSS</h4>
+<pre class="brush: css">html {
+  background-color: black;
+  color: white;
+  font-size: 3rem;
+}
+
+p {
+  text-align: center;
+}
+
+.smoothed {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</pre>
+<h4 id="result">Result</h4><div class="code-example"><div class="example-header"></div><iframe class="sample-code-frame" title="Basic usage example sample" id="frame_basic_usage_example" width="100%" height="260" src="about:blank" data-live-path="/en-US/docs/Web/CSS/font-smooth" data-live-id="basic_usage_example" sandbox="allow-same-origin allow-scripts"></iframe></div>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="css.properties.font-smooth" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/">Please Stop "Fixing" Font Smoothing – UsabilityPost</a></li>
+  <li><a href="https://www.zachleat.com/web/font-smooth/">Laissez-faire font smoothing and anti-aliasing</a></li>
+</ul>
+</body></html>

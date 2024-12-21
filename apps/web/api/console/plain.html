@@ -1,0 +1,300 @@
+<html><head></head><body> <div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>console</code></strong> object provides access to the debugging console (e.g., the <a href="https://firefox-source-docs.mozilla.org/devtools-user/web_console/index.html">Web console</a> in Firefox).</p>
+<p>Implementations of the console API may differ between runtimes. In particular, some console methods may work differently or not work at all in some online editors and IDEs. To see the behavior described in this documentation, try the methods in your browser's developer tools, although even here, there are some differences between browsers.</p>
+<p>The <code>console</code> object can be accessed from any global object. <a href="/en-US/docs/Web/API/Window"><code>Window</code></a> on browsing scopes and <a href="/en-US/docs/Web/API/WorkerGlobalScope"><code>WorkerGlobalScope</code></a> as specific variants in workers via the property console. It's exposed as <a href="/en-US/docs/Web/API/Window/console"><code>Window.console</code></a>, and can be referenced as <code>console</code>. For example:</p>
+<pre class="brush: js">console.log("Failed to open the specified link");
+</pre>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="console.assert"><a href="/en-US/docs/Web/API/console/assert_static" title="console.assert()"><code>console.assert()</code></a></dt>
+  <dd>
+    <p>Log an error message to console if the first argument is <code>false</code>.</p>
+  </dd>
+  <dt id="console.clear"><a href="/en-US/docs/Web/API/console/clear_static" title="console.clear()"><code>console.clear()</code></a></dt>
+  <dd>
+    <p>Clear the console.</p>
+  </dd>
+  <dt id="console.count"><a href="/en-US/docs/Web/API/console/count_static" title="console.count()"><code>console.count()</code></a></dt>
+  <dd>
+    <p>Log the number of times this line has been called with the given label.</p>
+  </dd>
+  <dt id="console.countreset"><a href="/en-US/docs/Web/API/console/countReset_static" title="console.countReset()"><code>console.countReset()</code></a></dt>
+  <dd>
+    <p>Resets the value of the counter with the given label.</p>
+  </dd>
+  <dt id="console.debug"><a href="/en-US/docs/Web/API/console/debug_static" title="console.debug()"><code>console.debug()</code></a></dt>
+  <dd>
+    <p>Outputs a message to the console with the debug log level.</p>
+  </dd>
+  <dt id="console.dir"><a href="/en-US/docs/Web/API/console/dir_static" title="console.dir()"><code>console.dir()</code></a></dt>
+  <dd>
+    <p>Displays an interactive listing of the properties of a specified JavaScript object. This listing lets you use disclosure triangles to examine the contents of child objects.</p>
+  </dd>
+  <dt id="console.dirxml"><a href="/en-US/docs/Web/API/console/dirxml_static" title="console.dirxml()"><code>console.dirxml()</code></a></dt>
+  <dd>
+    <p>Displays an XML/HTML Element representation of the specified object if possible or the JavaScript Object view if it is not possible.</p>
+  </dd>
+  <dt id="console.error"><a href="/en-US/docs/Web/API/console/error_static" title="console.error()"><code>console.error()</code></a></dt>
+  <dd>
+    <p>Outputs a message to the console with the error log level.</p>
+  </dd>
+  <dt id="console.exception"><a href="#console.exception"><code>console.exception()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>An alias for <code>console.error()</code>.</p>
+  </dd>
+  <dt id="console.group"><a href="/en-US/docs/Web/API/console/group_static" title="console.group()"><code>console.group()</code></a></dt>
+  <dd>
+    <p>Creates a new inline <a href="#using_groups_in_the_console">group</a>, indenting all following output by another level. To move back out a level, call <code>console.groupEnd()</code>.</p>
+  </dd>
+  <dt id="console.groupcollapsed"><a href="/en-US/docs/Web/API/console/groupCollapsed_static" title="console.groupCollapsed()"><code>console.groupCollapsed()</code></a></dt>
+  <dd>
+    <p>Creates a new inline <a href="#using_groups_in_the_console">group</a>, indenting all following output by another level. However, unlike <code>console.group()</code> this starts with the inline group collapsed requiring the use of a disclosure button to expand it. To move back out a level, call <code>console.groupEnd()</code>.</p>
+  </dd>
+  <dt id="console.groupend"><a href="/en-US/docs/Web/API/console/groupEnd_static" title="console.groupEnd()"><code>console.groupEnd()</code></a></dt>
+  <dd>
+    <p>Exits the current inline <a href="#using_groups_in_the_console">group</a>.</p>
+  </dd>
+  <dt id="console.info"><a href="/en-US/docs/Web/API/console/info_static" title="console.info()"><code>console.info()</code></a></dt>
+  <dd>
+    <p>Outputs a message to the console with the info log level.</p>
+  </dd>
+  <dt id="console.log"><a href="/en-US/docs/Web/API/console/log_static" title="console.log()"><code>console.log()</code></a></dt>
+  <dd>
+    <p>Outputs a message to the console.</p>
+  </dd>
+  <dt id="console.profile"><a href="/en-US/docs/Web/API/console/profile_static" title="console.profile()"><code>console.profile()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Starts the browser's built-in profiler (for example, the <a href="https://firefox-source-docs.mozilla.org/devtools-user/performance/index.html">Firefox performance tool</a>). You can specify an optional name for the profile.</p>
+  </dd>
+  <dt id="console.profileend"><a href="/en-US/docs/Web/API/console/profileEnd_static" title="console.profileEnd()"><code>console.profileEnd()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Stops the profiler. You can see the resulting profile in the browser's performance tool (for example, the <a href="https://firefox-source-docs.mozilla.org/devtools-user/performance/index.html">Firefox performance tool</a>).</p>
+  </dd>
+  <dt id="console.table"><a href="/en-US/docs/Web/API/console/table_static" title="console.table()"><code>console.table()</code></a></dt>
+  <dd>
+    <p>Displays tabular data as a table.</p>
+  </dd>
+  <dt id="console.time"><a href="/en-US/docs/Web/API/console/time_static" title="console.time()"><code>console.time()</code></a></dt>
+  <dd>
+    <p>Starts a <a href="#timers">timer</a> with a name specified as an input parameter. Up to 10,000 simultaneous timers can run on a given page.</p>
+  </dd>
+  <dt id="console.timeend"><a href="/en-US/docs/Web/API/console/timeEnd_static" title="console.timeEnd()"><code>console.timeEnd()</code></a></dt>
+  <dd>
+    <p>Stops the specified <a href="#timers">timer</a> and logs the elapsed time in milliseconds since it started.</p>
+  </dd>
+  <dt id="console.timelog"><a href="/en-US/docs/Web/API/console/timeLog_static" title="console.timeLog()"><code>console.timeLog()</code></a></dt>
+  <dd>
+    <p>Logs the value of the specified <a href="#timers">timer</a> to the console.</p>
+  </dd>
+  <dt id="console.timestamp"><a href="/en-US/docs/Web/API/console/timeStamp_static" title="console.timeStamp()"><code>console.timeStamp()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using.">
+    <span class="visually-hidden">Non-standard</span>
+</abbr></dt>
+  <dd>
+    <p>Adds a marker to the browser performance tool's timeline (<a href="https://developer.chrome.com/docs/devtools/performance/reference">Chrome</a> or <a href="https://profiler.firefox.com/docs/#/./guide-ui-tour-timeline">Firefox</a>).</p>
+  </dd>
+  <dt id="console.trace"><a href="/en-US/docs/Web/API/console/trace_static" title="console.trace()"><code>console.trace()</code></a></dt>
+  <dd>
+    <p>Outputs a <a href="#stack_traces">stack trace</a>.</p>
+  </dd>
+  <dt id="console.warn"><a href="/en-US/docs/Web/API/console/warn_static" title="console.warn()"><code>console.warn()</code></a></dt>
+  <dd>
+    <p>Outputs a message to the console with the warning log level.</p>
+  </dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<h3 id="outputting_text_to_the_console">Outputting text to the console</h3>
+<p>The console's most frequently used feature is logging text and other data. There are several categories of output you can generate using the <a href="/en-US/docs/Web/API/console/log_static" title="console.log()"><code>console.log()</code></a>, <a href="/en-US/docs/Web/API/console/info_static" title="console.info()"><code>console.info()</code></a>, <a href="/en-US/docs/Web/API/console/warn_static" title="console.warn()"><code>console.warn()</code></a>, <a href="/en-US/docs/Web/API/console/error_static" title="console.error()"><code>console.error()</code></a>, or <a href="/en-US/docs/Web/API/console/debug_static" title="console.debug()"><code>console.debug()</code></a> methods. Each of these results in output styled differently in the log, and you can use the filtering controls provided by your browser to view only the kinds of output that interest you.</p>
+<p>There are two ways to use each of the output methods:</p>
+<ul>
+  <li>Pass in a variable number of arguments whose string representations get concatenated into one string, then output to the console.</li>
+  <li>Pass in a string containing zero or more substitution strings followed by a variable number of arguments to replace them.</li>
+</ul>
+<h4 id="outputting_a_single_object">Outputting a single object</h4>
+<p>The simplest way to use the logging methods is to output a single object:</p>
+<pre class="brush: js">const someObject = { str: "Some text", id: 5 };
+console.log(someObject);
+</pre>
+<p>The output looks something like this:</p>
+<pre class="brush: plain">{str:"Some text", id:5}
+</pre>
+<p>The browser will display as much information about the object as it can and wishes to. For example, private state of the object may be displayed too. Certain types of objects, such as DOM elements or functions, may also be displayed in a special way.</p>
+<h4 id="snapshotting_objects">Snapshotting objects</h4>
+<p>Information about an object is lazily retrieved. This means that the log message shows the content of an object at the time when it's first viewed, not when it was logged. For example:</p>
+<pre class="brush: js">const obj = {};
+console.log(obj);
+obj.prop = 123;
+</pre>
+<p>This will output <code>{}</code>. However, if you expand the object's details, you will see <code>prop: 123</code>.</p>
+<p>If you are going to mutate your object and you want to prevent the logged information from being updated, you can <a href="/en-US/docs/Glossary/Deep_copy">deep-clone</a> the object before logging it. A common way is to <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a> and then <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a> it:</p>
+<pre class="brush: js">console.log(JSON.parse(JSON.stringify(obj)));
+</pre>
+<p>There are other alternatives that work in browsers, such as <a href="/en-US/docs/Web/API/Window/structuredClone" title="structuredClone()"><code>structuredClone()</code></a>, which are more effective at cloning different types of objects.</p>
+<h4 id="outputting_multiple_objects">Outputting multiple objects</h4>
+<p>You can also output multiple objects by listing them when calling the logging method, like this:</p>
+<pre class="brush: js">const car = "Dodge Charger";
+const someObject = { str: "Some text", id: 5 };
+console.info("My first car was a", car, ". The object is:", someObject);
+</pre>
+<p>The output will look like this:</p>
+<pre class="brush: plain">My first car was a Dodge Charger. The object is: {str:"Some text", id:5}
+</pre>
+<h4 id="using_string_substitutions">Using string substitutions</h4>
+<p>The first parameter to the logging methods can be a string containing zero or more substitution strings. Each substitution string is replaced by the corresponding argument value.</p>
+<dl>
+  <dt id="o"><a href="#o"><code>%o</code></a></dt>
+  <dd>
+    <p>Outputs a JavaScript object in the "optimally useful formatting" style, for example DOM elements may be displayed the same way as they would appear in the element inspector.</p>
+  </dd>
+  <dt id="o_2"><a href="#o_2"><code>%O</code></a></dt>
+  <dd>
+    <p>Outputs a JavaScript object in the "generic JavaScript object formatting" style, usually in the form of an expandable tree. This is similar to <a href="/en-US/docs/Web/API/console/dir_static" title="console.dir()"><code>console.dir()</code></a>.</p>
+  </dd>
+  <dt id="d"><a href="#d"><code>%d</code></a> or <code>%i</code></dt>
+  <dd>
+    <p>Outputs an integer.</p>
+  </dd>
+  <dt id="s"><a href="#s"><code>%s</code></a></dt>
+  <dd>
+    <p>Outputs a string.</p>
+  </dd>
+  <dt id="f"><a href="#f"><code>%f</code></a></dt>
+  <dd>
+    <p>Outputs a floating-point value.</p>
+  </dd>
+  <dt id="c"><a href="#c"><code>%c</code></a></dt>
+  <dd>
+    <p>Applies CSS style rules to all following text. See <a href="#styling_console_output">Styling console output</a>.</p>
+  </dd>
+</dl>
+<p>Some browsers may implement additional format specifiers. For example, Safari and Firefox support the C-style precision formatting <code>%.&lt;precision&gt;f</code>. For example <code>console.log("Foo %.2f", 1.1)</code> will output the number to 2 decimal places: <code>Foo 1.10</code>, while <code>console.log("Foo %.2d", 1.1)</code> will output the number as two significant figures with a leading 0: <code>Foo 01</code>.</p>
+<p>Each of these pulls the next argument after the format string off the parameter list. For example:</p>
+<pre class="brush: js">for (let i = 0; i &lt; 5; i++) {
+  console.log("Hello, %s. You've called me %d times.", "Bob", i + 1);
+}
+</pre>
+<p>The output looks like this:</p>
+<pre class="brush: plain">Hello, Bob. You've called me 1 times.
+Hello, Bob. You've called me 2 times.
+Hello, Bob. You've called me 3 times.
+Hello, Bob. You've called me 4 times.
+Hello, Bob. You've called me 5 times.
+</pre>
+<h4 id="styling_console_output">Styling console output</h4>
+<p>You can use the <code>%c</code> directive to apply a CSS style to console output:</p>
+<pre class="brush: js">console.log(
+  "This is %cMy stylish message",
+  "color: yellow; font-style: italic; background-color: blue;padding: 2px",
+);
+</pre>
+<p>The text before the directive will not be affected, but the text after the directive will be styled using the CSS declarations in the parameter.</p>
+<p>
+  <img src="/en-US/docs/Web/API/console/css-styling.png" alt="Styled Text in Firefox console" width="198" height="29">
+</p>
+<p>You may use <code>%c</code> multiple times:</p><!-- cSpell:ignore corange cred -->
+<pre class="brush: js">console.log(
+  "Multiple styles: %cred %corange",
+  "color: red",
+  "color: orange",
+  "Additional unformatted message",
+);
+</pre>
+<p>The properties usable along with the <code>%c</code> syntax are as follows (at least, in Firefox — they may differ in other browsers):</p>
+<ul>
+  <li><a href="/en-US/docs/Web/CSS/background"><code>background</code></a> and its longhand equivalents</li>
+  <li><a href="/en-US/docs/Web/CSS/border"><code>border</code></a> and its longhand equivalents</li>
+  <li><a href="/en-US/docs/Web/CSS/border-radius"><code>border-radius</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/box-decoration-break"><code>box-decoration-break</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/box-shadow"><code>box-shadow</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/clear"><code>clear</code></a> and <a href="/en-US/docs/Web/CSS/float"><code>float</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/color"><code>color</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/cursor"><code>cursor</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/display"><code>display</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/font"><code>font</code></a> and its longhand equivalents</li>
+  <li><a href="/en-US/docs/Web/CSS/line-height"><code>line-height</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/margin"><code>margin</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/outline"><code>outline</code></a> and its longhand equivalents</li>
+  <li><a href="/en-US/docs/Web/CSS/padding"><code>padding</code></a></li>
+  <li><code>text-*</code> properties such as <a href="/en-US/docs/Web/CSS/text-transform"><code>text-transform</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/white-space"><code>white-space</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/word-spacing"><code>word-spacing</code></a> and <a href="/en-US/docs/Web/CSS/word-break"><code>word-break</code></a></li>
+  <li><a href="/en-US/docs/Web/CSS/writing-mode"><code>writing-mode</code></a></li>
+</ul>
+<div class="notecard note">
+  <p><strong>Note:</strong> Each console message behaves like an inline element by default. If you want properties such as <code>padding</code>, <code>margin</code>, and so on to have any effect, you can set the <code>display</code> property to <code>display: inline-block</code>.</p>
+</div>
+<div class="notecard note">
+  <p><strong>Note:</strong> In order to support both light and dark color schemes, <a href="/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark()</code></a> can be used when specifying colors; for example: <code>color: light-dark(#D00000, #FF4040);</code></p>
+</div>
+<h3 id="using_groups_in_the_console">Using groups in the console</h3>
+<p>You can use nested groups to help organize your output by visually combining related material. To create a new nested block, call <code>console.group()</code>. The <code>console.groupCollapsed()</code> method is similar but creates the new block collapsed, requiring the use of a disclosure button to open it for reading.</p>
+<p>To exit the current group, call <code>console.groupEnd()</code>. For example, given this code:</p>
+<pre class="brush: js">console.log("This is the outer level");
+console.group("First group");
+console.log("In the first group");
+console.group("Second group");
+console.log("In the second group");
+console.warn("Still in the second group");
+console.groupEnd();
+console.log("Back to the first group");
+console.groupEnd();
+console.debug("Back to the outer level");
+</pre>
+<p>The output looks like this:</p>
+<p>
+  <img src="/en-US/docs/Web/API/console/console_groups_demo.png" alt="Demo of nested groups in Firefox console" width="236" height="169">
+</p>
+<h3 id="timers">Timers</h3>
+<p>You can start a timer to calculate the duration of a specific operation. To start one, call the <code>console.time()</code> method, giving it a name as the only parameter. To stop the timer, and to get the elapsed time in milliseconds, just call the <code>console.timeEnd()</code> method, again passing the timer's name as the parameter. Up to 10,000 timers can run simultaneously on a given page.</p>
+<p>For example, given this code:</p>
+<pre class="brush: js">console.time("answer time");
+alert("Click to continue");
+console.timeLog("answer time");
+alert("Do a bunch of other stuff…");
+console.timeEnd("answer time");
+</pre>
+<p>Will log the time needed by the user to dismiss the alert box, log the time to the console, wait for the user to dismiss the second alert, and then log the ending time to the console:</p>
+<p>
+  <img src="/en-US/docs/Web/API/console/console-timelog.png" alt="Time log in Firefox console" width="318" height="102">
+</p>
+<p>Notice that the timer's name is displayed both when the timer is started and when it's stopped.</p>
+<h3 id="stack_traces">Stack traces</h3>
+<p>The console object also supports outputting a stack trace; this will show you the call path taken to reach the point at which you call <a href="/en-US/docs/Web/API/console/trace_static" title="console.trace()"><code>console.trace()</code></a>. Given code like this:</p>
+<pre class="brush: js">function foo() {
+  function bar() {
+    console.trace();
+  }
+  bar();
+}
+
+foo();
+</pre>
+<p>The output in the console looks something like this:</p>
+<p>
+  <img src="/en-US/docs/Web/API/console/api-trace2.png" alt="Stack trace in Firefox console" width="499" height="123">
+</p>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.console" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.console" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/index.html">Firefox Developer Tools</a></li>
+  <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/web_console/index.html">Web console</a> — how the Web console in Firefox handles console API calls</li>
+  <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html">about:debugging</a> — how to see console output when the debugging target is a mobile device</li>
+  <li><a href="https://developer.chrome.com/docs/devtools/console/api/">Google Chrome DevTools</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/archive/microsoft-edge/legacy/developer/">Microsoft Edge DevTools</a></li>
+  <li><a href="https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/Console/Console.html">Safari Web Inspector</a></li>
+</ul>
+</body></html>

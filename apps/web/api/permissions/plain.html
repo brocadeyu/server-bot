@@ -1,0 +1,34 @@
+<html><head></head><body><div class="notecard note">
+  <p><strong>Note:</strong> This feature is available in <a href="/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>.</p>
+</div>
+<p>The <strong><code>Permissions</code></strong> interface of the <a href="/en-US/docs/Web/API/Permissions_API">Permissions API</a> provides the core Permission API functionality, such as methods for querying and revoking permissions</p>
+<h2 id="instance_methods">Instance methods</h2>
+<dl>
+  <dt id="permissions.query"><a href="/en-US/docs/Web/API/Permissions/query" title="Permissions.query()"><code>Permissions.query()</code></a></dt>
+  <dd>
+    <p>Returns the user permission status for a given API.</p>
+  </dd>
+  <dt id="permissions.revoke"><a href="/en-US/docs/Web/API/Permissions/revoke" title="Permissions.revoke()"><code>Permissions.revoke()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites.">
+  <span class="visually-hidden">Deprecated</span>
+</abbr></dt>
+  <dd>
+    <p>Revokes the permission currently set on a given API.</p>
+  </dd>
+</dl>
+<h2 id="example">Example</h2>
+<pre class="brush: js">navigator.permissions.query({ name: "geolocation" }).then((result) =&gt; {
+  if (result.state === "granted") {
+    showLocalNewsWithGeolocation();
+  } else if (result.state === "prompt") {
+    showButtonToEnableLocalNews();
+  }
+  // Don't do anything if the permission was denied.
+});
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="api.Permissions" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="api.Permissions" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+</body></html>

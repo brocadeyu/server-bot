@@ -1,0 +1,152 @@
+<html><head></head><body><div class="notecard experimental">
+    <h4 id="experimental">Experimental</h4>
+    <p><strong>This is an <a href="/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p>
+</div>
+<p>
+  The <code>related_applications</code> manifest member is used to specify one or more native applications that are related to your web application.
+  It can be used with the <a href="/en-US/docs/Web/Manifest/prefer_related_applications"><code>prefer_related_applications</code></a> manifest member, which indicates a preference for installing either a related native application or your web application.
+</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="brush: json">/* Related native application on one platform specified by both url and id */
+"related_applications": [
+  {
+    "platform": "play",
+    "url": "https://play.google.com/store/apps/details?id=com.example.app1",
+    "id": "com.example.app1"
+  }
+]
+
+/* Related native application on one platform specified only by id */
+"related_applications": [
+  {
+    "platform": "windows",
+    "id": "example.app1"
+  }
+]
+
+/* Related native applications on two platforms */
+"related_applications": [
+  {
+    "platform": "play",
+    "url": "https://play.google.com/store/apps/details?id=com.example.app1",
+    "id": "com.example.app1"
+  },
+  {
+    "platform": "amazon",
+    "url": "https://www.amazon.com/product/dp/B000XA1000"
+  }
+]
+</pre>
+<h3 id="values">Values</h3>
+<dl>
+  <dt id="related_applications"><a href="#related_applications"><code>related_applications</code></a></dt>
+  <dd>
+    <p>An array of objects, each representing a platform-specific native application related to the web app. Each object must include a <code>platform</code> property and at least one of either a <code>url</code> or an <code>id</code> (or both).</p>
+    <dl>
+      <dt id="platform"><a href="#platform"><code>platform</code></a></dt>
+      <dd>
+        <p>
+          A string that identifies the platform on which the application can be found.
+          Examples include <code>amazon</code> (Amazon App Store), <code>play</code> (Google Play Store), and <code>windows</code> (Windows Store).
+          See the complete list of possible <a href="https://github.com/w3c/manifest/wiki/Platforms">platform values</a>.
+        </p>
+      </dd>
+      <dt id="url"><a href="#url"><code>url</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string that represents the URL at which the platform-specific application can be found.
+          If not specified, an <code>id</code> must be provided.
+        </p>
+      </dd>
+      <dt id="id"><a href="#id"><code>id</code></a> <span class="badge inline optional">Optional</span></dt>
+      <dd>
+        <p>
+          A string with the ID used to represent the application on the specified platform.
+          If not specified, a <code>url</code> must be provided.
+        </p>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>A "related application" is a <a href="/en-US/docs/Glossary/Native">native</a> application that provides functionality similar to your web app, often with additional features or better integration with users' devices.</p>
+<p>
+  The <code>related_applications</code> manifest member lets you identify the platform-specific native applications that are related to your web app.
+  For example, consider you have a native Android app for your product available through the Google Play Store.
+  It provides the same core features as your web app and integrates better with the device's notification system.
+  You can use <code>related_applications</code> to specify this native Android app in your web app's manifest file.
+</p>
+<p>Some key points about the <code>related_applications</code> member include:</p>
+<ul>
+  <li>
+    <p>It allows you to specify multiple related apps on different platforms, giving users options for native apps across various devices and operating systems.</p>
+  </li>
+  <li>
+    <p>
+      It creates a unidirectional relationship between your web app and the specified native apps.
+      The native apps are not required to reference your web app in return.
+    </p>
+  </li>
+  <li>
+    <p>The data may be used by web crawlers to gather more information about the native apps related to your web app, potentially improving discoverability of these native apps.</p>
+  </li>
+  <li>
+    <p>When used with the <a href="/en-US/docs/Web/Manifest/prefer_related_applications"><code>prefer_related_applications</code></a> member set to <code>true</code>, it enables browsers to suggest installing the related native app instead of your web app.</p>
+    <div class="notecard note">
+      <p><strong>Note:</strong> For Chromium-based browsers, <code>prefer_related_applications</code> should be set to <code>false</code> or omitted to make your web app installable.</p>
+    </div>
+  </li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="specifying_a_related_native_application">Specifying a related native application</h3>
+<p>This example shows how to specify a related native Android app in your web app's manifest file. It uses minimal information to identify the native app available on the Google Play Store:</p>
+<pre class="brush: json">{
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.example.app1"
+    }
+  ]
+}
+</pre>
+<h3 id="specifying_related_native_applications_on_multiple_platforms">Specifying related native applications on multiple platforms</h3>
+<p>If native versions of your web app are available on both Google Play Store and Windows Store, you can specify them in your web app's manifest file like so:</p>
+<pre class="brush: json">{
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.example.app1",
+      "id": "com.example.app1"
+    },
+    {
+      "platform": "windows",
+      "url": "https://apps.microsoft.com/store/detail/example-app1/9WZDNCRFHVJL"
+    }
+  ]
+}
+</pre>
+<h3 id="specifying_preference_for_installing_a_related_native_app">Specifying preference for installing a related native app</h3>
+<p>If you want to indicate to browsers that you prefer users to be given the option to install your native app, available on the Google App Store, instead of your web app, you can set <code>prefer_related_applications</code> to <code>true</code>. Browsers may then prompt users to install the native Android app instead of your web app.</p>
+<pre class="brush: json">{
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.example.app1"
+    }
+  ]
+}
+</pre>
+<h2 id="specifications">Specifications</h2><div class="bc-specs" data-bcd-query="html.manifest.related_applications" data-spec-urls="">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2><div class="bc-data" data-query="html.manifest.related_applications" data-depth="1" data-multiple="false">
+  If you're able to see this, something went wrong on this page.
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/Manifest/prefer_related_applications"><code>prefer_related_applications</code></a> manifest member</li>
+  <li><a href="/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#the_web_app_manifest">The web app manifest</a> for making your web app installable</li>
+  <li><a href="/en-US/docs/Web/API/Navigator/getInstalledRelatedApps"><code>Navigator.getInstalledRelatedApps()</code></a></li>
+</ul>
+</body></html>

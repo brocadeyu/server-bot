@@ -1,0 +1,222 @@
+<html><head></head><body>
+<p>Every property in JavaScript objects can be classified by three factors:</p>
+<ul>
+  <li>Enumerable or non-enumerable;</li>
+  <li>String or <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>;</li>
+  <li>Own property or inherited property from the prototype chain.</li>
+</ul>
+<p><em>Enumerable properties</em> are those properties whose internal enumerable flag is set to true, which is the default for properties created via simple assignment or via a property initializer. Properties defined via <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty</code></a> and such are not enumerable by default. Most iteration means (such as <a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> loops and <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys</code></a>) only visit enumerable keys.</p>
+<p>Ownership of properties is determined by whether the property belongs to the object directly and not to its prototype chain.</p>
+<p>All properties, enumerable or not, string or symbol, own or inherited, can be accessed with <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors">dot notation or bracket notation</a>. In this section, we will focus on the means provided by JavaScript to visit a group of object properties one-by-one.</p>
+<h2 id="querying_object_properties">Querying object properties</h2>
+<p>There are four built-in ways to query a property of an object. They all support both string and symbol keys. The following table summarizes when each method returns <code>true</code>.</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Enumerable, own</th>
+      <th>Enumerable, inherited</th>
+      <th>Non-enumerable, own</th>
+      <th>Non-enumerable, inherited</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable"><code>propertyIsEnumerable()</code></a></td>
+      <td><code>true ✅</code></td>
+      <td><code>false ❌</code></td>
+      <td><code>false ❌</code></td>
+      <td><code>false ❌</code></td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty()</code></a></td>
+      <td><code>true ✅</code></td>
+      <td><code>false ❌</code></td>
+      <td><code>true ✅</code></td>
+      <td><code>false ❌</code></td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn"><code>Object.hasOwn()</code></a></td>
+      <td><code>true ✅</code></td>
+      <td><code>false ❌</code></td>
+      <td><code>true ✅</code></td>
+      <td><code>false ❌</code></td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Operators/in"><code>in</code></a></td>
+      <td><code>true ✅</code></td>
+      <td><code>true ✅</code></td>
+      <td><code>true ✅</code></td>
+      <td><code>true ✅</code></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="traversing_object_properties">Traversing object properties</h2>
+<p>There are many methods in JavaScript that traverse a group of properties of an object. Sometimes, these properties are returned as an array; sometimes, they are iterated one-by-one in a loop; sometimes, they are used for constructing or mutating another object. The following table summarizes when a property may be visited.</p>
+<p>Methods that only visit string properties or only symbol properties will have an extra note. ✅ means a property of this type will be visited; ❌ means it will not.</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Enumerable, own</th>
+      <th>Enumerable, inherited</th>
+      <th>Non-enumerable, own</th>
+      <th>Non-enumerable, inherited</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys</code></a><br><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values"><code>Object.values</code></a><br><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"><code>Object.entries</code></a></td>
+      <td>✅<br>(strings)</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames"><code>Object.getOwnPropertyNames</code></a></td>
+      <td>✅<br>(strings)</td>
+      <td>❌</td>
+      <td>✅<br>(strings)</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols"><code>Object.getOwnPropertySymbols</code></a></td>
+      <td>✅<br>(symbols)</td>
+      <td>❌</td>
+      <td>✅<br>(symbols)</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors"><code>Object.getOwnPropertyDescriptors</code></a></td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys"><code>Reflect.ownKeys</code></a></td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><code>for...in</code></a></td>
+      <td>✅<br>(strings)</td>
+      <td>✅<br>(strings)</td>
+      <td>❌</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"><code>Object.assign</code></a><br>(After the first parameter)</td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">Object spread</a></td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="obtaining_properties_by_enumerabilityownership">Obtaining properties by enumerability/ownership</h2>
+<p>Note that this is not the most efficient algorithm for all cases, but useful for a quick demonstration.</p>
+<ul>
+  <li>Detection can occur by <code>SimplePropertyRetriever.theGetMethodYouWant(obj).includes(prop)</code></li>
+  <li>Iteration can occur by <code>SimplePropertyRetriever.theGetMethodYouWant(obj).forEach((value, prop) =&gt; {});</code> (or use <code>filter()</code>, <code>map()</code>, etc.)</li>
+</ul>
+<pre class="brush: js">const SimplePropertyRetriever = {
+  getOwnEnumProps(obj) {
+    return this._getPropertyNames(obj, true, false, this._enumerable);
+    // Or could use for...in filtered with Object.hasOwn or just this: return Object.keys(obj);
+  },
+  getOwnNonEnumProps(obj) {
+    return this._getPropertyNames(obj, true, false, this._notEnumerable);
+  },
+  getOwnProps(obj) {
+    return this._getPropertyNames(
+      obj,
+      true,
+      false,
+      this._enumerableAndNotEnumerable,
+    );
+    // Or just use: return Object.getOwnPropertyNames(obj);
+  },
+  getPrototypeEnumProps(obj) {
+    return this._getPropertyNames(obj, false, true, this._enumerable);
+  },
+  getPrototypeNonEnumProps(obj) {
+    return this._getPropertyNames(obj, false, true, this._notEnumerable);
+  },
+  getPrototypeProps(obj) {
+    return this._getPropertyNames(
+      obj,
+      false,
+      true,
+      this._enumerableAndNotEnumerable,
+    );
+  },
+  getOwnAndPrototypeEnumProps(obj) {
+    return this._getPropertyNames(obj, true, true, this._enumerable);
+    // Or could use unfiltered for...in
+  },
+  getOwnAndPrototypeNonEnumProps(obj) {
+    return this._getPropertyNames(obj, true, true, this._notEnumerable);
+  },
+  getOwnAndPrototypeEnumAndNonEnumProps(obj) {
+    return this._getPropertyNames(
+      obj,
+      true,
+      true,
+      this._enumerableAndNotEnumerable,
+    );
+  },
+  // Private static property checker callbacks
+  _enumerable(obj, prop) {
+    return Object.prototype.propertyIsEnumerable.call(obj, prop);
+  },
+  _notEnumerable(obj, prop) {
+    return !Object.prototype.propertyIsEnumerable.call(obj, prop);
+  },
+  _enumerableAndNotEnumerable(obj, prop) {
+    return true;
+  },
+  // Inspired by http://stackoverflow.com/a/8024294/271577
+  _getPropertyNames(obj, iterateSelf, iteratePrototype, shouldInclude) {
+    const props = [];
+    do {
+      if (iterateSelf) {
+        Object.getOwnPropertyNames(obj).forEach((prop) =&gt; {
+          if (props.indexOf(prop) === -1 &amp;&amp; shouldInclude(obj, prop)) {
+            props.push(prop);
+          }
+        });
+      }
+      if (!iteratePrototype) {
+        break;
+      }
+      iterateSelf = true;
+      obj = Object.getPrototypeOf(obj);
+    } while (obj);
+    return props;
+  },
+};
+</pre>
+<h2 id="see_also">See also</h2>
+<ul>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/in"><code>in</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><code>for...in</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>Object.prototype.hasOwnProperty()</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable"><code>Object.prototype.propertyIsEnumerable()</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames"><code>Object.getOwnPropertyNames()</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols"><code>Object.getOwnPropertySymbols()</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors"><code>Object.getOwnPropertyDescriptors()</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn"><code>Object.hasOwn()</code></a></li>
+  <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys"><code>Reflect.ownKeys()</code></a></li>
+</ul>
+</body></html>
