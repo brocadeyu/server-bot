@@ -7,6 +7,8 @@ const fsPromises = require('fs/promises');
 const port = 4000; // 主应用服务端口
 const appsDir = path.resolve(__dirname, 'apps');
 const srcDir = path.resolve(__dirname, "src")
+// 定义静态文件根目录
+const assetsRoot = path.join(__dirname, 'src/assets');
 const indexFilePath = path.resolve(__dirname, 'index.html');
 
 // 获取所有子目录
@@ -89,6 +91,25 @@ exec(fullCommand, (err, stdout, stderr) => {
   console.log(stdout);
 });
 
+// 获取文件的 MIME 类型
+function getMimeType(ext) {
+  const mimeTypes = {
+    '.html': 'text/html',
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+    '.json': 'application/json',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.ttf': 'font/ttf',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+  };
+  return mimeTypes[ext] || 'application/octet-stream';
+}
+
 // 创建 HTTP 服务器
 const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && req.url === '/apps') {
@@ -106,11 +127,35 @@ const server = http.createServer(async (req, res) => {
       res.end('Error loading index.html');
     }
   }
+  else if (req.method === 'GET' && req.url.includes('/assets')) {
+    const filePath = path.resolve(__dirname) + req.url;
+    try {
+      // 检查文件是否存在
+      const fileStat = await fsPromises.stat(filePath);
+
+      if (fileStat.isFile()) {
+        const ext = path.extname(filePath).toLowerCase();
+        const mimeType = getMimeType(ext);
+
+        const content = await fsPromises.readFile(filePath);
+        res.writeHead(200, { 'Content-Type': mimeType });
+        res.end(content);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+      }
+    } catch (error) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Not Found');
+    }
+  }
   else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not Found');
   }
-});
+}
+);
+
 
 // 启动服务并自动打开浏览器
 server.listen(port, () => {
