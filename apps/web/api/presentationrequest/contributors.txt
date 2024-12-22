@@ -1,9 +1,0 @@
-# Contributors by commit history
-https://github.com/mdn/content/commits/main/files/en-us/web/api/presentationrequest/index.md
-
-# Original Wiki contributors
-bershanskiy
-lucian95
-jpmedley
-MashKao
-rolfedh

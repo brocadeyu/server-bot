@@ -1,5 +1,0 @@
-# Contributors by commit history
-https://github.com/mdn/content/commits/main/files/en-us/web/security/iframe_credentialless/index.md
-
-# Original Wiki contributors
-

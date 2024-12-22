@@ -1,9 +1,0 @@
-# Contributors by commit history
-https://github.com/mdn/content/commits/main/files/en-us/web/api/canvascapturemediastreamtrack/index.md
-
-# Original Wiki contributors
-Sheppy
-fscholz
-uysalere
-Sebastianz
-teoli

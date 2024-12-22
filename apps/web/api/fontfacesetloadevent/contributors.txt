@@ -1,9 +1,0 @@
-# Contributors by commit history
-https://github.com/mdn/content/commits/main/files/en-us/web/api/fontfacesetloadevent/index.md
-
-# Original Wiki contributors
-foolip
-mfuji09
-fscholz
-jpmedley
-david_ross

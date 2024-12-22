@@ -1,8 +1,0 @@
-# Contributors by commit history
-https://github.com/mdn/content/commits/main/files/en-us/web/api/absoluteorientationsensor/index.md
-
-# Original Wiki contributors
-vishal-vp
-andersju
-huwcp
-jpmedley

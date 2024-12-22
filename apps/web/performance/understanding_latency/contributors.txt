@@ -1,9 +1,0 @@
-# Contributors by commit history
-https://github.com/mdn/content/commits/main/files/en-us/web/performance/understanding_latency/index.md
-
-# Original Wiki contributors
-chrisdavidmills
-sharma86hub
-estelle
-walonge
-irenesmith

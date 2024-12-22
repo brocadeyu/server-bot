@@ -1,7 +1,0 @@
-# Contributors by commit history
-https://github.com/mdn/content/commits/main/files/en-us/web/performance/how_long_is_too_long/index.md
-
-# Original Wiki contributors
-chrisdavidmills
-walonge
-estelle

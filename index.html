@@ -80,19 +80,21 @@
         .app__item {
             height: 5rem;
             width: 13rem;
-            background-color: #DDF1F2;
-            border: 2px solid #4DA1A9;
+            background-color: #e5fdfe;
+            border: 2px solid #79D7BE;
             border-radius: 5px;
             /* display: flex;
             align-items: center; */
             /* padding: 10px; */
-            /* box-sizing: border-box; */
+            /* box-sizing: border-box;#4DA1A9 */
             position: relative;
             cursor: pointer;
+            transition: all 0.1s linear;
         }
 
         .app__item:hover {
-            border-color: #79D7BE;
+            border-color: #4DA1A9;
+            background-color: #DDF1F2
         }
 
         .app__item__img {
@@ -151,7 +153,8 @@
 </head>
 
 <body>
-    <div id="apps__container"></div>
+    <div id="apps__container">
+    </div>
 
     <script>
         function navigate(url) {
