@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./src/assets/fonts/JetBrainsMono-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/src/assets/fonts/JetBrainsMono-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./src/assets/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/src/assets/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/src/assets/fonts/JetBrainsMono-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/src/assets/fonts/JetBrainsMono-ExtraBold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    /* 正常 */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+p {
+    margin: 0;
+    margin: 0;
+}
+
+#apps__container {
+    height: 100%;
+    width: 100%;
+    background-color: #F6F4F0;
+    padding: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+#apps__container :not(:first-child) {
+    margin-left: 5px;
+}
+
+.app__item {
+    height: 5rem;
+    width: 13rem;
+    background-color: #e5fdfe;
+    border: 2px solid #79D7BE;
+    border-radius: 5px;
+    /* display: flex;
+    align-items: center; */
+    /* padding: 10px; */
+    /* box-sizing: border-box;#4DA1A9 */
+    position: relative;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.app__item:hover {
+    border-color: #4DA1A9;
+    background-color: #DDF1F2
+}
+
+.app__item__img {
+    height: 4.5rem;
+    width: 4.5rem;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(10px, -50%);
+}
+
+.app__item__text {
+    color: #79D7BE;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 0;
+    /* transform: translate(-50%, -50%); */
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: 500;
+    -webkit-text-stroke: 1px #4DA1A9;
+    user-select: none;
+}
+
+/* pc width > 1100px */
+html {
+    font-size: 20px;
+}
+
+/* ipad pro */
+@media screen and (max-width: 1024px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* ipad */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* iphone6 7 8 plus */
+@media screen and (max-width: 430px) {
+    html {
+        font-size: 15px;
+    }
+}

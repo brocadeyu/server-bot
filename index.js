@@ -25,8 +25,11 @@ const parseAppIndex = async (appPath) => {
     const titleMatch = content.match(/<title>(.*?)<\/title>/i);
     const iconMatch = content.match(/<link[^>]*rel=["']icon["'][^>]*href=["']([^"']+)["']/i);
 
+
+
     const title = titleMatch ? titleMatch[1] : 'Untitled';
     const icon = iconMatch ? iconMatch[1] : '';
+    console.log(title, iconMatch);
     return { title, icon };
   } catch (error) {
     return { title: 'Untitled', icon: '' }; // 默认值
@@ -106,6 +109,7 @@ function getMimeType(ext) {
     '.ttf': 'font/ttf',
     '.woff': 'font/woff',
     '.woff2': 'font/woff2',
+    '.ico': 'image/x-icon', // 添加对 .ico 的支持
   };
   return mimeTypes[ext] || 'application/octet-stream';
 }
@@ -127,7 +131,7 @@ const server = http.createServer(async (req, res) => {
       res.end('Error loading index.html');
     }
   }
-  else if (req.method === 'GET' && req.url.includes('/assets')) {
+  else if (req.method === 'GET' && req.url.includes('/')) {
     const filePath = path.resolve(__dirname) + req.url;
     try {
       // 检查文件是否存在
