@@ -16,7 +16,7 @@
 
     <script>
         function navigate(url) {
-            window.open(url, "_blank"); // 新标签打开
+            window.open(url + `?t=${new Date().getTime()}`, "_blank"); // 新标签打开
         }
         async function loadApps() {
             try {

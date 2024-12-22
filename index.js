@@ -29,7 +29,7 @@ const parseAppIndex = async (appPath) => {
 
     const title = titleMatch ? titleMatch[1] : 'Untitled';
     const icon = iconMatch ? iconMatch[1] : '';
-    console.log(title, iconMatch);
+    // console.log(title, iconMatch);
     return { title, icon };
   } catch (error) {
     return { title: 'Untitled', icon: '' }; // 默认值
