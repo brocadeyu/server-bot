@@ -48,6 +48,14 @@ const getProjects = async () => {
     directories.map(async (project, index) => {
       const projectPath = path.join(appsDir, project);
       const { title, icon } = await parseAppIndex(projectPath);
+      if (project === 'cesium') {
+        return {
+          name: 'cesium',
+          url: "http://localhost:8081/apps/cesium/",
+          title: 'Cesium',
+          icon: 'Build/Apps/Sandcastle/images/cesium-logomark.svg'
+        }
+      }
       return {
         name: project,
         url: `http://localhost:${3000 + index}`,
@@ -77,7 +85,7 @@ const commands = projects.map((project, index) => {
 });
 
 // 使用 concurrently 启动所有服务
-const fullCommand = `npx concurrently "${commands.join('" "')}" "serve ${srcDir} -l ${port - 1}"`;
+const fullCommand = `npx concurrently "${commands.join('" "')}" "serve ${srcDir} -l ${port - 1}" "http-serve ./ -p 8081"`;
 // console.log("commands", commands);
 // console.log("fullCommand", fullCommand);
 

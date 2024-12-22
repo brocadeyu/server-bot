@@ -15,8 +15,13 @@
     </div>
 
     <script>
+        const asignVersion = {
+            "vue": '2.7'
+        }
         function navigate(url) {
-            window.open(url + `?t=${new Date().getTime()}`, "_blank"); // 新标签打开
+            
+            window.open(url, "_blank"); // 新标签打开
+            // window.open(url + `?t=${new Date().getTime()}`, "_blank"); // 新标签打开+时间戳防止缓存
         }
         async function loadApps() {
             try {
