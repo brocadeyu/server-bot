@@ -68,16 +68,18 @@ p {
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
+    align-content: start;
 
 }
 
-#apps__container :not(:first-child) {
+/* #apps__container :not(:first-child) {
     margin-left: 5px;
-}
+} */
 
 .app__item {
     height: 5rem;
     width: 13rem;
+    margin: 5px;
     background-color: #e5fdfe;
     border: 2px solid #79D7BE;
     border-radius: 5px;
