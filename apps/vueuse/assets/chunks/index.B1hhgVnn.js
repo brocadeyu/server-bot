@@ -1,0 +1,1 @@
+import{g as r}from"./configurable.C7TV9RQd.js";import{u as o}from"./index.C2bU4x7s.js";import{r as e}from"./vue.CliZxonC.js";function m(s={}){const{document:i=r}=s;if(!i)return e("visible");const t=e(i.visibilityState);return o(i,"visibilitychange",()=>{t.value=i.visibilityState}),t}export{m as u};

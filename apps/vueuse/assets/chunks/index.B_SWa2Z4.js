@@ -1,0 +1,1 @@
+import{a as n}from"./configurable.C7TV9RQd.js";function i(){const o=new Set,t=r=>{o.delete(r)};return{on:r=>{o.add(r);const e=()=>t(r);return n(e),{off:e}},off:t,trigger:(...r)=>Promise.all(Array.from(o).map(e=>e(...r))),clear:()=>{o.clear()}}}export{i as c};

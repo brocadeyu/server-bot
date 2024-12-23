@@ -1,0 +1,1 @@
+import{t as s}from"./configurable.C7TV9RQd.js";import{z as v,r as c}from"./vue.CliZxonC.js";function i(t=!1,a={}){const{truthyValue:l=!0,falsyValue:o=!1}=a,n=v(t),e=c(t);function u(f){if(arguments.length)return e.value=f,e.value;{const r=s(l);return e.value=e.value===r?s(o):r,e.value}}return n?u:[e,u]}export{i as u};

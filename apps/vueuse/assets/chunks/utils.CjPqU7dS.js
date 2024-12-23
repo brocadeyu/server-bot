@@ -1,0 +1,1 @@
+import{t as n}from"./configurable.C7TV9RQd.js";import{f as s}from"./vue.CliZxonC.js";import{j as u}from"./js-yaml.mbYHt68G.js";function i(t,p){const o=n;return function(...r){return s(()=>t.apply(this,r.map(e=>o(e))))}}const c=i(t=>u.dump(t,{skipInvalid:!0,forceQuotes:!0,condenseFlow:!0,noCompatMode:!0,quotingType:"'"}));export{c as s};

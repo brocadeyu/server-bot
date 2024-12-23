@@ -1,0 +1,1 @@
+import{t as n}from"./configurable.C7TV9RQd.js";import{t as a}from"./index.BaP1Ew-9.js";import{u as m}from"./index.CFoihoJv.js";import{u as s}from"./index.CfcCVByD.js";import{v as u,x as f}from"./vue.CliZxonC.js";function d(t=s()){const e=u(),r=()=>{const o=m(t);o&&(e.value=o.parentElement)};return a(r),f(()=>n(t),r),e}export{d as u};

@@ -1,0 +1,1 @@
+import{g as o,o as e,c as r,K as t,J as p}from"./vue.CliZxonC.js";const i=o({__name:"Key",props:{value:{type:Boolean}},setup(s){return(a,n)=>(e(),r("div",{class:p(["font-mono px-4 py-2 rounded",a.value?"opacity-100 text-primary bg-primary bg-opacity-15":"opacity-50 bg-gray-600 bg-opacity-10 dark:bg-gray-400 dark:bg-opacity-10"])},[t(a.$slots,"default")],2))}});export{i as _};

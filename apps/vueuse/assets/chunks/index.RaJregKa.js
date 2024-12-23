@@ -1,0 +1,1 @@
+import{t as s}from"./configurable.C7TV9RQd.js";import{r as u,z as c,x as l}from"./vue.CliZxonC.js";function m(e){return JSON.parse(JSON.stringify(e))}function y(e,t={}){const a=u({}),{manual:o,clone:r=m,deep:f=!0,immediate:i=!0}=t;function n(){a.value=r(s(e))}return!o&&(c(e)||typeof e=="function")?l(e,n,{...t,deep:f,immediate:i}):n(),{cloned:a,sync:n}}export{m as c,y as u};
