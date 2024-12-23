@@ -56,6 +56,22 @@ const getProjects = async () => {
           icon: 'Build/Apps/Sandcastle/images/cesium-logomark.svg'
         }
       }
+      if (project === 'threejs') {
+        return {
+          name: 'threejs',
+          url: "http://localhost:8081/apps/threejs/",
+          title: 'Threejs',
+          icon: 'files/icon.svg'
+        }
+      }
+      if (project === 'typescript') {
+        return {
+          name: 'typescript',
+          url: "http://localhost:8082/",
+          title: 'Typescript',
+          icon: 'icons/icon-48x48.png'
+        }
+      }
       return {
         name: project,
         url: `http://localhost:${3000 + index}`,
@@ -85,7 +101,7 @@ const commands = projects.map((project, index) => {
 });
 
 // 使用 concurrently 启动所有服务
-const fullCommand = `npx concurrently "${commands.join('" "')}" "serve ${srcDir} -l ${port - 1}" "http-serve ./ -p 8081"`;
+const fullCommand = `npx concurrently "${commands.join('" "')}" "serve ${srcDir} -l ${port - 1}" "http-serve ./ -p 8081" "http-serve apps/typescript -p 8082"`;
 // console.log("commands", commands);
 // console.log("fullCommand", fullCommand);
 
