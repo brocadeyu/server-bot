@@ -25,7 +25,7 @@
         }
         async function loadApps() {
             try {
-                const response = await fetch('http://localhost:4000/apps');
+                const response = await fetch('http://localhost:2999/apps');
                 if (!response.ok) throw new Error('Failed to fetch apps');
                 const apps = await response.json();
                 const appsContainer = document.getElementById('apps__container');
@@ -35,7 +35,7 @@
                     appItem.onclick = () => navigate(app.url);
                     const appItemImg = document.createElement('img');
                     appItemImg.className = 'app__item__img';
-                    appItemImg.src = `${app.url + app.icon}`;
+                    appItemImg.src = `${app.icon}`;
                     appItemImg.loading = 'lazy'; // 图片懒加载
                     const appItemText = document.createElement('p');
                     appItemText.className = 'app__item__text';
